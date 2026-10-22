@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TIZ بک‌تست زنده</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root { --bg:#f6f7f9; --card:#fff; --fg:#1b1f24; --mute:#6b7280; --line:#e5e7eb; --pos:#0a7d45; --neg:#c0392b; --acc:#2f6fed; }
+@media (prefers-color-scheme: dark) { :root { --bg:#111418; --card:#1a1f25; --fg:#e6e8eb; --mute:#9aa3ad; --line:#2a3139; --pos:#3ccf8e; --neg:#ff6b5e; --acc:#6c9bff; } }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 Vazirmatn, Tahoma, system-ui, sans-serif; }
+main { max-width:1200px; margin:0 auto; padding:16px; }
+h1 { font-size:20px; margin:0 0 12px; } h2 { font-size:15px; margin:0 0 8px; color:var(--mute); font-weight:600; }
+.grid { display:grid; gap:12px; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); }
+.card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px; margin-bottom:12px; }
+.run { cursor:pointer; } .run.sel { outline:2px solid var(--acc); }
+.bar { height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin:6px 0; } .bar > i { display:block; height:100%; background:var(--acc); }
+.num { font-variant-numeric:tabular-nums; direction:ltr; unicode-bidi:embed; }
+.pos { color:var(--pos); } .neg { color:var(--neg); } .mute { color:var(--mute); font-size:12px; }
+table { width:100%; border-collapse:collapse; font-size:13px; } th, td { padding:4px 6px; border-bottom:1px solid var(--line); text-align:right; }
+.scroll { overflow-x:auto; } #chartbox { position:relative; height:340px; }
+#results label { display:block; padding:2px 0; font-size:13px; overflow-wrap:anywhere; }
+</style>
+</head>
+<body>
+<main>
+<h1>TIZ — بک‌تست زنده</h1>
+<div class="card"><h2>منحنی سرمایه (٪ بازده)</h2><div id="chartbox"><canvas id="chart"></canvas></div></div>
+<h2>اجراها (<code>results/live/</code>)</h2>
+<div id="runs" class="grid"><p class="mute">هنوز اجرایی نیست؛ یک بک‌تست بزن.</p></div>
+<div class="grid">
+  <div class="card"><h2>بازارها <span id="selname" class="mute"></span></h2><div class="scroll"><table id="markets"></table></div></div>
+  <div class="card"><h2>پوزیشن‌های باز و خروج‌ها</h2><div id="open" class="mute"></div></div>
+</div>
+<div class="card"><h2>آخرین معاملات</h2><div class="scroll"><table id="trades"></table></div></div>
+<div class="card"><h2>نتایج ذخیره‌شده برای مقایسه (<code>results/*.json</code>)</h2><div id="results" class="mute">…</div></div>
+</main>
+<script>
+const fa = n => Number(n).toLocaleString('fa-IR', {maximumFractionDigits: 2});
+const pct = n => `<span class="num ${n >= 0 ? 'pos' : 'neg'}">${n >= 0 ? '+' : ''}${fa(n)}٪</span>`;
+const day = t => new Date(t * 1000).toLocaleDateString('fa-IR', {month: 'short', day: 'numeric'});
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+let live = {}, picked = new Set(), cached = {}, sel = null;
+const colors = ['#2f6fed', '#e8590c', '#0a7d45', '#ae3ec9', '#c0392b', '#1098ad', '#f08c00', '#5c7cfa'];
+const chart = new Chart(document.getElementById('chart'), {
+  type: 'line', data: {datasets: []},
+  options: {animation: false, parsing: false, maintainAspectRatio: false, interaction: {mode: 'nearest', intersect: false},
+    elements: {point: {radius: 0}, line: {borderWidth: 1.5}},
+    scales: {x: {type: 'linear', ticks: {callback: day, maxTicksLimit: 8}}, y: {ticks: {callback: v => fa(v) + '٪'}}},
+    plugins: {legend: {position: 'bottom'}, tooltip: {callbacks: {title: i => day(i[0].parsed.x), label: i => `${i.dataset.label}: ${fa(i.parsed.y)}٪`}}}}
+});
+const curve = eq => eq.length ? eq.map(([t, e]) => ({x: t, y: (e / eq[0][1] - 1) * 100})) : [];
+
+async function get(p) { const r = await fetch(p, {cache: 'no-store'}); if (!r.ok) throw new Error(p); return r.json(); }
+
+function drawRuns() {
+  const el = document.getElementById('runs'), names = Object.keys(live);
+  if (!names.length) return;
+  el.innerHTML = names.map(n => { const r = live[n], p = r.progress, f = Math.min(1, (p.t - p.lo_t) / Math.max(1, p.hi_t - p.lo_t));
+    return `<div class="card run ${n === sel ? 'sel' : ''}" data-n="${esc(n)}"><b>${esc(r.tag)}</b> ${r.done ? '<span class="mute">تمام شد</span>' : ''}
+      <div class="bar"><i style="width:${(f * 100).toFixed(1)}%"></i></div>
+      <div>بازده ${pct(r.return_pct)} · افت ${pct(-r.max_drawdown_pct)} · ${fa(r.n_trades)} معامله</div>
+      <div class="mute">${day(p.lo_t)} تا ${day(p.hi_t)} · آستانه ${fa(r.params.entry_edge * 100)}٪ · ${r.params.fresh_quotes ? 'تازه' : 'با تأخیر'}${r.params.trail && r.params.trail !== 'off' ? ' · trail ' + esc(r.params.trail) : ''}</div></div>`; }).join('');
+  el.querySelectorAll('.run').forEach(c => c.onclick = () => { sel = c.dataset.n; drawRuns(); drawSel(); });
+}
+
+function drawSel() {
+  const r = live[sel]; if (!r) return;
+  document.getElementById('selname').textContent = r.tag;
+  document.getElementById('markets').innerHTML = '<tr><th>بازار</th><th>معامله</th><th>برد</th><th>سود (تومان)</th></tr>' +
+    Object.entries(r.by_market).map(([s, m]) => `<tr><td>${esc(s)}</td><td class="num">${fa(m.trades)}</td><td class="num">${fa(m.wins)}</td><td class="num ${m.pnl_tmn >= 0 ? 'pos' : 'neg'}">${fa(m.pnl_tmn)}</td></tr>`).join('');
+  document.getElementById('open').innerHTML = (r.open.length ? r.open.map(o => `${esc(o.sym)}: ${fa(o.held_min)} دقیقه`).join('، ') : 'پوزیشن باز نیست') +
+    '<br>خروج‌ها: ' + Object.entries(r.exits).map(([k, v]) => `${esc(k)} ${fa(v)}`).join('، ');
+  document.getElementById('trades').innerHTML = '<tr><th>زمان</th><th>بازار</th><th>دلیل</th><th>سود</th></tr>' +
+    r.trades.map(t => `<tr><td>${new Date(t.close * 1000).toLocaleString('fa-IR', {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'})}</td><td>${esc(t.sym)}</td><td>${esc(t.reason)}</td><td>${pct(t.pnl_pct)}</td></tr>`).join('');
+}
+
+function drawChart() {
+  const sets = [...Object.values(live).map(r => [r.tag + (r.done ? '' : ' (زنده)'), r.equity]),
+                ...[...picked].filter(n => cached[n]).map(n => [n.replace('.json', ''), cached[n].equity])];
+  chart.data.datasets = sets.map(([label, eq], i) => ({label, data: curve(eq), borderColor: colors[i % colors.length], backgroundColor: colors[i % colors.length]}));
+  chart.update();
+}
+
+async function poll() {
+  try {
+    const idx = await get('index.json');
+    const got = await Promise.all(idx.live.map(n => get('live/' + n).catch(() => null)));
+    live = {}; idx.live.forEach((n, i) => { if (got[i]) live[n] = got[i]; });
+    if (!live[sel]) sel = Object.keys(live).find(n => !live[n].done) || Object.keys(live)[0] || null;
+    drawRuns(); drawSel(); drawChart();
+    const box = document.getElementById('results');
+    if (box.dataset.n !== String(idx.results.length)) {
+      box.dataset.n = idx.results.length;
+      box.innerHTML = idx.results.map(n => `<label><input type="checkbox" value="${esc(n)}" ${picked.has(n) ? 'checked' : ''}> ${esc(n)}</label>`).join('');
+      box.querySelectorAll('input').forEach(c => c.onchange = async () => {
+        if (c.checked) { picked.add(c.value); cached[c.value] = cached[c.value] || await get(c.value); } else picked.delete(c.value);
+        drawChart();
+      });
+    }
+  } catch (e) { console.warn(e); }
+}
+poll(); setInterval(poll, 2000);
+</script>
+</body>
+</html>

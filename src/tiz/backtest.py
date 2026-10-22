@@ -18,6 +18,7 @@ import httpx
 from tiz import bot as B
 
 DATA, OUT = B.ROOT / os.environ.get("BT_DATA", "data"), B.ROOT / "results"
+LIVE = OUT / "live"  # progress of every run for the dashboard (python -m tiz.dash)
 SPREAD = float(os.environ.get("BT_SPREAD", 0.001))
 MARGIN = float(os.environ.get("BT_MARGIN", 0.0005))
 MIN_VOL = float(os.environ.get("BT_MIN_VOL", 1_000_000))  # TMN traded in the minute
@@ -25,6 +26,7 @@ FRESH = os.environ.get("BT_FRESH", "1") == "1"  # 0 = orders priced off the prev
 AI = os.environ.get("BT_AI") == "1"  # ask the live AI judge every BT_AI_EVERY simulated seconds
 AI_EVERY = float(os.environ.get("BT_AI_EVERY", 3600))
 AI_CACHE = OUT / os.environ.get("BT_AI_CACHE", "ai_cache.jsonl")  # verdicts by minute, shared by every run and window
+PREFILL = None  # list while ai_prefill collects contexts
 
 
 def get(url, params):
@@ -96,7 +98,7 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
     # like the live start: history, baseline, daily volume and WARMUP from the data before the window, if any
     w0 = max(t_data, lo_t - int(B.QUAL_DAYS * 86400)) // 60 * 60
     warm = lo_t - w0 >= B.WARMUP
-    bot = B.Bot(broker, j, markets, judge=B.Judge(enabled=AI), now=lo_t - B.WARMUP if warm else None)
+    bot = B.Bot(broker, j, markets, judge=B.Judge(enabled=AI and PREFILL is None), now=lo_t - B.WARMUP if warm else None)
     cache, used = {}, []
     if AI:
         B.AI_MAX_AGE = AI_EVERY + 60  # a verdict lasts until the next round
@@ -104,6 +106,9 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
             cache = {r["ts"]: r["verdicts"] for r in map(json.loads, open(AI_CACHE))}
     last = {c: None for c in series}
     u, h, equity = None, SPREAD / 2, []
+    params = dict(entry_edge=B.ENTRY_EDGE, fee_maker=B.FEE_MAKER, fee_taker=B.FEE_TAKER, pos_frac=B.POS_FRAC,
+                  max_pos=B.MAX_POS, stop_loss=B.STOP_LOSS, max_hold=B.MAX_HOLD, exit_decay=B.EXIT_DECAY, trail=B.TRAIL,
+                  trail_k=B.TRAIL_K, ai=AI, spread=SPREAD, fill_margin=MARGIN, min_minute_volume_tmn=MIN_VOL, fresh_quotes=FRESH)
     for c, (w, bn) in series.items():
         m = bot.m[c + "TMN"]
         if warm:
@@ -149,11 +154,13 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
         await bot.tick(now)
         if t % 1800 == 0:
             equity.append([t, round(bot.equity())])
+            live(tag, j, bot, params, equity, t, lo_t, hi_t)
     # force-close anything left, like the end-of-challenge flatten
     B.END_TS = now
     bot.last_bal = 0
     await bot.tick(now + 1)
     equity.append([int(now), round(bot.equity())])
+    live(tag, j, bot, params, equity, now, lo_t, hi_t, done=True)
     rows = j.db.execute("select sym, ts_open, ts_close, entry, exit, pnl_tmn, pnl_pct, reason from trades").fetchall()
     eq = bot.equity()
     by_sym, by_day, reasons = defaultdict(lambda: [0, 0.0, 0]), Counter(), Counter(r[7] for r in rows)
@@ -163,9 +170,7 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
         by_sym[s][2] += pnl > 0
         by_day[datetime.fromtimestamp(tc, B.TEHRAN).date().isoformat()] += 1
     res = dict(tag=tag, period=[B.iso(lo_t), B.iso(hi_t)], days=round((hi_t - lo_t) / 86400, 2), coins=B.COINS,
-               params=dict(entry_edge=B.ENTRY_EDGE, fee_maker=B.FEE_MAKER, fee_taker=B.FEE_TAKER, pos_frac=B.POS_FRAC,
-                           max_pos=B.MAX_POS, stop_loss=B.STOP_LOSS, max_hold=B.MAX_HOLD, exit_decay=B.EXIT_DECAY, trail=B.TRAIL, trail_k=B.TRAIL_K, spread=SPREAD,
-                           fill_margin=MARGIN, min_minute_volume_tmn=MIN_VOL, fresh_quotes=FRESH),
+               params=params,
                trades=len(rows), wins=sum(r[5] > 0 for r in rows), pnl_tmn=round(sum(r[5] for r in rows)),
                final_equity=round(eq), return_pct=round((eq / 5_000_000 - 1) * 100, 3),
                max_drawdown_pct=round(bot.max_dd * 100, 3), exits=dict(reasons), trades_per_day=dict(sorted(by_day.items())),
@@ -180,10 +185,36 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
     return res
 
 
+def live(tag, j, bot, params, equity, t, lo_t, hi_t, done=False):
+    """Atomic snapshot for the dashboard."""
+    rows = j.db.execute("select sym, ts_close, entry, exit, pnl_tmn, pnl_pct, reason from trades").fetchall()
+    by, exits = defaultdict(lambda: dict(trades=0, wins=0, pnl_tmn=0)), Counter(r[6] for r in rows)
+    for r in rows:
+        by[r[0]]["trades"] += 1
+        by[r[0]]["wins"] += r[4] > 0
+        by[r[0]]["pnl_tmn"] += round(r[4])
+    eq = bot.equity()
+    snap = dict(tag=tag, params=params, done=done, progress=dict(t=t, lo_t=lo_t, hi_t=hi_t), equity=equity,
+                return_pct=round((eq / 5_000_000 - 1) * 100, 3), max_drawdown_pct=round(bot.max_dd * 100, 3),
+                n_trades=len(rows), exits=dict(exits), by_market=dict(sorted(by.items())),
+                open=[dict(sym=m.sym, qty=m.pos_qty, entry=m.pos_cost / m.pos_qty, held_min=round((t - m.pos_ts) / 60))
+                      for m in bot.m.values() if m.pos_qty],
+                trades=[dict(sym=r[0], close=int(r[1]), entry=r[2], exit=r[3], pnl_tmn=round(r[4]),
+                             pnl_pct=round(r[5] * 100, 3), reason=r[6]) for r in rows[::-1][:50]])
+    LIVE.mkdir(exist_ok=True)
+    tmp = LIVE / f".{tag}.tmp"
+    tmp.write_text(json.dumps(snap))
+    os.replace(tmp, LIVE / f"{tag}.json")
+
+
 async def ai_round(bot, t, now, cache):
     """Bot.ai_round with a cache: a minute already judged costs nothing the second time."""
     ctx = bot.ai_context(now)
     ctx.pop("hours_to_end")  # END_TS is infinite in history
+    if PREFILL is not None:
+        if t not in cache:
+            PREFILL.append((t, ctx))
+        return None
     if t in cache:
         v = bot.judge.verdicts = cache[t]
         bot.judge.ts = now
@@ -204,6 +235,27 @@ def ai_stats(used):
                 mean_confidence=round(sum(x["confidence"] for x in vs) / max(len(vs), 1), 3))
 
 
+async def ai_prefill(t_from, t_to, par=int(os.environ.get("BT_AI_PAR", 8))):
+    """One AI call takes ~1 min, so judge every uncached round in parallel. Contexts come from a pass with the
+    judge off (holdings, equity and recent PnL in the context are those of the rules-only run)."""
+    global PREFILL
+    PREFILL = []
+    await run(t_from, t_to, tag="ai_prefill", quiet=True)
+    todo, PREFILL = PREFILL, None
+    sem, done = asyncio.Semaphore(par), [0]
+
+    async def one(t, ctx):
+        async with sem:
+            v = await B.Judge().refresh(ctx, ctx["free_slots"], t + 59.0)
+        if v is not None:
+            with open(AI_CACHE, "a") as f:
+                f.write(json.dumps(dict(ts=t, ctx=ctx, verdicts=v), ensure_ascii=False) + "\n")
+        done[0] += v is not None
+        print(f"ai {done[0]}/{len(todo)}", flush=True)
+
+    await asyncio.gather(*(one(t, c) for t, c in todo))
+
+
 async def sweep():
     """Pick the entry edge on train, report it on the unseen test. BT_SPLIT (unix ts) moves the split off the
     midpoint, BT_FROM / BT_TO trim the data; BT_FEES / BT_EDGES (comma lists) narrow the grid."""
@@ -221,7 +273,7 @@ async def sweep():
             B.ENTRY_EDGE = edge
             row = dict(fee=fee, edge=edge)
             for name, a, b in (("train", t0, mid), ("test", mid, t1), ("full", t0, t1)):
-                r = await run(a, b, tag=f"sweep_{name}", quiet=True)
+                r = await run(a, b, tag=f"{os.environ.get('BT_SWEEP_OUT', 'sweep.json')[:-5]}_{name}_e{edge}", quiet=True)
                 row[name] = {k: r[k] for k in ("trades", "wins", "return_pct", "max_drawdown_pct", "period", "days", "exits")}
             out.append(row)
             print(fee, edge, {k: (row[k]["trades"], row[k]["return_pct"], row[k]["max_drawdown_pct"])
@@ -232,6 +284,8 @@ async def sweep():
 if __name__ == "__main__":
     if sys.argv[1:2] == ["fetch"]:
         fetch(int(sys.argv[2]) if len(sys.argv) > 2 else 3, sys.argv[3].split(",") if len(sys.argv) > 3 else B.COINS)
+    elif sys.argv[1:2] == ["ai-prefill"]:
+        asyncio.run(ai_prefill(int(sys.argv[2]), int(sys.argv[3])))
     elif sys.argv[1:2] == ["sweep"]:
         asyncio.run(sweep())
     else:

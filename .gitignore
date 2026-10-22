@@ -9,3 +9,4 @@ logs/
 exports/
 data_14d_backup/
 results/*_decisions.jsonl
+results/live/
