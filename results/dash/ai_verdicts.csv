@@ -1,0 +1,49 @@
+time,market,verdict,confidence,reason
+2026-10-22T12:23:36+03:30,BTCTMN,reject,0.95,"Premium trending up above baseline, erratic 2h range (126 bps), no dip entry"
+2026-10-22T12:23:36+03:30,ETHTMN,reject,0.85,"Dip exists but spread too wide (13.2 bps), erratic 2h range (139 bps)"
+2026-10-22T12:23:36+03:30,XRPTMN,reject,0.92,"Premium above baseline (no dip), very wide spread (21.1 bps), Binance down 5%"
+2026-10-22T12:23:36+03:30,DOGETMN,reject,0.96,"Extremely erratic premium volatility (12.2%), 353 bps 2h range, not reversion"
+2026-10-22T12:23:36+03:30,SOLTMN,reject,0.95,"Premium trending up above baseline (10.2 bps), not at dip reversion point"
+2026-10-22T12:23:36+03:30,PEPETMN,reject,0.98,"Catastrophically erratic (451 bps range, 37 bps spread), thin volatile market"
+2026-10-22T12:33:58+03:30,BTCTMN,approve,0.85,"Calm premium (5.2±3.4 mean), tight spread (1.1 bp), stable reversion signal"
+2026-10-22T12:33:58+03:30,ETHTMN,reject,0.8,"Binance significant downtrend (-26.8 bp/60m), elevated 1m volatility (6.0 bp)"
+2026-10-22T12:33:58+03:30,XRPTMN,reject,0.85,"High premium volatility (SD 10.6 bp), unpredictable mean reversion"
+2026-10-22T12:33:58+03:30,DOGETMN,approve,0.75,"Calm range (30 bp), positive baseline (11.1 bp), reasonable spread (8.9 bp)"
+2026-10-22T12:33:58+03:30,SOLTMN,reject,0.9,"Spread critically wide (39.8 bp), insufficient liquidity for strategy"
+2026-10-22T12:33:58+03:30,PEPETMN,reject,0.9,"Negative baseline (-18.5 bp), mean premium (-16.9 bp), structural weakness"
+2026-10-22T12:45:02+03:30,BTCTMN,approve,0.95,"Stable mean at baseline, low volatility (SD 7.1), modest Binance drift"
+2026-10-22T12:45:02+03:30,ETHTMN,approve,0.9,"Perfect mean stability, lowest Binance move (8.6bp), calm premiums"
+2026-10-22T12:45:02+03:30,XRPTMN,approve,0.75,"Stable mean despite Binance trend, low volatility indicates mean-reversion"
+2026-10-22T12:45:02+03:30,DOGETMN,approve,0.78,Mean stable around baseline; clear Wallex-Binance decoupling evident
+2026-10-22T12:45:02+03:30,SOLTMN,approve,0.82,Lowest volatility (SD 6.2) despite strongest Binance move; strong reversion signal
+2026-10-22T12:45:02+03:30,PEPETMN,reject,0.98,"Premium mean drifts negative from baseline, extreme volatility, unstable"
+2026-10-22T12:46:17+03:30,BTCTMN,approve,0.75,"Calm baseline-tracking, Binance mild trend, normal mean-revert candidate."
+2026-10-22T12:46:17+03:30,ETHTMN,approve,0.7,"Low Binance momentum, premium near baseline despite higher SD, reversion likely."
+2026-10-22T12:46:17+03:30,XRPTMN,reject,0.8,"Binance trending hard upward (+21 bps/hr), dip unlikely temporary."
+2026-10-22T12:46:17+03:30,DOGETMN,reject,0.85,"Binance very strong trend (+27.9 bps/hr), wide spread (25.2 bps) kills margin."
+2026-10-22T12:46:17+03:30,SOLTMN,reject,0.85,"Binance extremely strong trend (+30.9 bps/hr), premium drifting lower."
+2026-10-22T12:46:17+03:30,PEPETMN,reject,0.9,"Extreme Binance move (+45.4 bps/hr), premium deeply depressed and chaotic."
+2026-10-22T12:51:18+03:30,BTCTMN,approve,0.88,Calm & stable around baseline; mild Binance trend manageable
+2026-10-22T12:51:18+03:30,ETHTMN,approve,0.82,Stable premium; exceptional spread; contained volatility
+2026-10-22T12:51:18+03:30,XRPTMN,reject,0.76,Binance uptrend without premium response; wide spread
+2026-10-22T12:51:18+03:30,DOGETMN,reject,0.84,Binance strong trend; premium drifted down from baseline
+2026-10-22T12:51:18+03:30,SOLTMN,reject,0.89,Strongest Binance trend; premium drift; widest spread
+2026-10-22T12:51:18+03:30,PEPETMN,reject,0.93,Extreme volatility; 132 bps range; unstable market
+2026-10-22T12:52:49+03:30,BTCTMN,approve,0.8,"Calm mean-reverting, stable premium around baseline, normal Binance volatility"
+2026-10-22T12:52:49+03:30,ETHTMN,reject,0.9,Wallex spread 0.0 indicates data error or liquidity issue
+2026-10-22T12:52:49+03:30,XRPTMN,reject,0.85,"Binance trending hard +23.4 bps, premium drifting steadily negative"
+2026-10-22T12:52:49+03:30,DOGETMN,reject,0.85,"Binance trending hard +26.6 bps, premium drifted below 30m mean"
+2026-10-22T12:52:49+03:30,SOLTMN,reject,0.9,"Binance trending hard +30.9 bps, suggests real move not dip"
+2026-10-22T12:52:49+03:30,PEPETMN,reject,0.95,"Extreme volatility, Binance up 45.4 bps, range -133 to -1 bps"
+2026-10-22T12:57:50+03:30,BTCTMN,approve,0.85,"Calm mean-reversion setup, tight around baseline 0.2bps, minimal Binance drift"
+2026-10-22T12:57:50+03:30,ETHTMN,reject,0.9,"Binance down 20.6bps/60m; suggests real move, not temporary liquidity dip"
+2026-10-22T12:57:50+03:30,XRPTMN,reject,0.75,Wide 24bps spread; premium elevated 15.6bps vs baseline -2.0bps
+2026-10-22T12:57:50+03:30,DOGETMN,approve,0.8,"Highly stable around baseline 6.1bps, tight spreads, natural mean reverter"
+2026-10-22T12:57:50+03:30,SOLTMN,reject,0.85,30.8bps spread (wide) significantly constrains effective 80bps margin
+2026-10-22T12:57:50+03:30,PEPETMN,reject,0.95,"Extreme volatility SD 30.4bps, 141bps range, Binance +22.7bps trending"
+2026-10-22T13:02:50+03:30,BTCTMN,approve,0.95,"Extremely calm, tight 29bps range, premium stable at baseline"
+2026-10-22T13:02:50+03:30,ETHTMN,approve,0.92,"Very calm, stable around baseline, tight spread, low volatility"
+2026-10-22T13:02:50+03:30,XRPTMN,reject,0.75,Binance +9bps uptrend while Wallex premium drifts down divergence
+2026-10-22T13:02:50+03:30,DOGETMN,approve,0.75,"Calm range, mean-reverting around baseline, reasonable spread"
+2026-10-22T13:02:50+03:30,SOLTMN,reject,0.85,Binance trending hard +18.3bps while premium drifting negative
+2026-10-22T13:02:50+03:30,PEPETMN,reject,0.95,"Extreme volatility, Binance +68bps rally, 141bps range exceeds calm"
