@@ -67,6 +67,7 @@ QUAL_MIN_HOURS = env("QUAL_MIN_HOURS", 24.0)  # less history than this: market n
 QUAL_SD = env("QUAL_SD", 0.005)  # premium standard deviation must stay below 50 bps
 QUAL_DIP = env("QUAL_DIP", 0.006)  # a dip = close premium this far below baseline
 QUAL_REV = env("QUAL_REV", 0.9)  # share of dips back at baseline within 60 min
+QUAL_VOL = env("QUAL_VOL", 20e9)  # mean TMN traded per day over QUAL_DAYS (0 = off); thin books don't absorb our size
 SHOCK_SEC = env("SHOCK_SEC", 300.0)
 SHOCK_REF = env("SHOCK_REF", 0.005)  # no entries after Binance falls this much within SHOCK_SEC
 SHOCK_USDT = env("SHOCK_USDT", 0.003)  # ... or USDTTMN moves this much
@@ -216,14 +217,15 @@ class Judge:
 Strategy: in each approved market the bot keeps a resting limit BUY {edge_bps:.0f} bps below "baseline fair"
 (Binance USDT price × Wallex USDT/TMN, adjusted by the market's own 30-min average premium). It only fills if a
 seller on Wallex suddenly dumps price that far below the global price; it then sells when the premium returns to
-baseline (max hold 1h, stop loss {stop_bps:.0f} bps). A dip does NOT need to exist now: you decide whether the
+baseline (max hold {hold_h:.0f}h, stop loss {stop_bps:.0f} bps). A dip does NOT need to exist now: you decide whether the
 market is in a state where such a sudden dip is likely a temporary liquidity gap that reverts (good), or a real
 move that keeps going (bad: Binance trending hard, Wallex premium drifting steadily in one direction, recent
 losses in that market). The baseline level itself (positive or negative) is irrelevant because the bot
 already prices relative to it; what matters is whether the premium is stable around it. Fees are {fee_bps:.0f} bps per side. All context numbers are in basis points
 (1 bp = 0.01%). For scale: premium noise of 5-20 bps and spreads of 3-40 bps are normal on Wallex; a 2h
 premium range below ~{edge_bps:.0f} bps is calm. Approve calm, mean-reverting markets; reject only with a concrete
-reason. You do NOT size or place orders; hard risk rules are enforced elsewhere. {slots} slots are free.
+reason. Regime change is a reason: reject when the 6h premium sd is at least twice the 3-day sd (the premium
+has stopped behaving like its history), or when the 3-day history is too short to tell. You do NOT size or place orders; hard risk rules are enforced elsewhere. {slots} slots are free.
 
 Context (JSON):
 {ctx}
@@ -246,6 +248,7 @@ Reply with ONLY a JSON object, no prose, no code fence:
         self.busy = True
         try:
             prompt = self.PROMPT.format(edge_bps=ENTRY_EDGE * 1e4, stop_bps=STOP_LOSS * 1e4, fee_bps=FEE_MAKER * 1e4,
+                                         hold_h=MAX_HOLD / 3600,
                                          slots=slots, ctx=json.dumps(ctx, indent=1))
             p = await asyncio.create_subprocess_exec(
                 *shlex.split(AI_CMD), stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE,
@@ -284,6 +287,7 @@ class Market:
         self.entry_base = 0.0  # baseline frozen at entry, so the exit target doesn't drift with the dip
         self.refs = deque(maxlen=400)  # (ts, binance mid) for the shock gate
         self.qual, self.qual_ts, self.qual_why = False, 0.0, "no history yet"
+        self.vol_day = float("inf")  # mean TMN/day, set once by warm_history / the backtest
 
 
 class Bot:
@@ -342,6 +346,9 @@ class Bot:
         h = [x for x in m.hist if now - x[0] <= QUAL_DAYS * 86400]
         if len(h) < QUAL_MIN_HOURS * 60:
             m.qual, m.qual_why = False, f"only {len(h) / 60:.0f}h of history"
+            return m.qual
+        if m.vol_day < QUAL_VOL:
+            m.qual, m.qual_why = False, f"thin: {m.vol_day / 1e9:.1f}B TMN/day"
             return m.qual
         sd = statistics.pstdev(x[1] for x in h)
         dips = back = 0
@@ -606,6 +613,9 @@ class Bot:
                 minutes_of_history=len(h), premium_now_bps=round(h[-1][1] * bp, 1), baseline_bps=round(m.base * bp, 1),
                 premium_30m_mean_bps=round(statistics.mean(last30) * bp, 1),
                 premium_30m_sd_bps=round(statistics.pstdev(last30) * bp, 1),
+                premium_6h_sd_bps=round(statistics.pstdev(x[1] for x in h[-360:]) * bp, 1),
+                premium_3d_sd_bps=round(statistics.pstdev(x[1] for x in h) * bp, 1),
+                qualified=m.qual, qualifier=m.qual_why,
                 premium_range_min_max_bps=[round(min(x[1] for x in h[-120:]) * bp, 1), round(max(x[1] for x in h[-120:]) * bp, 1)],
                 binance_change_last_60m_bps=round((h[-1][2] / h[max(0, len(h) - 60)][2] - 1) * bp, 1),
                 binance_1m_return_sd_bps=round(statistics.pstdev(rets) * bp, 1) if len(rets) > 1 else 0,
@@ -628,6 +638,29 @@ class Bot:
         log.warning("[%s] %s", kind, msg)
         self.j.add("events", time.time(), kind, msg)
         self.alert(f"TIZ {MODE} {kind}: {msg}")
+
+
+def warm_history(bot, days=QUAL_DAYS):
+    """Fill each market's minute history, baseline and daily volume from Wallex UDF + Binance klines, so the
+    qualifier and the AI context work from the first minute instead of after QUAL_MIN_HOURS."""
+    from tiz import backtest as T  # lazy: backtest imports this module
+    now = int(time.time()) // 60 * 60
+    frm = now - int(days * 86400)
+    usdt = {t: v[3] for t, v in T.fetch_wallex("USDTTMN", frm, now).items()}
+    for m in bot.m.values():
+        wx, bn = T.fetch_wallex(m.sym, frm, now), T.fetch_binance(m.base_asset + "USDT", frm, now)
+        m.vol_day = sum(v[3] * v[4] for v in wx.values()) / days
+        u = b = None
+        for t in range(frm, now, 60):
+            u, b = usdt.get(t, u), bn.get(t, b)
+            c = wx.get(t)
+            if not (u and b and c):
+                continue
+            prem = c[3] / (b * u) - 1
+            m.n += 1
+            m.base = prem if m.base is None else m.base + max(1 / m.n, 60 / BASELINE_SEC) * (prem - m.base)
+            m.hist.append((float(t), prem, b, 0.0, m.base))
+        bot.event("warm", f"{m.sym}: {len(m.hist) / 60:.0f}h of history, {m.vol_day / 1e9:.1f}B TMN/day")
 
 
 def iso(ts):
@@ -684,6 +717,10 @@ async def main():
     else:
         broker = Paper(PAPER_TMN)
     bot = Bot(broker, Journal(), markets, Judge(), telegram(rest.http))
+    try:
+        warm_history(bot)
+    except Exception as e:  # the qualifier then waits QUAL_MIN_HOURS for live history
+        bot.event("error", f"history warm-up failed: {e!r}")
     bot.event("start", f"{MODE} {syms} fees {FEE_MAKER}/{FEE_TAKER} edge {ENTRY_EDGE} pos {POS_FRAC}×{MAX_POS} "
                        f"end {iso(END_TS)}")
     asyncio.create_task(stream_depth(syms + ["USDTTMN"], bot.on_depth))

@@ -139,3 +139,27 @@ def test_qualify_needs_history_and_reverting_dips(monkeypatch):
     m.hist.extend((60.0 * i, -0.01 if (i // 200) % 2 else 0.002, REF, 0.0004, 0.002) for i in range(2 * 1440))
     m.qual_ts = 0.0
     assert not b.qualify(m, 2 * 86400.0) and "reverted" in m.qual_why
+
+
+def test_qualify_rejects_thin_market(monkeypatch):
+    b = make(monkeypatch, QUALIFY=1, QUAL_VOL=20e9)
+    m = b.m["BTCTMN"]
+    m.hist.extend((60.0 * i, 0.002, REF, 0.0004, 0.002) for i in range(2 * 1440))
+    m.vol_day = 5e9
+    assert not b.qualify(m, 2 * 86400.0) and "thin" in m.qual_why
+
+
+def test_warm_history_fills_qualifier(monkeypatch):
+    from tiz import backtest as T
+    n = 2 * 1440
+    t1 = 10 * 86400
+    monkeypatch.setattr(T, "fetch_wallex", lambda sym, frm, to: {
+        t: [USDT_MID] * 4 + [1.0] if sym == "USDTTMN" else [FAIR * 1.002] * 4 + [25e9 / 1440 / (FAIR * 1.002)]
+        for t in range(to - n * 60, to, 60)})
+    monkeypatch.setattr(T, "fetch_binance", lambda sym, frm, to: {t: REF for t in range(to - n * 60, to, 60)})
+    monkeypatch.setattr(B.time, "time", lambda: float(t1))
+    b = make(monkeypatch, QUALIFY=1)
+    B.warm_history(b, days=2.0)
+    m = b.m["BTCTMN"]
+    assert len(m.hist) == n and abs(m.base - 0.002) < 1e-9 and m.vol_day == pytest.approx(25e9, rel=1e-6)
+    assert b.qualify(m, float(t1))

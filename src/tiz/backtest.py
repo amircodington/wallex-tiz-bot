@@ -30,39 +30,40 @@ def get(url, params):
             return httpx.get(url, params=params, timeout=30).json()
         except httpx.HTTPError:
             time.sleep(2 ** i)
-    raise SystemExit(f"giving up on {url} {params}")
+    raise RuntimeError(f"giving up on {url} {params}")
+
+
+def fetch_wallex(sym, frm, to):
+    """{minute ts: [o, h, l, c, v]} from Wallex UDF; the endpoint answers no_data for long ranges, so 12h pages."""
+    c = {}
+    for f in range(frm, to, 43200):
+        r = get("https://api.wallex.ir/v1/udf/history", {"symbol": sym, "resolution": "1", "from": f, "to": min(f + 43200, to)})
+        if r.get("s") == "ok":
+            for i, t in enumerate(r["t"]):
+                c[t] = [float(r[k][i]) for k in ("o", "h", "l", "c", "v")]
+    return c
+
+
+def fetch_binance(sym, frm, to):
+    """{minute ts: close} from Binance 1m klines (data-api mirror, reachable from Iran)."""
+    out, s = {}, frm * 1000
+    while s < to * 1000:
+        k = get("https://data-api.binance.vision/api/v3/klines", {"symbol": sym, "interval": "1m", "startTime": s, "limit": 1000})
+        if not isinstance(k, list) or not k:
+            break
+        out.update({x[0] // 1000: float(x[4]) for x in k})
+        s = k[-1][0] + 60000
+    return out
 
 
 def fetch(days, coins):
     now = int(time.time()) // 60 * 60
     frm = now - days * 86400
-
-    def wallex(sym):
-        c = {}
-        for f in range(frm, now, 43200):  # UDF answers no_data for long ranges
-            r = get("https://api.wallex.ir/v1/udf/history",
-                    {"symbol": sym, "resolution": "1", "from": f, "to": min(f + 43200, now)})
-            if r.get("s") == "ok":
-                for i, t in enumerate(r["t"]):
-                    c[t] = [float(r[k][i]) for k in ("o", "h", "l", "c", "v")]
-        return c
-
-    def binance(sym):
-        out, s = {}, frm * 1000
-        while s < now * 1000:
-            k = get("https://data-api.binance.vision/api/v3/klines",
-                    {"symbol": sym, "interval": "1m", "startTime": s, "limit": 1000})
-            if not isinstance(k, list) or not k:
-                break
-            out.update({x[0] // 1000: float(x[4]) for x in k})
-            s = k[-1][0] + 60000
-        return out
-
     DATA.mkdir(exist_ok=True)
     for c in coins:
-        json.dump({"wx": wallex(c + "TMN"), "bn": binance(c + "USDT")}, open(DATA / f"{c}.json", "w"))
+        json.dump({"wx": fetch_wallex(c + "TMN", frm, now), "bn": fetch_binance(c + "USDT", frm, now)}, open(DATA / f"{c}.json", "w"))
         print("fetched", c)
-    json.dump({"wx": wallex("USDTTMN")}, open(DATA / "USDT.json", "w"))
+    json.dump({"wx": fetch_wallex("USDTTMN", frm, now)}, open(DATA / "USDT.json", "w"))
     json.dump(httpx.get("https://api.wallex.ir/v1/markets", timeout=30).json(), open(DATA / "markets.json", "w"))
 
 
@@ -89,6 +90,8 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
     B.END_TS = float("inf")  # history is before the challenge end
     lo_t = max(min(usdt), *(max(min(w), min(b)) for w, b in series.values()), t_from or 0)
     hi_t = min(max(usdt), *(min(max(w), max(b)) for w, b in series.values()), t_to or float("inf"))
+    for c, (w, _) in series.items():  # liquidity as the live warm-up sees it: mean daily TMN volume at the start
+        bot.m[c + "TMN"].vol_day = sum(x[3] * x[4] for t, x in w.items() if lo_t <= t < lo_t + B.QUAL_DAYS * 86400) / B.QUAL_DAYS
     last = {c: None for c in series}
     u, h, equity = None, SPREAD / 2, []
     for t in range(lo_t // 60 * 60, int(hi_t), 60):
@@ -176,7 +179,7 @@ async def sweep():
             out.append(row)
             print(fee, edge, {k: (row[k]["trades"], row[k]["return_pct"], row[k]["max_drawdown_pct"])
                               for k in ("train", "test", "full")}, flush=True)
-    json.dump(out, open(OUT / "sweep.json", "w"), indent=1)
+    json.dump(out, open(OUT / os.environ.get("BT_SWEEP_OUT", "sweep.json"), "w"), indent=1)
 
 
 if __name__ == "__main__":
