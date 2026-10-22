@@ -17,7 +17,7 @@ import httpx
 
 from tiz import bot as B
 
-DATA, OUT = B.ROOT / "data", B.ROOT / "results"
+DATA, OUT = B.ROOT / os.environ.get("BT_DATA", "data"), B.ROOT / "results"
 SPREAD = float(os.environ.get("BT_SPREAD", 0.001))
 MARGIN = float(os.environ.get("BT_MARGIN", 0.0005))
 MIN_VOL = float(os.environ.get("BT_MIN_VOL", 1_000_000))  # TMN traded in the minute
@@ -160,14 +160,15 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
 
 
 async def sweep():
-    """Pick the entry edge on the first half (train), report it on the unseen second half (test)."""
+    """Pick the entry edge on train, report it on the unseen test. BT_SPLIT (unix ts) moves the split off the
+    midpoint; BT_FEES / BT_EDGES (comma lists) narrow the grid."""
     usdt, series = load()
     t0 = max(min(usdt), *(min(w) for w, _ in series.values()))
     t1 = min(max(usdt), *(max(w) for w, _ in series.values()))
-    mid = (t0 + t1) // 2
+    mid = int(os.environ.get("BT_SPLIT", (t0 + t1) // 2))
     out = []
-    for fee in (0.0025, 0.0):
-        for edge in (0.004, 0.005, 0.006, 0.008, 0.010, 0.012):
+    for fee in map(float, os.environ.get("BT_FEES", "0.0025,0").split(",")):
+        for edge in map(float, os.environ.get("BT_EDGES", "0.004,0.005,0.006,0.008,0.010,0.012").split(",")):
             B.FEE_MAKER = B.FEE_TAKER = fee
             if fee:
                 B.FEE_TAKER = 0.003
@@ -175,7 +176,7 @@ async def sweep():
             row = dict(fee=fee, edge=edge)
             for name, a, b in (("train", t0, mid), ("test", mid, t1), ("full", t0, t1)):
                 r = await run(a, b, tag=f"sweep_{name}", quiet=True)
-                row[name] = {k: r[k] for k in ("trades", "wins", "return_pct", "max_drawdown_pct", "period")}
+                row[name] = {k: r[k] for k in ("trades", "wins", "return_pct", "max_drawdown_pct", "period", "days", "exits")}
             out.append(row)
             print(fee, edge, {k: (row[k]["trades"], row[k]["return_pct"], row[k]["max_drawdown_pct"])
                               for k in ("train", "test", "full")}, flush=True)
