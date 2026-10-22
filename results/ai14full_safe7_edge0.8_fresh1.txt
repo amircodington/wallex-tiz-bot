@@ -1,0 +1,102 @@
+{
+ "tag": "ai14full_safe7_edge0.8_fresh1",
+ "period": [
+  "2026-10-08T13:34:00+03:30",
+  "2026-10-22T12:47:00+03:30"
+ ],
+ "days": 13.97,
+ "coins": [
+  "TRX",
+  "BTC",
+  "BNB",
+  "ETH",
+  "XRP",
+  "DOGE",
+  "XAUT"
+ ],
+ "params": {
+  "entry_edge": 0.008,
+  "fee_maker": 0.0025,
+  "fee_taker": 0.003,
+  "pos_frac": 0.2,
+  "max_pos": 3,
+  "stop_loss": 0.03,
+  "max_hold": 14400.0,
+  "exit_decay": 0,
+  "trail": "off",
+  "trail_k": 2.0,
+  "ai": true,
+  "spread": 0.001,
+  "fill_margin": 0.0005,
+  "min_minute_volume_tmn": 1000000.0,
+  "fresh_quotes": true
+ },
+ "trades": 23,
+ "wins": 23,
+ "pnl_tmn": 87097,
+ "final_equity": 5095137,
+ "return_pct": 1.903,
+ "max_drawdown_pct": 0.277,
+ "exits": {
+  "take_profit": 23
+ },
+ "trades_per_day": {
+  "2026-10-08": 2,
+  "2026-10-09": 2,
+  "2026-10-11": 2,
+  "2026-10-12": 1,
+  "2026-10-13": 3,
+  "2026-10-14": 2,
+  "2026-10-15": 1,
+  "2026-10-16": 1,
+  "2026-10-17": 1,
+  "2026-10-18": 2,
+  "2026-10-19": 2,
+  "2026-10-20": 2,
+  "2026-10-21": 1,
+  "2026-10-22": 1
+ },
+ "by_market": {
+  "BNBTMN": {
+   "trades": 1,
+   "wins": 1,
+   "pnl_tmn": 881
+  },
+  "BTCTMN": {
+   "trades": 4,
+   "wins": 4,
+   "pnl_tmn": 9444
+  },
+  "DOGETMN": {
+   "trades": 2,
+   "wins": 2,
+   "pnl_tmn": 10593
+  },
+  "ETHTMN": {
+   "trades": 3,
+   "wins": 3,
+   "pnl_tmn": 9747
+  },
+  "TRXTMN": {
+   "trades": 7,
+   "wins": 7,
+   "pnl_tmn": 30110
+  },
+  "XAUTTMN": {
+   "trades": 4,
+   "wins": 4,
+   "pnl_tmn": 11749
+  },
+  "XRPTMN": {
+   "trades": 2,
+   "wins": 2,
+   "pnl_tmn": 14573
+  }
+ },
+ "ai": {
+  "rounds": 335,
+  "failed": 0,
+  "reject_pct": 34.7,
+  "mean_confidence": 0.813
+ }
+}
