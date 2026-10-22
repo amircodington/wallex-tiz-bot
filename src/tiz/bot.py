@@ -202,13 +202,17 @@ class Journal:
 # ---------------------------------------------------------------- AI judge
 class Judge:
     PROMPT = """You are the risk-aware trade judge of an automated spot bot on the Iranian exchange Wallex.
-Strategy: for each market we may rest a limit BUY {edge:.2%} below "baseline fair" (Binance USDT price × Wallex
-USDT/TMN, adjusted by the market's own 30-min average premium) and sell when the premium returns to baseline.
-Fees are {fee:.2%} per side, so a dip only pays if it is a temporary liquidity gap that reverts within ~1h, not a
-local price move that keeps going (news, Binance trend, persistent premium shift, thin or erratic book).
-Approve a market only when its context supports reversion; reject when the premium is trending, the spread or
-premium volatility is erratic, Binance is moving fast, or recent trades there lost. You do NOT size or place
-orders; hard risk rules are enforced elsewhere. At most {slots} markets can be quoted now.
+Strategy: in each approved market the bot keeps a resting limit BUY {edge_bps:.0f} bps below "baseline fair"
+(Binance USDT price × Wallex USDT/TMN, adjusted by the market's own 30-min average premium). It only fills if a
+seller on Wallex suddenly dumps price that far below the global price; it then sells when the premium returns to
+baseline (max hold 1h, stop loss {stop_bps:.0f} bps). A dip does NOT need to exist now: you decide whether the
+market is in a state where such a sudden dip is likely a temporary liquidity gap that reverts (good), or a real
+move that keeps going (bad: Binance trending hard, Wallex premium drifting steadily in one direction, recent
+losses in that market). The baseline level itself (positive or negative) is irrelevant because the bot
+already prices relative to it; what matters is whether the premium is stable around it. Fees are {fee_bps:.0f} bps per side. All context numbers are in basis points
+(1 bp = 0.01%). For scale: premium noise of 5-20 bps and spreads of 3-40 bps are normal on Wallex; a 2h
+premium range below ~{edge_bps:.0f} bps is calm. Approve calm, mean-reverting markets; reject only with a concrete
+reason. You do NOT size or place orders; hard risk rules are enforced elsewhere. {slots} slots are free.
 
 Context (JSON):
 {ctx}
@@ -230,7 +234,8 @@ Reply with ONLY a JSON object, no prose, no code fence:
     async def refresh(self, ctx, slots, now):
         self.busy = True
         try:
-            prompt = self.PROMPT.format(edge=ENTRY_EDGE, fee=FEE_MAKER, slots=slots, ctx=json.dumps(ctx, indent=1))
+            prompt = self.PROMPT.format(edge_bps=ENTRY_EDGE * 1e4, stop_bps=STOP_LOSS * 1e4, fee_bps=FEE_MAKER * 1e4,
+                                         slots=slots, ctx=json.dumps(ctx, indent=1))
             p = await asyncio.create_subprocess_exec(
                 *shlex.split(AI_CMD), stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE, cwd=tempfile.gettempdir())  # neutral cwd: no project context
@@ -523,15 +528,16 @@ class Bot:
                 continue
             last30 = [x[1] for x in h[-30:]]
             rets = [h[i][2] / h[i - 1][2] - 1 for i in range(max(1, len(h) - 60), len(h))]
+            bp = 1e4
             ctx["markets"][m.sym] = dict(
-                premium_now_pct=round(h[-1][1] * 100, 3), baseline_pct=round(m.base * 100, 3),
-                premium_30m_mean_pct=round(statistics.mean(last30) * 100, 3),
-                premium_30m_sd_pct=round(statistics.pstdev(last30) * 100, 3),
-                premium_2h_min_max_pct=[round(min(x[1] for x in h) * 100, 3), round(max(x[1] for x in h) * 100, 3)],
-                binance_1h_change_pct=round((h[-1][2] / h[max(0, len(h) - 60)][2] - 1) * 100, 2),
-                binance_1m_vol_pct=round(statistics.pstdev(rets) * 100, 3) if len(rets) > 1 else 0,
-                wallex_spread_pct=round(h[-1][3] * 100, 3),
-                recent_trade_pnls_pct=list(m.pnls), holding=bool(m.pos_qty))
+                minutes_of_history=len(h), premium_now_bps=round(h[-1][1] * bp, 1), baseline_bps=round(m.base * bp, 1),
+                premium_30m_mean_bps=round(statistics.mean(last30) * bp, 1),
+                premium_30m_sd_bps=round(statistics.pstdev(last30) * bp, 1),
+                premium_range_min_max_bps=[round(min(x[1] for x in h) * bp, 1), round(max(x[1] for x in h) * bp, 1)],
+                binance_change_last_60m_bps=round((h[-1][2] / h[max(0, len(h) - 60)][2] - 1) * bp, 1),
+                binance_1m_return_sd_bps=round(statistics.pstdev(rets) * bp, 1) if len(rets) > 1 else 0,
+                wallex_spread_bps=round(h[-1][3] * bp, 1),
+                recent_trade_pnls_bps=[round(x * 100, 1) for x in m.pnls], holding=bool(m.pos_qty))
         return ctx
 
     async def ai_round(self, now):
