@@ -1,0 +1,3082 @@
+[
+ {
+  "ts": 1792072800,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Calm 30m, one loss but stable baseline around mean"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "All wins despite -53bp Binance drop; mean-reverting"
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Excellent wins (143,140) despite -47bp move"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "5 consecutive wins, mean-reverting despite -50bp move"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Recent loss plus Binance -80bp move; premium drifts down"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Catastrophic -382bp loss; extreme -147bp Binance drop"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.92,
+    "reason": "Calmest (12bp SD), both wins, stable Binance; ideal"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.83,
+    "reason": "Premium stable near baseline; no regime change, Binance flat, recent trades mostly positive."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Strong Binance selloff and premium near history low; likely continuing move, not mean reversion."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Binance trending sharply down; premium drifting below baseline, unfavorable for reversion dips."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance dropping hard; premium not stable around baseline, likely real move continuation."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Sharp Binance downtrend with premium slipping below baseline; recent loss suggests unstable regime."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "Extreme Binance selloff and recent large loss indicate continuing momentum, not temporary liquidity gap."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Calm premium, low volatility, Binance stable; mean reversion conditions look favorable."
+   }
+  }
+ },
+ {
+  "ts": 1791730800,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Mean-reverting, profitable history, but elevated 30m volatility"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Very calm, mean-reverting to baseline, recent profitable trade"
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.55,
+    "reason": "Binance trending hard, no history, premium barely below baseline"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Very calm 30m volatility, clear mean-reversion toward baseline"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Strong mean-reversion despite Binance trend, stabilizing"
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "Profitable history but extreme Binance trend compresses premium"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Strongest mean-reversion, most profitable history, Binance flat"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Premium volatility elevated versus history; 6h sd exceeds 3d sd, regime change risk."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Premium is stable and tight; calm range, no regime change, mean reversion looks intact."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Binance is trending hard up and Wallex premium is unstable; likely continued move, not gap revert."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "6h premium volatility is above 3-day norm and Binance is strongly trending; regime change risk."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "Very strong Binance momentum with unstable premium; this looks directional, not a temporary liquidity gap."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "Binance surge is extreme and premium is not calm; high risk of continued move and adverse fill."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Premium is calm and mean-reverting despite baseline shift; no regime change signal."
+   }
+  }
+ },
+ {
+  "ts": 1792191600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "Calm 30m profile, mean-reverting pattern, 6h:3d ratio 0.38"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Extremely tight 30m SD 2.5, stable negative premium, all positive trades"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Premium spiked 50 bps in 30m, 6h:3d ratio 1.77 approaching regime threshold"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Stable at baseline, low noise, excellent recent trade streak"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Calm volatility, normal profile, 6h:3d 0.89"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Catastrophic -382 bps loss, Binance trending hard 54.6 bps, real move"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Exceptionally calm, lowest noise profile, premium stable at baseline"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Premium stable; 6h volatility well below 3-day; recent PnL positive and regime calm."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.92,
+    "reason": "Premium tightly anchored to baseline; very low 30m noise and stable history, mean-reverting."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "6h premium sd far exceeds 3-day sd; regime changed and premium is drifting strongly."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Binance is trending hard and premium volatility is elevated versus history; poor mean-reversion setup."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Premium has shifted below baseline with elevated 6h volatility and recent loss; likely directional move."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "Binance moving sharply and prior trade had large loss; premium regime unstable, not a calm gap."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.95,
+    "reason": "Very stable premium around baseline with low volatility; calm mean-reverting market."
+   }
+  }
+ },
+ {
+  "ts": 1792515600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "No regime change; Binance +15.1 bps moderate. Recent trades positive."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm 30m sd (11.8 bps) normal range. Excellent recent trades, good mean-revert setup."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Recent exceptional win (180 bp) despite Binance trend. 6h sd lower than 3d sd."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "No regime change; recent trades strong. Stable 30m sd despite Binance move."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Wallex demand strong; recent trades excellent. Premium spike 36 bps likely temporary."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance 66.9 bps/h move (0.67%); premium 36 bps above baseline. Sustained move."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Calmest market: 30m sd 6.6 bps, no Binance trend. Ideal mean-revert candidate."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Binance trending up and premium drifting above baseline; recent fills low edge."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium stable near mean; calm range and no regime change."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Binance surging and premium highly volatile; recent premium mean shifted sharply."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Premium is stable around baseline; volatility matches history."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Premium jumped far above baseline with strong Binance move; not mean-reverting."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Binance trend is strong and premium widened sharply; likely continuation risk."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.87,
+    "reason": "Calm premium behavior and small range; no regime change."
+   }
+  }
+ },
+ {
+  "ts": 1791554400,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Binance -12 bps (small), premium 9.2 bps below baseline, no regime shift"
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance -55.7 bps signals downtrend, not temporary dip; real move risk"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.7,
+    "reason": "Binance -46.2 bps downtrend; deep below-baseline premium won't revert if Binance falls further"
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance -61.2 bps substantial drop; directional decline, not liquidity gap"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance -84.8 bps extreme; clear downtrend, high risk of continued losses"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.7,
+    "reason": "Binance -46 bps downtrend, premium above baseline, elevated 30m volatility"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Binance +25.3 bps (bullish), calmest volatility, excellent 99 bps recent win, near baseline"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "Premium stable near baseline; volatility calm, no regime shift, recent trade positive."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Binance falling hard; Wallex premium not stable, likely directional continuation rather than temporary gap."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Strong Binance selloff and premium drift suggest trending market, not mean reversion."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Sharp Binance decline with elevated volatility; premium likely to keep moving, not revert."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "Extreme Binance drop and unstable premium indicate strong directional regime, not a temporary dip."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "Binance down sharply; premium behavior and recent trades do not show stable mean reversion."
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Premium volatility doubled versus history, triggering regime-change rejection."
+   }
+  }
+ },
+ {
+  "ts": 1791601200,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm, tight 30m volatility (1.7 bps), premium stable around baseline."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Very calm premium tracking baseline, low 30m volatility (2.5 bps)."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "No regime change, mean-reverting history, normal volatility (3.5 bps)."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Stable premium around baseline, low 30m volatility (2.7 bps)."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.6,
+    "reason": "Higher volatility (10.8 bps) but mean-reverts; no hard drift."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance trending hard +44 bps; real move, not temporary dip."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Calm narrow range, recent 99 bps profit confirms mean reversion."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.73,
+    "reason": "Premium stable near baseline; 6h/3d volatility ratio acceptable, mild Binance drift only."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Premium tightly mean-reverting around baseline; calm range and low 6h volatility."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.6,
+    "reason": "No clear regime change; premium mildly below baseline but still within recent range."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "Premium near baseline with low volatility; Binance weakness not translating into premium drift."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "6h premium volatility far exceeds 3-day history, indicating regime change and unstable premium."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Binance is surging hard; premium is drifting and recent behavior looks directional, not mean-reverting."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Premium near baseline despite positive offset; volatility moderate and no clear directional drift."
+   }
+  }
+ },
+ {
+  "ts": 1792454400,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Binance spike with lagging Wallex repricing; mean-reversion likely."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Calm premium, stable regime, consistent profitable trade history."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Recent volatility declining; premium reverting from extreme; profitable trades."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Excellent PnL history, calm volatility, normal premium range."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Outstanding PnL track record, stable elevated premium, low volatility."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Massive recent -382 bps loss; premium too volatile for reliable fills."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Calm premium aligned with baseline; limited history but stable now."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Binance rallied hard recently; premium unstable and regime changing versus 3-day history."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Premium is stable and calm; no regime change or adverse trend."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Premium is stable around baseline; recent gains suggest mean reversion works."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Premium is calm and near-term variance is consistent with history."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.77,
+    "reason": "Premium is moderately stable despite higher level; no clear regime change."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium is stable and Binance is not trending hard; mean reversion plausible."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.91,
+    "reason": "Very calm premium with low variance; good liquidity-gap mean reversion setup."
+   }
+  }
+ },
+ {
+  "ts": 1791648000,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "2h range 97.8 bps exceeds calm threshold (80 bps); not mean-reverting."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm 30m volatility (5.2 bps SD), stable premium drift, mean-reverting pattern."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance trending down (-20.1 bps/60m); suggests real move, not dip."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance rallying (+11.7 bps/60m) while Wallex premium collapsed; asymmetric."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Calm 30m noise (5.8 bps SD), no regime change; baseline drifting gently."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Calm volatility, recent profitable trades (+17, +10 bps); pattern validated."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.95,
+    "reason": "Extremely calm (41.1 bps range, 6.1 bps 30m SD); best risk-reward."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.83,
+    "reason": "6h premium volatility exceeds 3-day history; regime changed and recent loss indicates drift risk."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Premium is stable around baseline; low premium volatility and no regime change."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.76,
+    "reason": "Calm, mean-reverting premium; no adverse drift or regime shift."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.88,
+    "reason": "Premium is drifting sharply below baseline; likely real move, not temporary gap."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.68,
+    "reason": "Premium remains range-bound; no clear regime change despite recent weakness."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.86,
+    "reason": "Premium weakening with Binance down; trend risk and recent losses suggest continuation."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.92,
+    "reason": "Very calm premium around baseline; strong mean reversion conditions."
+   }
+  }
+ },
+ {
+  "ts": 1792155600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "Normal Binance move, stable premium vs baseline. Recent -71 loss warrants caution."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Extreme Binance drop (-72 bps), premium 20 bps above mean."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium extremely stable vs baseline (+5.8 bps), strong recent wins."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Extreme Binance drop (-61 bps), premium 18 bps above mean."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Extreme Binance drop (-84 bps) signals real move, not revertible dip."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Extreme Binance drop (-86 bps) + catastrophic -382 bps loss."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Only normal Binance move (-13 bps), stable premium, recent wins."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "Premium stable near baseline; benign Binance drift; history calm and recent trades mixed, no regime shift."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Binance dropping hard; premium above baseline and likely repricing, not a temporary liquidity gap."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Strong Binance selloff with premium drifting above baseline; recent gains suggest momentum, not mean reversion."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Binance falling sharply and premium elevated above baseline; market looks trend-driven, not stable."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Severe Binance downtrend with premium above baseline; recent loss indicates adverse regime for reversion."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Extreme recent loss and heavy Binance selloff; premium unstable and trend risk dominates."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Premium close to baseline, low volatility, and no meaningful regime change; calm mean-reverting market."
+   }
+  }
+ },
+ {
+  "ts": 1792551600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Calm, mean-reverting, stable 6h."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Stable mean-reverting, profitable history, 6h<3d."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Extreme volatility, premium 56bp below baseline, reversion uncertain."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Stable around baseline, mean-reverting confirmed."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Near baseline, excellent history, stable 6h<3d."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Reverting toward baseline, stable, entry viable."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Very tight volatility, calm, limited history."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Premium stable and mean-reverting; calm range, positive recent PnLs, no regime change."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Binance trending hard down and premium is near short-term mean; not a clean liquidity-gap regime."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "6h premium volatility exceeds 2x 3-day sd; clear regime change and unstable premium behavior."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Binance trending hard down; premium drifting and regime looks unstable versus historical behavior."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance trending hard down with premium near recent mean; ongoing move risk dominates reversion."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Binance trending hard down and premium is far from baseline; behavior looks directional, not stable."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.89,
+    "reason": "Premium calm and near recent mean; no regime change, good mean-reversion candidate."
+   }
+  }
+ },
+ {
+  "ts": 1791565200,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm mean-reverting market, 0.37x 3-day volatility, premium stable, recent wins"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Stable premium, recent +19bps trade shows mean reversion, 0.43x 3-day vol"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Premium range too wide (120bps), 6h/3d ratio 1.04x approaching volatility jump"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Very stable, premium near baseline, calm 61bps range, low Binance volatility"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "No recent trades, premium drifting, Binance moving 36bps/hr, high reversion risk"
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Recent wins confirm mean reversion, calm 79bps range, stable premium behavior"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Tight range 46bps, stable premium, recent strong +99bps win, low volatility"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Calm premium, stable around baseline, no regime change, small Binance move, recent win."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.83,
+    "reason": "Premium fluctuations are moderate and not drifting; no regime change or loss pattern."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.92,
+    "reason": "Binance trending hard upward and premium has shifted above baseline; likely continuation risk."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Strong Binance upside move with elevated 6h volatility; premium may not mean-revert cleanly."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "Very strong Binance rally and unstable premium history indicate directional regime, not liquidity gap."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance is surging fast and recent profits suggest prior mean reversion edge may be breaking."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Very calm premium and low Binance movement; stable mean-reverting behavior with good recent result."
+   }
+  }
+ },
+ {
+  "ts": 1792414800,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Holding, regime check passes, large 3d range supports baseline reversion."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Calm, tight 30m SD, stable negative premium, recent profits, mean-reverting."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.72,
+    "reason": "Premium drifting toward baseline, recent trades profitable, regime check passes."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.92,
+    "reason": "Textbook calm market: tight premium, stable baseline, excellent recent trades."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance trending hard (+55.2 bps) reduces dip fill probability."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance trending hard (+80.8 bps), recent -382 bps loss signals regime change."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Extremely calm, minimal Binance move, tight around baseline, mean-reverting."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "6h premium volatility far above 3d; regime change and Binance trending up."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.89,
+    "reason": "Binance rising sharply; premium drifting below baseline, not stable mean reversion."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "6h premium volatility exceeds 3d; unstable regime and strong Binance uptrend."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.77,
+    "reason": "Premium is calm, near baseline, and no regime change or strong drift."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance surged hard and premium is drifting upward, suggesting continuation risk."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "Extreme Binance rally and prior severe loss indicate continuation risk, not mean reversion."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Premium stable around baseline with low volatility and no meaningful trend."
+   }
+  }
+ },
+ {
+  "ts": 1791842400,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Premium collapsed far below mean (39.7→-3.1), not reverting"
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Elevated volatility, 6h/3d ratio 1.59, range 110bps wide"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Premium following Binance down, baseline -15.6 to -30.7"
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Premium following Binance down, baseline -5.2 to -27.2"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "Premium at baseline despite Binance crash (-108.3), mean reversion setup"
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Calm market, premium at baseline despite extreme Binance move (-174.8)"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Calm market, stable regime, recent high profitability (+99, +28bps)"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.81,
+    "reason": "Premium stable around baseline; calm range and no regime change."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance selling hard; premium shifted sharply and instability exceeds calm reversion profile."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Strong Binance downtrend and premium drifting; likely continues rather than mean-reverts."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Extreme Binance move with premium unstable; regime has clearly changed."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "Holding already open; premium near baseline but no free slot for a new trade."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance is dropping rapidly and premium is not stable enough for a reversion gap."
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.89,
+    "reason": "Premium now far above baseline after recent drift; not stable enough to fade."
+   }
+  }
+ },
+ {
+  "ts": 1791529200,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Binance stable, premium elevated, calm. Confirmed by recent +25bps profit."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance up 20.8bps, premium negative—will drift further, not revert."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Binance modest move, premium elevated, calm regime. Mean-reversion likely."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance strong up 27.8bps, premium negative. Premium will drift worse."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance up 20.8bps, premium below baseline. Drift risk not reversion."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "Premium spiked above baseline. Calm regime, proven strategy, mean-revert likely."
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Binance up 20.5bps exceeds premium excess. Will compress not revert."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.76,
+    "reason": "Premium is stable near baseline; 6h volatility below 3d and recent trade was profitable."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.83,
+    "reason": "Binance is trending sharply up, premium is not stable, and recent move suggests continuation risk."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.72,
+    "reason": "Premium is contained and mean-reverting; no regime change versus 3-day history."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.88,
+    "reason": "6h premium volatility exceeds 3-day history, indicating regime change and unstable basis behavior."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.58,
+    "reason": "History is long enough and premium looks range-bound despite higher short-term noise."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.77,
+    "reason": "Binance is rising strongly and premium is drifting up, increasing continuation risk."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.67,
+    "reason": "Premium remains calm relative to history with no clear adverse regime change."
+   }
+  }
+ },
+ {
+  "ts": 1791630000,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Volatile: 6h sd 48.5 exceeds 3d 37.4, 182 bps range unstable"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Calm, tight 34 bps range, stable near baseline, low volatility"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Premium 15.2 diverges sharply from 30m mean -6.8, regime shift"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Very calm, 4.4 sd, stable near baseline, mean-reverting behavior"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Stable within 3d range, calm 30m volatility, baseline near"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance trending hard down: -32.5 bps last 60m, real downtrend"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.92,
+    "reason": "Minimal volatility 4.5 sd, stable, recent 99 bps win, calm"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.86,
+    "reason": "6h premium volatility exceeds 3-day history, suggesting regime change and unstable mean reversion."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Premium is stable, calm, and closely mean-reverting with no regime-change signal."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Bitcoin is trending down hard and premium is drifting away from baseline, not a stable gap."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.79,
+    "reason": "Premium remains subdued and mean-reverting; recent Binance move is moderate, not a clear trend break."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Premium is volatile with strong downward Binance momentum, indicating a continuing move."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Binance is dropping sharply and Wallex premium is not stable, so dips are likely to continue."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Very calm premium behavior with low volatility and no regime-change evidence."
+   }
+  }
+ },
+ {
+  "ts": 1792281600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Stable premium, no regime change, minimal Binance drift"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Mean-reverting premium, strong recent trades, moderate volatility"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance trending hard, Wallex premium drifting down, real move"
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance up 41bps, premium gap widening, real directional move"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "30m sd 68bps extreme, market erratic, unpredictable regime"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance up 58bps, recent -382bps loss, trend not reversion"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Extremely stable premium, tight baseline tracking, minimal drift"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Premium stable near baseline; modest Binance move; history shows mean reversion and calm range."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Binance trending up and premium drifting away from baseline; unstable regime for mean reversion."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Recent Binance surge and premium near floor; regime change likely, not stable around baseline."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance strongly trending and premium below recent mean; likely continuing move, not temporary gap."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "Premium volatility extreme; regime changed versus history and recent losses show instability."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "Binance very strong up move and premium drifting; recent loss suggests bad continuation risk."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Premium tightly anchored to baseline with tiny 30m noise; calm, mean-reverting market."
+   }
+  }
+ },
+ {
+  "ts": 1792249200,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Premium drifted down (62→31), recent −71 loss, Binance −18. Real move risk."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Ideal: 30m SD 2.4, premium stable ±2bp baseline, all recent wins tracked."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Premium calm at baseline, all big wins (+143/140), Binance +27.8 shows momentum."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Stable premium, all positive recent trades, calm 30m structure despite Binance +14."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "No regime change, mostly positive. 80bp range is large; Binance +29 is caution."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Catastrophic −382 bps loss in recent history. Market disruption signal."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calmest: 30m SD 0.9, baseline −2.7, Binance −1.8 flat, textbook reversion."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance falling and premium drifting down; recent losses suggest continuing move, not a temporary gap."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.93,
+    "reason": "Premium is stable around baseline; calm range and recent wins favor mean reversion."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Binance trending hard up and premium is elevated; regime looks directional, not mean reverting."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Binance rising strongly and premium sits below baseline; likely continued move, not a gap."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance is surging and premium has widened upward; momentum risk outweighs reversion."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Binance strongly up and recent large loss shows unstable behavior; avoid directional market."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.96,
+    "reason": "Very stable premium near baseline with low noise; calm mean-reverting market."
+   }
+  }
+ },
+ {
+  "ts": 1791568800,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm, positive premium, profitable history"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Very calm period, profitable, stable"
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Calm range, minimal drift, stable"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Premium recovered despite Binance fall"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance +26bps momentum, Wallex lagging baseline"
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm, profitable twice, stable Binance"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Extremely calm, recent +99bps win confirms reversion"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Calm premium, low recent drift, benign Binance move, history stable; mean reversion likely."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.78,
+    "reason": "Premium near baseline with moderate noise; no regime break and recent move is mild."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.73,
+    "reason": "6h premium volatility exceeds 3-day history, indicating regime change and unstable premium behavior."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.77,
+    "reason": "Premium stable around baseline despite Binance weakness; no clear premium drift or regime break."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.82,
+    "reason": "Strong Binance surge with premium moving away from baseline suggests trending, not temporary liquidity gap."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.69,
+    "reason": "6h premium volatility exceeds 3-day history, so premium regime has changed recently."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.72,
+    "reason": "Premium remains fairly contained and mean-reverting; no regime-change signal despite positive baseline shift."
+   }
+  }
+ },
+ {
+  "ts": 1791914400,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Volatility stable, baseline premium mean-reverting. Binance stable. Profitable recent trades."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Binance down 25 bps in 60m, 6h volatility elevated 1.49x, wide range signals regime risk."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance trending hard down -43 bps in 60m. Likely real move, not temporary dip."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance trending hard -33 bps, premium at 3-day minimum, elevated 6h volatility."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Only 1 recent trade (loss), very wide 141 bps range, elevated 6h volatility 1.22x."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance trending hard down -38 bps in 60m despite stable premium now."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Calmest market: 6h volatility decreased, tight range, minimal Binance move, profitable trades."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.78,
+    "reason": "Premium stable around baseline; 6h volatility below 3-day; recent profits, no regime-change sign."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance dropping hard and premium drifting; 6h volatility exceeds 3-day, suggesting regime change."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Large Binance selloff with premium falling from baseline; unstable regime, not a mean-reversion gap."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Strong Binance decline and premium well below baseline; 6h volatility above 3-day, regime changed."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Recent loss plus premium weakening while Binance trends down; not stable enough for dip reversion."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Binance trending sharply down and premium remains below recent mean; unstable directional move."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.74,
+    "reason": "History calm, 6h volatility below 3-day, and premium near stable baseline despite recent spike."
+   }
+  }
+ },
+ {
+  "ts": 1791626400,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Calm mean-reversion, baseline stable, profitable trade"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.95,
+    "reason": "Very low volatility, tight range, stable"
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Stable baseline, no regime shift detected"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Low volatility, elevated but should revert"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Stable baseline, mean-reverting around baseline"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance trending hard, -19.7 bps/60m down"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Very calm, recent +99 bps trade proof"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "6h premium sd exceeds 3-day sd; regime change and unstable premium."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.89,
+    "reason": "Calm premium, tight range, no regime change, mean reversion likely."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.92,
+    "reason": "6h premium volatility exceeds 3-day; premium has become unstable."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Premium is calm and stable; Binance move modest, no regime change."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.81,
+    "reason": "Premium not showing regime change; volatility acceptable despite recent Binance weakness."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Binance trending hard down and premium drifting; likely continuation, not temporary gap."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Very stable premium and low volatility; strong mean reversion profile."
+   }
+  }
+ },
+ {
+  "ts": 1792501200,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Calm market, 6h/3d=0.48, consistent wins. Premium slightly rich, awaits dip."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Textbook mean-reversion: calm (6h/3d=0.99), tight oscillation around baseline."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Regime change warning: 6h/3d=1.36 approaching 2.0, Binance trending +36.9, extreme swings."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "Calm (6h/3d=0.88), excellent wins, premium cheap. Strong mean-reversion signal."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm (6h/3d=0.89), excellent wins, premium cheap 5.5bp below baseline."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Recent loss -382 bps exceeds 300 bps hard stop-loss. Risk not understood."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Calmest (6h/3d=0.76, 30m sd=6.5), near baseline, mean-reverting. Limited sample."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.77,
+    "reason": "Premium stable near baseline; calm range and recent trades positive despite mild Binance weakness."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Premium tightly anchored to baseline; low volatility, stable history, recent profits, no regime shift."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "6h premium volatility far exceeds 3-day history; strong Binance trend and unstable drifting premium."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "Binance trending hard higher; premium too reactive, suggesting real move not temporary liquidity gap."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.72,
+    "reason": "Premium near baseline with moderate stable noise; no regime change and history looks mean-reverting."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Premium remains close to baseline; volatility acceptable and no clear drift or regime change."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Very calm premium around baseline; low volatility and no evidence of directional drift."
+   }
+  }
+ },
+ {
+  "ts": 1792238400,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Stable premium, mixed trades; -71 loss but recent wins confirm reversion"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Excellent: stable premium, all positive trades, no trend"
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "No regime change; unusual large wins suggest high vol or lucky streak"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium stable despite extreme 12.7σ Binance move, all positive trades"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Premium 3.7σ below mean, Binance down 18bp, recent loss signals drift"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Massive -382bp loss exceeds stop loss; Binance down 21bp, failed reversion"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Stable premium, stable Binance, both trades positive"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Premium drifting down while Binance rises; 6h volatility elevated and recent PnLs mixed."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Premium is stable near baseline with low spread and calm volatility; recent trades positive."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Premium remains mean-reverting around baseline; no strong drift despite moderate volatility."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Binance is moving sharply while premium drifts lower; likely real downside continuation."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Premium slipped from positive to negative with bearish Binance move and one recent loss."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Recent large loss and bearish Binance trend suggest unstable regime, not a temporary dip."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium volatility is calm and near-reverting; no regime change or strong directional drift."
+   }
+  }
+ },
+ {
+  "ts": 1791576000,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Stable premium near baseline, 6h/3d ratio 0.42, recent +25bp profit"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.72,
+    "reason": "Recent sharp drop absorbed normally, 6h/3d 0.41, recent +19bp trade confirms reversion"
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.68,
+    "reason": "6h/3d ratio 0.98, 30m calm (5.7bp SD), no regime change signal despite -26.6bp Binance move"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "6h/3d ratio 0.69, recent Binance drop sharp but volatility stable, monitor"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.82,
+    "reason": "Binance trending hard (-31.7bp/60m), premium drifted +18.7bp from baseline, no confirmation trades"
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.79,
+    "reason": "Recent profits (+17bp, +10bp), 6h/3d 0.85, premium only 5.2bp below baseline"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Calmest market (30m SD 2.6bp), 6h/3d 0.48, exceptional recent +99bp trade"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.89,
+    "reason": "Stable premium around baseline; calm range; recent profit; no regime change."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "Premium volatility modest; no history of losses; movement looks orderly despite BTC drop."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "6h premium volatility far above 3-day history; clear regime change and Binance trending hard."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "6h premium volatility elevated versus history; Binance trending sharply down, likely continued move."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Steady premium deterioration with strong Binance selloff; not a mean-reverting gap."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Premium drifting down while Binance falls hard; recent gains don't offset trend risk."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.87,
+    "reason": "Very calm premium behavior; narrow 30m spread and no regime change signal."
+   }
+  }
+ },
+ {
+  "ts": 1792519200,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Premium spiked above mean, likely temporary. Recent trades positive."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Calm stable market, all recent trades positive. Near baseline."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Binance trending hard (+15.9 bps), premium elevated above mean."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Stable near baseline, all recent trades positive. No drift."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Binance moved up, premium lagging. Strong mean-revert history."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Premium near baseline, recent trades show mean reversion ability."
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.7,
+    "reason": "Premium drifting 11bp below baseline, minimal recent trades (n=2)."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Premium drifting upward; 6h volatility elevated and recent trades show only moderate edge."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Premium stable near baseline, low volatility, calm Binance, recent trades consistently profitable."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance trending hard up and premium is shifting upward, suggesting continuation not mean reversion."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Premium near baseline with stable 3d behavior and no strong directional drift."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.92,
+    "reason": "Premium has moved lower than baseline while Binance is rising, indicating unstable regime and drift."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.89,
+    "reason": "Binance surging and premium is below baseline, making further continuation likely."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Calm premium behavior, low volatility, and no clear trending divergence from baseline."
+   }
+  }
+ },
+ {
+  "ts": 1791705600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "No regime change; premium stable near baseline; calm behavior"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "6h/3d ratio 1.22; premium reasonable; recent 19bp win"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.7,
+    "reason": "Elevated volatility 6h/3d=1.55; premium drifting below baseline"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "6h/3d ratio 1.57<2x; premium near baseline; stable reversion"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Ratio 1.13; premium above baseline; normal volatility"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance trending hard -40.9bps; premium drifting from +2.5 to -10.3"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Stable Binance -0.8bps; strong recent 99bp win; mean reverting"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.67,
+    "reason": "Premium stable near baseline; calm range, low Binance drift, prior wins, no regime-change signal."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.63,
+    "reason": "Premium close to baseline and 6h volatility modest; no regime change or loss cluster."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.83,
+    "reason": "6h premium volatility is far above 3-day history, indicating regime change and unstable premium behavior."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.86,
+    "reason": "Binance is falling hard and 6h premium volatility exceeds 3-day history, suggesting a continuing move."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.84,
+    "reason": "High 30m premium volatility and sharp Binance downtrend indicate unstable, trend-driven premium behavior."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Very sharp Binance downtrend and elevated premium volatility make mean reversion unlikely right now."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Premium is stable around baseline, Binance flat, and recent trades were strongly positive."
+   }
+  }
+ },
+ {
+  "ts": 1791892800,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm, mean-reverting. Range 61 bp << 80 bp, 6h/3d sd ratio 1.07x stable."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Stable regime, tight range 56 bp, premium near baseline, solid recent wins."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm, 58 bp range, exceptional recent trades (143–140 bps), stable sd ratio."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Premium range 131 bp >> 80 bp threshold. High volatility, regime deteriorating."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Mostly calm, 80 bp range (borderline), stable 6h/3d ratio 0.88x."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Premium range 101 bp > 80 bp. Excess noise, fails calm threshold."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Very calm, 32 bp range, tight 30m sd 5.3 bps, improved 6h/3d ratio."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Premium regime unstable: 6h volatility exceeds 3-day by >2x; recent drift and noisy history."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Premium near baseline, stable range, no regime shift, prior trades profitable, likely mean-reverting liquidity gap."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "Premium stable around baseline with calm dispersion and strong recent profitability; no clear trend regime."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.86,
+    "reason": "6h premium volatility exceeds 3-day by >2x, suggesting regime change and trending risk."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.77,
+    "reason": "Premium stable around baseline, low drift, no regime shift; prior loss likely noise."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.76,
+    "reason": "Premium oscillates around baseline with acceptable volatility and no sustained directional drift."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Calm premium behavior near baseline, low 30m volatility, no regime change; suitable for reversion."
+   }
+  }
+ },
+ {
+  "ts": 1792656000,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium stable near baseline, low volatility, calm mean-reverting"
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance hard down (-33 bps), premium drifted negative from baseline"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Recent volatility (180 bps win), premium elevated above baseline"
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.88,
+    "reason": "Binance down hard (-16 bps), premium drifted to -10.5 from +1.4"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Premium drifted 29 bps below baseline, wide range signals instability"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance down -21 bps, premium drifted 17 bps below baseline"
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.92,
+    "reason": "Massive drift (25 bps below baseline), only 2 recent trades"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Premium stable near baseline; calm range, decent recent wins, no regime-change signal."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.91,
+    "reason": "Premium oscillating mildly around baseline; recent performance strong despite BTC weakness."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "6h premium volatility exceeds 3-day; regime changed and premium is drifting."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "Premium moved far below baseline with recent Binance weakness; likely continuing move."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Premium unstable and trending lower; 6h variance elevated versus history."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Premium drifting down hard with weak Binance trend; not mean-reverting."
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.88,
+    "reason": "Premium history too short relative to current state; unstable around baseline."
+   }
+  }
+ },
+ {
+  "ts": 1792641600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Dip reverted to baseline, calm 30m period, weak spot from last trade"
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Premium degrading to -28.6bps vs baseline, baseline drifting"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Premium crashed 41bps below baseline, major repricing underway"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium stable near baseline, binance calm, low volatility"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance trending down hard at -20bps/hour, baseline following"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance trending down -21bps, baseline will drift negative"
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance extreme move -51bps in 60min, regime change signal"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "6h premium volatility exceeds 3-day history; regime change risk."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Premium stable and recent outcomes positive; no regime change."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Premium far from baseline with high drift and elevated volatility; unstable."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "6h premium volatility exceeds 3-day history; regime change risk."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.89,
+    "reason": "Large Binance drop and premium volatility imply continuing move, not mean reversion."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.92,
+    "reason": "Binance trending sharply down; premium likely to keep moving rather than revert."
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance trending sharply down and premium above baseline recently weakened; unstable."
+   }
+  }
+ },
+ {
+  "ts": 1791572400,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Premium dipped from 30m mean, range slightly elevated but 6h volatility stabilizing"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm 55bp range, stable 6h volatility despite large Binance move"
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Extremely calm 56bp range, stable volatility, ideal mean-revert setup"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Calm 62bp range, stable recent volatility, no regime drift"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "Calm 57bp range, recent volatility below 3-day history, stable"
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.72,
+    "reason": "Binance moved hard but volatility stable, no losses, premium reverting likely"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.95,
+    "reason": "Extremely calm 49bp range, lowest volatility 6.8bp 30m SD, strong recent trade"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.92,
+    "reason": "Binance trending down and recent loss; premium unstable vs baseline."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Strong Binance drop and premium regime shift; likely continuing move, not mean reversion."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "6h premium sd exceeds 3-day sd, indicating regime change and unstable behavior."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Premium noise moderate and not regime-shifted; no clear drift, good for temporary gap fades."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "6h premium sd exceeds 3-day sd, so premium behavior has changed materially."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "High Binance drop but premium remains noisy and mean-reverting, with prior successful fades."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Premium tightly centered and calm; stable mean-reversion around baseline."
+   }
+  }
+ },
+ {
+  "ts": 1792558800,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "Isolated spike above baseline; Binance stable; recent PnL declining"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Stable near baseline, minimal volatility, consistent positive trades"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Premium spiked 86bp in 30m; Binance trending +25bp; unstable directional move"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Negative premium stable below baseline, low volatility, Binance flat"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Deeply discounted, oscillating around baseline, excellent recent trade history"
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.78,
+    "reason": "Premium near baseline, calm structure, modest Binance trend immaterial"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Minimal deviation, lowest volatility market, stable around baseline"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.76,
+    "reason": "Premium stable around baseline; calm range and positive recent reversion PnL."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.79,
+    "reason": "Very tight premium regime, low dispersion, and no adverse drift; mean reversion likely."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Binance rising hard and premium is drifting far above baseline; trend risk dominates."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.66,
+    "reason": "No regime change; premium is noisy but history is stable and recent trades are profitable."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Premium broke sharply below baseline with persistent weakness; likely real move, not gap."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.61,
+    "reason": "Premium near baseline with calm enough history; no clear directional drift."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Premium is stable and quiet; mild Binance weakness does not show a persistent Wallex drift."
+   }
+  }
+ },
+ {
+  "ts": 1792569600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Calm Binance (3bps), stable premium, positive trades, no regime shift"
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Binance trending 41bps/60m, mean reversion unlikely in volatile environment"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance 53bps/60m trending, premium drifting up (72 vs 46 baseline)"
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance 62bps/60m trending hard, directional move underway, no mean revert"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance 96bps/60m extreme trending, no calm state for safe entry"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance 70bps/60m trending, premium elevated (18 vs -0.5 baseline)"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Calmest market: Binance 24bps, 1m sd 2.2, stable mean-reverting structure"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.74,
+    "reason": "Premium stable near baseline; calm range and good recent reversion despite modest Binance move."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.78,
+    "reason": "Premium tightly anchored with low volatility; Binance move not yet showing premium drift."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Regime change: 6h premium volatility exceeds 3-day history, plus strong Binance trend."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance trending hard and premium variance elevated versus history, suggesting directional move."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Binance momentum extreme and premium unstable; likely continuing move, not a temporary gap."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "Premium has flipped above baseline amid strong Binance trend; drift looks directional."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.71,
+    "reason": "Premium remains near baseline with moderate noise; no clear drift or regime break."
+   }
+  }
+ },
+ {
+  "ts": 1792206000,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Stable premium, tight 30m volatility, calm mean-reverting"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calm range, strong recent wins, premium stable vs baseline"
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "6h vol 1.5× 3d (watch), Binance +13 bps, but no regime change"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Calm, strong wins, stable premium, no regime drift"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Binance trending +17 bps, Wallex premium lagging baseline"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.05,
+    "reason": "Catastrophic -382 bps loss, premium well above baseline, trending"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calmest market, ultra-tight range, minimal Binance drift"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "Premium stable near baseline; calm range, modest Binance move, no regime change or recent loss pattern."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Stable mean-reversion profile; low premium volatility, no regime change, recent trades profitable."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Regime change: 6h premium volatility exceeds 3-day by far; trending Binance and unstable premium."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Premium oscillating calmly around baseline; low volatility, no regime change, recent results strong."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.63,
+    "reason": "Some Binance strength, but premium remains rangebound near baseline without clear drift or regime change."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Recent large loss and strong Binance trend; premium behavior unstable, likely continuation not temporary gap."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.91,
+    "reason": "Very calm premium around baseline, tiny volatility, no regime change, favorable mean reversion."
+   }
+  }
+ },
+ {
+  "ts": 1791543600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.7,
+    "reason": "Wide range (111 bp) historically; mean revert risk less certain."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Stable near baseline, minimal binance drift, clean reversion signal."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Premium +19 bp above baseline; limited margin for entry signals."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Binance -35.6 bp/h; check if trend or noise before entry."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Binance -100 bp/h exceeds 3d range; trending hard, not reverting."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance -84.7 bp/h outside range; likely move, not dip reversion."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.95,
+    "reason": "Calmest market: lowest volatility, tightest range, ideal reversion setup."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Stable premium near baseline; calm range and recent profit suggest mean reversion."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "Premium near baseline; no regime break and Binance move looks manageable."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Premium drifting up sharply with falling Binance; likely trending, not a temporary gap."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Binance dropping hard; premium behavior likely tied to ongoing downside move."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "Extreme Binance selloff and premium instability indicate strong trending regime."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Binance is plunging and premium is elevated above baseline; continuation risk high."
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.88,
+    "reason": "Premium is far above baseline and recent stability is weak for this setup."
+   }
+  }
+ },
+ {
+  "ts": 1791889200,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.82,
+    "reason": "30m mean 15.1 bps aligns with baseline 15.2; calm (7.1 sd). 6h/3d ratio 1.08 normal. Profitable recent trades."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "30m mean -23.1 bps matches baseline -22.3; tight, stable. 6h/3d ratio 0.84. P&L positive trend: 19→27→34 bps."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.78,
+    "reason": "30m mean -3.7 bps vs baseline -3.1; extremely stable. 6h/3d ratio 0.72. Current -21.3 within calm range."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Premium -57.4 at range bottom, 34 bps below baseline. 30m volatility extreme (24.7). 6h/3d ratio 1.30 elevated. Not mean-reverting."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.82,
+    "reason": "Premium -30.9 bps vs baseline +1.3; 32 bps deviation. Recent loss -17 bps. 1m volatility high (7.8). Wide range signal instability."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.79,
+    "reason": "30m mean 8.7 bps near baseline 9.5; calm (8.9 sd). Current -3.0 only 12.5 bps below baseline. Consistent small wins."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.94,
+    "reason": "Calmest: 30m sd 3.6 lowest overall. 6h/3d ratio 0.62. Tight range [-24.7, 13.8]. Binance ultra-stable (1m sd 1.6)."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "6h premium volatility exceeds 3-day; Binance flat, but regime unstable and recent trades not enough."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Binance is trending hard down; premium also shifting, suggesting continuation not temporary liquidity gap."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Binance trending hard down and premium is drifting below baseline; regime looks directional."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "6h premium sd exceeds 3-day sd; sharp Binance selloff and premium breakdown indicate regime change."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Premium far below baseline and Binance weak; recent market behavior looks unstable and directional."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "Premium has crossed below baseline while Binance sells off; not a stable mean-reversion setup."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.92,
+    "reason": "Premium is tight and calm, 6h volatility low, no regime change, likely reverts to baseline."
+   }
+  }
+ },
+ {
+  "ts": 1791558000,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Calm premium (range 71.6 bps), recent mean reversion (25 bps), low volatility."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Binance moved 55.9 bps in 60m; suggests real move, not liquidity gap."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "30m volatility elevated (25.5 sd), premium range 97 bps, restless market."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.7,
+    "reason": "Premium range 84.4 bps exceeds ~80 calm threshold; elevated Binance move (36.3)."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.75,
+    "reason": "Binance trending (43.5 bps/60m), premium range 81 bps at boundary."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Range 97 bps too wide; baseline drifting positive despite recent trades."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Calmest market (8.7 sd, 54 bps range), strong mean reversion (99 bps PnL)."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.78,
+    "reason": "3d history complete; premium near baseline and stable, recent win, no regime change."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Binance moved hard recently; premium likely tracking trend, not a mean-reverting gap."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Recent Binance surge and elevated premium volatility suggest directional move, not stable premium."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.92,
+    "reason": "Binance trending strongly and 6h premium volatility elevated; regime looks unstable."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Strong recent Binance move with noisy premium; gap-reversion setup looks unreliable."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.88,
+    "reason": "Premium is unstable and recent Binance strength suggests continuation risk dominates."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.74,
+    "reason": "Calm history, low Binance movement, premium near baseline with no regime-change signal."
+   }
+  }
+ },
+ {
+  "ts": 1792508400,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Best premium stability, closest to baseline, lowest Binance move; mean-revert likely"
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance up 134 bps/h—structural move, not temporary dip reversion"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Binance 78 bps/h trending; exceptional recent 180 bp fill shows capture"
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance extreme 247 bps/h; premium 17 bps displaced from baseline"
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance extreme 240 bps/h; premium 16 bps displaced from baseline"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.9,
+    "reason": "Binance extreme 209 bps/h; premium drifted; structural move likely"
+   },
+   "XAUTTMN": {
+    "verdict": "reject",
+    "confidence": 0.7,
+    "reason": "Calmest market; but premium already 14 bps below baseline, narrow margin"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.79,
+    "reason": "Premium stable near baseline; calm range, modest Binance move, strong recent profitability."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Binance trending hard and premium is shifting; likely continuation, not temporary liquidity gap."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.88,
+    "reason": "Premium volatility elevated and regime looks unstable versus history; recent market behavior less mean-reverting."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Very strong Binance trend with premium drifting; regime change risk outweighs mean reversion."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "Extremely strong Binance move and premium has flipped direction; likely continuation, not a gap."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.91,
+    "reason": "Binance trending sharply and premium is rising away from baseline; weak mean reversion signal."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.81,
+    "reason": "Premium variance is calm and near baseline; no regime change or strong directional drift."
+   }
+  }
+ },
+ {
+  "ts": 1791720000,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Stable premium, no regime change, recent +25bps win"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Very calm premium 4.2 30m sd, stable baseline"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.65,
+    "reason": "Premium +26bps above baseline, Binance +30bps momentum"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Stable premium, calm range, no regime shift"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Very calm premium, tight range, mean reverting"
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Stable premium, good trade history"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Very calm, excellent recent pnl, flat Binance"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.86,
+    "reason": "Premium drifting higher; 6h volatility above history, suggesting unstable regime rather than mean reversion."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Calm premium near baseline, low volatility, despite BTC trend; mean reversion looks intact."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.92,
+    "reason": "Binance trending hard and premium is rising; likely continuation, not a temporary liquidity gap."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.88,
+    "reason": "Strong Binance uptrend and premium elevated above baseline; reversion edge looks weak."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.84,
+    "reason": "Binance is surging and premium is unstable; market may keep moving rather than revert."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.81,
+    "reason": "Binance strong upmove and premium has flipped upward; recent wins don’t offset regime risk."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.95,
+    "reason": "Very stable global price and tight premium behavior; good mean-reverting setup."
+   }
+  }
+ },
+ {
+  "ts": 1792000800,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.75,
+    "reason": "Stable mean reversion despite elevated premium. Profitable history."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Very stable volatility, low SD, consistent profits. Handles moves."
+   },
+   "BNBTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Excellent recent profitability, stable volatility dynamics."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Good profitability, stable dynamics despite Binance volatility."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.65,
+    "reason": "Calm near baseline, but single recent loss limits confidence."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Mean-reverting and profitable. Extreme Binance move is cautionary."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.95,
+    "reason": "Calmest market, tightest range, most profitable consistently."
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium stable near baseline; history calm; recent trades positive despite mild Binance softness."
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.96,
+    "reason": "Binance sold off sharply; premium drifting down, suggesting real move not a temporary gap."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.99,
+    "reason": "Strong Binance downtrend with premium weakening; regime looks directional, not mean reverting."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.98,
+    "reason": "Very sharp Binance drop; premium variability elevated, making fade risk high."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Large Binance decline and recent loss indicate momentum, not stable premium reversion."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "Extreme Binance selloff and premium softness suggest continued move rather than liquidity gap."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Premium near baseline and both 6h/3d volatility low; calm mean-reverting market."
+   }
+  }
+ },
+ {
+  "ts": 1791727200,
+  "haiku": {
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.92,
+    "reason": "Lowest 30m volatility (8.5 bps), stable around baseline, validated recent PnL"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Minimal volatility (4.6 bps smallest), perfectly calm, strong mean-reverting regime"
+   },
+   "BTCTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Equally calm but 2 slots filled; lower profit history than XAUTTMN"
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.82,
+    "reason": "Calm but no recent trades validate setup; prefer XAUTTMN proven history"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Calm but lower conviction; XAUTTMN/XRPTMN provide better risk-reward"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Premium drifted 31 bps below 30m mean, suggests real move not temp gap"
+   },
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.92,
+    "reason": "Premium elevated 39 bps above 30m mean, trending upward, conflicts mean reversion"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.97,
+    "reason": "6h premium volatility exceeds 3-day history; regime change and recent profits after unstable drift."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.89,
+    "reason": "Calm premium, tight range, no regime change, and mean reversion likely."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.95,
+    "reason": "Premium drifting downward with weak recent stability; likely trend continuation, not a temporary gap."
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.84,
+    "reason": "Premium stable around baseline despite Binance weakness; no regime change and range remains contained."
+   },
+   "XRPTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "6h premium volatility is elevated versus history and Binance is trending strongly upward."
+   },
+   "DOGETMN": {
+    "verdict": "approve",
+    "confidence": 0.86,
+    "reason": "Premium noise is contained and recent profits suggest temporary dislocations can revert."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.88,
+    "reason": "Stable low-volatility premium with prior wins; mean reversion conditions look favorable."
+   }
+  }
+ },
+ {
+  "ts": 1792479600,
+  "haiku": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.8,
+    "reason": "Recent profitability declining, high 30m volatility, premium well below mean"
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.85,
+    "reason": "Premium at baseline, low volatility, stable 6h/3d ratio, solid trades"
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Premium 169bps above baseline, extreme 30m volatility, recent -77bp loss"
+   },
+   "ETHTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium near baseline, low volatility, excellent trade history, calm range"
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.7,
+    "reason": "Elevated premium but stable 6h/3d ratio, excellent profitable trades signal reversion"
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.85,
+    "reason": "Severe recent loss -382bps indicates real move, not temporary dip reverting"
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.9,
+    "reason": "Extremely stable 6h/3d=1.005, lowest volatility, premium near baseline, good trades"
+   }
+  },
+  "gpt": {
+   "TRXTMN": {
+    "verdict": "reject",
+    "confidence": 0.76,
+    "reason": "6h premium volatility exceeds 3d; regime unstable despite recent profits."
+   },
+   "BTCTMN": {
+    "verdict": "approve",
+    "confidence": 0.78,
+    "reason": "Premium stable near baseline; calm range and no regime change."
+   },
+   "BNBTMN": {
+    "verdict": "reject",
+    "confidence": 0.93,
+    "reason": "Premium far from baseline and 6h volatility exceeds 3d; unstable regime."
+   },
+   "ETHTMN": {
+    "verdict": "reject",
+    "confidence": 0.89,
+    "reason": "6h premium volatility above 3d; premium drifting, not mean-reverting."
+   },
+   "XRPTMN": {
+    "verdict": "approve",
+    "confidence": 0.74,
+    "reason": "Calm enough and premium near range edge; no regime change."
+   },
+   "DOGETMN": {
+    "verdict": "reject",
+    "confidence": 0.94,
+    "reason": "6h premium volatility exceeds 3d; premium drift and recent loss indicate instability."
+   },
+   "XAUTTMN": {
+    "verdict": "approve",
+    "confidence": 0.8,
+    "reason": "Premium range calm and volatility not elevated versus history."
+   }
+  }
+ }
+]

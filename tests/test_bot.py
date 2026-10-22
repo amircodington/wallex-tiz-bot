@@ -200,3 +200,21 @@ def test_trail_floor(monkeypatch):
     (pnl, reason), = b.j.trades()
     exit_px = b.j.db.execute("select exit from trades").fetchone()[0]
     assert reason == "trail" and exit_px == pytest.approx(tp * (1 - B.TRAIL_GIVEBACK))
+
+
+def test_ai_http_reads_openai_reply(monkeypatch):
+    from tiz import ai_http
+    monkeypatch.setenv("AI_BASE_URL", "https://gw.example/v1/")
+    monkeypatch.setenv("AI_API_KEY", "k")
+    seen = {}
+
+    class R:
+        def raise_for_status(self):
+            pass
+
+        def json(self):
+            return {"choices": [{"message": {"content": '{"markets": {}}'}}]}
+
+    monkeypatch.setattr(ai_http.httpx, "post", lambda url, **kw: seen.update(url=url, **kw) or R())
+    assert ai_http.ask("hi") == '{"markets": {}}'
+    assert seen["url"] == "https://gw.example/v1/chat/completions" and seen["headers"]["Authorization"] == "Bearer k"

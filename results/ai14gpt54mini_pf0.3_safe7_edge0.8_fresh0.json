@@ -1,0 +1,50 @@
+[
+ {
+  "fee": 0.0025,
+  "edge": 0.008,
+  "train": {
+   "trades": 6,
+   "wins": 6,
+   "return_pct": 0.431,
+   "max_drawdown_pct": 0.433,
+   "period": [
+    "2026-10-08T13:34:00+03:30",
+    "2026-10-15T13:10:30+03:30"
+   ],
+   "days": 6.98,
+   "exits": {
+    "take_profit": 6
+   }
+  },
+  "test": {
+   "trades": 5,
+   "wins": 4,
+   "return_pct": 0.369,
+   "max_drawdown_pct": 0.327,
+   "period": [
+    "2026-10-15T13:10:00+03:30",
+    "2026-10-22T12:47:00+03:30"
+   ],
+   "days": 6.98,
+   "exits": {
+    "take_profit": 4,
+    "max_hold": 1
+   }
+  },
+  "full": {
+   "trades": 11,
+   "wins": 10,
+   "return_pct": 0.804,
+   "max_drawdown_pct": 0.433,
+   "period": [
+    "2026-10-08T13:34:00+03:30",
+    "2026-10-22T12:47:00+03:30"
+   ],
+   "days": 13.97,
+   "exits": {
+    "take_profit": 10,
+    "max_hold": 1
+   }
+  }
+ }
+]
