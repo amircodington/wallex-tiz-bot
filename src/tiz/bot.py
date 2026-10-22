@@ -652,6 +652,21 @@ class Bot:
         self.alert(f"TIZ {MODE} {kind}: {msg}")
 
 
+def warm_from(m, wx, bn, usdt, frm, to):
+    """Minute history, baseline and daily volume of one market from candles in [frm, to): live start and backtest."""
+    m.vol_day = sum(v[3] * v[4] for t, v in wx.items() if frm <= t < to) / ((to - frm) / 86400)
+    u = b = None
+    for t in range(frm, to, 60):
+        u, b = usdt.get(t, u), bn.get(t, b)
+        c = wx.get(t)
+        if not (u and b and c):
+            continue
+        prem = c[3] / (b * u) - 1
+        m.n += 1
+        m.base = prem if m.base is None else m.base + max(1 / m.n, 60 / BASELINE_SEC) * (prem - m.base)
+        m.hist.append((float(t), prem, b, 0.0, m.base))
+
+
 def warm_history(bot, days=QUAL_DAYS):
     """Fill each market's minute history, baseline and daily volume from Wallex UDF + Binance klines, so the
     qualifier and the AI context work from the first minute instead of after QUAL_MIN_HOURS."""
@@ -660,18 +675,7 @@ def warm_history(bot, days=QUAL_DAYS):
     frm = now - int(days * 86400)
     usdt = {t: v[3] for t, v in T.fetch_wallex("USDTTMN", frm, now).items()}
     for m in bot.m.values():
-        wx, bn = T.fetch_wallex(m.sym, frm, now), T.fetch_binance(m.base_asset + "USDT", frm, now)
-        m.vol_day = sum(v[3] * v[4] for v in wx.values()) / days
-        u = b = None
-        for t in range(frm, now, 60):
-            u, b = usdt.get(t, u), bn.get(t, b)
-            c = wx.get(t)
-            if not (u and b and c):
-                continue
-            prem = c[3] / (b * u) - 1
-            m.n += 1
-            m.base = prem if m.base is None else m.base + max(1 / m.n, 60 / BASELINE_SEC) * (prem - m.base)
-            m.hist.append((float(t), prem, b, 0.0, m.base))
+        warm_from(m, T.fetch_wallex(m.sym, frm, now), T.fetch_binance(m.base_asset + "USDT", frm, now), usdt, frm, now)
         bot.event("warm", f"{m.sym}: {len(m.hist) / 60:.0f}h of history, {m.vol_day / 1e9:.1f}B TMN/day")
 
 

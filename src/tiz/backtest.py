@@ -86,15 +86,26 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
     j = B.Journal(":memory:", None) if quiet else B.Journal(str(OUT / f"{tag}.db"), str(OUT / f"{tag}_decisions.jsonl"))
     markets = [B.Market(c + "TMN", int(info[c + "TMN"]["tickSize"]), int(info[c + "TMN"]["stepSize"])) for c in B.COINS]
     broker = B.Paper(5_000_000.0)
-    bot = B.Bot(broker, j, markets)
     B.END_TS = float("inf")  # history is before the challenge end
-    lo_t = max(min(usdt), *(max(min(w), min(b)) for w, b in series.values()), t_from or 0)
+    t_data = max(min(usdt), *(max(min(w), min(b)) for w, b in series.values()))
+    lo_t = max(t_data, t_from or 0) // 60 * 60
     hi_t = min(max(usdt), *(min(max(w), max(b)) for w, b in series.values()), t_to or float("inf"))
-    for c, (w, _) in series.items():  # liquidity as the live warm-up sees it: mean daily TMN volume at the start
-        bot.m[c + "TMN"].vol_day = sum(x[3] * x[4] for t, x in w.items() if lo_t <= t < lo_t + B.QUAL_DAYS * 86400) / B.QUAL_DAYS
+    # like the live start: history, baseline, daily volume and WARMUP from the data before the window, if any
+    w0 = max(t_data, lo_t - int(B.QUAL_DAYS * 86400)) // 60 * 60
+    warm = lo_t - w0 >= B.WARMUP
+    bot = B.Bot(broker, j, markets, now=lo_t - B.WARMUP if warm else None)
     last = {c: None for c in series}
     u, h, equity = None, SPREAD / 2, []
-    for t in range(lo_t // 60 * 60, int(hi_t), 60):
+    for c, (w, bn) in series.items():
+        m = bot.m[c + "TMN"]
+        if warm:
+            B.warm_from(m, w, bn, usdt, w0, lo_t)
+            last[c] = next((w[t][3] for t in range(lo_t - 60, w0 - 60, -60) if t in w), None)
+        else:  # window starts at the data start: liquidity from its first QUAL_DAYS (look-ahead, as before)
+            m.vol_day = sum(x[3] * x[4] for t, x in w.items() if lo_t <= t < lo_t + B.QUAL_DAYS * 86400) / B.QUAL_DAYS
+    if warm:
+        u = next((usdt[t] for t in range(lo_t - 60, w0 - 60, -60) if t in usdt), None)
+    for t in range(lo_t, int(hi_t), 60):
         u = usdt.get(t, u)
         now = t + 59.0
         if FRESH and u is not None and all(last.values()) and bot.t0:
@@ -161,10 +172,11 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
 
 async def sweep():
     """Pick the entry edge on train, report it on the unseen test. BT_SPLIT (unix ts) moves the split off the
-    midpoint; BT_FEES / BT_EDGES (comma lists) narrow the grid."""
+    midpoint, BT_FROM / BT_TO trim the data; BT_FEES / BT_EDGES (comma lists) narrow the grid."""
     usdt, series = load()
     t0 = max(min(usdt), *(min(w) for w, _ in series.values()))
     t1 = min(max(usdt), *(max(w) for w, _ in series.values()))
+    t0, t1 = int(os.environ.get("BT_FROM", t0)), int(os.environ.get("BT_TO", t1))  # earlier data then warms the window
     mid = int(os.environ.get("BT_SPLIT", (t0 + t1) // 2))
     out = []
     for fee in map(float, os.environ.get("BT_FEES", "0.0025,0").split(",")):
