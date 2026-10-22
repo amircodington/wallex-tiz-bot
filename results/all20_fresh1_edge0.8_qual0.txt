@@ -1,0 +1,1957 @@
+[fill] SHIBTMN BUY 699342.0 @ 1.4299 fee 0.300%
+[trade] SHIBTMN SELL 697243.0 @ 1.4449 (take_profit) PnL +4,930 TMN (+0.49%)
+[fill] SHIBTMN BUY 700276.0 @ 1.4294 fee 0.300%
+[trade] SHIBTMN SELL 698175.0 @ 1.4434 (take_profit) PnL +4,242 TMN (+0.42%)
+[fill] ADATMN BUY 15.0 @ 66,558.2625 fee 0.300%
+[trade] ADATMN SELL 14.9 @ 67,109.0000 (take_profit) PnL +2,722 TMN (+0.27%)
+[fill] SUITMN BUY 3.34 @ 299,522.6865 fee 0.300%
+[trade] SUITMN SELL 3.32 @ 302,973.0000 (take_profit) PnL +5,948 TMN (+0.60%)
+[fill] ARBTMN BUY 20.4682 @ 49,031.0000 fee 0.250%
+[trade] ARBTMN SELL 20.417 @ 49,386.0000 (take_profit) PnL +2,218 TMN (+0.22%)
+[fill] SANDTMN BUY 51.5 @ 19,478.7345 fee 0.300%
+[trade] SANDTMN SELL 51.3 @ 19,606.0000 (take_profit) PnL +1,007 TMN (+0.10%)
+[fill] SHIBTMN BUY 707245.0 @ 1.4199 fee 0.300%
+[fill] SUITMN BUY 3.35 @ 299,521.6860 fee 0.300%
+[fill] PUMPTMN BUY 653.6 @ 1,533.7665 fee 0.300%
+[trade] PUMPTMN SELL 651.6 @ 1,566.0000 (take_profit) PnL +15,445 TMN (+1.54%)
+[fill] PUMPTMN BUY 648.0 @ 1,551.7755 fee 0.300%
+[trade] PUMPTMN SELL 646.0 @ 1,562.0000 (take_profit) PnL +1,066 TMN (+0.11%)
+[trade] SHIBTMN SELL 705123.0 @ 1.4292 (take_profit) PnL +1,019 TMN (+0.10%)
+[fill] PUMPTMN BUY 653.7 @ 1,539.7695 fee 0.300%
+[fill] ADATMN BUY 15.3 @ 65,610.7890 fee 0.300%
+[trade] PUMPTMN SELL 651.7 @ 1,552.2235 (take_profit) PnL +2,062 TMN (+0.20%)
+[fill] UNITMN BUY 0.49 @ 2,027,977.4820 fee 0.300%
+[trade] ADATMN SELL 15.2 @ 66,251.0000 (take_profit) PnL +4,213 TMN (+0.42%)
+[fill] FILTMN BUY 3.44 @ 291,229.5420 fee 0.300%
+[trade] FILTMN SELL 3.42 @ 294,175.8385 (take_profit) PnL +4,061 TMN (+0.41%)
+[fill] SANDTMN BUY 52.6 @ 19,087.5390 fee 0.300%
+[trade] SANDTMN SELL 52.4 @ 19,212.0000 (take_profit) PnL +995 TMN (+0.10%)
+[fill] FILTMN BUY 3.45 @ 290,905.3800 fee 0.300%
+[trade] FILTMN SELL 3.43 @ 294,850.5010 (take_profit) PnL +7,495 TMN (+0.75%)
+[trade] SUITMN SELL 3.33 @ 289,855.0000 (stop_loss) PnL -38,087 TMN (-3.81%)
+[trade] UNITMN SELL 0.48 @ 1,958,672.1740 (stop_loss) PnL -39,016 TMN (-4.00%)
+[fill] PEPETMN BUY 985038.0 @ 1.0108 fee 0.300%
+[fill] SHIBTMN BUY 735494.0 @ 1.3527 fee 0.300%
+[trade] SHIBTMN SELL 733287.0 @ 1.3911 (take_profit) PnL +22,134 TMN (+2.22%)
+[fill] SANDTMN BUY 56.7 @ 17,612.8020 fee 0.300%
+[fill] SUITMN BUY 3.58 @ 278,839.3500 fee 0.300%
+[trade] SANDTMN SELL 56.5 @ 18,214.8880 (take_profit) PnL +27,936 TMN (+2.80%)
+[fill] ARBTMN BUY 22.6564 @ 44,022.0000 fee 0.300%
+[trade] ARBTMN SELL 22.5884 @ 44,954.5115 (take_profit) PnL +15,025 TMN (+1.51%)
+[fill] FILTMN BUY 3.77 @ 266,133.0000 fee 0.300%
+[trade] FILTMN SELL 3.75 @ 273,457.2030 (take_profit) PnL +21,386 TMN (+2.14%)
+[fill] APETMN BUY 27.24 @ 37,039.5105 fee 0.300%
+[trade] APETMN SELL 27.15 @ 37,388.2965 (take_profit) PnL +3,398 TMN (+0.34%)
+[trade] PEPETMN SELL 982082.0 @ 0.9814 (stop_loss) PnL -34,748 TMN (-3.49%)
+[fill] ADATMN BUY 16.6 @ 60,006.0000 fee 0.250%
+[fill] PEPETMN BUY 1022125.0 @ 0.9791 fee 0.300%
+[trade] PEPETMN SELL 1019058.0 @ 0.9855 (take_profit) PnL +1,020 TMN (+0.10%)
+[trade] ADATMN SELL 16.5 @ 60,367.0000 (take_profit) PnL +985 TMN (+0.10%)
+[fill] APETMN BUY 27.62 @ 36,249.1155 fee 0.300%
+[fill] PEPETMN BUY 1021247.0 @ 0.9796 fee 0.300%
+[trade] PEPETMN SELL 1018183.0 @ 0.9900 (take_profit) PnL +5,079 TMN (+0.51%)
+[fill] FILTMN BUY 3.78 @ 264,872.0000 fee 0.250%
+[trade] SUITMN SELL 3.56 @ 267,405.2305 (stop_loss) PnL -46,548 TMN (-4.68%)
+[fill] ARBTMN BUY 22.9346 @ 43,367.6730 fee 0.300%
+[trade] ARBTMN SELL 22.8657 @ 43,947.0000 (take_profit) PnL +7,751 TMN (+0.78%)
+[fill] ADATMN BUY 17.1 @ 58,095.0330 fee 0.300%
+[trade] ADATMN SELL 17.0 @ 59,910.0300 (take_profit) PnL +24,828 TMN (+2.51%)
+[trade] FILTMN SELL 3.77 @ 266,532.6670 (take_profit) PnL +744 TMN (+0.07%)
+[fill] PEPETMN BUY 1032573.0 @ 0.9727 fee 0.300%
+[fill] FILTMN BUY 3.85 @ 260,162.0160 fee 0.300%
+[trade] PEPETMN SELL 1029475.0 @ 0.9791 (take_profit) PnL +1,070 TMN (+0.11%)
+[fill] ADATMN BUY 16.9 @ 59,093.5320 fee 0.300%
+[trade] ADATMN SELL 16.8 @ 59,649.0000 (take_profit) PnL +3,839 TMN (+0.39%)
+[trade] FILTMN SELL 3.83 @ 264,155.0000 (take_profit) PnL +9,766 TMN (+0.98%)
+[fill] PEPETMN BUY 1043389.0 @ 0.9654 fee 0.250%
+[fill] ARBTMN BUY 23.1916 @ 43,464.7215 fee 0.300%
+[trade] PEPETMN SELL 1040780.0 @ 0.9713 (take_profit) PnL +604 TMN (+0.06%)
+[fill] PUMPTMN BUY 708.7 @ 1,421.7105 fee 0.300%
+[trade] PUMPTMN SELL 706.5 @ 1,436.0000 (take_profit) PnL +4,537 TMN (+0.45%)
+[trade] ARBTMN SELL 23.122 @ 43,833.0000 (take_profit) PnL +2,958 TMN (+0.29%)
+[fill] PEPETMN BUY 1042157.0 @ 0.9678 fee 0.250%
+[fill] ADATMN BUY 16.9 @ 59,284.6275 fee 0.300%
+[trade] ADATMN SELL 16.8 @ 59,686.0000 (take_profit) PnL +1,239 TMN (+0.12%)
+[trade] PEPETMN SELL 1039551.0 @ 0.9745 (take_profit) PnL +1,417 TMN (+0.14%)
+[fill] PEPETMN BUY 1038424.0 @ 0.9718 fee 0.300%
+[fill] PUMPTMN BUY 705.2 @ 1,430.7150 fee 0.300%
+[trade] PEPETMN SELL 1035308.0 @ 0.9852 (take_profit) PnL +8,311 TMN (+0.82%)
+[fill] STMN BUY 101.62 @ 9,954.9750 fee 0.300%
+[trade] PUMPTMN SELL 703.0 @ 1,442.0000 (take_profit) PnL +2,373 TMN (+0.24%)
+[fill] SUITMN BUY 3.79 @ 266,067.9675 fee 0.300%
+[trade] STMN SELL 101.31 @ 10,048.0000 (take_profit) PnL +3,845 TMN (+0.38%)
+[fill] PEPETMN BUY 1030453.0 @ 0.9814 fee 0.300%
+[trade] SUITMN SELL 3.77 @ 272,016.0000 (take_profit) PnL +16,842 TMN (+1.67%)
+[fill] ADATMN BUY 17.0 @ 59,725.8480 fee 0.300%
+[trade] PEPETMN SELL 1027361.0 @ 0.9955 (take_profit) PnL +8,905 TMN (+0.88%)
+[fill] LTCTMN BUY 0.06213 @ 16,359,255.5400 fee 0.300%
+[trade] LTCTMN SELL 0.06194 @ 16,549,144.0000 (take_profit) PnL +6,150 TMN (+0.61%)
+[fill] UNITMN BUY 0.54 @ 1,881,580.3200 fee 0.300%
+[trade] ADATMN SELL 16.9 @ 60,276.0000 (take_profit) PnL +3,714 TMN (+0.37%)
+[fill] SHIBTMN BUY 748770.0 @ 1.3603 fee 0.300%
+[trade] SHIBTMN SELL 746523.0 @ 1.3742 (take_profit) PnL +4,771 TMN (+0.47%)
+[trade] UNITMN SELL 0.53 @ 1,909,917.0000 (take_profit) PnL +9,487 TMN (+0.95%)
+[fill] FILTMN BUY 3.78 @ 270,143.0040 fee 0.300%
+[trade] FILTMN SELL 3.76 @ 277,889.9855 (take_profit) PnL +22,938 TMN (+2.25%)
+[fill] SHIBTMN BUY 743831.0 @ 1.3846 fee 0.300%
+[trade] SHIBTMN SELL 741599.0 @ 1.3996 (take_profit) PnL +4,926 TMN (+0.48%)
+[fill] SHIBTMN BUY 744479.0 @ 1.3849 fee 0.300%
+[fill] FILTMN BUY 3.63 @ 283,238.5485 fee 0.300%
+[trade] FILTMN SELL 3.61 @ 285,595.0000 (take_profit) PnL +2,853 TMN (+0.28%)
+[fill] SUITMN BUY 3.69 @ 279,570.7155 fee 0.300%
+[trade] APETMN SELL 27.53 @ 37,854.0635 (take_profit) PnL +38,055 TMN (+3.80%)
+[fill] FILTMN BUY 3.63 @ 285,442.6500 fee 0.300%
+[trade] FILTMN SELL 3.61 @ 288,129.0000 (take_profit) PnL +3,997 TMN (+0.39%)
+[fill] SOLTMN BUY 0.03539 @ 29,351,758.5450 fee 0.300%
+[trade] SOLTMN SELL 0.03528 @ 29,563,511.8495 (take_profit) PnL +1,226 TMN (+0.12%)
+[fill] APETMN BUY 28.06 @ 37,018.5000 fee 0.300%
+[trade] SUITMN SELL 3.67 @ 282,064.0000 (take_profit) PnL +3,475 TMN (+0.34%)
+[fill] FILTMN BUY 3.66 @ 283,804.8315 fee 0.300%
+[trade] SHIBTMN SELL 742245.0 @ 1.4054 (take_profit) PnL +8,997 TMN (+0.87%)
+[fill] UNITMN BUY 0.55 @ 1,881,580.3200 fee 0.300%
+[trade] UNITMN SELL 0.54 @ 1,905,011.0000 (take_profit) PnL +7,023 TMN (+0.69%)
+[fill] SANDTMN BUY 58.3 @ 17,836.9140 fee 0.300%
+[trade] SANDTMN SELL 58.1 @ 18,669.0000 (take_profit) PnL +42,514 TMN (+4.09%)
+[fill] PUMPTMN BUY 705.2 @ 1,486.7430 fee 0.300%
+[trade] FILTMN SELL 3.64 @ 288,589.0000 (take_profit) PnL +11,680 TMN (+1.13%)
+[fill] SUITMN BUY 3.75 @ 279,566.7135 fee 0.300%
+[trade] APETMN SELL 27.97 @ 36,851.5650 (max_hold) PnL -10,877 TMN (-1.05%)
+[fill] SANDTMN BUY 56.2 @ 18,675.3330 fee 0.300%
+[trade] PUMPTMN SELL 703.0 @ 1,497.0000 (take_profit) PnL +1,435 TMN (+0.14%)
+[fill] PUMPTMN BUY 700.9 @ 1,498.7490 fee 0.300%
+[trade] PUMPTMN SELL 698.7 @ 1,514.2425 (take_profit) PnL +4,500 TMN (+0.43%)
+[trade] SANDTMN SELL 56.0 @ 19,257.3665 (take_profit) PnL +26,212 TMN (+2.50%)
+[fill] STMN BUY 97.23 @ 10,876.4355 fee 0.300%
+[trade] SUITMN SELL 3.73 @ 281,390.0000 (take_profit) PnL +1,039 TMN (+0.10%)
+[trade] STMN SELL 96.93 @ 11,055.0000 (take_profit) PnL +11,457 TMN (+1.08%)
+[fill] STMN BUY 95.29 @ 11,126.5605 fee 0.300%
+[trade] STMN SELL 95.0 @ 11,285.0000 (take_profit) PnL +9,191 TMN (+0.87%)
+[fill] SANDTMN BUY 55.1 @ 19,276.6335 fee 0.300%
+[trade] SANDTMN SELL 54.9 @ 19,449.0000 (take_profit) PnL +3,609 TMN (+0.34%)
+[fill] STMN BUY 94.38 @ 11,262.6285 fee 0.300%
+[fill] SHIBTMN BUY 756772.0 @ 1.4036 fee 0.300%
+[trade] SHIBTMN SELL 754501.0 @ 1.4165 (take_profit) PnL +3,873 TMN (+0.36%)
+[trade] STMN SELL 94.09 @ 11,347.0000 (take_profit) PnL +2,081 TMN (+0.20%)
+[fill] SHIBTMN BUY 759036.0 @ 1.4021 fee 0.300%
+[fill] SANDTMN BUY 54.4 @ 19,526.7585 fee 0.300%
+[fill] FILTMN BUY 3.73 @ 284,304.0810 fee 0.300%
+[trade] FILTMN SELL 3.71 @ 287,313.2715 (take_profit) PnL +4,792 TMN (+0.45%)
+[fill] SUITMN BUY 3.8 @ 279,461.6610 fee 0.300%
+[trade] SANDTMN SELL 54.2 @ 18,977.5065 (stop_loss) PnL -36,040 TMN (-3.40%)
+[fill] SANDTMN BUY 55.7 @ 18,996.4935 fee 0.300%
+[trade] SUITMN SELL 3.78 @ 290,678.5880 (take_profit) PnL +35,925 TMN (+3.39%)
+[trade] SHIBTMN SELL 756758.0 @ 1.4218 (take_profit) PnL +9,025 TMN (+0.85%)
+[fill] FILTMN BUY 3.76 @ 283,859.8590 fee 0.300%
+[fill] STMN BUY 94.79 @ 11,289.6420 fee 0.300%
+[trade] STMN SELL 94.5 @ 11,425.2845 (take_profit) PnL +6,369 TMN (+0.60%)
+[fill] SUITMN BUY 3.78 @ 283,146.5025 fee 0.300%
+[trade] FILTMN SELL 3.74 @ 289,855.9995 (take_profit) PnL +15,979 TMN (+1.50%)
+[trade] SUITMN SELL 3.76 @ 289,928.9630 (take_profit) PnL +19,028 TMN (+1.78%)
+[fill] STMN BUY 93.19 @ 11,481.0000 fee 0.250%
+[trade] STMN SELL 92.95 @ 11,594.2000 (take_profit) PnL +4,614 TMN (+0.43%)
+[trade] SANDTMN SELL 55.5 @ 18,340.8250 (stop_loss) PnL -42,616 TMN (-4.03%)
+[fill] SANDTMN BUY 58.3 @ 18,298.0000 fee 0.250%
+[fill] STMN BUY 91.47 @ 11,646.8205 fee 0.300%
+[trade] STMN SELL 91.19 @ 11,887.0000 (take_profit) PnL +15,996 TMN (+1.50%)
+[fill] SUITMN BUY 3.75 @ 285,185.5215 fee 0.300%
+[fill] FILTMN BUY 3.74 @ 285,883.8705 fee 0.300%
+[trade] FILTMN SELL 3.72 @ 289,216.3195 (take_profit) PnL +5,969 TMN (+0.56%)
+[fill] FILTMN BUY 3.74 @ 285,882.8700 fee 0.300%
+[trade] SUITMN SELL 3.73 @ 287,926.0000 (take_profit) PnL +4,336 TMN (+0.41%)
+[trade] SANDTMN SELL 58.1 @ 18,633.6785 (take_profit) PnL +13,591 TMN (+1.28%)
+[trade] FILTMN SELL 3.72 @ 288,983.4360 (take_profit) PnL +5,109 TMN (+0.48%)
+[fill] PEPETMN BUY 1037346.0 @ 1.0381 fee 0.250%
+[fill] SANDTMN BUY 61.0 @ 17,608.8000 fee 0.300%
+[fill] STMN BUY 89.02 @ 12,068.0000 fee 0.250%
+[trade] SANDTMN SELL 60.8 @ 18,121.0000 (take_profit) PnL +25,166 TMN (+2.34%)
+[fill] FILTMN BUY 3.82 @ 282,888.3735 fee 0.300%
+[trade] STMN SELL 88.79 @ 12,338.8275 (take_profit) PnL +18,075 TMN (+1.68%)
+[trade] FILTMN SELL 3.8 @ 285,615.1210 (take_profit) PnL +3,871 TMN (+0.36%)
+[fill] XAUTTMN BUY 0.00098 @ 1,100,958,609.2025 fee 0.300%
+[fill] SANDTMN BUY 60.1 @ 18,027.0090 fee 0.300%
+[trade] SANDTMN SELL 59.9 @ 18,202.0000 (take_profit) PnL +4,507 TMN (+0.42%)
+[trade] XAUTTMN SELL 0.00097 @ 1,118,025,010.0000 (take_profit) PnL +10,630 TMN (+0.99%)
+[fill] SOLTMN BUY 0.03671 @ 29,661,676.4265 fee 0.300%
+[fill] STMN BUY 91.42 @ 11,902.9485 fee 0.300%
+[fill] DOGETMN BUY 47.9 @ 22,700.0000 fee 0.250%
+[fill] APETMN BUY 25.03 @ 38,079.0300 fee 0.300%
+[trade] SOLTMN SELL 0.03659 @ 29,862,727.1670 (take_profit) PnL +813 TMN (+0.07%)
+[trade] DOGETMN SELL 47.7 @ 22,837.0000 (take_profit) PnL +1,098 TMN (+0.10%)
+[trade] PEPETMN SELL 1034752.0 @ 1.0510 (take_profit) PnL +7,937 TMN (+0.74%)
+[fill] ADATMN BUY 17.2 @ 63,200.5845 fee 0.300%
+[trade] ADATMN SELL 17.1 @ 63,692.0000 (take_profit) PnL +2,428 TMN (+0.22%)
+[trade] STMN SELL 91.14 @ 11,995.9990 (take_profit) PnL +1,936 TMN (+0.18%)
+[fill] STMN BUY 91.08 @ 11,983.0000 fee 0.250%
+[trade] STMN SELL 90.85 @ 12,056.0000 (take_profit) PnL +1,165 TMN (+0.11%)
+[fill] PEPETMN BUY 1054400.0 @ 1.0338 fee 0.250%
+[fill] SUITMN BUY 3.82 @ 284,472.1650 fee 0.300%
+[trade] PEPETMN SELL 1051764.0 @ 1.0420 (take_profit) PnL +3,160 TMN (+0.29%)
+[fill] SHIBTMN BUY 770332.0 @ 1.4146 fee 0.300%
+[trade] SHIBTMN SELL 768021.0 @ 1.4271 (take_profit) PnL +3,027 TMN (+0.28%)
+[fill] UNITMN BUY 0.55 @ 1,955,978.5005 fee 0.300%
+[trade] SUITMN SELL 3.8 @ 286,613.0000 (take_profit) PnL +2,160 TMN (+0.20%)
+[fill] SHIBTMN BUY 778664.0 @ 1.3995 fee 0.300%
+[trade] SHIBTMN SELL 776328.0 @ 1.4170 (take_profit) PnL +7,567 TMN (+0.69%)
+[trade] UNITMN SELL 0.54 @ 1,971,364.8245 (take_profit) PnL +1,937 TMN (+0.18%)
+[fill] STMN BUY 93.14 @ 11,751.8730 fee 0.300%
+[fill] PUMPTMN BUY 750.4 @ 1,457.7285 fee 0.300%
+[trade] STMN SELL 92.86 @ 11,899.0475 (take_profit) PnL +7,068 TMN (+0.65%)
+[trade] PUMPTMN SELL 748.1 @ 1,468.0000 (take_profit) PnL +1,657 TMN (+0.15%)
+[fill] SUITMN BUY 3.89 @ 281,588.7240 fee 0.300%
+[trade] SUITMN SELL 3.87 @ 283,425.0000 (take_profit) PnL +1,085 TMN (+0.10%)
+[trade] APETMN SELL 24.95 @ 38,002.9890 (max_hold) PnL -7,601 TMN (-0.80%)
+[fill] SHIBTMN BUY 774162.0 @ 1.4159 fee 0.300%
+[fill] SUITMN BUY 3.87 @ 282,382.1205 fee 0.300%
+[fill] FILTMN BUY 3.84 @ 284,804.3310 fee 0.300%
+[trade] SUITMN SELL 3.85 @ 284,404.0000 (take_profit) PnL +1,776 TMN (+0.16%)
+[trade] SHIBTMN SELL 771839.0 @ 1.4262 (take_profit) PnL +1,904 TMN (+0.17%)
+[trade] FILTMN SELL 3.82 @ 287,320.0000 (take_profit) PnL +3,592 TMN (+0.33%)
+[fill] PUMPTMN BUY 769.8 @ 1,425.7125 fee 0.300%
+[trade] PUMPTMN SELL 767.4 @ 1,440.2795 (take_profit) PnL +4,571 TMN (+0.42%)
+[fill] APETMN BUY 28.21 @ 38,937.4590 fee 0.300%
+[fill] SUITMN BUY 3.87 @ 283,400.6295 fee 0.300%
+[trade] APETMN SELL 28.12 @ 39,192.0000 (take_profit) PnL +1,108 TMN (+0.10%)
+[fill] STMN BUY 93.66 @ 11,719.8570 fee 0.300%
+[fill] ADATMN BUY 17.6 @ 62,217.0930 fee 0.300%
+[trade] ADATMN SELL 17.5 @ 63,225.0000 (take_profit) PnL +11,596 TMN (+1.06%)
+[fill] FILTMN BUY 3.88 @ 283,146.5025 fee 0.300%
+[trade] STMN SELL 93.37 @ 11,925.0345 (take_profit) PnL +12,524 TMN (+1.14%)
+[trade] FILTMN SELL 3.86 @ 284,993.0000 (take_profit) PnL +1,089 TMN (+0.10%)
+[fill] ADATMN BUY 17.6 @ 62,402.0000 fee 0.250%
+[trade] ADATMN SELL 17.5 @ 62,834.5670 (take_profit) PnL +1,534 TMN (+0.14%)
+[fill] ADATMN BUY 17.6 @ 62,291.0000 fee 0.250%
+[fill] APETMN BUY 28.75 @ 38,365.1730 fee 0.300%
+[trade] ADATMN SELL 17.5 @ 63,190.0000 (take_profit) PnL +10,236 TMN (+0.94%)
+[fill] FILTMN BUY 3.9 @ 282,737.2980 fee 0.300%
+[trade] FILTMN SELL 3.88 @ 288,070.8925 (take_profit) PnL +14,040 TMN (+1.28%)
+[fill] ADATMN BUY 17.5 @ 63,146.5575 fee 0.300%
+[trade] ADATMN SELL 17.4 @ 63,726.0000 (take_profit) PnL +4,004 TMN (+0.36%)
+[trade] SUITMN SELL 3.85 @ 285,249.0000 (take_profit) PnL +1,088 TMN (+0.10%)
+[trade] APETMN SELL 28.66 @ 40,175.9020 (take_profit) PnL +45,133 TMN (+4.09%)
+[fill] APETMN BUY 28.32 @ 39,501.7410 fee 0.300%
+[trade] APETMN SELL 28.23 @ 40,045.0000 (take_profit) PnL +9,155 TMN (+0.82%)
+[fill] ADATMN BUY 17.6 @ 63,429.6990 fee 0.300%
+[trade] ADATMN SELL 17.5 @ 64,008.9795 (take_profit) PnL +3,437 TMN (+0.31%)
+[fill] FILTMN BUY 3.91 @ 286,182.0000 fee 0.250%
+[fill] SHIBTMN BUY 779739.0 @ 1.4398 fee 0.300%
+[trade] FILTMN SELL 3.9 @ 288,498.6785 (take_profit) PnL +2,862 TMN (+0.26%)
+[fill] SANDTMN BUY 61.9 @ 18,101.0460 fee 0.300%
+[trade] SANDTMN SELL 61.7 @ 18,274.8580 (take_profit) PnL +3,981 TMN (+0.36%)
+[fill] PUMPTMN BUY 778.9 @ 1,440.7200 fee 0.300%
+[trade] PUMPTMN SELL 776.5 @ 1,455.0000 (take_profit) PnL +4,898 TMN (+0.44%)
+[fill] PUMPTMN BUY 779.5 @ 1,440.7200 fee 0.300%
+[trade] PUMPTMN SELL 777.1 @ 1,452.0000 (take_profit) PnL +2,576 TMN (+0.23%)
+[trade] SHIBTMN SELL 777399.0 @ 1.4493 (take_profit) PnL +1,185 TMN (+0.11%)
+[fill] ADATMN BUY 17.4 @ 64,564.2660 fee 0.300%
+[trade] ADATMN SELL 17.3 @ 65,618.0000 (take_profit) PnL +12,031 TMN (+1.07%)
+[fill] ADATMN BUY 17.0 @ 66,033.0000 fee 0.300%
+[trade] ADATMN SELL 16.9 @ 66,836.5650 (take_profit) PnL +6,834 TMN (+0.61%)
+[fill] SUITMN BUY 3.9 @ 289,373.6145 fee 0.300%
+[trade] SUITMN SELL 3.88 @ 292,064.0000 (take_profit) PnL +4,227 TMN (+0.38%)
+[fill] ADATMN BUY 17.5 @ 64,357.1625 fee 0.300%
+[fill] FILTMN BUY 3.94 @ 286,296.0765 fee 0.300%
+[trade] ADATMN SELL 17.4 @ 67,269.0000 (take_profit) PnL +44,370 TMN (+3.95%)
+[fill] PUMPTMN BUY 782.2 @ 1,458.7290 fee 0.300%
+[trade] PUMPTMN SELL 779.8 @ 1,479.2600 (take_profit) PnL +9,127 TMN (+0.80%)
+[fill] PUMPTMN BUY 781.3 @ 1,463.0000 fee 0.250%
+[trade] FILTMN SELL 3.92 @ 297,370.0000 (take_profit) PnL +37,119 TMN (+3.30%)
+[trade] PUMPTMN SELL 779.3 @ 1,473.0000 (take_profit) PnL +2,066 TMN (+0.18%)
+[fill] FILTMN BUY 3.83 @ 299,448.6495 fee 0.300%
+[fill] APETMN BUY 28.28 @ 40,593.2865 fee 0.300%
+[fill] ADATMN BUY 17.6 @ 64,942.4550 fee 0.300%
+[trade] FILTMN SELL 3.81 @ 303,790.0000 (take_profit) PnL +10,214 TMN (+0.89%)
+[fill] FILTMN BUY 3.82 @ 300,151.0005 fee 0.300%
+[trade] APETMN SELL 28.19 @ 41,023.0000 (take_profit) PnL +5,779 TMN (+0.50%)
+[trade] FILTMN SELL 3.8 @ 305,731.0580 (take_profit) PnL +14,287 TMN (+1.25%)
+[fill] FILTMN BUY 3.78 @ 304,605.0000 fee 0.250%
+[trade] FILTMN SELL 3.77 @ 309,430.0000 (take_profit) PnL +12,396 TMN (+1.08%)
+[trade] ADATMN SELL 17.5 @ 66,720.0000 (take_profit) PnL +24,768 TMN (+2.17%)
+[fill] FILTMN BUY 3.79 @ 306,037.9425 fee 0.300%
+[trade] FILTMN SELL 3.77 @ 309,998.0000 (take_profit) PnL +8,536 TMN (+0.74%)
+[fill] FILTMN BUY 3.75 @ 309,790.0000 fee 0.250%
+[trade] FILTMN SELL 3.74 @ 312,578.0000 (take_profit) PnL +4,601 TMN (+0.40%)
+[fill] FILTMN BUY 3.76 @ 309,237.0000 fee 0.250%
+[trade] FILTMN SELL 3.75 @ 311,889.0000 (take_profit) PnL +4,115 TMN (+0.35%)
+[fill] FILTMN BUY 3.77 @ 309,167.0000 fee 0.250%
+[trade] FILTMN SELL 3.76 @ 313,644.0995 (take_profit) PnL +10,383 TMN (+0.89%)
+[fill] FILTMN BUY 3.76 @ 310,190.0000 fee 0.250%
+[trade] FILTMN SELL 3.75 @ 312,056.0000 (take_profit) PnL +1,157 TMN (+0.10%)
+[fill] SANDTMN BUY 64.7 @ 18,050.0205 fee 0.300%
+[trade] SANDTMN SELL 64.5 @ 18,300.8450 (take_profit) PnL +9,134 TMN (+0.78%)
+[fill] ADATMN BUY 17.9 @ 65,065.5165 fee 0.300%
+[trade] ADATMN SELL 17.8 @ 66,063.0000 (take_profit) PnL +11,330 TMN (+0.98%)
+[fill] FILTMN BUY 3.83 @ 306,038.9430 fee 0.300%
+[trade] FILTMN SELL 3.81 @ 308,681.0000 (take_profit) PnL +3,617 TMN (+0.31%)
+[fill] FILTMN BUY 3.8 @ 308,597.0000 fee 0.250%
+[trade] FILTMN SELL 3.79 @ 311,323.0000 (take_profit) PnL +4,450 TMN (+0.38%)
+[fill] FILTMN BUY 3.83 @ 306,037.9425 fee 0.300%
+[trade] FILTMN SELL 3.81 @ 310,142.0000 (take_profit) PnL +9,174 TMN (+0.78%)
+[fill] FILTMN BUY 3.84 @ 306,037.9425 fee 0.300%
+[trade] FILTMN SELL 3.82 @ 309,712.0000 (take_profit) PnL +7,559 TMN (+0.64%)
+[fill] ADATMN BUY 18.1 @ 64,902.4350 fee 0.300%
+[fill] FILTMN BUY 3.84 @ 306,037.9425 fee 0.300%
+[trade] FILTMN SELL 3.82 @ 309,785.0000 (take_profit) PnL +7,838 TMN (+0.67%)
+[fill] FILTMN BUY 3.84 @ 306,037.9425 fee 0.300%
+[trade] FILTMN SELL 3.82 @ 309,699.0000 (take_profit) PnL +7,510 TMN (+0.64%)
+[fill] FILTMN BUY 3.85 @ 306,037.9425 fee 0.300%
+[trade] FILTMN SELL 3.83 @ 312,181.8310 (take_profit) PnL +16,417 TMN (+1.40%)
+[trade] ADATMN SELL 18.0 @ 66,333.0000 (take_profit) PnL +19,250 TMN (+1.64%)
+[fill] FILTMN BUY 3.87 @ 306,060.9540 fee 0.300%
+[trade] FILTMN SELL 3.85 @ 312,912.0000 (take_profit) PnL +19,819 TMN (+1.68%)
+[fill] UNITMN BUY 0.61 @ 1,953,067.0455 fee 0.300%
+[fill] FILTMN BUY 3.88 @ 306,107.9775 fee 0.300%
+[fill] SUITMN BUY 4.11 @ 289,367.6115 fee 0.300%
+[trade] FILTMN SELL 3.86 @ 314,692.0000 (take_profit) PnL +26,542 TMN (+2.24%)
+[fill] FILTMN BUY 3.84 @ 310,894.3695 fee 0.300%
+[trade] FILTMN SELL 3.82 @ 314,178.0000 (take_profit) PnL +5,969 TMN (+0.50%)
+[trade] UNITMN SELL 0.6 @ 1,974,012.5000 (take_profit) PnL +5,488 TMN (+0.47%)
+[fill] FILTMN BUY 4.04 @ 296,268.0600 fee 0.300%
+[trade] FILTMN SELL 4.02 @ 304,835.0000 (take_profit) PnL +27,792 TMN (+2.33%)
+[fill] FILTMN BUY 4.05 @ 297,158.5050 fee 0.300%
+[trade] FILTMN SELL 4.03 @ 305,732.0575 (take_profit) PnL +27,252 TMN (+2.27%)
+[fill] ADATMN BUY 18.3 @ 65,892.9300 fee 0.300%
+[trade] ADATMN SELL 18.2 @ 66,441.0000 (take_profit) PnL +3,343 TMN (+0.28%)
+[fill] ADATMN BUY 18.3 @ 65,884.9260 fee 0.300%
+[fill] FILTMN BUY 4.06 @ 297,139.4955 fee 0.300%
+[trade] FILTMN SELL 4.04 @ 306,271.0000 (take_profit) PnL +30,186 TMN (+2.51%)
+[trade] ADATMN SELL 18.2 @ 66,569.0000 (take_profit) PnL +5,813 TMN (+0.48%)
+[fill] ADATMN BUY 18.4 @ 65,909.9385 fee 0.300%
+[trade] ADATMN SELL 18.3 @ 66,632.0000 (take_profit) PnL +6,536 TMN (+0.54%)
+[fill] ADATMN BUY 18.4 @ 65,959.9635 fee 0.300%
+[trade] ADATMN SELL 18.3 @ 66,597.0000 (take_profit) PnL +4,979 TMN (+0.41%)
+[fill] APETMN BUY 29.89 @ 40,815.3975 fee 0.300%
+[fill] SANDTMN BUY 67.3 @ 18,142.0665 fee 0.300%
+[trade] SUITMN SELL 4.09 @ 293,294.0000 (take_profit) PnL +9,499 TMN (+0.80%)
+[trade] SANDTMN SELL 67.0 @ 18,475.0000 (take_profit) PnL +15,554 TMN (+1.28%)
+[fill] UNITMN BUY 0.61 @ 1,981,154.0820 fee 0.300%
+[trade] UNITMN SELL 0.6 @ 1,998,997.0015 (take_profit) PnL +3,531 TMN (+0.30%)
+[fill] SANDTMN BUY 66.3 @ 18,494.2425 fee 0.300%
+[fill] SUITMN BUY 4.17 @ 293,458.6560 fee 0.300%
+[trade] SUITMN SELL 4.15 @ 296,702.5745 (take_profit) PnL +6,104 TMN (+0.50%)
+[fill] FILTMN BUY 4.07 @ 300,159.0045 fee 0.300%
+[trade] FILTMN SELL 4.05 @ 302,116.0000 (take_profit) PnL +1,209 TMN (+0.10%)
+[fill] ADATMN BUY 18.8 @ 64,956.4620 fee 0.300%
+[trade] ADATMN SELL 18.7 @ 66,197.0000 (take_profit) PnL +16,448 TMN (+1.35%)
+[fill] FILTMN BUY 4.13 @ 296,148.0000 fee 0.300%
+[trade] FILTMN SELL 4.11 @ 298,079.0000 (take_profit) PnL +1,211 TMN (+0.10%)
+[fill] ADATMN BUY 18.7 @ 65,144.5560 fee 0.300%
+[trade] ADATMN SELL 18.6 @ 66,376.0000 (take_profit) PnL +16,172 TMN (+1.33%)
+[fill] FILTMN BUY 4.18 @ 292,286.0700 fee 0.300%
+[trade] SANDTMN SELL 66.1 @ 17,929.0310 (stop_loss) PnL -44,594 TMN (-3.64%)
+[fill] SUITMN BUY 4.08 @ 298,538.1945 fee 0.300%
+[trade] FILTMN SELL 4.16 @ 295,165.0000 (take_profit) PnL +5,248 TMN (+0.43%)
+[trade] APETMN SELL 29.8 @ 40,237.8710 (max_hold) PnL -24,467 TMN (-2.01%)
+[fill] APETMN BUY 30.48 @ 39,987.9840 fee 0.300%
+[fill] FILTMN BUY 4.13 @ 295,405.6290 fee 0.300%
+[trade] FILTMN SELL 4.11 @ 297,496.0000 (take_profit) PnL +1,881 TMN (+0.15%)
+[trade] APETMN SELL 30.38 @ 40,595.0000 (take_profit) PnL +11,702 TMN (+0.96%)
+[fill] SHIBTMN BUY 863027.0 @ 1.4165 fee 0.300%
+[fill] UNITMN BUY 0.61 @ 1,976,805.9090 fee 0.300%
+[trade] SUITMN SELL 4.06 @ 300,485.0000 (take_profit) PnL +1,207 TMN (+0.10%)
+[trade] SHIBTMN SELL 860437.0 @ 1.4328 (take_profit) PnL +7,269 TMN (+0.59%)
+[fill] SUITMN BUY 4.14 @ 295,820.8365 fee 0.300%
+[trade] UNITMN SELL 0.6 @ 2,009,516.7390 (take_profit) PnL +12,440 TMN (+1.05%)
+[fill] APETMN BUY 30.98 @ 39,616.7985 fee 0.300%
+[fill] SHIBTMN BUY 862713.0 @ 1.4218 fee 0.300%
+[trade] APETMN SELL 30.88 @ 40,077.9510 (take_profit) PnL +6,846 TMN (+0.56%)
+[fill] SANDTMN BUY 68.0 @ 18,086.0000 fee 0.250%
+[trade] SANDTMN SELL 67.8 @ 18,335.8275 (take_profit) PnL +10,136 TMN (+0.82%)
+[fill] APETMN BUY 31.1 @ 39,617.7990 fee 0.300%
+[trade] SUITMN SELL 4.12 @ 297,967.9415 (max_hold) PnL +1,496 TMN (+0.12%)
+[trade] SHIBTMN SELL 860124.0 @ 1.4344 (max_hold) PnL +3,432 TMN (+0.28%)
+[fill] SUITMN BUY 4.16 @ 295,811.8320 fee 0.300%
+[fill] STMN BUY 103.28 @ 11,915.9550 fee 0.300%
+[trade] STMN SELL 102.97 @ 12,027.9830 (take_profit) PnL +4,128 TMN (+0.34%)
+[fill] FILTMN BUY 4.23 @ 290,417.1360 fee 0.300%
+[trade] SUITMN SELL 4.14 @ 297,976.0000 (take_profit) PnL +2,191 TMN (+0.18%)
+[trade] FILTMN SELL 4.21 @ 294,850.5010 (take_profit) PnL +11,261 TMN (+0.92%)
+[fill] ADATMN BUY 18.7 @ 66,030.0000 fee 0.250%
+[fill] FILTMN BUY 4.23 @ 290,532.1935 fee 0.300%
+[trade] FILTMN SELL 4.21 @ 292,902.0000 (take_profit) PnL +3,214 TMN (+0.26%)
+[trade] APETMN SELL 31.0 @ 39,577.2015 (max_hold) PnL -8,635 TMN (-0.70%)
+[fill] STMN BUY 101.15 @ 12,215.1045 fee 0.300%
+[trade] STMN SELL 100.84 @ 12,334.0000 (take_profit) PnL +5,174 TMN (+0.42%)
+[fill] XAUTTMN BUY 0.00112 @ 1,097,548,500.0000 fee 0.300%
+[fill] ARBTMN BUY 25.1791 @ 49,086.5310 fee 0.300%
+[trade] ARBTMN SELL 25.1035 @ 49,551.0000 (take_profit) PnL +4,842 TMN (+0.39%)
+[trade] XAUTTMN SELL 0.00111 @ 1,106,664,173.0000 (take_profit) PnL +3,382 TMN (+0.28%)
+[fill] ARBTMN BUY 25.2277 @ 49,105.5405 fee 0.300%
+[trade] ARBTMN SELL 25.152 @ 49,476.2495 (take_profit) PnL +1,874 TMN (+0.15%)
+[fill] STMN BUY 97.53 @ 12,708.3510 fee 0.300%
+[trade] STMN SELL 97.23 @ 12,878.5575 (take_profit) PnL +9,075 TMN (+0.73%)
+[fill] SUITMN BUY 4.18 @ 296,200.0260 fee 0.300%
+[fill] UNITMN BUY 0.61 @ 2,009,053.0245 fee 0.300%
+[trade] UNITMN SELL 0.6 @ 2,035,639.0000 (take_profit) PnL +9,271 TMN (+0.77%)
+[fill] STMN BUY 99.36 @ 12,506.2500 fee 0.300%
+[trade] STMN SELL 99.06 @ 12,639.0000 (take_profit) PnL +6,292 TMN (+0.51%)
+[fill] STMN BUY 98.61 @ 12,624.0000 fee 0.250%
+[trade] STMN SELL 98.36 @ 12,755.6190 (take_profit) PnL +6,070 TMN (+0.49%)
+[trade] ADATMN SELL 18.6 @ 66,567.6995 (take_profit) PnL +3,209 TMN (+0.26%)
+[fill] STMN BUY 99.33 @ 12,537.2655 fee 0.300%
+[trade] STMN SELL 99.03 @ 12,724.6345 (take_profit) PnL +11,039 TMN (+0.89%)
+[fill] ARBTMN BUY 25.3622 @ 49,185.5805 fee 0.300%
+[trade] ARBTMN SELL 25.2861 @ 49,657.0000 (take_profit) PnL +5,039 TMN (+0.40%)
+[fill] SANDTMN BUY 68.8 @ 18,131.0610 fee 0.300%
+[fill] ADATMN BUY 19.1 @ 65,129.5485 fee 0.300%
+[trade] SUITMN SELL 4.16 @ 299,239.0000 (take_profit) PnL +5,822 TMN (+0.47%)
+[fill] STMN BUY 99.78 @ 12,501.2475 fee 0.300%
+[trade] STMN SELL 99.48 @ 12,630.0000 (take_profit) PnL +5,925 TMN (+0.48%)
+[trade] ADATMN SELL 19.0 @ 65,614.0000 (take_profit) PnL +2,364 TMN (+0.19%)
+[fill] STMN BUY 99.83 @ 12,518.2560 fee 0.300%
+[trade] STMN SELL 99.53 @ 12,683.0000 (take_profit) PnL +9,492 TMN (+0.76%)
+[fill] STMN BUY 97.74 @ 12,803.3985 fee 0.300%
+[trade] STMN SELL 97.44 @ 12,912.0000 (take_profit) PnL +3,683 TMN (+0.29%)
+[fill] SHIBTMN BUY 887589.0 @ 1.4107 fee 0.300%
+[fill] STMN BUY 98.07 @ 12,755.3745 fee 0.300%
+[trade] STMN SELL 97.77 @ 12,892.5505 (take_profit) PnL +5,878 TMN (+0.47%)
+[fill] ARBTMN BUY 25.3365 @ 49,420.6980 fee 0.300%
+[trade] ARBTMN SELL 25.2604 @ 51,940.0000 (take_profit) PnL +56,602 TMN (+4.52%)
+[fill] FILTMN BUY 4.35 @ 290,360.1075 fee 0.300%
+[trade] SANDTMN SELL 68.5 @ 17,473.2590 (stop_loss) PnL -52,387 TMN (-4.21%)
+[fill] SANDTMN BUY 71.6 @ 17,490.7410 fee 0.300%
+[trade] SHIBTMN SELL 884926.0 @ 1.4269 (take_profit) PnL +6,775 TMN (+0.54%)
+[fill] APETMN BUY 30.58 @ 40,924.4520 fee 0.300%
+[trade] FILTMN SELL 4.33 @ 281,859.0000 (stop_loss) PnL -44,254 TMN (-3.51%)
+[fill] FILTMN BUY 4.39 @ 282,141.0000 fee 0.300%
+[trade] FILTMN SELL 4.37 @ 284,404.0000 (take_profit) PnL +3,072 TMN (+0.25%)
+[fill] FILTMN BUY 4.42 @ 280,196.0280 fee 0.300%
+[trade] APETMN SELL 30.48 @ 39,576.2020 (stop_loss) PnL -48,467 TMN (-3.87%)
+[fill] APETMN BUY 31.11 @ 39,615.7980 fee 0.300%
+[trade] FILTMN SELL 4.4 @ 286,005.0000 (take_profit) PnL +18,704 TMN (+1.51%)
+[fill] STMN BUY 99.3 @ 12,456.2250 fee 0.300%
+[trade] STMN SELL 99.0 @ 12,611.6910 (take_profit) PnL +7,935 TMN (+0.64%)
+[fill] FILTMN BUY 4.38 @ 282,141.0000 fee 0.300%
+[trade] FILTMN SELL 4.36 @ 284,935.0000 (take_profit) PnL +5,375 TMN (+0.44%)
+[trade] SANDTMN SELL 71.3 @ 17,854.0685 (max_hold) PnL +18,334 TMN (+1.47%)
+[trade] APETMN SELL 31.01 @ 41,061.4590 (take_profit) PnL +37,313 TMN (+3.03%)
+[fill] STMN BUY 100.09 @ 12,542.2680 fee 0.300%
+[trade] STMN SELL 99.78 @ 12,642.0000 (take_profit) PnL +3,032 TMN (+0.24%)
+[fill] SANDTMN BUY 72.4 @ 17,328.6600 fee 0.300%
+[fill] STMN BUY 99.45 @ 12,616.3050 fee 0.300%
+[trade] STMN SELL 99.15 @ 12,713.6400 (take_profit) PnL +2,105 TMN (+0.17%)
+[fill] SUITMN BUY 4.2 @ 298,485.0000 fee 0.250%
+[fill] STMN BUY 98.98 @ 12,649.3215 fee 0.300%
+[trade] STMN SELL 98.68 @ 12,776.6085 (take_profit) PnL +5,022 TMN (+0.40%)
+[fill] STMN BUY 98.87 @ 12,662.3280 fee 0.300%
+[trade] STMN SELL 98.57 @ 12,905.5440 (take_profit) PnL +16,402 TMN (+1.31%)
+[fill] SHIBTMN BUY 893827.0 @ 1.4061 fee 0.250%
+[trade] SHIBTMN SELL 891592.0 @ 1.4161 (take_profit) PnL +2,617 TMN (+0.21%)
+[fill] FILTMN BUY 4.43 @ 283,742.8005 fee 0.300%
+[trade] SANDTMN SELL 72.1 @ 17,316.3375 (max_hold) PnL -8,393 TMN (-0.67%)
+[fill] ARBTMN BUY 24.331 @ 51,533.7540 fee 0.300%
+[trade] SUITMN SELL 4.18 @ 293,727.0630 (max_hold) PnL -26,698 TMN (-2.13%)
+[trade] FILTMN SELL 4.41 @ 285,593.0000 (take_profit) PnL +1,246 TMN (+0.10%)
+[trade] ARBTMN SELL 24.258 @ 51,946.0000 (take_profit) PnL +3,088 TMN (+0.25%)
+[fill] STMN BUY 100.21 @ 12,522.0000 fee 0.250%
+[trade] STMN SELL 99.95 @ 12,647.0000 (take_profit) PnL +6,197 TMN (+0.49%)
+[fill] STMN BUY 98.89 @ 12,706.3500 fee 0.300%
+[trade] STMN SELL 98.59 @ 12,937.0000 (take_profit) PnL +15,782 TMN (+1.26%)
+[fill] STMN BUY 97.21 @ 12,960.4770 fee 0.300%
+[trade] STMN SELL 96.91 @ 13,260.3665 (take_profit) PnL +21,428 TMN (+1.70%)
+[fill] STMN BUY 97.08 @ 13,017.5055 fee 0.300%
+[fill] TRXTMN BUY 14.4 @ 87,372.0000 fee 0.250%
+[trade] TRXTMN SELL 14.3 @ 88,354.8005 (take_profit) PnL +7,132 TMN (+0.57%)
+[trade] STMN SELL 96.78 @ 13,110.0000 (take_profit) PnL +1,989 TMN (+0.16%)
+[fill] STMN BUY 96.16 @ 13,162.5780 fee 0.300%
+[fill] ARBTMN BUY 24.5638 @ 51,487.7310 fee 0.300%
+[trade] STMN SELL 95.87 @ 13,304.3445 (take_profit) PnL +5,968 TMN (+0.47%)
+[trade] ARBTMN SELL 24.4901 @ 51,904.0350 (take_profit) PnL +2,588 TMN (+0.20%)
+[fill] ARBTMN BUY 24.6816 @ 51,354.6645 fee 0.300%
+[trade] ARBTMN SELL 24.6075 @ 51,815.0000 (take_profit) PnL +4,338 TMN (+0.34%)
+[fill] ARBTMN BUY 24.7073 @ 51,326.6505 fee 0.300%
+[fill] APETMN BUY 31.19 @ 40,756.3680 fee 0.300%
+[trade] ARBTMN SELL 24.6331 @ 52,306.8335 (take_profit) PnL +16,475 TMN (+1.30%)
+[fill] FILTMN BUY 4.39 @ 289,243.5495 fee 0.300%
+[fill] SANDTMN BUY 72.2 @ 17,599.7955 fee 0.300%
+[trade] APETMN SELL 31.09 @ 42,034.0000 (take_profit) PnL +32,642 TMN (+2.57%)
+[fill] STMN BUY 89.01 @ 14,327.1600 fee 0.300%
+[trade] STMN SELL 88.74 @ 14,499.0000 (take_profit) PnL +8,207 TMN (+0.64%)
+[fill] STMN BUY 87.92 @ 14,540.2665 fee 0.300%
+[trade] STMN SELL 87.65 @ 14,743.6245 (take_profit) PnL +10,113 TMN (+0.79%)
+[fill] SHIBTMN BUY 902072.0 @ 1.4190 fee 0.300%
+[trade] SHIBTMN SELL 899365.0 @ 1.4411 (take_profit) PnL +12,787 TMN (+1.00%)
+[fill] STMN BUY 85.09 @ 15,118.5555 fee 0.300%
+[trade] FILTMN SELL 4.37 @ 294,925.0000 (take_profit) PnL +17,802 TMN (+1.40%)
+[trade] STMN SELL 84.83 @ 15,645.0000 (take_profit) PnL +37,481 TMN (+2.91%)
+[fill] STMN BUY 83.12 @ 15,584.7885 fee 0.300%
+[trade] STMN SELL 82.87 @ 15,790.1010 (take_profit) PnL +9,202 TMN (+0.71%)
+[fill] STMN BUY 82.2 @ 15,766.8795 fee 0.300%
+[trade] STMN SELL 81.95 @ 15,870.0000 (take_profit) PnL +1,311 TMN (+0.10%)
+[fill] STMN BUY 82.99 @ 15,619.8060 fee 0.300%
+[trade] STMN SELL 82.74 @ 16,095.0000 (take_profit) PnL +32,099 TMN (+2.48%)
+[fill] ARBTMN BUY 25.0325 @ 52,032.0030 fee 0.300%
+[trade] ARBTMN SELL 24.9574 @ 52,605.0000 (take_profit) PnL +7,111 TMN (+0.55%)
+[fill] STMN BUY 80.36 @ 16,207.0995 fee 0.300%
+[fill] ARBTMN BUY 25.0889 @ 52,135.0545 fee 0.300%
+[trade] STMN SELL 80.11 @ 16,601.0000 (take_profit) PnL +24,324 TMN (+1.87%)
+[trade] ARBTMN SELL 25.0136 @ 52,475.0000 (take_profit) PnL +1,298 TMN (+0.10%)
+[fill] STMN BUY 80.06 @ 16,356.1740 fee 0.300%
+[trade] STMN SELL 79.81 @ 16,569.7110 (take_profit) PnL +9,147 TMN (+0.70%)
+[trade] SANDTMN SELL 71.9 @ 17,715.0000 (take_profit) PnL +1,291 TMN (+0.10%)
+[fill] STMN BUY 78.96 @ 16,656.3240 fee 0.300%
+[trade] STMN SELL 78.72 @ 16,830.5805 (take_profit) PnL +5,797 TMN (+0.44%)
+[fill] SANDTMN BUY 76.2 @ 17,266.6290 fee 0.300%
+[trade] SANDTMN SELL 75.9 @ 17,391.0000 (take_profit) PnL +2,196 TMN (+0.17%)
+[fill] FILTMN BUY 4.47 @ 294,032.9430 fee 0.300%
+[fill] SUITMN BUY 4.41 @ 298,647.2490 fee 0.300%
+[fill] PEPETMN BUY 1207515.0 @ 1.0899 fee 0.300%
+[trade] SUITMN SELL 4.39 @ 302,439.0000 (take_profit) PnL +9,381 TMN (+0.71%)
+[fill] STMN BUY 77.64 @ 16,985.4885 fee 0.300%
+[trade] STMN SELL 77.4 @ 17,189.4010 (take_profit) PnL +7,836 TMN (+0.59%)
+[fill] STMN BUY 78.79 @ 16,744.3680 fee 0.300%
+[trade] STMN SELL 78.55 @ 16,943.5240 (take_profit) PnL +7,693 TMN (+0.58%)
+[trade] PEPETMN SELL 1203892.0 @ 1.1025 (take_profit) PnL +7,849 TMN (+0.60%)
+[fill] STMN BUY 77.3 @ 17,105.5485 fee 0.300%
+[trade] STMN SELL 77.06 @ 17,484.0000 (take_profit) PnL +21,829 TMN (+1.65%)
+[trade] FILTMN SELL 4.45 @ 298,954.0000 (take_profit) PnL +14,636 TMN (+1.12%)
+[fill] ADATMN BUY 20.0 @ 66,244.1055 fee 0.300%
+[fill] STMN BUY 78.92 @ 16,847.4195 fee 0.300%
+[trade] STMN SELL 78.68 @ 16,976.0000 (take_profit) PnL +2,789 TMN (+0.21%)
+[trade] ADATMN SELL 19.9 @ 66,887.0000 (take_profit) PnL +5,499 TMN (+0.42%)
+[fill] STMN BUY 79.03 @ 16,861.4265 fee 0.300%
+[fill] FILTMN BUY 4.52 @ 294,148.0005 fee 0.300%
+[fill] SUITMN BUY 4.42 @ 300,339.0945 fee 0.300%
+[trade] STMN SELL 78.79 @ 16,972.0000 (take_profit) PnL +1,371 TMN (+0.10%)
+[fill] STMN BUY 79.27 @ 16,775.3835 fee 0.300%
+[trade] FILTMN SELL 4.5 @ 298,843.0000 (take_profit) PnL +13,783 TMN (+1.04%)
+[trade] STMN SELL 79.03 @ 17,082.4545 (take_profit) PnL +16,228 TMN (+1.22%)
+[fill] STMN BUY 78.98 @ 16,956.4740 fee 0.300%
+[fill] FILTMN BUY 4.55 @ 294,149.0010 fee 0.300%
+[trade] STMN SELL 78.74 @ 17,177.4070 (take_profit) PnL +9,321 TMN (+0.70%)
+[trade] FILTMN SELL 4.53 @ 298,653.0000 (take_profit) PnL +13,011 TMN (+0.97%)
+[fill] APETMN BUY 32.59 @ 41,221.6005 fee 0.300%
+[fill] STMN BUY 79.9 @ 16,798.3950 fee 0.300%
+[trade] STMN SELL 79.66 @ 17,142.0000 (take_profit) PnL +19,931 TMN (+1.48%)
+[fill] STMN BUY 78.24 @ 17,208.6000 fee 0.300%
+[trade] STMN SELL 78.0 @ 17,359.3160 (take_profit) PnL +3,655 TMN (+0.27%)
+[fill] STMN BUY 78.23 @ 17,221.6065 fee 0.300%
+[trade] STMN SELL 77.99 @ 17,440.2755 (take_profit) PnL +8,932 TMN (+0.66%)
+[fill] STMN BUY 78.13 @ 17,241.6165 fee 0.300%
+[trade] STMN SELL 77.89 @ 17,577.0000 (take_profit) PnL +18,659 TMN (+1.39%)
+[fill] SANDTMN BUY 78.5 @ 17,196.5940 fee 0.300%
+[trade] SANDTMN SELL 78.2 @ 17,363.0000 (take_profit) PnL +5,572 TMN (+0.41%)
+[fill] SANDTMN BUY 78.9 @ 17,158.5750 fee 0.300%
+[trade] APETMN SELL 32.49 @ 41,762.0000 (take_profit) PnL +10,136 TMN (+0.75%)
+[trade] SANDTMN SELL 78.6 @ 17,350.0000 (take_profit) PnL +7,579 TMN (+0.56%)
+[fill] PEPETMN BUY 1252536.0 @ 1.0827 fee 0.300%
+[fill] STMN BUY 79.82 @ 17,002.4970 fee 0.300%
+[trade] STMN SELL 79.58 @ 17,142.4245 (take_profit) PnL +2,971 TMN (+0.22%)
+[fill] STMN BUY 78.61 @ 17,280.6360 fee 0.300%
+[trade] STMN SELL 78.37 @ 16,741.6250 (stop_loss) PnL -50,253 TMN (-3.70%)
+[trade] PEPETMN SELL 1248778.0 @ 1.0962 (take_profit) PnL +8,572 TMN (+0.63%)
+[fill] FILTMN BUY 4.17 @ 323,119.4790 fee 0.300%
+[trade] FILTMN SELL 4.15 @ 327,012.0000 (take_profit) PnL +8,726 TMN (+0.65%)
+[fill] STMN BUY 86.11 @ 15,677.8350 fee 0.300%
+[trade] STMN SELL 85.85 @ 15,914.0390 (take_profit) PnL +12,129 TMN (+0.90%)
+[fill] FILTMN BUY 4.29 @ 315,157.5000 fee 0.300%
+[trade] FILTMN SELL 4.27 @ 322,617.0000 (take_profit) PnL +24,359 TMN (+1.80%)
+[fill] STMN BUY 85.49 @ 15,866.9295 fee 0.300%
+[fill] FILTMN BUY 4.2 @ 322,056.9480 fee 0.300%
+[trade] STMN SELL 85.23 @ 15,973.0095 (take_profit) PnL +888 TMN (+0.07%)
+[trade] FILTMN SELL 4.18 @ 324,960.0000 (take_profit) PnL +4,688 TMN (+0.35%)
+[fill] STMN BUY 84.61 @ 16,051.0215 fee 0.300%
+[trade] STMN SELL 84.35 @ 16,431.0000 (take_profit) PnL +24,512 TMN (+1.81%)
+[fill] FILTMN BUY 4.25 @ 320,160.0000 fee 0.300%
+[trade] FILTMN SELL 4.23 @ 328,877.4790 (take_profit) PnL +28,626 TMN (+2.11%)
+[fill] ARBTMN BUY 26.4594 @ 51,719.8470 fee 0.300%
+[fill] SHIBTMN BUY 960435.0 @ 1.4237 fee 0.300%
+[trade] ARBTMN SELL 26.38 @ 52,233.8700 (take_profit) PnL +5,321 TMN (+0.39%)
+[trade] SUITMN SELL 4.4 @ 296,926.4625 (max_hold) PnL -22,911 TMN (-1.73%)
+[fill] PEPETMN BUY 1264579.0 @ 1.0825 fee 0.300%
+[trade] PEPETMN SELL 1260785.0 @ 1.0929 (take_profit) PnL +5,509 TMN (+0.40%)
+[fill] FILTMN BUY 4.35 @ 314,391.0000 fee 0.250%
+[trade] FILTMN SELL 4.33 @ 317,200.3205 (take_profit) PnL +4,632 TMN (+0.34%)
+[fill] FILTMN BUY 4.36 @ 314,157.0000 fee 0.300%
+[fill] STMN BUY 85.29 @ 16,051.0000 fee 0.250%
+[trade] STMN SELL 85.07 @ 16,155.0000 (take_profit) PnL +1,989 TMN (+0.15%)
+[fill] PEPETMN BUY 1264785.0 @ 1.0827 fee 0.300%
+[trade] FILTMN SELL 4.34 @ 317,200.3205 (take_profit) PnL +4,975 TMN (+0.36%)
+[fill] FILTMN BUY 4.38 @ 312,974.4090 fee 0.300%
+[trade] FILTMN SELL 4.36 @ 320,126.0000 (take_profit) PnL +23,586 TMN (+1.72%)
+[fill] APETMN BUY 33.23 @ 41,417.6985 fee 0.300%
+[trade] APETMN SELL 33.13 @ 41,688.0000 (take_profit) PnL +1,373 TMN (+0.10%)
+[fill] FILTMN BUY 4.39 @ 313,125.4845 fee 0.300%
+[trade] FILTMN SELL 4.37 @ 322,739.0000 (take_profit) PnL +34,368 TMN (+2.50%)
+[trade] PEPETMN SELL 1260990.0 @ 1.0977 (take_profit) PnL +11,294 TMN (+0.82%)
+[fill] STMN BUY 89.02 @ 15,575.7840 fee 0.300%
+[trade] STMN SELL 88.75 @ 15,695.1485 (take_profit) PnL +2,255 TMN (+0.16%)
+[fill] STMN BUY 88.81 @ 15,613.8030 fee 0.300%
+[trade] STMN SELL 88.54 @ 15,718.1370 (take_profit) PnL +903 TMN (+0.07%)
+[fill] STMN BUY 88.46 @ 15,676.8345 fee 0.300%
+[trade] STMN SELL 88.19 @ 15,830.0810 (take_profit) PnL +5,167 TMN (+0.37%)
+[fill] FILTMN BUY 4.34 @ 318,599.2200 fee 0.300%
+[fill] STMN BUY 90.23 @ 15,331.6620 fee 0.300%
+[trade] SHIBTMN SELL 957553.0 @ 1.4131 (max_hold) PnL -18,329 TMN (-1.34%)
+[fill] SUITMN BUY 4.65 @ 297,699.7755 fee 0.300%
+[trade] STMN SELL 89.95 @ 15,756.0000 (take_profit) PnL +30,476 TMN (+2.20%)
+[fill] PEPETMN BUY 1281712.0 @ 1.0825 fee 0.300%
+[trade] PEPETMN SELL 1277866.0 @ 1.0926 (take_profit) PnL +4,444 TMN (+0.32%)
+[fill] APETMN BUY 33.28 @ 41,575.7775 fee 0.300%
+[trade] APETMN SELL 33.18 @ 42,181.0000 (take_profit) PnL +12,431 TMN (+0.90%)
+[fill] SOLTMN BUY 0.04754 @ 29,334,660.0000 fee 0.300%
+[trade] SOLTMN SELL 0.04739 @ 29,570,208.4995 (take_profit) PnL +2,776 TMN (+0.20%)
+[fill] STMN BUY 88.29 @ 15,713.8530 fee 0.300%
+[trade] STMN SELL 88.02 @ 15,834.0790 (take_profit) PnL +2,239 TMN (+0.16%)
+[fill] APETMN BUY 33.19 @ 41,817.8985 fee 0.300%
+[trade] APETMN SELL 33.09 @ 42,209.8845 (take_profit) PnL +4,617 TMN (+0.33%)
+[fill] PUMPTMN BUY 891.3 @ 1,571.7855 fee 0.300%
+[trade] PUMPTMN SELL 888.6 @ 1,588.2055 (take_profit) PnL +6,154 TMN (+0.44%)
+[fill] STMN BUY 86.72 @ 16,164.0000 fee 0.250%
+[trade] STMN SELL 86.5 @ 16,348.0000 (take_profit) PnL +8,877 TMN (+0.63%)
+[trade] FILTMN SELL 4.32 @ 324,837.5000 (max_hold) PnL +18,598 TMN (+1.35%)
+[fill] STMN BUY 86.59 @ 16,252.1220 fee 0.300%
+[trade] STMN SELL 86.33 @ 16,359.0000 (take_profit) PnL +1,474 TMN (+0.10%)
+[fill] STMN BUY 87.62 @ 16,035.0135 fee 0.300%
+[trade] STMN SELL 87.35 @ 16,275.0000 (take_profit) PnL +13,194 TMN (+0.94%)
+[trade] SUITMN SELL 4.63 @ 300,513.6680 (max_hold) PnL +4,707 TMN (+0.34%)
+[fill] APETMN BUY 33.99 @ 41,366.6730 fee 0.300%
+[fill] STMN BUY 87.47 @ 16,065.0285 fee 0.300%
+[trade] STMN SELL 87.2 @ 16,548.0000 (take_profit) PnL +34,292 TMN (+2.44%)
+[fill] SANDTMN BUY 83.5 @ 16,911.0000 fee 0.250%
+[fill] STMN BUY 89.41 @ 15,781.0000 fee 0.250%
+[trade] STMN SELL 89.18 @ 15,890.0510 (take_profit) PnL +1,947 TMN (+0.14%)
+[fill] STMN BUY 89.17 @ 15,827.9100 fee 0.300%
+[trade] STMN SELL 88.9 @ 15,941.0000 (take_profit) PnL +2,277 TMN (+0.16%)
+[trade] SANDTMN SELL 83.2 @ 17,142.4245 (take_profit) PnL +11,449 TMN (+0.81%)
+[fill] STMN BUY 90.0 @ 15,722.8575 fee 0.300%
+[trade] STMN SELL 89.73 @ 15,852.0700 (take_profit) PnL +3,082 TMN (+0.22%)
+[fill] STMN BUY 89.17 @ 15,874.9335 fee 0.300%
+[trade] STMN SELL 88.9 @ 16,011.0000 (take_profit) PnL +4,291 TMN (+0.30%)
+[fill] PEPETMN BUY 1291443.0 @ 1.0966 fee 0.250%
+[fill] STMN BUY 89.27 @ 15,852.9225 fee 0.300%
+[trade] STMN SELL 89.0 @ 16,094.9485 (take_profit) PnL +12,997 TMN (+0.92%)
+[trade] PEPETMN SELL 1288214.0 @ 1.1053 (take_profit) PnL +4,107 TMN (+0.29%)
+[fill] FILTMN BUY 4.36 @ 325,162.5000 fee 0.300%
+[fill] STMN BUY 95.12 @ 14,915.0000 fee 0.250%
+[trade] APETMN SELL 33.88 @ 41,025.4770 (max_hold) PnL -19,947 TMN (-1.42%)
+[fill] APETMN BUY 34.22 @ 41,066.5230 fee 0.300%
+[trade] APETMN SELL 34.11 @ 41,335.0000 (take_profit) PnL +1,418 TMN (+0.10%)
+[fill] ARBTMN BUY 28.0156 @ 50,315.0000 fee 0.250%
+[trade] STMN SELL 94.88 @ 15,117.0000 (take_profit) PnL +12,033 TMN (+0.85%)
+[fill] STMN BUY 93.51 @ 15,108.5505 fee 0.300%
+[trade] STMN SELL 93.22 @ 15,292.3500 (take_profit) PnL +8,619 TMN (+0.61%)
+[trade] FILTMN SELL 4.34 @ 315,342.2500 (stop_loss) PnL -50,972 TMN (-3.60%)
+[fill] FILTMN BUY 4.44 @ 315,657.7500 fee 0.300%
+[trade] FILTMN SELL 4.42 @ 318,109.0000 (take_profit) PnL +3,121 TMN (+0.22%)
+[fill] FILTMN BUY 4.47 @ 313,256.5500 fee 0.300%
+[trade] FILTMN SELL 4.45 @ 315,684.0790 (take_profit) PnL +2,394 TMN (+0.17%)
+[fill] SUITMN BUY 4.9 @ 285,785.0000 fee 0.250%
+[trade] SUITMN SELL 4.88 @ 289,457.1990 (take_profit) PnL +10,187 TMN (+0.73%)
+[fill] STMN BUY 92.46 @ 15,214.6035 fee 0.300%
+[fill] FILTMN BUY 4.49 @ 313,257.5505 fee 0.300%
+[trade] FILTMN SELL 4.47 @ 315,300.0000 (take_profit) PnL +1,393 TMN (+0.10%)
+[trade] STMN SELL 92.18 @ 15,582.0000 (take_profit) PnL +26,056 TMN (+1.85%)
+[fill] STMN BUY 89.95 @ 15,702.8475 fee 0.300%
+[fill] SHIBTMN BUY 1017345.0 @ 1.3874 fee 0.250%
+[trade] SHIBTMN SELL 1014801.0 @ 1.3999 (take_profit) PnL +4,894 TMN (+0.35%)
+[fill] APETMN BUY 34.75 @ 40,656.3180 fee 0.300%
+[trade] STMN SELL 89.68 @ 15,807.0925 (take_profit) PnL +859 TMN (+0.06%)
+[fill] FILTMN BUY 4.55 @ 310,155.0000 fee 0.300%
+[trade] APETMN SELL 34.64 @ 41,116.4315 (take_profit) PnL +7,428 TMN (+0.53%)
+[trade] FILTMN SELL 4.53 @ 314,512.6650 (take_profit) PnL +11,238 TMN (+0.80%)
+[fill] APETMN BUY 34.93 @ 40,520.2500 fee 0.300%
+[fill] FILTMN BUY 4.66 @ 303,152.5005 fee 0.300%
+[trade] APETMN SELL 34.82 @ 40,785.0000 (take_profit) PnL +1,423 TMN (+0.10%)
+[trade] FILTMN SELL 4.64 @ 308,113.0000 (take_profit) PnL +15,210 TMN (+1.08%)
+[fill] APETMN BUY 35.0 @ 40,520.2500 fee 0.300%
+[fill] SHIBTMN BUY 1023194.0 @ 1.3859 fee 0.300%
+[trade] SHIBTMN SELL 1020124.0 @ 1.3998 (take_profit) PnL +5,649 TMN (+0.40%)
+[trade] APETMN SELL 34.89 @ 41,041.0000 (take_profit) PnL +10,335 TMN (+0.73%)
+[trade] ARBTMN SELL 27.9455 @ 48,876.5495 (stop_loss) PnL -47,820 TMN (-3.39%)
+[fill] SANDTMN BUY 89.2 @ 15,868.9305 fee 0.300%
+[fill] SUITMN BUY 4.96 @ 285,207.5325 fee 0.300%
+[fill] FILTMN BUY 4.66 @ 303,152.5005 fee 0.300%
+[trade] FILTMN SELL 4.64 @ 308,394.0000 (take_profit) PnL +16,511 TMN (+1.17%)
+[fill] FILTMN BUY 4.67 @ 303,153.5010 fee 0.300%
+[trade] FILTMN SELL 4.65 @ 310,464.0000 (take_profit) PnL +26,143 TMN (+1.85%)
+[fill] STMN BUY 94.67 @ 15,062.5275 fee 0.300%
+[trade] SANDTMN SELL 88.9 @ 16,138.9265 (take_profit) PnL +15,453 TMN (+1.09%)
+[fill] BTCTMN BUY 6.688e-05 @ 21,245,726,222.3340 fee 0.300%
+[trade] BTCTMN SELL 6.667e-05 @ 21,436,730,345.0000 (take_profit) PnL +4,899 TMN (+0.34%)
+[fill] ARBTMN BUY 29.9298 @ 47,391.6840 fee 0.300%
+[trade] ARBTMN SELL 29.84 @ 48,028.9735 (take_profit) PnL +10,462 TMN (+0.74%)
+[fill] ARBTMN BUY 29.8101 @ 47,693.8350 fee 0.300%
+[trade] ARBTMN SELL 29.7206 @ 48,115.0000 (take_profit) PnL +4,677 TMN (+0.33%)
+[fill] APETMN BUY 35.92 @ 39,510.7455 fee 0.300%
+[trade] STMN SELL 94.38 @ 15,161.0000 (take_profit) PnL +1,439 TMN (+0.10%)
+[fill] STMN BUY 97.5 @ 14,653.3230 fee 0.300%
+[trade] STMN SELL 97.2 @ 14,788.6020 (take_profit) PnL +4,551 TMN (+0.32%)
+[trade] SUITMN SELL 4.94 @ 282,968.4450 (max_hold) PnL -19,494 TMN (-1.38%)
+[fill] STMN BUY 97.37 @ 14,673.3330 fee 0.300%
+[trade] STMN SELL 97.07 @ 14,769.0000 (take_profit) PnL +1,416 TMN (+0.10%)
+[fill] PUMPTMN BUY 1069.7 @ 1,335.6675 fee 0.300%
+[fill] STMN BUY 97.78 @ 14,607.3000 fee 0.300%
+[trade] PUMPTMN SELL 1066.4 @ 1,351.0000 (take_profit) PnL +8,463 TMN (+0.59%)
+[trade] STMN SELL 97.48 @ 14,703.0000 (take_profit) PnL +1,461 TMN (+0.10%)
+[fill] LTCTMN BUY 0.08813 @ 16,197,717.8115 fee 0.300%
+[trade] LTCTMN SELL 0.08786 @ 16,355,651.0000 (take_profit) PnL +6,001 TMN (+0.42%)
+[fill] STMN BUY 98.45 @ 14,514.2535 fee 0.300%
+[fill] FILTMN BUY 4.89 @ 292,067.9610 fee 0.300%
+[trade] FILTMN SELL 4.87 @ 296,200.8255 (take_profit) PnL +11,520 TMN (+0.81%)
+[fill] SUITMN BUY 5.12 @ 280,142.0010 fee 0.300%
+[trade] APETMN SELL 35.81 @ 40,128.0000 (take_profit) PnL +14,254 TMN (+1.00%)
+[trade] STMN SELL 98.15 @ 14,918.0000 (take_profit) PnL +31,681 TMN (+2.22%)
+[fill] APETMN BUY 36.46 @ 39,538.7595 fee 0.300%
+[fill] XRPTMN BUY 4.0 @ 350,237.0310 fee 0.300%
+[trade] SUITMN SELL 5.1 @ 271,389.2375 (stop_loss) PnL -53,090 TMN (-3.70%)
+[fill] ADATMN BUY 23.6 @ 60,242.1060 fee 0.300%
+[trade] ADATMN SELL 23.5 @ 61,002.0000 (take_profit) PnL +10,014 TMN (+0.71%)
+[fill] SOLTMN BUY 0.05162 @ 27,596,707.4580 fee 0.300%
+[trade] APETMN SELL 36.35 @ 38,449.7655 (stop_loss) PnL -48,103 TMN (-3.34%)
+[fill] ARBTMN BUY 30.5696 @ 46,141.0590 fee 0.300%
+[trade] ARBTMN SELL 30.4778 @ 46,576.7000 (take_profit) PnL +4,787 TMN (+0.34%)
+[fill] FILTMN BUY 5.02 @ 281,140.5000 fee 0.300%
+[trade] SOLTMN SELL 0.05146 @ 27,776,626.0000 (take_profit) PnL +1,412 TMN (+0.10%)
+[fill] ADATMN BUY 24.2 @ 58,085.0280 fee 0.300%
+[trade] ADATMN SELL 24.1 @ 58,776.5970 (take_profit) PnL +8,205 TMN (+0.58%)
+[fill] APETMN BUY 38.01 @ 37,187.5845 fee 0.300%
+[trade] APETMN SELL 37.89 @ 37,476.0000 (take_profit) PnL +3,138 TMN (+0.22%)
+[fill] STMN BUY 98.23 @ 14,398.1955 fee 0.300%
+[trade] STMN SELL 97.93 @ 14,660.0000 (take_profit) PnL +17,807 TMN (+1.26%)
+[fill] ADATMN BUY 24.1 @ 58,740.3555 fee 0.300%
+[trade] ADATMN SELL 24.0 @ 59,391.0000 (take_profit) PnL +7,810 TMN (+0.55%)
+[fill] SHIBTMN BUY 1093064.0 @ 1.3024 fee 0.300%
+[trade] SHIBTMN SELL 1089784.0 @ 1.3204 (take_profit) PnL +11,125 TMN (+0.78%)
+[fill] LTCTMN BUY 0.09055 @ 15,775,550.8335 fee 0.300%
+[trade] FILTMN SELL 5.0 @ 284,443.0000 (take_profit) PnL +8,727 TMN (+0.62%)
+[fill] PEPETMN BUY 1415757.0 @ 1.0112 fee 0.300%
+[trade] PEPETMN SELL 1411509.0 @ 1.0192 (take_profit) PnL +3,393 TMN (+0.24%)
+[fill] SANDTMN BUY 92.4 @ 15,507.7500 fee 0.300%
+[trade] XRPTMN SELL 3.9 @ 351,824.0000 (max_hold) PnL -2,037 TMN (-0.15%)
+[fill] SUITMN BUY 5.37 @ 266,473.1700 fee 0.300%
+[trade] SUITMN SELL 5.35 @ 268,471.0000 (take_profit) PnL +2,808 TMN (+0.20%)
+[fill] UNITMN BUY 0.79 @ 1,805,194.1460 fee 0.300%
+[trade] LTCTMN SELL 0.09027 @ 16,061,644.0000 (take_profit) PnL +17,916 TMN (+1.25%)
+[fill] BNBTMN BUY 0.00763 @ 188,094,303.1515 fee 0.300%
+[trade] BNBTMN SELL 0.0076 @ 191,775,913.0000 (take_profit) PnL +20,035 TMN (+1.40%)
+[fill] ADATMN BUY 24.6 @ 58,305.1380 fee 0.300%
+[trade] ADATMN SELL 24.5 @ 60,961.0000 (take_profit) PnL +57,036 TMN (+3.98%)
+[fill] APETMN BUY 38.01 @ 38,195.0880 fee 0.300%
+[trade] SANDTMN SELL 92.1 @ 15,795.0000 (take_profit) PnL +18,521 TMN (+1.29%)
+[fill] FILTMN BUY 5.07 @ 286,322.0895 fee 0.300%
+[trade] FILTMN SELL 5.05 @ 295,782.0350 (take_profit) PnL +38,941 TMN (+2.69%)
+[fill] STMN BUY 97.45 @ 15,006.4995 fee 0.300%
+[trade] STMN SELL 97.15 @ 15,280.0000 (take_profit) PnL +18,473 TMN (+1.26%)
+[fill] STMN BUY 96.62 @ 15,174.5835 fee 0.300%
+[trade] UNITMN SELL 0.78 @ 1,852,991.0000 (take_profit) PnL +29,431 TMN (+2.08%)
+[fill] ADATMN BUY 24.2 @ 61,169.5695 fee 0.300%
+[trade] ADATMN SELL 24.1 @ 61,670.0000 (take_profit) PnL +3,909 TMN (+0.26%)
+[fill] DOGETMN BUY 68.1 @ 21,787.8885 fee 0.300%
+[trade] DOGETMN SELL 67.8 @ 21,941.0240 (take_profit) PnL +1,475 TMN (+0.10%)
+[fill] ADATMN BUY 24.2 @ 61,335.6525 fee 0.300%
+[trade] ADATMN SELL 24.1 @ 61,825.0000 (take_profit) PnL +3,620 TMN (+0.24%)
+[trade] STMN SELL 96.33 @ 15,451.0000 (take_profit) PnL +18,508 TMN (+1.26%)
+[fill] FILTMN BUY 5.01 @ 298,149.0000 fee 0.300%
+[fill] STMN BUY 97.77 @ 15,324.6585 fee 0.300%
+[trade] STMN SELL 97.47 @ 15,425.0000 (take_profit) PnL +1,527 TMN (+0.10%)
+[fill] STMN BUY 97.81 @ 15,322.6575 fee 0.300%
+[trade] STMN SELL 97.51 @ 15,467.0000 (take_profit) PnL +5,809 TMN (+0.39%)
+[fill] STMN BUY 98.46 @ 15,233.6130 fee 0.300%
+[trade] STMN SELL 98.16 @ 15,443.2745 (take_profit) PnL +11,533 TMN (+0.77%)
+[trade] FILTMN SELL 4.99 @ 300,093.0000 (take_profit) PnL +1,480 TMN (+0.10%)
+[fill] STMN BUY 99.57 @ 15,057.5250 fee 0.300%
+[fill] SHIBTMN BUY 1128917.0 @ 1.3266 fee 0.300%
+[trade] APETMN SELL 37.89 @ 39,883.0485 (max_hold) PnL +55,069 TMN (+3.79%)
+[fill] FILTMN BUY 5.06 @ 297,220.5360 fee 0.300%
+[trade] STMN SELL 99.27 @ 15,208.3920 (take_profit) PnL +5,950 TMN (+0.40%)
+[fill] STMN BUY 99.73 @ 15,078.5355 fee 0.300%
+[trade] STMN SELL 99.43 @ 15,228.3820 (take_profit) PnL +5,845 TMN (+0.39%)
+[trade] SHIBTMN SELL 1125530.0 @ 1.3484 (take_profit) PnL +16,291 TMN (+1.09%)
+[fill] SUITMN BUY 5.47 @ 274,730.0000 fee 0.250%
+[fill] STMN BUY 100.72 @ 14,892.4425 fee 0.300%
+[trade] STMN SELL 100.41 @ 15,025.4835 (take_profit) PnL +4,333 TMN (+0.29%)
+[fill] ETHTMN BUY 0.00234 @ 641,005,849.7535 fee 0.300%
+[trade] ETHTMN SELL 0.00233 @ 650,497,837.0000 (take_profit) PnL +13,833 TMN (+0.92%)
+[fill] UNITMN BUY 0.79 @ 1,905,460.2540 fee 0.300%
+[trade] UNITMN SELL 0.78 @ 1,917,884.0000 (take_profit) PnL +1,478 TMN (+0.10%)
+[trade] FILTMN SELL 5.04 @ 302,265.0000 (take_profit) PnL +17,108 TMN (+1.14%)
+[trade] SUITMN SELL 5.45 @ 277,589.0000 (take_profit) PnL +8,047 TMN (+0.54%)
+[fill] FILTMN BUY 5.12 @ 295,148.5005 fee 0.300%
+[fill] STMN BUY 101.83 @ 14,848.4205 fee 0.300%
+[trade] STMN SELL 101.52 @ 14,946.0000 (take_profit) PnL +1,577 TMN (+0.10%)
+[fill] SHIBTMN BUY 1139319.0 @ 1.3274 fee 0.250%
+[trade] FILTMN SELL 5.1 @ 298,390.0000 (take_profit) PnL +8,198 TMN (+0.54%)
+[fill] TRXTMN BUY 17.9 @ 84,622.0000 fee 0.250%
+[fill] FILTMN BUY 5.13 @ 295,149.5010 fee 0.300%
+[trade] TRXTMN SELL 17.8 @ 85,301.0000 (take_profit) PnL +4,515 TMN (+0.30%)
+[trade] FILTMN SELL 5.11 @ 297,074.0000 (take_profit) PnL +1,501 TMN (+0.10%)
+[fill] APETMN BUY 38.7 @ 39,159.5700 fee 0.300%
+[fill] PUMPTMN BUY 1177.0 @ 1,286.6430 fee 0.300%
+[trade] PUMPTMN SELL 1173.4 @ 1,298.3505 (take_profit) PnL +4,624 TMN (+0.31%)
+[fill] SUITMN BUY 5.59 @ 271,013.4390 fee 0.300%
+[trade] SUITMN SELL 5.57 @ 272,855.0000 (take_profit) PnL +1,916 TMN (+0.13%)
+[fill] FILTMN BUY 5.13 @ 295,150.5015 fee 0.300%
+[trade] FILTMN SELL 5.11 @ 286,035.9105 (stop_loss) PnL -55,499 TMN (-3.67%)
+[fill] FILTMN BUY 5.23 @ 286,322.0895 fee 0.300%
+[trade] FILTMN SELL 5.21 @ 289,298.0000 (take_profit) PnL +7,248 TMN (+0.48%)
+[fill] SOLTMN BUY 0.05556 @ 27,034,419.4545 fee 0.300%
+[trade] SOLTMN SELL 0.05539 @ 27,274,998.0000 (take_profit) PnL +5,043 TMN (+0.34%)
+[fill] ETHTMN BUY 0.00236 @ 632,141,464.7760 fee 0.300%
+[trade] ETHTMN SELL 0.00235 @ 640,602,157.0000 (take_profit) PnL +11,649 TMN (+0.78%)
+[fill] ARBTMN BUY 31.9429 @ 46,949.4630 fee 0.300%
+[trade] APETMN SELL 38.58 @ 37,956.0125 (stop_loss) PnL -55,372 TMN (-3.65%)
+[fill] STMN BUY 94.45 @ 15,759.8760 fee 0.300%
+[trade] STMN SELL 94.16 @ 15,990.0010 (take_profit) PnL +12,686 TMN (+0.85%)
+[fill] STMN BUY 93.11 @ 16,006.9995 fee 0.300%
+[trade] STMN SELL 92.83 @ 16,191.9000 (take_profit) PnL +8,184 TMN (+0.55%)
+[fill] APETMN BUY 39.38 @ 37,880.9310 fee 0.300%
+[trade] SHIBTMN SELL 1136470.0 @ 1.3062 (max_hold) PnL -32,275 TMN (-2.13%)
+[fill] SANDTMN BUY 99.2 @ 15,025.5090 fee 0.300%
+[trade] SANDTMN SELL 98.9 @ 15,276.0000 (take_profit) PnL +16,525 TMN (+1.11%)
+[fill] FILTMN BUY 5.21 @ 286,320.0885 fee 0.300%
+[trade] APETMN SELL 39.26 @ 38,181.0000 (take_profit) PnL +3,558 TMN (+0.24%)
+[fill] STMN BUY 82.19 @ 18,198.0945 fee 0.300%
+[trade] STMN SELL 81.94 @ 18,365.0000 (take_profit) PnL +5,427 TMN (+0.36%)
+[fill] STMN BUY 85.32 @ 17,507.7495 fee 0.300%
+[trade] STMN SELL 85.06 @ 17,990.0005 (take_profit) PnL +31,949 TMN (+2.14%)
+[fill] STMN BUY 83.9 @ 17,880.9360 fee 0.300%
+[trade] STMN SELL 83.64 @ 17,998.0000 (take_profit) PnL +1,528 TMN (+0.10%)
+[fill] SUITMN BUY 5.68 @ 263,964.9165 fee 0.300%
+[trade] SUITMN SELL 5.66 @ 268,920.4725 (take_profit) PnL +18,987 TMN (+1.27%)
+[fill] APETMN BUY 39.77 @ 37,935.9585 fee 0.300%
+[trade] APETMN SELL 39.65 @ 38,282.8490 (take_profit) PnL +4,674 TMN (+0.31%)
+[fill] DOGETMN BUY 71.0 @ 21,251.6205 fee 0.300%
+[trade] DOGETMN SELL 70.7 @ 21,407.0000 (take_profit) PnL +2,681 TMN (+0.18%)
+[fill] SUITMN BUY 5.68 @ 265,688.7780 fee 0.300%
+[trade] SUITMN SELL 5.66 @ 269,608.0000 (take_profit) PnL +13,843 TMN (+0.92%)
+[fill] STMN BUY 87.72 @ 17,277.6345 fee 0.300%
+[trade] STMN SELL 87.45 @ 17,614.0000 (take_profit) PnL +21,018 TMN (+1.39%)
+[fill] STMN BUY 86.02 @ 17,668.8300 fee 0.300%
+[trade] STMN SELL 85.76 @ 17,797.0000 (take_profit) PnL +2,617 TMN (+0.17%)
+[fill] STMN BUY 85.93 @ 17,694.8430 fee 0.300%
+[trade] STMN SELL 85.67 @ 17,956.0175 (take_profit) PnL +13,199 TMN (+0.87%)
+[trade] FILTMN SELL 5.19 @ 288,187.0000 (take_profit) PnL +1,479 TMN (+0.10%)
+[fill] STMN BUY 84.87 @ 17,950.9710 fee 0.300%
+[fill] SUITMN BUY 5.73 @ 265,607.7375 fee 0.300%
+[trade] STMN SELL 84.61 @ 18,069.0000 (take_profit) PnL +1,594 TMN (+0.10%)
+[fill] PUMPTMN BUY 1211.1 @ 1,257.6285 fee 0.300%
+[trade] PUMPTMN SELL 1207.4 @ 1,269.3650 (take_profit) PnL +5,004 TMN (+0.33%)
+[trade] ARBTMN SELL 31.847 @ 47,060.4580 (max_hold) PnL -5,460 TMN (-0.36%)
+[fill] STMN BUY 86.01 @ 17,708.8500 fee 0.300%
+[trade] STMN SELL 85.75 @ 17,880.0555 (take_profit) PnL +5,512 TMN (+0.36%)
+[trade] SUITMN SELL 5.71 @ 268,814.0000 (take_profit) PnL +9,907 TMN (+0.65%)
+[fill] APETMN BUY 40.67 @ 37,550.0000 fee 0.250%
+[fill] FILTMN BUY 5.34 @ 285,142.5000 fee 0.300%
+[fill] STMN BUY 108.79 @ 14,007.0000 fee 0.300%
+[trade] STMN SELL 108.46 @ 14,232.8800 (take_profit) PnL +15,297 TMN (+1.00%)
+[fill] PEPETMN BUY 1435795.0 @ 1.0635 fee 0.300%
+[trade] PEPETMN SELL 1431487.0 @ 1.0778 (take_profit) PnL +11,987 TMN (+0.78%)
+[fill] SANDTMN BUY 100.7 @ 15,236.6145 fee 0.300%
+[trade] SANDTMN SELL 100.3 @ 15,339.0000 (take_profit) PnL +1,825 TMN (+0.12%)
+[fill] SUITMN BUY 5.77 @ 267,442.6545 fee 0.300%
+[trade] SUITMN SELL 5.75 @ 270,026.0000 (take_profit) PnL +6,345 TMN (+0.41%)
+[fill] STMN BUY 103.96 @ 14,913.4530 fee 0.300%
+[trade] APETMN SELL 40.56 @ 38,551.7145 (take_profit) PnL +32,121 TMN (+2.10%)
+[trade] FILTMN SELL 5.32 @ 295,852.0000 (take_profit) PnL +47,688 TMN (+3.13%)
+[fill] ARBTMN BUY 32.4469 @ 47,750.8635 fee 0.300%
+[trade] ARBTMN SELL 32.3495 @ 48,190.0000 (take_profit) PnL +5,660 TMN (+0.37%)
+[fill] FILTMN BUY 5.36 @ 289,150.5030 fee 0.300%
+[trade] FILTMN SELL 5.34 @ 294,007.0000 (take_profit) PnL +17,363 TMN (+1.12%)
+[fill] ARBTMN BUY 32.3073 @ 48,194.0850 fee 0.300%
+[fill] ADATMN BUY 25.7 @ 60,451.2105 fee 0.300%
+[trade] STMN SELL 103.64 @ 14,356.8180 (stop_loss) PnL -66,804 TMN (-4.31%)
+[fill] LTCTMN BUY 0.09787 @ 15,771,817.9680 fee 0.300%
+[trade] LTCTMN SELL 0.09757 @ 15,959,693.0000 (take_profit) PnL +9,808 TMN (+0.64%)
+[fill] FILTMN BUY 5.26 @ 293,716.7850 fee 0.300%
+[trade] ARBTMN SELL 32.2103 @ 48,875.5500 (take_profit) PnL +12,556 TMN (+0.81%)
+[trade] ADATMN SELL 25.6 @ 61,027.0000 (take_profit) PnL +6,178 TMN (+0.40%)
+[fill] STMN BUY 107.17 @ 14,506.0000 fee 0.250%
+[trade] FILTMN SELL 5.24 @ 302,282.0000 (take_profit) PnL +36,291 TMN (+2.35%)
+[fill] TRXTMN BUY 18.3 @ 84,724.3410 fee 0.300%
+[trade] STMN SELL 106.9 @ 14,637.0000 (take_profit) PnL +6,206 TMN (+0.40%)
+[trade] TRXTMN SELL 18.2 @ 85,700.0000 (take_profit) PnL +9,218 TMN (+0.60%)
+[fill] STMN BUY 107.42 @ 14,526.2595 fee 0.300%
+[fill] TRXTMN BUY 18.3 @ 85,134.0000 fee 0.250%
+[fill] FILTMN BUY 5.26 @ 296,504.1780 fee 0.300%
+[trade] TRXTMN SELL 18.2 @ 85,899.0000 (take_profit) PnL +6,131 TMN (+0.39%)
+[trade] STMN SELL 107.09 @ 14,746.0000 (take_profit) PnL +14,903 TMN (+0.96%)
+[trade] FILTMN SELL 5.24 @ 302,248.0000 (take_profit) PnL +21,463 TMN (+1.38%)
+[fill] FILTMN BUY 5.29 @ 295,909.8810 fee 0.300%
+[fill] TRXTMN BUY 18.4 @ 84,893.4255 fee 0.300%
+[trade] TRXTMN SELL 18.3 @ 85,832.0000 (take_profit) PnL +8,574 TMN (+0.55%)
+[trade] FILTMN SELL 5.27 @ 302,612.0000 (take_profit) PnL +26,641 TMN (+1.70%)
+[fill] STMN BUY 107.9 @ 14,606.2995 fee 0.300%
+[trade] STMN SELL 107.57 @ 14,756.0000 (take_profit) PnL +7,407 TMN (+0.47%)
+[fill] STMN BUY 107.95 @ 14,607.3000 fee 0.300%
+[trade] STMN SELL 107.62 @ 14,792.0000 (take_profit) PnL +11,167 TMN (+0.71%)
+[fill] TRXTMN BUY 18.5 @ 85,114.5360 fee 0.300%
+[trade] TRXTMN SELL 18.4 @ 85,905.0000 (take_profit) PnL +5,880 TMN (+0.37%)
+[fill] TRXTMN BUY 18.5 @ 84,991.4745 fee 0.300%
+[trade] TRXTMN SELL 18.4 @ 85,814.0000 (take_profit) PnL +6,481 TMN (+0.41%)
+[fill] ARBTMN BUY 32.7537 @ 48,289.1325 fee 0.300%
+[fill] UNITMN BUY 0.81 @ 1,941,648.3390 fee 0.300%
+[trade] UNITMN SELL 0.8 @ 1,957,374.0000 (take_profit) PnL +3,992 TMN (+0.26%)
+[fill] UNITMN BUY 0.81 @ 1,944,681.8550 fee 0.300%
+[fill] STMN BUY 109.12 @ 14,527.2600 fee 0.300%
+[trade] ARBTMN SELL 32.6554 @ 49,037.0000 (take_profit) PnL +15,674 TMN (+0.99%)
+[trade] STMN SELL 108.79 @ 14,693.6495 (take_profit) PnL +8,550 TMN (+0.54%)
+[fill] FILTMN BUY 5.36 @ 294,904.3785 fee 0.300%
+[fill] STMN BUY 106.34 @ 14,855.4240 fee 0.300%
+[trade] STMN SELL 106.02 @ 15,016.0000 (take_profit) PnL +8,305 TMN (+0.53%)
+[fill] STMN BUY 107.24 @ 14,808.0000 fee 0.250%
+[trade] FILTMN SELL 5.34 @ 297,578.0000 (take_profit) PnL +5,566 TMN (+0.35%)
+[fill] PEPETMN BUY 1471912.0 @ 1.0800 fee 0.300%
+[trade] UNITMN SELL 0.8 @ 1,966,258.3790 (take_profit) PnL +7,861 TMN (+0.50%)
+[fill] ARBTMN BUY 32.5576 @ 48,902.4390 fee 0.300%
+[trade] ARBTMN SELL 32.4599 @ 49,222.0000 (take_profit) PnL +1,602 TMN (+0.10%)
+[fill] ADATMN BUY 26.5 @ 60,149.0595 fee 0.300%
+[trade] ADATMN SELL 26.4 @ 60,705.0000 (take_profit) PnL +5,892 TMN (+0.37%)
+[fill] PUMPTMN BUY 1227.7 @ 1,304.0000 fee 0.250%
+[trade] STMN SELL 106.97 @ 15,654.0000 (take_profit) PnL +82,340 TMN (+5.19%)
+[fill] ADATMN BUY 26.6 @ 60,254.1120 fee 0.300%
+[trade] ADATMN SELL 26.5 @ 60,748.0000 (take_profit) PnL +4,259 TMN (+0.27%)
+[fill] STMN BUY 103.03 @ 15,598.0000 fee 0.250%
+[trade] STMN SELL 102.77 @ 15,756.1180 (take_profit) PnL +7,374 TMN (+0.46%)
+[fill] SUITMN BUY 5.84 @ 275,097.4800 fee 0.300%
+[trade] PEPETMN SELL 1467496.0 @ 1.0739 (max_hold) PnL -18,561 TMN (-1.17%)
+[fill] ADATMN BUY 26.7 @ 60,118.0440 fee 0.300%
+[trade] ADATMN SELL 26.6 @ 60,779.0000 (take_profit) PnL +8,728 TMN (+0.54%)
+[fill] FILTMN BUY 5.4 @ 297,217.5345 fee 0.300%
+[trade] FILTMN SELL 5.38 @ 303,039.0000 (take_profit) PnL +22,432 TMN (+1.40%)
+[trade] PUMPTMN SELL 1224.6 @ 1,314.3425 (take_profit) PnL +3,835 TMN (+0.24%)
+[fill] STMN BUY 107.49 @ 15,001.4970 fee 0.300%
+[fill] SANDTMN BUY 107.1 @ 15,006.4995 fee 0.300%
+[trade] SANDTMN SELL 106.7 @ 15,242.0000 (take_profit) PnL +16,244 TMN (+1.01%)
+[trade] STMN SELL 107.16 @ 15,291.0000 (take_profit) PnL +22,089 TMN (+1.37%)
+[fill] STMN BUY 108.12 @ 15,024.0000 fee 0.250%
+[fill] FILTMN BUY 5.46 @ 297,186.5190 fee 0.300%
+[trade] FILTMN SELL 5.44 @ 300,792.0000 (take_profit) PnL +10,658 TMN (+0.66%)
+[trade] SUITMN SELL 5.82 @ 282,962.4480 (max_hold) PnL +36,016 TMN (+2.24%)
+[fill] SUITMN BUY 5.9 @ 275,753.8080 fee 0.300%
+[trade] SUITMN SELL 5.88 @ 277,793.0000 (take_profit) PnL +3,028 TMN (+0.19%)
+[fill] SANDTMN BUY 108.0 @ 15,079.5360 fee 0.300%
+[fill] PEPETMN BUY 1507848.0 @ 1.0797 fee 0.250%
+[trade] PEPETMN SELL 1504078.0 @ 1.0880 (take_profit) PnL +3,438 TMN (+0.21%)
+[fill] FILTMN BUY 5.6 @ 291,194.5245 fee 0.300%
+[trade] FILTMN SELL 5.58 @ 293,853.0000 (take_profit) PnL +5,846 TMN (+0.36%)
+[fill] PEPETMN BUY 1497801.0 @ 1.0879 fee 0.300%
+[trade] STMN SELL 107.84 @ 14,995.4985 (max_hold) PnL -11,986 TMN (-0.74%)
+[trade] PEPETMN SELL 1493307.0 @ 1.1013 (take_profit) PnL +10,196 TMN (+0.63%)
+[fill] FILTMN BUY 5.54 @ 294,828.3405 fee 0.300%
+[fill] STMN BUY 110.55 @ 14,809.4010 fee 0.300%
+[trade] FILTMN SELL 5.52 @ 299,946.0000 (take_profit) PnL +19,213 TMN (+1.18%)
+[trade] SANDTMN SELL 107.6 @ 15,190.4010 (take_profit) PnL +2,143 TMN (+0.13%)
+[trade] STMN SELL 110.21 @ 15,273.0000 (take_profit) PnL +41,974 TMN (+2.56%)
+[fill] FILTMN BUY 5.73 @ 287,144.5005 fee 0.300%
+[trade] FILTMN SELL 5.71 @ 291,270.0000 (take_profit) PnL +14,465 TMN (+0.88%)
+[fill] SHIBTMN BUY 1251572.0 @ 1.3171 fee 0.300%
+[fill] FILTMN BUY 5.79 @ 284,142.0000 fee 0.300%
+[fill] STMN BUY 110.64 @ 14,857.4250 fee 0.300%
+[trade] FILTMN SELL 5.77 @ 290,858.0000 (take_profit) PnL +29,622 TMN (+1.80%)
+[fill] SANDTMN BUY 111.3 @ 14,858.4255 fee 0.300%
+[trade] STMN SELL 110.3 @ 14,999.0000 (take_profit) PnL +6,549 TMN (+0.40%)
+[fill] SUITMN BUY 6.1 @ 271,271.5680 fee 0.300%
+[trade] SUITMN SELL 6.08 @ 274,861.5005 (take_profit) PnL +11,850 TMN (+0.72%)
+[trade] SHIBTMN SELL 1247817.0 @ 1.3321 (take_profit) PnL +8,879 TMN (+0.54%)
+[fill] FILTMN BUY 5.86 @ 282,641.2500 fee 0.300%
+[fill] PUMPTMN BUY 1307.7 @ 1,266.0000 fee 0.250%
+[trade] PUMPTMN SELL 1304.4 @ 1,276.3615 (take_profit) PnL +4,382 TMN (+0.26%)
+[fill] STMN BUY 112.99 @ 14,657.3250 fee 0.300%
+[trade] STMN SELL 112.65 @ 14,857.0000 (take_profit) PnL +13,341 TMN (+0.81%)
+[trade] FILTMN SELL 5.84 @ 286,490.6830 (take_profit) PnL +12,495 TMN (+0.75%)
+[fill] STMN BUY 113.12 @ 14,702.3475 fee 0.300%
+[fill] PUMPTMN BUY 1321.4 @ 1,257.6285 fee 0.300%
+[trade] STMN SELL 112.78 @ 14,854.0000 (take_profit) PnL +7,926 TMN (+0.48%)
+[fill] UNITMN BUY 0.87 @ 1,902,915.9825 fee 0.300%
+[trade] PUMPTMN SELL 1317.4 @ 1,271.0000 (take_profit) PnL +8,444 TMN (+0.51%)
+[fill] STMN BUY 113.26 @ 14,702.3475 fee 0.300%
+[trade] STMN SELL 112.92 @ 14,799.0000 (take_profit) PnL +1,741 TMN (+0.10%)
+[fill] STMN BUY 114.0 @ 14,610.3015 fee 0.300%
+[trade] STMN SELL 113.65 @ 14,744.0000 (take_profit) PnL +6,009 TMN (+0.36%)
+[fill] STMN BUY 117.32 @ 14,207.1000 fee 0.300%
+[trade] STMN SELL 116.96 @ 14,326.0000 (take_profit) PnL +4,718 TMN (+0.28%)
+[fill] APETMN BUY 44.35 @ 37,600.7910 fee 0.300%
+[trade] APETMN SELL 44.21 @ 38,086.9470 (take_profit) PnL +11,439 TMN (+0.69%)
+[fill] ADATMN BUY 27.3 @ 61,103.5365 fee 0.300%
+[trade] SANDTMN SELL 110.9 @ 14,810.5910 (max_hold) PnL -15,191 TMN (-0.92%)
+[fill] STMN BUY 119.66 @ 13,922.9580 fee 0.300%
+[trade] STMN SELL 119.3 @ 14,014.0000 (take_profit) PnL +1,684 TMN (+0.10%)
+[fill] FILTMN BUY 5.87 @ 283,143.5010 fee 0.300%
+[trade] UNITMN SELL 0.86 @ 1,864,047.5100 (max_hold) PnL -43,160 TMN (-2.63%)
+[fill] PUMPTMN BUY 1320.5 @ 1,254.6270 fee 0.300%
+[trade] PUMPTMN SELL 1316.5 @ 1,263.0000 (take_profit) PnL +1,896 TMN (+0.11%)
+[trade] FILTMN SELL 5.85 @ 285,321.0000 (take_profit) PnL +3,581 TMN (+0.22%)
+[trade] ADATMN SELL 27.2 @ 61,555.0000 (take_profit) PnL +3,093 TMN (+0.19%)
+[fill] STMN BUY 118.05 @ 14,079.0360 fee 0.300%
+[trade] STMN SELL 117.69 @ 14,251.8705 (take_profit) PnL +10,323 TMN (+0.62%)
+[fill] SANDTMN BUY 113.7 @ 14,633.3130 fee 0.300%
+[fill] STMN BUY 118.91 @ 14,007.0000 fee 0.300%
+[fill] SHIBTMN BUY 1257476.0 @ 1.3236 fee 0.300%
+[trade] STMN SELL 118.55 @ 14,118.0000 (take_profit) PnL +3,978 TMN (+0.24%)
+[fill] APETMN BUY 43.95 @ 37,979.9805 fee 0.300%
+[trade] APETMN SELL 43.81 @ 38,251.8645 (take_profit) PnL +1,877 TMN (+0.11%)
+[fill] ADATMN BUY 27.4 @ 60,740.0000 fee 0.250%
+[trade] ADATMN SELL 27.3 @ 61,525.0000 (take_profit) PnL +13,076 TMN (+0.79%)
+[fill] STMN BUY 118.3 @ 14,119.0560 fee 0.300%
+[trade] STMN SELL 117.94 @ 14,274.8590 (take_profit) PnL +8,314 TMN (+0.50%)
+[fill] ADATMN BUY 27.4 @ 60,896.4330 fee 0.300%
+[trade] SANDTMN SELL 113.3 @ 14,761.6155 (max_hold) PnL +4,530 TMN (+0.27%)
+[trade] SHIBTMN SELL 1253703.0 @ 1.3245 (max_hold) PnL -8,751 TMN (-0.53%)
+[fill] STMN BUY 116.43 @ 14,323.1580 fee 0.300%
+[trade] STMN SELL 116.08 @ 14,434.7790 (take_profit) PnL +2,927 TMN (+0.18%)
+[fill] SANDTMN BUY 112.9 @ 14,776.3845 fee 0.300%
+[fill] ARBTMN BUY 34.9418 @ 47,709.8430 fee 0.300%
+[trade] SANDTMN SELL 112.5 @ 14,873.0000 (take_profit) PnL +1,684 TMN (+0.10%)
+[fill] FILTMN BUY 5.89 @ 282,651.2550 fee 0.300%
+[trade] ARBTMN SELL 34.8369 @ 46,176.9000 (stop_loss) PnL -63,230 TMN (-3.79%)
+[trade] FILTMN SELL 5.87 @ 272,480.6915 (stop_loss) PnL -69,492 TMN (-4.18%)
+[fill] DOGETMN BUY 78.2 @ 20,877.4335 fee 0.300%
+[fill] APETMN BUY 45.99 @ 35,488.7355 fee 0.300%
+[trade] APETMN SELL 45.85 @ 36,339.0000 (take_profit) PnL +29,923 TMN (+1.83%)
+[fill] FILTMN BUY 5.96 @ 275,446.6545 fee 0.300%
+[trade] DOGETMN SELL 77.9 @ 21,189.4000 (take_profit) PnL +14,456 TMN (+0.89%)
+[fill] LTCTMN BUY 0.10701 @ 15,367,311.8160 fee 0.300%
+[trade] LTCTMN SELL 0.10668 @ 15,467,500.0000 (take_profit) PnL +1,630 TMN (+0.10%)
+[fill] PEPETMN BUY 1594674.0 @ 1.0330 fee 0.300%
+[trade] PEPETMN SELL 1589889.0 @ 1.0464 (take_profit) PnL +11,309 TMN (+0.69%)
+[fill] PEPETMN BUY 1589829.0 @ 1.0345 fee 0.300%
+[trade] ADATMN SELL 27.3 @ 59,239.3655 (stop_loss) PnL -55,092 TMN (-3.30%)
+[fill] ADATMN BUY 27.6 @ 59,298.6345 fee 0.300%
+[trade] PEPETMN SELL 1585059.0 @ 1.0413 (take_profit) PnL +1,691 TMN (+0.10%)
+[trade] ADATMN SELL 27.5 @ 59,686.0000 (take_profit) PnL +1,642 TMN (+0.10%)
+[fill] APETMN BUY 45.73 @ 35,818.0000 fee 0.250%
+[fill] STMN BUY 117.47 @ 13,939.9665 fee 0.300%
+[trade] STMN SELL 117.11 @ 14,047.0000 (take_profit) PnL +3,510 TMN (+0.21%)
+[fill] STMN BUY 117.61 @ 13,938.9660 fee 0.300%
+[trade] STMN SELL 117.25 @ 14,648.0000 (take_profit) PnL +73,923 TMN (+4.51%)
+[trade] APETMN SELL 45.61 @ 36,413.7840 (take_profit) PnL +18,097 TMN (+1.10%)
+[fill] APETMN BUY 46.62 @ 35,614.7985 fee 0.300%
+[trade] APETMN SELL 46.48 @ 36,028.0000 (take_profit) PnL +10,038 TMN (+0.60%)
+[fill] SOLTMN BUY 0.06145 @ 27,012,707.6040 fee 0.300%
+[fill] UNITMN BUY 0.91 @ 1,823,328.2085 fee 0.300%
+[trade] SOLTMN SELL 0.06126 @ 27,281,354.4990 (take_profit) PnL +6,464 TMN (+0.39%)
+[fill] SANDTMN BUY 117.6 @ 14,092.0425 fee 0.300%
+[trade] SANDTMN SELL 117.2 @ 14,231.0000 (take_profit) PnL +7,146 TMN (+0.43%)
+[fill] SHIBTMN BUY 1287988.0 @ 1.2906 fee 0.300%
+[trade] UNITMN SELL 0.9 @ 1,837,860.6100 (take_profit) PnL +3,179 TMN (+0.19%)
+[fill] APETMN BUY 46.63 @ 35,546.7645 fee 0.300%
+[trade] APETMN SELL 46.49 @ 35,926.0000 (take_profit) PnL +8,483 TMN (+0.51%)
+[fill] ADATMN BUY 28.3 @ 58,529.2500 fee 0.300%
+[trade] FILTMN SELL 5.94 @ 275,141.3605 (max_hold) PnL -11,640 TMN (-0.71%)
+[fill] PEPETMN BUY 1616690.0 @ 1.0333 fee 0.300%
+[trade] PEPETMN SELL 1611839.0 @ 1.0425 (take_profit) PnL +4,715 TMN (+0.28%)
+[fill] FILTMN BUY 6.18 @ 270,147.0060 fee 0.300%
+[trade] FILTMN SELL 6.16 @ 273,089.0000 (take_profit) PnL +8,910 TMN (+0.53%)
+[fill] APETMN BUY 47.25 @ 35,428.7055 fee 0.300%
+[trade] APETMN SELL 47.1 @ 35,675.0000 (take_profit) PnL +2,379 TMN (+0.14%)
+[fill] STMN BUY 117.01 @ 14,321.1570 fee 0.300%
+[trade] STMN SELL 116.65 @ 14,435.7785 (take_profit) PnL +3,292 TMN (+0.20%)
+[fill] ARBTMN BUY 35.8677 @ 46,775.3760 fee 0.300%
+[trade] ARBTMN SELL 35.76 @ 47,310.3330 (take_profit) PnL +9,021 TMN (+0.54%)
+[fill] SANDTMN BUY 118.5 @ 14,181.0870 fee 0.300%
+[trade] SANDTMN SELL 118.1 @ 14,274.0000 (take_profit) PnL +1,719 TMN (+0.10%)
+[fill] SANDTMN BUY 117.8 @ 14,276.1345 fee 0.300%
+[trade] SANDTMN SELL 117.4 @ 14,382.0000 (take_profit) PnL +3,164 TMN (+0.19%)
+[fill] STMN BUY 117.63 @ 14,287.1400 fee 0.300%
+[trade] STMN SELL 117.27 @ 14,518.0000 (take_profit) PnL +17,775 TMN (+1.06%)
+[trade] SHIBTMN SELL 1284124.0 @ 1.3180 (max_hold) PnL +25,115 TMN (+1.51%)
+[fill] APETMN BUY 46.9 @ 35,922.9525 fee 0.300%
+[trade] APETMN SELL 46.75 @ 36,236.0000 (take_profit) PnL +5,347 TMN (+0.32%)
+[trade] ADATMN SELL 28.2 @ 59,412.2790 (max_hold) PnL +14,909 TMN (+0.90%)
+[fill] FILTMN BUY 6.23 @ 270,162.0135 fee 0.300%
+[fill] ARBTMN BUY 36.4245 @ 46,196.0865 fee 0.300%
+[trade] ARBTMN SELL 36.3152 @ 46,555.7105 (take_profit) PnL +2,940 TMN (+0.17%)
+[trade] FILTMN SELL 6.21 @ 273,355.2540 (take_profit) PnL +9,689 TMN (+0.58%)
+[fill] FILTMN BUY 6.23 @ 270,511.1880 fee 0.300%
+[fill] SANDTMN BUY 116.2 @ 14,512.2525 fee 0.300%
+[trade] FILTMN SELL 6.21 @ 274,569.0000 (take_profit) PnL +15,882 TMN (+0.94%)
+[fill] STMN BUY 119.27 @ 14,178.0855 fee 0.300%
+[trade] SANDTMN SELL 115.8 @ 14,618.0000 (take_profit) PnL +2,957 TMN (+0.18%)
+[trade] STMN SELL 118.91 @ 14,317.0000 (take_profit) PnL +7,189 TMN (+0.43%)
+[fill] ARBTMN BUY 36.5425 @ 46,306.1415 fee 0.300%
+[trade] ARBTMN SELL 36.4328 @ 46,609.0000 (take_profit) PnL +1,712 TMN (+0.10%)
+[fill] APETMN BUY 46.99 @ 36,004.9935 fee 0.300%
+[fill] UNITMN BUY 0.92 @ 1,828,675.8810 fee 0.300%
+[trade] UNITMN SELL 0.91 @ 1,841,760.6590 (take_profit) PnL +1,872 TMN (+0.11%)
+[fill] FILTMN BUY 6.41 @ 263,016.4425 fee 0.300%
+[fill] SUITMN BUY 6.51 @ 258,389.1300 fee 0.300%
+[trade] SUITMN SELL 6.49 @ 260,074.0000 (take_profit) PnL +1,669 TMN (+0.10%)
+[fill] UNITMN BUY 0.92 @ 1,822,498.7940 fee 0.300%
+[trade] UNITMN SELL 0.91 @ 1,837,294.0000 (take_profit) PnL +4,293 TMN (+0.26%)
+[fill] ARBTMN BUY 36.6923 @ 46,194.0855 fee 0.300%
+[trade] ARBTMN SELL 36.5822 @ 46,496.0000 (take_profit) PnL +1,707 TMN (+0.10%)
+[fill] SUITMN BUY 6.57 @ 258,130.0005 fee 0.300%
+[trade] FILTMN SELL 6.39 @ 269,365.2500 (take_profit) PnL +30,348 TMN (+1.80%)
+[fill] ARBTMN BUY 36.8989 @ 45,835.9065 fee 0.300%
+[trade] ARBTMN SELL 36.7882 @ 46,256.8600 (take_profit) PnL +5,307 TMN (+0.31%)
+[fill] FILTMN BUY 6.43 @ 263,018.4435 fee 0.300%
+[trade] FILTMN SELL 6.41 @ 267,653.0000 (take_profit) PnL +20,345 TMN (+1.20%)
+[fill] ARBTMN BUY 36.9347 @ 45,983.9805 fee 0.300%
+[trade] SUITMN SELL 6.55 @ 262,423.0000 (take_profit) PnL +18,734 TMN (+1.10%)
+[fill] ADATMN BUY 29.3 @ 58,454.2125 fee 0.300%
+[trade] APETMN SELL 46.84 @ 36,351.8150 (take_profit) PnL +6,062 TMN (+0.36%)
+[trade] ARBTMN SELL 36.8238 @ 47,226.3750 (take_profit) PnL +35,437 TMN (+2.09%)
+[trade] ADATMN SELL 29.2 @ 59,424.2730 (take_profit) PnL +17,984 TMN (+1.05%)
+[fill] PUMPTMN BUY 1496.3 @ 1,151.5755 fee 0.300%
+[fill] STMN BUY 122.33 @ 14,108.0505 fee 0.300%
+[trade] PUMPTMN SELL 1491.8 @ 1,169.4150 (take_profit) PnL +16,210 TMN (+0.94%)
+[trade] STMN SELL 121.96 @ 14,257.8675 (take_profit) PnL +7,878 TMN (+0.46%)
+[fill] UNITMN BUY 0.9 @ 1,907,961.5040 fee 0.300%
+[fill] STMN BUY 121.34 @ 14,227.1100 fee 0.300%
+[trade] STMN SELL 120.97 @ 14,332.8300 (take_profit) PnL +2,409 TMN (+0.14%)
+[fill] ARBTMN BUY 36.2243 @ 47,855.9160 fee 0.300%
+[trade] ARBTMN SELL 36.1156 @ 48,229.0000 (take_profit) PnL +3,919 TMN (+0.23%)
+[trade] UNITMN SELL 0.89 @ 1,974,338.0000 (take_profit) PnL +49,573 TMN (+2.91%)
+[fill] PEPETMN BUY 1623767.0 @ 1.0730 fee 0.300%
+[fill] APETMN BUY 47.11 @ 36,955.0000 fee 0.250%
+[fill] SANDTMN BUY 119.7 @ 14,549.2710 fee 0.300%
+[trade] APETMN SELL 46.99 @ 37,298.0000 (take_profit) PnL +7,384 TMN (+0.42%)
+[fill] FILTMN BUY 6.23 @ 279,939.9000 fee 0.300%
+[trade] PEPETMN SELL 1618895.0 @ 1.0868 (take_profit) PnL +12,656 TMN (+0.73%)
+[trade] FILTMN SELL 6.21 @ 281,765.0000 (take_profit) PnL +1,728 TMN (+0.10%)
+[fill] PEPETMN BUY 1612953.0 @ 1.0827 fee 0.300%
+[trade] PEPETMN SELL 1608114.0 @ 1.0995 (take_profit) PnL +16,326 TMN (+0.93%)
+[fill] PEPETMN BUY 1604718.0 @ 1.0919 fee 0.300%
+[trade] PEPETMN SELL 1599903.0 @ 1.0995 (take_profit) PnL +1,472 TMN (+0.08%)
+[trade] SANDTMN SELL 119.3 @ 14,776.0000 (take_profit) PnL +17,419 TMN (+1.00%)
+[fill] UNITMN BUY 0.87 @ 2,012,863.9290 fee 0.300%
+[fill] APETMN BUY 46.36 @ 37,718.8500 fee 0.300%
+[trade] APETMN SELL 46.22 @ 38,060.9600 (take_profit) PnL +5,289 TMN (+0.30%)
+[fill] STMN BUY 121.55 @ 14,407.2000 fee 0.300%
+[trade] STMN SELL 121.18 @ 14,531.0000 (take_profit) PnL +5,347 TMN (+0.31%)
+[fill] APETMN BUY 46.33 @ 37,836.9090 fee 0.300%
+[fill] ADATMN BUY 28.6 @ 61,045.5075 fee 0.300%
+[trade] ADATMN SELL 28.5 @ 61,444.0000 (take_profit) PnL +1,744 TMN (+0.10%)
+[fill] FILTMN BUY 6.17 @ 283,892.8755 fee 0.300%
+[trade] FILTMN SELL 6.15 @ 292,504.0000 (take_profit) PnL +43,208 TMN (+2.47%)
+[fill] ARBTMN BUY 34.6174 @ 51,024.4995 fee 0.300%
+[trade] ARBTMN SELL 34.5135 @ 51,427.2735 (take_profit) PnL +3,277 TMN (+0.19%)
+[trade] APETMN SELL 46.19 @ 38,439.7705 (take_profit) PnL +17,261 TMN (+0.98%)
+[fill] FILTMN BUY 5.99 @ 294,147.0000 fee 0.300%
+[trade] FILTMN SELL 5.97 @ 299,022.0000 (take_profit) PnL +19,357 TMN (+1.10%)
+[trade] UNITMN SELL 0.86 @ 1,981,655.6765 (max_hold) PnL -37,161 TMN (-2.14%)
+[fill] FILTMN BUY 5.84 @ 302,851.3500 fee 0.300%
+[trade] FILTMN SELL 5.82 @ 305,084.3815 (take_profit) PnL +2,366 TMN (+0.13%)
+[fill] FILTMN BUY 5.81 @ 304,613.0000 fee 0.250%
+[trade] FILTMN SELL 5.79 @ 293,853.9995 (stop_loss) PnL -71,819 TMN (-4.06%)
+[fill] FILTMN BUY 5.71 @ 307,153.5000 fee 0.300%
+[trade] FILTMN SELL 5.69 @ 309,157.0000 (take_profit) PnL +1,743 TMN (+0.10%)
+[fill] FILTMN BUY 5.66 @ 310,483.1640 fee 0.300%
+[trade] FILTMN SELL 5.64 @ 314,481.6805 (take_profit) PnL +11,961 TMN (+0.68%)
+[fill] FILTMN BUY 5.66 @ 310,483.1640 fee 0.300%
+[trade] FILTMN SELL 5.64 @ 312,508.0000 (take_profit) PnL +1,745 TMN (+0.10%)
+[fill] ARBTMN BUY 34.1591 @ 51,535.7550 fee 0.300%
+[trade] ARBTMN SELL 34.0566 @ 51,930.0000 (take_profit) PnL +3,724 TMN (+0.21%)
+[fill] STMN BUY 118.15 @ 14,905.0000 fee 0.250%
+[trade] STMN SELL 117.85 @ 15,048.0000 (take_profit) PnL +8,017 TMN (+0.46%)
+[fill] SANDTMN BUY 116.6 @ 15,121.5570 fee 0.300%
+[fill] FILTMN BUY 5.61 @ 313,611.0000 fee 0.250%
+[trade] FILTMN SELL 5.59 @ 294,853.4995 (stop_loss) PnL -114,193 TMN (-6.50%)
+[fill] FILTMN BUY 5.88 @ 295,148.5005 fee 0.300%
+[trade] FILTMN SELL 5.86 @ 314,898.0000 (take_profit) PnL +105,914 TMN (+6.11%)
+[fill] FILTMN BUY 5.84 @ 301,160.5050 fee 0.300%
+[fill] STMN BUY 117.18 @ 15,000.0000 fee 0.250%
+[trade] FILTMN SELL 5.82 @ 307,706.0000 (take_profit) PnL +28,344 TMN (+1.61%)
+[fill] FILTMN BUY 5.83 @ 302,070.9600 fee 0.300%
+[trade] FILTMN SELL 5.81 @ 304,041.0000 (take_profit) PnL +1,749 TMN (+0.10%)
+[fill] UNITMN BUY 0.88 @ 1,983,780.3945 fee 0.300%
+[trade] SANDTMN SELL 116.2 @ 14,848.5720 (max_hold) PnL -42,184 TMN (-2.39%)
+[fill] FILTMN BUY 5.78 @ 302,291.0700 fee 0.300%
+[trade] STMN SELL 116.88 @ 14,782.6050 (max_hold) PnL -34,986 TMN (-1.99%)
+[trade] FILTMN SELL 5.76 @ 305,064.3915 (take_profit) PnL +5,464 TMN (+0.31%)
+[fill] SANDTMN BUY 118.3 @ 14,807.4000 fee 0.300%
+[fill] APETMN BUY 46.23 @ 37,856.9190 fee 0.300%
+[trade] UNITMN SELL 0.87 @ 1,965,387.8145 (max_hold) PnL -26,324 TMN (-1.52%)
+[fill] ARBTMN BUY 34.1267 @ 51,162.5685 fee 0.300%
+[trade] ARBTMN SELL 34.0243 @ 51,709.0000 (take_profit) PnL +8,956 TMN (+0.51%)
+[fill] FILTMN BUY 5.77 @ 302,643.2460 fee 0.300%
+[trade] SANDTMN SELL 117.9 @ 15,055.0000 (take_profit) PnL +19,501 TMN (+1.11%)
+[fill] SUITMN BUY 6.4 @ 274,414.1385 fee 0.300%
+[trade] SUITMN SELL 6.38 @ 276,204.0000 (take_profit) PnL +1,746 TMN (+0.10%)
+[trade] APETMN SELL 46.09 @ 38,534.7230 (take_profit) PnL +20,662 TMN (+1.18%)
+[fill] APETMN BUY 46.02 @ 37,908.9450 fee 0.300%
+[fill] ARBTMN BUY 34.0942 @ 51,131.5530 fee 0.300%
+[trade] ARBTMN SELL 33.9919 @ 51,812.0000 (take_profit) PnL +13,497 TMN (+0.77%)
+[fill] SUITMN BUY 6.39 @ 275,140.5015 fee 0.300%
+[trade] SUITMN SELL 6.37 @ 278,480.0000 (take_profit) PnL +11,564 TMN (+0.66%)
+[fill] UNITMN BUY 0.89 @ 1,965,441.2295 fee 0.300%
+[trade] UNITMN SELL 0.88 @ 1,982,868.0000 (take_profit) PnL +5,769 TMN (+0.33%)
+[fill] SHIBTMN BUY 1316667.0 @ 1.3405 fee 0.300%
+[trade] SHIBTMN SELL 1312716.0 @ 1.3498 (take_profit) PnL +2,523 TMN (+0.14%)
+[trade] FILTMN SELL 5.75 @ 289,859.9975 (stop_loss) PnL -83,740 TMN (-4.80%)
+[fill] FILTMN BUY 6.02 @ 290,151.0030 fee 0.300%
+[fill] ARBTMN BUY 34.0004 @ 51,625.8000 fee 0.300%
+[trade] ARBTMN SELL 33.8983 @ 52,081.9460 (take_profit) PnL +4,900 TMN (+0.28%)
+[trade] APETMN SELL 45.88 @ 38,823.5785 (take_profit) PnL +31,386 TMN (+1.80%)
+[fill] UNITMN BUY 0.89 @ 1,954,758.0000 fee 0.250%
+[fill] ARBTMN BUY 33.5591 @ 52,097.0355 fee 0.300%
+[trade] ARBTMN SELL 33.4584 @ 52,458.7575 (take_profit) PnL +1,592 TMN (+0.09%)
+[fill] APETMN BUY 43.81 @ 39,918.9495 fee 0.300%
+[trade] APETMN SELL 43.67 @ 40,598.6905 (take_profit) PnL +19,120 TMN (+1.09%)
+[trade] FILTMN SELL 6.0 @ 303,348.2500 (take_profit) PnL +68,485 TMN (+3.92%)
+[trade] UNITMN SELL 0.88 @ 1,973,006.0035 (take_profit) PnL +6,538 TMN (+0.38%)
+[fill] UNITMN BUY 0.9 @ 1,954,337.6805 fee 0.300%
+[fill] FILTMN BUY 5.89 @ 300,150.0000 fee 0.300%
+[fill] SUITMN BUY 6.39 @ 276,371.1165 fee 0.300%
+[trade] FILTMN SELL 5.87 @ 302,912.0000 (take_profit) PnL +6,466 TMN (+0.37%)
+[fill] STMN BUY 122.04 @ 14,527.2600 fee 0.300%
+[trade] SUITMN SELL 6.37 @ 279,891.9840 (take_profit) PnL +11,782 TMN (+0.67%)
+[trade] STMN SELL 121.67 @ 14,632.0000 (take_profit) PnL +2,974 TMN (+0.17%)
+[fill] FILTMN BUY 5.9 @ 300,150.0000 fee 0.300%
+[fill] SUITMN BUY 6.43 @ 275,348.0000 fee 0.250%
+[trade] FILTMN SELL 5.88 @ 302,548.0000 (take_profit) PnL +4,342 TMN (+0.25%)
+[fill] APETMN BUY 44.44 @ 39,908.9445 fee 0.300%
+[trade] APETMN SELL 44.3 @ 41,061.0000 (take_profit) PnL +41,169 TMN (+2.32%)
+[fill] FILTMN BUY 6.14 @ 290,245.0500 fee 0.300%
+[trade] SUITMN SELL 6.41 @ 280,219.8200 (take_profit) PnL +21,416 TMN (+1.21%)
+[trade] FILTMN SELL 6.12 @ 307,272.2870 (take_profit) PnL +93,220 TMN (+5.23%)
+[fill] APETMN BUY 45.12 @ 39,814.8975 fee 0.300%
+[trade] APETMN SELL 44.98 @ 40,075.0000 (take_profit) PnL +1,804 TMN (+0.10%)
+[fill] STMN BUY 126.33 @ 14,214.1035 fee 0.300%
+[fill] SUITMN BUY 6.63 @ 270,566.2155 fee 0.300%
+[trade] STMN SELL 125.95 @ 14,418.0000 (take_profit) PnL +15,754 TMN (+0.88%)
+[trade] SUITMN SELL 6.61 @ 272,621.6210 (take_profit) PnL +2,799 TMN (+0.16%)
+[trade] UNITMN SELL 0.89 @ 1,892,420.3165 (stop_loss) PnL -65,393 TMN (-3.75%)
+[fill] STMN BUY 125.99 @ 14,255.0000 fee 0.250%
+[fill] SANDTMN BUY 125.7 @ 14,267.1300 fee 0.300%
+[fill] ADATMN BUY 29.7 @ 60,280.1250 fee 0.300%
+[trade] STMN SELL 125.67 @ 14,564.0000 (take_profit) PnL +29,767 TMN (+1.66%)
+[trade] SANDTMN SELL 125.3 @ 14,454.7690 (take_profit) PnL +12,698 TMN (+0.71%)
+[fill] SUITMN BUY 6.76 @ 265,075.4715 fee 0.300%
+[trade] SUITMN SELL 6.73 @ 267,061.4025 (take_profit) PnL +2,605 TMN (+0.15%)
+[fill] STMN BUY 126.11 @ 14,221.1070 fee 0.300%
+[fill] ARBTMN BUY 35.8076 @ 50,046.0105 fee 0.300%
+[trade] ARBTMN SELL 35.7001 @ 50,595.0000 (take_profit) PnL +9,707 TMN (+0.54%)
+[fill] SOLTMN BUY 0.06596 @ 27,217,165.7820 fee 0.300%
+[trade] SOLTMN SELL 0.06576 @ 27,550,209.0045 (take_profit) PnL +11,080 TMN (+0.62%)
+[fill] FILTMN BUY 6.1 @ 296,229.0405 fee 0.300%
+[trade] STMN SELL 125.73 @ 14,565.7135 (take_profit) PnL +32,453 TMN (+1.81%)
+[trade] FILTMN SELL 6.08 @ 298,493.0000 (take_profit) PnL +3,808 TMN (+0.21%)
+[fill] APETMN BUY 45.95 @ 39,289.6350 fee 0.300%
+[fill] STMN BUY 126.25 @ 14,286.1395 fee 0.300%
+[trade] STMN SELL 125.87 @ 14,390.8010 (take_profit) PnL +2,329 TMN (+0.13%)
+[trade] APETMN SELL 45.81 @ 39,922.0290 (take_profit) PnL +18,068 TMN (+1.00%)
+[fill] SUITMN BUY 6.88 @ 264,019.9440 fee 0.300%
+[fill] SHIBTMN BUY 1377303.0 @ 1.3191 fee 0.300%
+[trade] ADATMN SELL 29.6 @ 59,058.4560 (max_hold) PnL -46,775 TMN (-2.61%)
+[trade] SHIBTMN SELL 1373171.0 @ 1.3328 (take_profit) PnL +8,843 TMN (+0.49%)
+[fill] FILTMN BUY 6.14 @ 295,435.6440 fee 0.300%
+[fill] PUMPTMN BUY 1520.4 @ 1,190.5950 fee 0.300%
+[trade] PUMPTMN SELL 1515.8 @ 1,199.0000 (take_profit) PnL +2,766 TMN (+0.15%)
+[fill] PUMPTMN BUY 1516.5 @ 1,194.0000 fee 0.250%
+[trade] PUMPTMN SELL 1512.7 @ 1,211.3940 (take_profit) PnL +16,288 TMN (+0.90%)
+[fill] PUMPTMN BUY 1497.3 @ 1,211.6055 fee 0.300%
+[trade] PUMPTMN SELL 1492.8 @ 1,224.3875 (take_profit) PnL +8,155 TMN (+0.45%)
+[fill] APETMN BUY 46.37 @ 39,156.5685 fee 0.300%
+[trade] APETMN SELL 46.23 @ 39,675.1525 (take_profit) PnL +13,025 TMN (+0.72%)
+[fill] PUMPTMN BUY 1496.4 @ 1,216.6080 fee 0.300%
+[trade] PUMPTMN SELL 1491.9 @ 1,232.3835 (take_profit) PnL +12,558 TMN (+0.69%)
+[fill] PUMPTMN BUY 1483.5 @ 1,229.0000 fee 0.250%
+[trade] PUMPTMN SELL 1479.7 @ 1,247.0000 (take_profit) PnL +17,464 TMN (+0.96%)
+[fill] ARBTMN BUY 36.3306 @ 50,288.1315 fee 0.300%
+[trade] SUITMN SELL 6.85 @ 271,524.1700 (max_hold) PnL +40,382 TMN (+2.23%)
+[trade] ARBTMN SELL 36.2216 @ 50,616.0000 (take_profit) PnL +1,811 TMN (+0.10%)
+[fill] STMN BUY 127.81 @ 14,370.1815 fee 0.300%
+[trade] STMN SELL 127.42 @ 14,612.6900 (take_profit) PnL +19,805 TMN (+1.08%)
+[trade] FILTMN SELL 6.12 @ 297,851.0000 (max_hold) PnL +3,873 TMN (+0.21%)
+[fill] PUMPTMN BUY 1548.7 @ 1,187.5935 fee 0.300%
+[trade] PUMPTMN SELL 1544.0 @ 1,202.3985 (take_profit) PnL +11,772 TMN (+0.64%)
+[fill] SANDTMN BUY 129.7 @ 14,195.0940 fee 0.300%
+[trade] SANDTMN SELL 129.3 @ 14,359.0000 (take_profit) PnL +11,029 TMN (+0.60%)
+[fill] FILTMN BUY 6.35 @ 290,159.0070 fee 0.300%
+[fill] APETMN BUY 46.58 @ 39,525.7530 fee 0.300%
+[fill] SANDTMN BUY 127.9 @ 14,508.2505 fee 0.300%
+[trade] FILTMN SELL 6.33 @ 302,150.0000 (take_profit) PnL +65,595 TMN (+3.56%)
+[fill] STMN BUY 128.94 @ 14,407.2000 fee 0.300%
+[trade] STMN SELL 128.55 @ 14,561.0000 (take_profit) PnL +9,519 TMN (+0.51%)
+[fill] STMN BUY 129.63 @ 14,307.1500 fee 0.300%
+[trade] SANDTMN SELL 127.5 @ 14,798.0000 (take_profit) PnL +26,660 TMN (+1.44%)
+[fill] FILTMN BUY 6.15 @ 304,150.9995 fee 0.300%
+[trade] FILTMN SELL 6.13 @ 317,727.0570 (take_profit) PnL +71,768 TMN (+3.84%)
+[fill] BNBTMN BUY 0.00983 @ 192,096,000.0000 fee 0.300%
+[trade] BNBTMN SELL 0.0098 @ 193,535,367.0000 (take_profit) PnL +3,700 TMN (+0.20%)
+[fill] SANDTMN BUY 130.5 @ 14,438.2155 fee 0.300%
+[trade] APETMN SELL 46.44 @ 38,778.6010 (max_hold) PnL -45,624 TMN (-2.48%)
+[fill] SUITMN BUY 7.07 @ 265,230.5490 fee 0.300%
+[trade] SANDTMN SELL 130.1 @ 14,721.0000 (take_profit) PnL +26,350 TMN (+1.40%)
+[trade] SUITMN SELL 7.04 @ 268,542.0000 (take_profit) PnL +12,968 TMN (+0.69%)
+[fill] FILTMN BUY 6.44 @ 292,847.3505 fee 0.300%
+[trade] STMN SELL 129.24 @ 14,841.5755 (max_hold) PnL +57,751 TMN (+3.11%)
+[fill] STMN BUY 128.1 @ 14,739.3660 fee 0.300%
+[fill] SANDTMN BUY 125.5 @ 15,042.5175 fee 0.300%
+[trade] SANDTMN SELL 125.1 @ 15,170.0000 (take_profit) PnL +5,541 TMN (+0.29%)
+[fill] SUITMN BUY 7.04 @ 267,542.7045 fee 0.300%
+[trade] FILTMN SELL 6.42 @ 298,352.0000 (take_profit) PnL +24,894 TMN (+1.32%)
+[fill] SANDTMN BUY 124.6 @ 15,136.5645 fee 0.300%
+[trade] SUITMN SELL 7.01 @ 269,382.0000 (take_profit) PnL +2,529 TMN (+0.13%)
+[trade] SANDTMN SELL 124.2 @ 15,854.0690 (take_profit) PnL +77,550 TMN (+4.11%)
+[fill] SUITMN BUY 7.19 @ 264,449.0000 fee 0.250%
+[fill] SANDTMN BUY 125.0 @ 15,201.0000 fee 0.250%
+[trade] SANDTMN SELL 124.6 @ 15,377.0000 (take_profit) PnL +12,393 TMN (+0.65%)
+[fill] FILTMN BUY 6.5 @ 292,846.3500 fee 0.300%
+[trade] SUITMN SELL 7.17 @ 266,632.0000 (take_profit) PnL +6,121 TMN (+0.32%)
+[fill] SUITMN BUY 7.24 @ 262,727.2980 fee 0.300%
+[trade] FILTMN SELL 6.48 @ 295,767.0000 (take_profit) PnL +8,424 TMN (+0.44%)
+[trade] SUITMN SELL 7.21 @ 266,731.0000 (take_profit) PnL +18,359 TMN (+0.97%)
+[fill] SANDTMN BUY 123.8 @ 15,448.7205 fee 0.300%
+[fill] FILTMN BUY 6.52 @ 292,848.3510 fee 0.300%
+[trade] FILTMN SELL 6.5 @ 295,724.0000 (take_profit) PnL +8,158 TMN (+0.43%)
+[trade] SANDTMN SELL 123.4 @ 15,550.0000 (take_profit) PnL +1,964 TMN (+0.10%)
+[trade] STMN SELL 127.71 @ 14,402.7950 (max_hold) PnL -54,166 TMN (-2.87%)
+[fill] SANDTMN BUY 122.4 @ 15,611.8020 fee 0.300%
+[trade] SANDTMN SELL 122.0 @ 16,020.0000 (take_profit) PnL +39,183 TMN (+2.05%)
+[fill] FILTMN BUY 6.53 @ 293,830.8420 fee 0.300%
+[fill] SANDTMN BUY 118.4 @ 16,202.0970 fee 0.300%
+[trade] SANDTMN SELL 118.0 @ 16,308.0000 (take_profit) PnL +1,933 TMN (+0.10%)
+[fill] SUITMN BUY 7.22 @ 265,149.5085 fee 0.300%
+[fill] SANDTMN BUY 117.8 @ 16,238.1150 fee 0.300%
+[trade] SANDTMN SELL 117.4 @ 16,509.0000 (take_profit) PnL +21,220 TMN (+1.11%)
+[fill] SANDTMN BUY 117.8 @ 16,270.1310 fee 0.300%
+[trade] SANDTMN SELL 117.4 @ 16,386.8025 (take_profit) PnL +2,178 TMN (+0.11%)
+[fill] UNITMN BUY 1.01 @ 1,890,945.0000 fee 0.300%
+[trade] SUITMN SELL 7.19 @ 266,879.0000 (take_profit) PnL +1,901 TMN (+0.10%)
+[fill] SANDTMN BUY 122.0 @ 15,675.8340 fee 0.300%
+[trade] SANDTMN SELL 121.6 @ 15,931.0000 (take_profit) PnL +20,449 TMN (+1.07%)
+[fill] SANDTMN BUY 117.7 @ 16,374.1830 fee 0.300%
+[trade] SANDTMN SELL 117.3 @ 16,891.5500 (take_profit) PnL +48,964 TMN (+2.54%)
+[fill] SANDTMN BUY 115.6 @ 16,746.3690 fee 0.300%
+[trade] SANDTMN SELL 115.2 @ 16,981.5050 (take_profit) PnL +15,414 TMN (+0.80%)
+[fill] SANDTMN BUY 115.3 @ 16,725.3585 fee 0.300%
+[trade] SANDTMN SELL 114.9 @ 17,057.4670 (take_profit) PnL +26,497 TMN (+1.37%)
+[fill] SANDTMN BUY 114.2 @ 16,933.4625 fee 0.300%
+[trade] SANDTMN SELL 113.8 @ 17,314.0000 (take_profit) PnL +32,581 TMN (+1.69%)
+[fill] SANDTMN BUY 112.5 @ 17,243.6175 fee 0.300%
+[trade] FILTMN SELL 6.51 @ 285,069.3940 (stop_loss) PnL -68,360 TMN (-3.56%)
+[trade] SANDTMN SELL 112.1 @ 17,391.3000 (take_profit) PnL +4,890 TMN (+0.25%)
+[fill] PEPETMN BUY 1892566.0 @ 1.0238 fee 0.300%
+[fill] STMN BUY 137.58 @ 14,072.0325 fee 0.300%
+[trade] UNITMN SELL 1.0 @ 1,859,443.8130 (max_hold) PnL -42,769 TMN (-2.26%)
+[fill] SANDTMN BUY 118.5 @ 16,259.1255 fee 0.300%
+[trade] SANDTMN SELL 118.1 @ 16,569.7110 (take_profit) PnL +25,032 TMN (+1.30%)
+[fill] SANDTMN BUY 116.4 @ 16,588.2900 fee 0.300%
+[trade] SANDTMN SELL 116.0 @ 16,697.0000 (take_profit) PnL +1,978 TMN (+0.10%)
+[fill] SANDTMN BUY 115.7 @ 16,677.0000 fee 0.250%
+[trade] SANDTMN SELL 115.4 @ 16,778.0000 (take_profit) PnL +1,992 TMN (+0.10%)
+[fill] SANDTMN BUY 116.7 @ 16,558.2750 fee 0.300%
+[trade] SANDTMN SELL 116.3 @ 16,711.6400 (take_profit) PnL +6,211 TMN (+0.32%)
+[fill] UNITMN BUY 1.03 @ 1,863,712.3905 fee 0.300%
+[trade] UNITMN SELL 1.02 @ 1,891,671.0000 (take_profit) PnL +17,974 TMN (+0.94%)
+[trade] PEPETMN SELL 1886888.0 @ 1.0334 (take_profit) PnL +6,398 TMN (+0.33%)
+[trade] STMN SELL 137.16 @ 14,164.0000 (take_profit) PnL +1,950 TMN (+0.10%)
+[fill] APETMN BUY 50.58 @ 38,392.1865 fee 0.300%
+[trade] APETMN SELL 50.42 @ 39,121.0000 (take_profit) PnL +25,991 TMN (+1.34%)
+[fill] SHIBTMN BUY 1491217.0 @ 1.3059 fee 0.300%
+[trade] SHIBTMN SELL 1486743.0 @ 1.3160 (take_profit) PnL +3,437 TMN (+0.18%)
+[fill] SANDTMN BUY 120.5 @ 16,160.0760 fee 0.300%
+[trade] SANDTMN SELL 120.1 @ 16,445.0000 (take_profit) PnL +23,442 TMN (+1.20%)
+[fill] LTCTMN BUY 0.12587 @ 15,514,086.1665 fee 0.300%
+[fill] APETMN BUY 49.73 @ 39,237.6090 fee 0.300%
+[trade] APETMN SELL 49.58 @ 39,494.0000 (take_profit) PnL +1,963 TMN (+0.10%)
+[fill] SANDTMN BUY 123.7 @ 15,768.8805 fee 0.300%
+[fill] APETMN BUY 48.68 @ 40,044.0120 fee 0.300%
+[trade] APETMN SELL 48.53 @ 40,422.0000 (take_profit) PnL +7,592 TMN (+0.39%)
+[trade] LTCTMN SELL 0.12549 @ 15,699,214.0000 (take_profit) PnL +12,448 TMN (+0.64%)
+[trade] SANDTMN SELL 123.3 @ 16,188.0000 (take_profit) PnL +40,837 TMN (+2.09%)
+[fill] APETMN BUY 49.87 @ 39,417.6990 fee 0.300%
+[fill] SANDTMN BUY 123.6 @ 15,927.9600 fee 0.300%
+[trade] SANDTMN SELL 123.2 @ 16,032.0000 (take_profit) PnL +1,975 TMN (+0.10%)
+[trade] APETMN SELL 49.72 @ 39,853.0635 (take_profit) PnL +9,805 TMN (+0.50%)
+[fill] APETMN BUY 49.73 @ 39,589.0000 fee 0.250%
+[trade] APETMN SELL 49.6 @ 39,973.0035 (take_profit) PnL +8,177 TMN (+0.42%)
+[fill] SANDTMN BUY 122.5 @ 16,075.0335 fee 0.300%
+[fill] APETMN BUY 49.84 @ 39,502.7415 fee 0.300%
+[trade] APETMN SELL 49.69 @ 40,374.0000 (take_profit) PnL +32,371 TMN (+1.64%)
+[fill] SHIBTMN BUY 1528844.0 @ 1.2867 fee 0.300%
+[trade] SANDTMN SELL 122.1 @ 15,492.2500 (stop_loss) PnL -82,739 TMN (-4.20%)
+[fill] PEPETMN BUY 1948894.0 @ 1.0030 fee 0.300%
+[fill] PUMPTMN BUY 1729.9 @ 1,130.5650 fee 0.300%
+[trade] PUMPTMN SELL 1724.7 @ 1,145.4270 (take_profit) PnL +13,839 TMN (+0.71%)
+[fill] FILTMN BUY 7.12 @ 275,083.4730 fee 0.300%
+[trade] PEPETMN SELL 1943047.0 @ 1.0142 (take_profit) PnL +9,969 TMN (+0.51%)
+[fill] ADATMN BUY 34.3 @ 57,095.5335 fee 0.300%
+[trade] FILTMN SELL 7.09 @ 277,817.0000 (take_profit) PnL +8,588 TMN (+0.44%)
+[fill] XRPTMN BUY 5.8 @ 335,507.6700 fee 0.300%
+[trade] XRPTMN SELL 5.7 @ 340,466.0000 (take_profit) PnL +17,656 TMN (+0.92%)
+[fill] SANDTMN BUY 124.9 @ 15,785.8890 fee 0.300%
+[trade] SHIBTMN SELL 1524257.0 @ 1.3104 (take_profit) PnL +24,233 TMN (+1.23%)
+[fill] APETMN BUY 49.3 @ 40,100.0400 fee 0.300%
+[trade] ADATMN SELL 34.1 @ 58,550.7100 (max_hold) PnL +37,773 TMN (+1.93%)
+[fill] STMN BUY 142.54 @ 13,860.0000 fee 0.250%
+[trade] APETMN SELL 49.15 @ 38,723.6285 (stop_loss) PnL -79,291 TMN (-4.01%)
+[fill] APETMN BUY 51.36 @ 38,604.2925 fee 0.300%
+[trade] APETMN SELL 51.2 @ 38,856.0000 (take_profit) PnL +1,966 TMN (+0.10%)
+[fill] FILTMN BUY 7.12 @ 279,136.4985 fee 0.300%
+[trade] STMN SELL 142.18 @ 13,987.0030 (take_profit) PnL +7,152 TMN (+0.36%)
+[trade] SANDTMN SELL 124.5 @ 16,556.7175 (max_hold) PnL +83,870 TMN (+4.25%)
+[fill] SANDTMN BUY 119.4 @ 16,611.3015 fee 0.300%
+[trade] SANDTMN SELL 119.0 @ 16,794.5985 (take_profit) PnL +9,869 TMN (+0.50%)
+[fill] ARBTMN BUY 40.944 @ 48,499.2375 fee 0.300%
+[fill] ADATMN BUY 33.9 @ 58,535.2530 fee 0.300%
+[trade] FILTMN SELL 7.09 @ 281,397.0000 (take_profit) PnL +5,084 TMN (+0.26%)
+[fill] SANDTMN BUY 119.1 @ 16,683.3375 fee 0.300%
+[trade] SANDTMN SELL 118.7 @ 16,939.0000 (take_profit) PnL +19,362 TMN (+0.97%)
+[fill] SANDTMN BUY 119.2 @ 16,684.3380 fee 0.300%
+[trade] SANDTMN SELL 118.8 @ 16,948.5215 (take_profit) PnL +19,380 TMN (+0.97%)
+[fill] SANDTMN BUY 118.0 @ 16,895.4435 fee 0.300%
+[trade] SANDTMN SELL 117.6 @ 17,091.4500 (take_profit) PnL +11,042 TMN (+0.55%)
+[fill] SANDTMN BUY 116.1 @ 17,182.5870 fee 0.300%
+[trade] SANDTMN SELL 115.7 @ 17,726.1325 (take_profit) PnL +50,753 TMN (+2.55%)
+[fill] SUITMN BUY 7.75 @ 257,822.8470 fee 0.300%
+[trade] ARBTMN SELL 40.8211 @ 47,700.1380 (max_hold) PnL -44,419 TMN (-2.24%)
+[trade] ADATMN SELL 33.7 @ 57,475.2480 (max_hold) PnL -47,469 TMN (-2.40%)
+[fill] SANDTMN BUY 117.9 @ 16,836.4140 fee 0.300%
+[trade] SANDTMN SELL 117.5 @ 17,097.4470 (take_profit) PnL +18,692 TMN (+0.94%)
+[fill] SANDTMN BUY 123.7 @ 16,072.0320 fee 0.300%
+[trade] SANDTMN SELL 123.3 @ 16,548.0000 (take_profit) PnL +47,623 TMN (+2.40%)
+[fill] ADATMN BUY 34.9 @ 57,104.5380 fee 0.300%
+[fill] FILTMN BUY 7.41 @ 269,339.6025 fee 0.300%
+[trade] FILTMN SELL 7.38 @ 271,972.9455 (take_profit) PnL +7,431 TMN (+0.37%)
+[fill] FILTMN BUY 7.4 @ 269,043.4545 fee 0.300%
+[trade] FILTMN SELL 7.37 @ 273,351.0000 (take_profit) PnL +20,744 TMN (+1.04%)
+[fill] UNITMN BUY 1.06 @ 1,880,662.8615 fee 0.300%
+[trade] UNITMN SELL 1.05 @ 1,900,419.0000 (take_profit) PnL +9,813 TMN (+0.50%)
+[fill] SANDTMN BUY 123.2 @ 16,275.1335 fee 0.300%
+[trade] SANDTMN SELL 122.8 @ 16,382.0000 (take_profit) PnL +2,080 TMN (+0.10%)
+[trade] SUITMN SELL 7.72 @ 259,504.0000 (take_profit) PnL +1,981 TMN (+0.10%)
+[fill] SANDTMN BUY 123.9 @ 16,244.1180 fee 0.300%
+[fill] UNITMN BUY 1.06 @ 1,895,605.3290 fee 0.300%
+[trade] ADATMN SELL 34.7 @ 57,870.0505 (max_hold) PnL +14,577 TMN (+0.73%)
+[fill] SUITMN BUY 7.78 @ 257,075.4735 fee 0.300%
+[trade] SANDTMN SELL 123.5 @ 16,351.0000 (take_profit) PnL +2,115 TMN (+0.11%)
+[fill] TRXTMN BUY 23.1 @ 87,180.0000 fee 0.250%
+[trade] TRXTMN SELL 23.0 @ 87,862.0000 (take_profit) PnL +5,609 TMN (+0.28%)
+[fill] XRPTMN BUY 6.0 @ 332,449.1415 fee 0.300%
+[trade] XRPTMN SELL 5.9 @ 335,732.0500 (take_profit) PnL +7,525 TMN (+0.38%)
+[fill] ADATMN BUY 35.6 @ 56,114.0000 fee 0.250%
+[trade] ADATMN SELL 35.5 @ 56,844.5635 (take_profit) PnL +14,888 TMN (+0.75%)
+[fill] SANDTMN BUY 124.4 @ 16,099.0455 fee 0.300%
+[trade] UNITMN SELL 1.05 @ 1,870,925.0695 (max_hold) PnL -37,797 TMN (-1.89%)
+[trade] SANDTMN SELL 124.0 @ 16,270.8605 (take_profit) PnL +9,245 TMN (+0.46%)
+[fill] ARBTMN BUY 42.787 @ 46,793.3850 fee 0.300%
+[fill] FILTMN BUY 7.47 @ 268,047.9570 fee 0.300%
+[trade] ARBTMN SELL 42.6586 @ 47,259.3585 (take_profit) PnL +7,823 TMN (+0.39%)
+[fill] SANDTMN BUY 124.3 @ 16,102.0470 fee 0.300%
+[trade] SANDTMN SELL 123.9 @ 16,208.0000 (take_profit) PnL +2,104 TMN (+0.11%)
+[fill] UNITMN BUY 1.08 @ 1,835,251.1670 fee 0.300%
+[trade] SUITMN SELL 7.75 @ 249,881.9965 (stop_loss) PnL -67,554 TMN (-3.38%)
+[fill] SUITMN BUY 7.95 @ 250,132.0035 fee 0.300%
+[trade] SUITMN SELL 7.92 @ 252,687.0000 (take_profit) PnL +9,271 TMN (+0.47%)
+[fill] SANDTMN BUY 125.8 @ 15,820.9065 fee 0.300%
+[trade] UNITMN SELL 1.07 @ 1,855,174.9485 (take_profit) PnL +9,454 TMN (+0.48%)
+[fill] TRXTMN BUY 22.8 @ 87,115.0000 fee 0.250%
+[trade] TRXTMN SELL 22.7 @ 88,255.0000 (take_profit) PnL +15,913 TMN (+0.80%)
+[fill] UNITMN BUY 1.09 @ 1,824,974.0310 fee 0.300%
+[trade] SANDTMN SELL 125.4 @ 15,312.3400 (stop_loss) PnL -75,504 TMN (-3.79%)
+[fill] SANDTMN BUY 129.6 @ 15,327.6600 fee 0.300%
+[trade] SANDTMN SELL 129.2 @ 15,597.0000 (take_profit) PnL +23,802 TMN (+1.20%)
+[fill] ARBTMN BUY 42.3882 @ 47,023.5000 fee 0.300%
+[trade] ARBTMN SELL 42.261 @ 47,341.0000 (take_profit) PnL +2,436 TMN (+0.12%)
+[trade] UNITMN SELL 1.08 @ 1,838,472.3040 (take_profit) PnL +2,691 TMN (+0.14%)
+[fill] SANDTMN BUY 129.4 @ 15,401.6970 fee 0.300%
+[trade] SANDTMN SELL 129.0 @ 15,554.0000 (take_profit) PnL +8,653 TMN (+0.43%)
+[fill] ARBTMN BUY 42.2052 @ 47,270.6235 fee 0.300%
+[fill] APETMN BUY 55.73 @ 35,768.8755 fee 0.300%
+[trade] FILTMN SELL 7.44 @ 269,934.9650 (take_profit) PnL +2,014 TMN (+0.10%)
+[trade] APETMN SELL 55.56 @ 36,003.0000 (take_profit) PnL +2,027 TMN (+0.10%)
+[fill] SANDTMN BUY 128.8 @ 15,473.7330 fee 0.300%
+[fill] SUITMN BUY 7.92 @ 251,326.6005 fee 0.300%
+[trade] SANDTMN SELL 128.4 @ 14,994.4990 (stop_loss) PnL -73,288 TMN (-3.68%)
+[trade] ARBTMN SELL 42.0785 @ 45,778.0995 (stop_loss) PnL -74,567 TMN (-3.74%)
+[fill] DOGETMN BUY 99.0 @ 19,754.8725 fee 0.300%
+[trade] DOGETMN SELL 98.7 @ 19,958.0160 (take_profit) PnL +8,274 TMN (+0.42%)
+[fill] PUMPTMN BUY 1941.7 @ 1,008.5040 fee 0.300%
+[fill] STMN BUY 151.44 @ 12,920.4570 fee 0.300%
+[trade] PUMPTMN SELL 1935.8 @ 1,020.0000 (take_profit) PnL +11,443 TMN (+0.58%)
+[fill] FILTMN BUY 7.67 @ 255,628.7505 fee 0.300%
+[trade] STMN SELL 150.98 @ 13,180.0000 (take_profit) PnL +28,341 TMN (+1.45%)
+[trade] FILTMN SELL 7.64 @ 259,162.0000 (take_profit) PnL +16,167 TMN (+0.83%)
+[fill] ARBTMN BUY 42.907 @ 45,991.9845 fee 0.300%
+[fill] DOGETMN BUY 98.3 @ 20,055.0225 fee 0.300%
+[trade] SUITMN SELL 7.89 @ 250,505.6845 (max_hold) PnL -18,373 TMN (-0.92%)
+[fill] APETMN BUY 55.69 @ 35,522.7525 fee 0.300%
+[trade] ARBTMN SELL 42.7782 @ 47,357.3095 (take_profit) PnL +46,408 TMN (+2.35%)
+[fill] LTCTMN BUY 0.13298 @ 14,981,124.8190 fee 0.300%
+[trade] LTCTMN SELL 0.13258 @ 15,148,495.0000 (take_profit) PnL +11,192 TMN (+0.56%)
+[fill] UNITMN BUY 1.09 @ 1,827,748.4175 fee 0.300%
+[trade] APETMN SELL 55.52 @ 36,183.0000 (take_profit) PnL +25,700 TMN (+1.30%)
+[trade] DOGETMN SELL 98.0 @ 20,489.7500 (take_profit) PnL +30,665 TMN (+1.56%)
+[fill] PUMPTMN BUY 1896.2 @ 1,054.5270 fee 0.300%
+[fill] APETMN BUY 55.24 @ 36,201.0915 fee 0.300%
+[trade] UNITMN SELL 1.08 @ 1,854,291.0000 (take_profit) PnL +17,720 TMN (+0.89%)
+[trade] PUMPTMN SELL 1890.5 @ 1,065.0000 (take_profit) PnL +8,767 TMN (+0.44%)
+[fill] STMN BUY 149.88 @ 13,381.0000 fee 0.250%
+[trade] APETMN SELL 55.07 @ 36,728.0000 (take_profit) PnL +17,962 TMN (+0.90%)
+[fill] SANDTMN BUY 131.0 @ 15,320.6565 fee 0.300%
+[fill] PUMPTMN BUY 1892.8 @ 1,059.5295 fee 0.300%
+[trade] PUMPTMN SELL 1887.1 @ 1,071.0000 (take_profit) PnL +10,577 TMN (+0.53%)
+[fill] FILTMN BUY 7.68 @ 260,232.0510 fee 0.300%
+[trade] FILTMN SELL 7.65 @ 265,701.0000 (take_profit) PnL +30,766 TMN (+1.54%)
+[fill] APETMN BUY 53.98 @ 37,400.6910 fee 0.300%
+[trade] STMN SELL 149.5 @ 13,442.2755 (max_hold) PnL -1,882 TMN (-0.09%)
+[fill] LTCTMN BUY 0.13374 @ 15,191,218.8135 fee 0.300%
+[trade] SANDTMN SELL 130.6 @ 15,844.0740 (max_hold) PnL +56,130 TMN (+2.80%)
+[fill] UNITMN BUY 1.08 @ 1,872,248.6565 fee 0.300%
+[trade] UNITMN SELL 1.07 @ 1,898,919.0000 (take_profit) PnL +17,430 TMN (+0.87%)
+[fill] FILTMN BUY 7.68 @ 264,137.0025 fee 0.300%
+[trade] LTCTMN SELL 0.13333 @ 15,307,774.0000 (take_profit) PnL +4,343 TMN (+0.21%)
+[fill] SANDTMN BUY 126.8 @ 16,011.0015 fee 0.300%
+[trade] APETMN SELL 53.81 @ 36,846.5675 (max_hold) PnL -41,821 TMN (-2.07%)
+[fill] APETMN BUY 54.85 @ 36,883.4325 fee 0.300%
+[trade] SANDTMN SELL 126.4 @ 16,498.0000 (take_profit) PnL +50,254 TMN (+2.48%)
+[fill] UNITMN BUY 1.07 @ 1,901,515.2825 fee 0.300%
+[trade] UNITMN SELL 1.06 @ 1,917,780.6300 (take_profit) PnL +5,078 TMN (+0.25%)
+[trade] FILTMN SELL 7.65 @ 266,631.0000 (take_profit) PnL +7,900 TMN (+0.39%)
+[fill] SUITMN BUY 7.78 @ 261,977.9235 fee 0.300%
+[fill] SHIBTMN BUY 1586551.0 @ 1.2842 fee 0.300%
+[trade] SHIBTMN SELL 1581791.0 @ 1.2956 (take_profit) PnL +6,730 TMN (+0.33%)
+[fill] ARBTMN BUY 40.5769 @ 50,331.1530 fee 0.300%
+[trade] ARBTMN SELL 40.4551 @ 50,933.0000 (take_profit) PnL +13,070 TMN (+0.64%)
+[fill] BNBTMN BUY 0.01086 @ 188,067,287.6505 fee 0.300%
+[trade] BNBTMN SELL 0.01082 @ 190,627,475.0000 (take_profit) PnL +16,422 TMN (+0.80%)
+[fill] UNITMN BUY 1.07 @ 1,910,071.5585 fee 0.300%
+[trade] APETMN SELL 54.68 @ 36,936.5225 (max_hold) PnL -9,225 TMN (-0.46%)
+[fill] SOLTMN BUY 0.07466 @ 27,440,613.4500 fee 0.300%
+[trade] UNITMN SELL 1.06 @ 1,938,549.2405 (take_profit) PnL +17,929 TMN (+0.88%)
+[fill] FILTMN BUY 7.56 @ 272,192.0280 fee 0.300%
+[trade] SUITMN SELL 7.75 @ 264,205.8310 (max_hold) PnL +5,014 TMN (+0.25%)
+[fill] UNITMN BUY 1.07 @ 1,915,096.0695 fee 0.300%
+[trade] UNITMN SELL 1.06 @ 1,939,416.8065 (take_profit) PnL +13,504 TMN (+0.66%)
+[fill] SANDTMN BUY 134.2 @ 15,225.6090 fee 0.300%
+[trade] SOLTMN SELL 0.07443 @ 27,379,938.1825 (max_hold) PnL -16,775 TMN (-0.82%)
+[fill] TRXTMN BUY 23.6 @ 86,517.0000 fee 0.250%
+[trade] FILTMN SELL 7.53 @ 269,353.2560 (max_hold) PnL -33,628 TMN (-1.64%)
+[fill] STMN BUY 144.32 @ 14,190.0000 fee 0.250%
+[trade] STMN SELL 143.95 @ 14,342.8250 (take_profit) PnL +10,686 TMN (+0.52%)
+[trade] SANDTMN SELL 133.7 @ 15,692.1500 (take_profit) PnL +49,957 TMN (+2.45%)
+[fill] APETMN BUY 54.31 @ 37,857.9195 fee 0.300%
+[trade] APETMN SELL 54.14 @ 38,484.7480 (take_profit) PnL +21,518 TMN (+1.05%)
+[fill] STMN BUY 145.02 @ 14,185.0890 fee 0.300%
+[trade] STMN SELL 144.58 @ 14,292.8500 (take_profit) PnL +3,210 TMN (+0.16%)
+[fill] UNITMN BUY 1.08 @ 1,886,547.8025 fee 0.300%
+[fill] SHIBTMN BUY 1592056.0 @ 1.2895 fee 0.300%
+[trade] TRXTMN SELL 23.5 @ 87,002.4770 (max_hold) PnL +179 TMN (+0.01%)
+[fill] SANDTMN BUY 134.2 @ 15,357.6750 fee 0.300%
+[trade] SHIBTMN SELL 1587279.0 @ 1.3044 (take_profit) PnL +12,245 TMN (+0.60%)
+[trade] SANDTMN SELL 133.7 @ 15,495.2485 (take_profit) PnL +6,000 TMN (+0.29%)
+[fill] APETMN BUY 55.25 @ 37,362.6720 fee 0.300%
+[fill] SUITMN BUY 8.02 @ 257,390.6310 fee 0.300%
+[trade] UNITMN SELL 1.07 @ 1,904,509.2690 (max_hold) PnL +7,031 TMN (+0.35%)
+[fill] FILTMN BUY 7.9 @ 260,863.3665 fee 0.300%
+[trade] APETMN SELL 55.08 @ 37,801.0900 (take_profit) PnL +11,709 TMN (+0.57%)
+[fill] SANDTMN BUY 134.5 @ 15,307.6500 fee 0.300%
+[trade] SUITMN SELL 7.99 @ 256,744.5635 (max_hold) PnL -17,504 TMN (-0.85%)
+[fill] STMN BUY 140.23 @ 14,711.3520 fee 0.300%
+[trade] STMN SELL 139.8 @ 14,875.0000 (take_profit) PnL +11,491 TMN (+0.56%)
+[fill] ARBTMN BUY 40.5189 @ 50,955.4650 fee 0.300%
+[trade] FILTMN SELL 7.87 @ 261,518.1755 (max_hold) PnL -7,199 TMN (-0.35%)
+[fill] FILTMN BUY 7.87 @ 261,779.8245 fee 0.300%
+[trade] ARBTMN SELL 40.3973 @ 51,474.2500 (take_profit) PnL +8,525 TMN (+0.41%)
+[trade] SANDTMN SELL 134.0 @ 15,425.2835 (max_hold) PnL +3,390 TMN (+0.16%)
+[fill] ARBTMN BUY 40.6951 @ 50,692.3335 fee 0.300%
+[fill] STMN BUY 136.7 @ 15,113.5530 fee 0.300%
+[trade] ARBTMN SELL 40.573 @ 51,231.3715 (take_profit) PnL +9,446 TMN (+0.46%)
+[trade] STMN SELL 136.28 @ 15,272.3600 (take_profit) PnL +9,201 TMN (+0.45%)
+[fill] PUMPTMN BUY 1780.1 @ 1,160.5800 fee 0.300%
+[fill] STMN BUY 137.57 @ 15,007.5000 fee 0.300%
+[trade] PUMPTMN SELL 1774.7 @ 1,169.0000 (take_profit) PnL +3,559 TMN (+0.17%)
+[trade] FILTMN SELL 7.84 @ 264,785.0000 (take_profit) PnL +12,195 TMN (+0.59%)
+[fill] ARBTMN BUY 40.7798 @ 50,845.0000 fee 0.250%
+[trade] STMN SELL 137.15 @ 15,172.4100 (take_profit) PnL +10,181 TMN (+0.49%)
+[fill] SOLTMN BUY 0.07749 @ 26,713,358.0040 fee 0.300%
+[trade] SOLTMN SELL 0.07725 @ 26,998,190.1520 (take_profit) PnL +9,537 TMN (+0.46%)
+[fill] PUMPTMN BUY 1833.9 @ 1,130.5650 fee 0.300%
+[fill] SANDTMN BUY 138.8 @ 14,922.4575 fee 0.300%
+[trade] ARBTMN SELL 40.6778 @ 51,438.0000 (take_profit) PnL +13,707 TMN (+0.66%)
+[fill] APETMN BUY 55.84 @ 37,165.5735 fee 0.300%
+[trade] PUMPTMN SELL 1828.3 @ 1,146.4265 (take_profit) PnL +16,492 TMN (+0.80%)
+[trade] APETMN SELL 55.67 @ 37,708.1365 (take_profit) PnL +17,681 TMN (+0.85%)
+[fill] LTCTMN BUY 0.13585 @ 15,331,260.7995 fee 0.300%
+[trade] SANDTMN SELL 138.3 @ 15,234.0000 (take_profit) PnL +31,609 TMN (+1.53%)
+[fill] UNITMN BUY 1.1 @ 1,887,387.2220 fee 0.300%
+[fill] APETMN BUY 55.69 @ 37,478.7300 fee 0.300%
+[trade] LTCTMN SELL 0.13544 @ 15,535,836.0000 (take_profit) PnL +16,199 TMN (+0.78%)
+[fill] PUMPTMN BUY 1828.9 @ 1,145.5725 fee 0.300%
+[trade] PUMPTMN SELL 1823.4 @ 1,156.4215 (take_profit) PnL +7,171 TMN (+0.34%)
+[trade] UNITMN SELL 1.09 @ 1,916,156.4425 (take_profit) PnL +18,902 TMN (+0.92%)
+[fill] FILTMN BUY 8.08 @ 260,146.0080 fee 0.300%
+[fill] ARBTMN BUY 40.7381 @ 51,580.7775 fee 0.300%
+[trade] ARBTMN SELL 40.6158 @ 52,306.8335 (take_profit) PnL +16,812 TMN (+0.80%)
+[fill] SANDTMN BUY 139.9 @ 15,046.5195 fee 0.300%
+[trade] APETMN SELL 55.52 @ 38,097.9415 (take_profit) PnL +21,772 TMN (+1.04%)
+[trade] FILTMN SELL 8.05 @ 263,394.2370 (take_profit) PnL +13,486 TMN (+0.64%)
+[fill] APETMN BUY 56.04 @ 37,559.0000 fee 0.250%
+[fill] STMN BUY 143.82 @ 14,628.0000 fee 0.250%
+[trade] STMN SELL 143.46 @ 14,762.0000 (take_profit) PnL +8,670 TMN (+0.41%)
+[fill] SOLTMN BUY 0.07768 @ 26,997,348.9285 fee 0.300%
+[trade] SOLTMN SELL 0.07744 @ 27,288,757.7955 (take_profit) PnL +9,936 TMN (+0.47%)
+[fill] SOLTMN BUY 0.07775 @ 26,997,068.7885 fee 0.300%
+[trade] SOLTMN SELL 0.07751 @ 27,288,454.9470 (take_profit) PnL +9,943 TMN (+0.47%)
+[fill] BNBTMN BUY 0.01116 @ 188,704,159.9275 fee 0.300%
+[trade] BNBTMN SELL 0.01112 @ 190,650,686.0000 (take_profit) PnL +10,031 TMN (+0.48%)
+[fill] FILTMN BUY 8.09 @ 260,249.0595 fee 0.300%
+[trade] FILTMN SELL 8.06 @ 261,946.0000 (take_profit) PnL +2,087 TMN (+0.10%)
+[fill] UNITMN BUY 1.13 @ 1,848,219.6480 fee 0.300%
+[trade] SANDTMN SELL 139.4 @ 14,753.6195 (max_hold) PnL -53,312 TMN (-2.53%)
+[fill] SANDTMN BUY 142.2 @ 14,768.3805 fee 0.300%
+[trade] APETMN SELL 55.89 @ 37,661.1600 (max_hold) PnL -5,866 TMN (-0.28%)
+[fill] FILTMN BUY 8.12 @ 260,144.0070 fee 0.300%
+[trade] SANDTMN SELL 141.7 @ 15,046.0000 (take_profit) PnL +27,712 TMN (+1.32%)
+[trade] FILTMN SELL 8.09 @ 263,118.3750 (take_profit) PnL +11,344 TMN (+0.54%)
+[fill] STMN BUY 143.21 @ 14,783.3880 fee 0.300%
+[trade] UNITMN SELL 1.12 @ 1,864,096.4855 (max_hold) PnL +5,290 TMN (+0.25%)
+[fill] FILTMN BUY 8.02 @ 262,848.3585 fee 0.300%
+[fill] PUMPTMN BUY 1815.1 @ 1,160.5800 fee 0.300%
+[trade] FILTMN SELL 7.99 @ 265,225.0000 (take_profit) PnL +7,372 TMN (+0.35%)
+[fill] PEPETMN BUY 1915459.0 @ 1.1046 fee 0.300%
+[trade] PEPETMN SELL 1909712.0 @ 1.1162 (take_profit) PnL +10,568 TMN (+0.50%)
+[fill] UNITMN BUY 1.13 @ 1,865,961.5145 fee 0.300%
+[trade] PUMPTMN SELL 1809.6 @ 1,173.0000 (take_profit) PnL +10,849 TMN (+0.52%)
+[trade] STMN SELL 142.78 @ 14,880.0000 (take_profit) PnL +2,131 TMN (+0.10%)
+[fill] PEPETMN BUY 1929457.0 @ 1.0987 fee 0.300%
+[fill] PUMPTMN BUY 1828.3 @ 1,158.5790 fee 0.300%
+[trade] UNITMN SELL 1.12 @ 1,882,394.0000 (take_profit) PnL +6,845 TMN (+0.33%)
+[trade] PUMPTMN SELL 1822.8 @ 1,169.4150 (take_profit) PnL +7,002 TMN (+0.33%)
+[trade] PEPETMN SELL 1923668.0 @ 1.1095 (take_profit) PnL +8,985 TMN (+0.42%)
+[fill] FILTMN BUY 8.15 @ 260,865.3675 fee 0.300%
+[fill] PEPETMN BUY 1897916.0 @ 1.1196 fee 0.300%
+[fill] ARBTMN BUY 42.489 @ 49,968.9720 fee 0.300%
+[trade] ARBTMN SELL 42.3615 @ 50,557.0000 (take_profit) PnL +13,186 TMN (+0.62%)
+[fill] PUMPTMN BUY 1804.4 @ 1,183.5915 fee 0.300%
+[trade] PEPETMN SELL 1892222.0 @ 1.1749 (take_profit) PnL +92,784 TMN (+4.37%)
+[fill] SHIBTMN BUY 1655219.0 @ 1.2974 fee 0.300%
+[trade] PUMPTMN SELL 1798.9 @ 1,195.0000 (take_profit) PnL +8,742 TMN (+0.41%)
+[fill] PEPETMN BUY 1835845.0 @ 1.1717 fee 0.300%
+[trade] PEPETMN SELL 1830337.0 @ 1.1973 (take_profit) PnL +34,951 TMN (+1.62%)
+[fill] PUMPTMN BUY 1802.7 @ 1,200.6000 fee 0.300%
+[trade] PUMPTMN SELL 1797.2 @ 1,211.0000 (take_profit) PnL +6,757 TMN (+0.31%)
+[trade] SHIBTMN SELL 1650253.0 @ 1.3293 (take_profit) PnL +39,597 TMN (+1.84%)
+[trade] FILTMN SELL 8.12 @ 272,853.0000 (take_profit) PnL +85,427 TMN (+4.02%)
+[fill] PUMPTMN BUY 1804.7 @ 1,212.6060 fee 0.300%
+[fill] ARBTMN BUY 42.9459 @ 50,917.4460 fee 0.300%
+[trade] PUMPTMN SELL 1799.2 @ 1,224.0000 (take_profit) PnL +8,430 TMN (+0.39%)
+[trade] ARBTMN SELL 42.817 @ 51,474.2500 (take_profit) PnL +10,669 TMN (+0.49%)
+[fill] LTCTMN BUY 0.13958 @ 15,707,198.6745 fee 0.300%
+[trade] LTCTMN SELL 0.13916 @ 15,888,074.9885 (take_profit) PnL +11,961 TMN (+0.55%)
+[fill] PEPETMN BUY 1869952.0 @ 1.1745 fee 0.250%
+[trade] PEPETMN SELL 1865277.0 @ 1.1841 (take_profit) PnL +6,894 TMN (+0.31%)
+[fill] ARBTMN BUY 43.3214 @ 50,706.0000 fee 0.250%
+[fill] SHIBTMN BUY 1666840.0 @ 1.3167 fee 0.300%
+[trade] SHIBTMN SELL 1661839.0 @ 1.3263 (take_profit) PnL +2,888 TMN (+0.13%)
+[fill] ADATMN BUY 37.8 @ 58,063.0170 fee 0.300%
+[fill] SUITMN BUY 8.17 @ 268,706.2860 fee 0.300%
+[trade] ADATMN SELL 37.6 @ 58,795.0000 (take_profit) PnL +15,427 TMN (+0.70%)
+[trade] SUITMN SELL 8.14 @ 272,223.8200 (take_profit) PnL +15,403 TMN (+0.70%)
+[fill] LTCTMN BUY 0.13967 @ 15,764,400.2610 fee 0.300%
+[fill] BTCTMN BUY 0.00010306 @ 21,410,700,000.0000 fee 0.300%
+[trade] ARBTMN SELL 43.213 @ 51,329.3225 (take_profit) PnL +14,790 TMN (+0.67%)
+[trade] BTCTMN SELL 0.00010275 @ 21,655,511,920.0000 (take_profit) PnL +12,972 TMN (+0.59%)
+[fill] SHIBTMN BUY 1685217.0 @ 1.3045 fee 0.300%
+[fill] FILTMN BUY 8.42 @ 260,383.1265 fee 0.300%
+[trade] FILTMN SELL 8.39 @ 268,709.0000 (take_profit) PnL +57,644 TMN (+2.63%)
+[fill] PEPETMN BUY 1907574.0 @ 1.1568 fee 0.250%
+[trade] PEPETMN SELL 1902805.0 @ 1.1680 (take_profit) PnL +9,157 TMN (+0.41%)
+[fill] PEPETMN BUY 1908126.0 @ 1.1601 fee 0.300%
+[trade] PEPETMN SELL 1902401.0 @ 1.1698 (take_profit) PnL +5,203 TMN (+0.24%)
+[fill] FILTMN BUY 8.25 @ 268,134.0000 fee 0.300%
+[trade] FILTMN SELL 8.22 @ 271,474.1950 (take_profit) PnL +14,130 TMN (+0.64%)
+[trade] SHIBTMN SELL 1680161.0 @ 1.3252 (take_profit) PnL +22,699 TMN (+1.03%)
+[fill] UNITMN BUY 1.17 @ 1,888,604.8305 fee 0.300%
+[trade] UNITMN SELL 1.16 @ 1,903,464.0000 (take_profit) PnL +5,124 TMN (+0.23%)
+[fill] PEPETMN BUY 1877529.0 @ 1.1837 fee 0.300%
+[fill] APETMN BUY 58.54 @ 37,940.9610 fee 0.300%
+[trade] PEPETMN SELL 1871896.0 @ 1.1919 (take_profit) PnL +3,120 TMN (+0.14%)
+[trade] APETMN SELL 58.36 @ 38,392.0000 (take_profit) PnL +14,059 TMN (+0.63%)
+[fill] PEPETMN BUY 1878420.0 @ 1.1870 fee 0.300%
+[trade] PEPETMN SELL 1872784.0 @ 1.1974 (take_profit) PnL +7,194 TMN (+0.32%)
+[fill] PEPETMN BUY 1861790.0 @ 1.1986 fee 0.250%
+[fill] PUMPTMN BUY 1872.4 @ 1,192.5960 fee 0.300%
+[trade] PEPETMN SELL 1857135.0 @ 1.2111 (take_profit) PnL +12,012 TMN (+0.54%)
+[trade] PUMPTMN SELL 1866.7 @ 1,204.0000 (take_profit) PnL +8,970 TMN (+0.40%)
+[fill] STMN BUY 153.44 @ 14,577.2850 fee 0.300%
+[trade] STMN SELL 152.97 @ 14,680.0000 (take_profit) PnL +3,389 TMN (+0.15%)
+[fill] STMN BUY 151.21 @ 14,774.3835 fee 0.300%
+[fill] SUITMN BUY 8.44 @ 264,619.2435 fee 0.300%
+[trade] STMN SELL 150.75 @ 14,942.0000 (take_profit) PnL +12,935 TMN (+0.58%)
+[fill] SANDTMN BUY 148.1 @ 15,086.5395 fee 0.300%
+[trade] LTCTMN SELL 0.13925 @ 15,620,958.6135 (max_hold) PnL -33,105 TMN (-1.50%)
+[fill] UNITMN BUY 1.17 @ 1,897,763.4075 fee 0.300%
+[trade] SANDTMN SELL 147.6 @ 15,269.0000 (take_profit) PnL +14,596 TMN (+0.65%)
+[fill] FILTMN BUY 8.44 @ 265,600.7340 fee 0.300%
+[trade] FILTMN SELL 8.41 @ 268,182.0000 (take_profit) PnL +9,349 TMN (+0.42%)
+[fill] PUMPTMN BUY 1812.3 @ 1,240.6200 fee 0.300%
+[trade] PUMPTMN SELL 1806.8 @ 1,257.0000 (take_profit) PnL +17,173 TMN (+0.76%)
+[fill] APETMN BUY 59.46 @ 37,987.0000 fee 0.250%
+[trade] APETMN SELL 59.31 @ 38,344.8180 (take_profit) PnL +8,753 TMN (+0.39%)
+[fill] PUMPTMN BUY 1835.8 @ 1,232.0000 fee 0.250%
+[trade] PUMPTMN SELL 1831.2 @ 1,240.0000 (take_profit) PnL +3,319 TMN (+0.15%)
+[fill] FILTMN BUY 8.53 @ 265,142.5050 fee 0.300%
+[trade] SUITMN SELL 8.41 @ 269,865.0000 (max_hold) PnL +30,612 TMN (+1.37%)
+[trade] FILTMN SELL 8.5 @ 266,872.0000 (take_profit) PnL +2,248 TMN (+0.10%)
+[trade] UNITMN SELL 1.16 @ 1,942,064.4820 (max_hold) PnL +38,007 TMN (+1.72%)
+[fill] SUITMN BUY 8.45 @ 267,255.5610 fee 0.300%
+[fill] PUMPTMN BUY 1790.3 @ 1,261.6305 fee 0.300%
+[trade] PUMPTMN SELL 1784.9 @ 1,284.3575 (take_profit) PnL +26,912 TMN (+1.19%)
+[trade] SUITMN SELL 8.42 @ 270,953.0000 (take_profit) PnL +18,658 TMN (+0.83%)
+[fill] UNITMN BUY 1.16 @ 1,951,769.3970 fee 0.300%
+[trade] UNITMN SELL 1.15 @ 1,984,478.2645 (take_profit) PnL +24,015 TMN (+1.07%)
+[fill] ARBTMN BUY 45.0928 @ 50,468.2215 fee 0.300%
+[trade] ARBTMN SELL 44.9575 @ 50,824.5750 (take_profit) PnL +2,339 TMN (+0.10%)
+[fill] ARBTMN BUY 45.6482 @ 49,864.9200 fee 0.300%
+[trade] ARBTMN SELL 45.5112 @ 50,394.0000 (take_profit) PnL +11,517 TMN (+0.51%)
+[fill] SHIBTMN BUY 1718102.0 @ 1.3265 fee 0.300%
+[fill] SANDTMN BUY 151.2 @ 15,057.5250 fee 0.300%
+[fill] UNITMN BUY 1.15 @ 1,965,416.2170 fee 0.300%
+[trade] UNITMN SELL 1.14 @ 1,999,000.0000 (take_profit) PnL +24,707 TMN (+1.10%)
+[fill] ARBTMN BUY 45.8534 @ 49,770.8730 fee 0.300%
+[trade] ARBTMN SELL 45.7158 @ 50,439.7675 (take_profit) PnL +16,815 TMN (+0.74%)
+[fill] ARBTMN BUY 46.4229 @ 49,225.6005 fee 0.300%
+[trade] ARBTMN SELL 46.2836 @ 49,858.0000 (take_profit) PnL +16,645 TMN (+0.73%)
+[fill] UNITMN BUY 1.17 @ 1,950,514.7700 fee 0.300%
+[trade] SHIBTMN SELL 1712947.0 @ 1.3262 (max_hold) PnL -14,040 TMN (-0.62%)
+[trade] SANDTMN SELL 150.7 @ 14,970.5110 (max_hold) PnL -26,709 TMN (-1.17%)
+[fill] ADATMN BUY 39.1 @ 58,105.0380 fee 0.300%
+[fill] FILTMN BUY 8.63 @ 263,656.7625 fee 0.300%
+[trade] FILTMN SELL 8.6 @ 268,430.0000 (take_profit) PnL +28,456 TMN (+1.25%)
+[fill] ARBTMN BUY 46.0782 @ 49,591.7835 fee 0.300%
+[trade] ARBTMN SELL 45.9399 @ 49,952.0000 (take_profit) PnL +3,956 TMN (+0.17%)
+[trade] UNITMN SELL 1.16 @ 1,963,232.0000 (take_profit) PnL +2,250 TMN (+0.10%)
+[fill] SHIBTMN BUY 1724722.0 @ 1.3301 fee 0.300%
+[trade] SHIBTMN SELL 1719547.0 @ 1.3521 (take_profit) PnL +25,196 TMN (+1.10%)
+[fill] FILTMN BUY 8.61 @ 267,736.8015 fee 0.300%
+[trade] ADATMN SELL 38.9 @ 59,433.2685 (max_hold) PnL +37,931 TMN (+1.67%)
+[fill] ARBTMN BUY 45.7428 @ 50,529.2520 fee 0.300%
+[trade] ARBTMN SELL 45.6055 @ 50,929.0000 (take_profit) PnL +5,490 TMN (+0.24%)
+[trade] FILTMN SELL 8.58 @ 272,809.5270 (take_profit) PnL +29,590 TMN (+1.28%)
+[fill] ARBTMN BUY 45.9673 @ 50,279.1270 fee 0.300%
+[trade] ARBTMN SELL 45.8293 @ 50,760.0000 (take_profit) PnL +9,289 TMN (+0.40%)
+[fill] FILTMN BUY 8.47 @ 272,937.4005 fee 0.300%
+[fill] SHIBTMN BUY 1712177.0 @ 1.3507 fee 0.300%
+[trade] SHIBTMN SELL 1707040.0 @ 1.3648 (take_profit) PnL +11,350 TMN (+0.49%)
+[trade] FILTMN SELL 8.44 @ 274,717.0000 (take_profit) PnL +2,292 TMN (+0.10%)
+[fill] SUITMN BUY 8.52 @ 271,388.6265 fee 0.300%
+[fill] PUMPTMN BUY 1850.0 @ 1,250.0000 fee 0.250%
+[trade] PUMPTMN SELL 1845.3 @ 1,260.0000 (take_profit) PnL +6,859 TMN (+0.30%)
+[fill] UNITMN BUY 1.18 @ 1,952,916.9705 fee 0.300%
+[trade] UNITMN SELL 1.17 @ 1,968,969.0230 (take_profit) PnL +4,994 TMN (+0.22%)
+[fill] APETMN BUY 60.02 @ 38,648.3145 fee 0.300%
+[fill] PEPETMN BUY 1896459.0 @ 1.2236 fee 0.300%
+[trade] PEPETMN SELL 1890769.0 @ 1.2476 (take_profit) PnL +32,498 TMN (+1.40%)
+[trade] APETMN SELL 59.83 @ 39,200.0000 (take_profit) PnL +20,186 TMN (+0.87%)
+[fill] FILTMN BUY 8.51 @ 274,139.0010 fee 0.300%
+[trade] FILTMN SELL 8.48 @ 276,901.0000 (take_profit) PnL +10,556 TMN (+0.45%)
+[fill] ARBTMN BUY 45.8075 @ 51,086.5305 fee 0.300%
+[fill] FILTMN BUY 8.46 @ 276,220.0410 fee 0.300%
+[trade] ARBTMN SELL 45.67 @ 51,699.1375 (take_profit) PnL +13,874 TMN (+0.59%)
+[fill] ARBTMN BUY 45.5726 @ 51,425.0000 fee 0.250%
+[trade] FILTMN SELL 8.43 @ 278,438.7110 (take_profit) PnL +4,655 TMN (+0.20%)
+[trade] ARBTMN SELL 45.4586 @ 51,999.9870 (take_profit) PnL +13,188 TMN (+0.56%)
+[fill] PUMPTMN BUY 1803.7 @ 1,303.6515 fee 0.300%
+[fill] FILTMN BUY 8.36 @ 281,077.4685 fee 0.300%
+[trade] FILTMN SELL 8.33 @ 283,658.1000 (take_profit) PnL +7,363 TMN (+0.31%)
+[fill] SHIBTMN BUY 1738003.0 @ 1.3570 fee 0.300%
+[trade] PUMPTMN SELL 1798.2 @ 1,322.0000 (take_profit) PnL +19,997 TMN (+0.85%)
+[fill] FILTMN BUY 8.32 @ 284,069.9640 fee 0.300%
+[trade] FILTMN SELL 8.29 @ 286,038.0000 (take_profit) PnL +3,301 TMN (+0.14%)
+[trade] SHIBTMN SELL 1732788.0 @ 1.3768 (take_profit) PnL +21,308 TMN (+0.90%)
+[fill] UNITMN BUY 1.17 @ 2,011,655.3250 fee 0.300%
+[fill] SHIBTMN BUY 1731867.0 @ 1.3667 fee 0.300%
+[trade] SHIBTMN SELL 1726671.0 @ 1.3786 (take_profit) PnL +7,525 TMN (+0.32%)
+[trade] SUITMN SELL 8.49 @ 280,089.8850 (max_hold) PnL +59,807 TMN (+2.59%)
+[fill] ARBTMN BUY 45.6288 @ 51,875.9250 fee 0.300%
+[fill] FILTMN BUY 8.35 @ 283,181.5200 fee 0.300%
+[trade] UNITMN SELL 1.16 @ 2,025,313.0000 (take_profit) PnL +2,948 TMN (+0.13%)
+[trade] ARBTMN SELL 45.4919 @ 52,479.0000 (take_profit) PnL +14,365 TMN (+0.61%)
+[trade] FILTMN SELL 8.32 @ 288,356.7495 (take_profit) PnL +28,771 TMN (+1.22%)
+[fill] PUMPTMN BUY 1760.1 @ 1,351.6755 fee 0.300%
+[trade] PUMPTMN SELL 1754.8 @ 1,361.0000 (take_profit) PnL +3,255 TMN (+0.14%)
+[fill] UNITMN BUY 1.19 @ 1,979,800.4055 fee 0.300%
+[trade] UNITMN SELL 1.18 @ 1,998,133.0000 (take_profit) PnL +8,708 TMN (+0.37%)
+[fill] UNITMN BUY 1.2 @ 1,974,928.9710 fee 0.300%
+[fill] FILTMN BUY 8.44 @ 282,400.1295 fee 0.300%
+[fill] TRXTMN BUY 26.8 @ 88,635.2955 fee 0.300%
+[trade] TRXTMN SELL 26.7 @ 89,560.0000 (take_profit) PnL +11,590 TMN (+0.49%)
+[trade] UNITMN SELL 1.19 @ 2,018,807.0000 (take_profit) PnL +39,137 TMN (+1.66%)
+[fill] PUMPTMN BUY 1756.4 @ 1,362.6810 fee 0.300%
+[fill] APETMN BUY 60.55 @ 39,531.7560 fee 0.300%
+[trade] PUMPTMN SELL 1751.1 @ 1,382.0000 (take_profit) PnL +20,599 TMN (+0.86%)
+[trade] APETMN SELL 60.36 @ 40,021.0000 (take_profit) PnL +16,312 TMN (+0.68%)
+[trade] FILTMN SELL 8.41 @ 285,909.9735 (take_profit) PnL +15,158 TMN (+0.64%)
+[fill] FILTMN BUY 8.56 @ 280,171.0155 fee 0.300%
+[fill] SANDTMN BUY 155.5 @ 15,407.7000 fee 0.300%
+[fill] PUMPTMN BUY 1760.1 @ 1,360.6800 fee 0.300%
+[trade] PUMPTMN SELL 1754.8 @ 1,382.0000 (take_profit) PnL +24,165 TMN (+1.01%)
+[fill] UNITMN BUY 1.2 @ 1,984,720.8645 fee 0.300%
+[trade] UNITMN SELL 1.19 @ 2,011,533.0000 (take_profit) PnL +18,815 TMN (+0.79%)
+[trade] FILTMN SELL 8.53 @ 270,845.5095 (stop_loss) PnL -93,669 TMN (-3.91%)
+[fill] FILTMN BUY 8.7 @ 272,558.0000 fee 0.250%
+[fill] SHIBTMN BUY 1770541.0 @ 1.3372 fee 0.300%
+[trade] SANDTMN SELL 155.0 @ 14,923.5345 (stop_loss) PnL -89,171 TMN (-3.72%)
+[trade] SHIBTMN SELL 1765229.0 @ 1.3459 (take_profit) PnL +2,371 TMN (+0.10%)
+[fill] UNITMN BUY 1.22 @ 1,915,992.5175 fee 0.300%
+[trade] FILTMN SELL 8.67 @ 269,764.0505 (max_hold) PnL -37,163 TMN (-1.57%)
+[fill] APETMN BUY 62.12 @ 37,764.8730 fee 0.300%
+[fill] FILTMN BUY 8.8 @ 265,632.7500 fee 0.300%
+[trade] UNITMN SELL 1.21 @ 1,887,165.9450 (max_hold) PnL -48,707 TMN (-2.09%)
+{
+ "tag": "all20_fresh1_edge0.8_qual0",
+ "period": [
+  "2026-10-08T13:34:00+03:30",
+  "2026-10-22T12:47:00+03:30"
+ ],
+ "days": 13.97,
+ "coins": [
+  "PEPE",
+  "BTC",
+  "PUMP",
+  "ETH",
+  "BNB",
+  "DOGE",
+  "XRP",
+  "XAUT",
+  "ARB",
+  "SOL",
+  "TRX",
+  "S",
+  "LTC",
+  "SUI",
+  "APE",
+  "ADA",
+  "UNI",
+  "FIL",
+  "SAND",
+  "SHIB"
+ ],
+ "params": {
+  "entry_edge": 0.008,
+  "fee_maker": 0.0025,
+  "fee_taker": 0.003,
+  "pos_frac": 0.2,
+  "max_pos": 3,
+  "stop_loss": 0.03,
+  "max_hold": 14400.0,
+  "spread": 0.001,
+  "fill_margin": 0.0005,
+  "min_minute_volume_tmn": 1000000.0,
+  "fresh_quotes": true
+ },
+ "trades": 891,
+ "wins": 812,
+ "pnl_tmn": 6750664,
+ "final_equity": 11677673,
+ "return_pct": 133.553,
+ "max_drawdown_pct": 3.797,
+ "exits": {
+  "take_profit": 786,
+  "stop_loss": 34,
+  "max_hold": 71
+ },
+ "trades_per_day": {
+  "2026-10-08": 48,
+  "2026-10-09": 63,
+  "2026-10-10": 75,
+  "2026-10-11": 82,
+  "2026-10-12": 75,
+  "2026-10-13": 95,
+  "2026-10-14": 50,
+  "2026-10-15": 74,
+  "2026-10-16": 51,
+  "2026-10-17": 62,
+  "2026-10-18": 51,
+  "2026-10-19": 38,
+  "2026-10-20": 69,
+  "2026-10-21": 48,
+  "2026-10-22": 10
+ },
+ "by_market": {
+  "ADATMN": {
+   "trades": 52,
+   "wins": 49,
+   "pnl_tmn": 397082
+  },
+  "APETMN": {
+   "trades": 74,
+   "wins": 61,
+   "pnl_tmn": 482168
+  },
+  "ARBTMN": {
+   "trades": 63,
+   "wins": 58,
+   "pnl_tmn": 328309
+  },
+  "BNBTMN": {
+   "trades": 4,
+   "wins": 4,
+   "pnl_tmn": 50187
+  },
+  "BTCTMN": {
+   "trades": 2,
+   "wins": 2,
+   "pnl_tmn": 17871
+  },
+  "DOGETMN": {
+   "trades": 6,
+   "wins": 6,
+   "pnl_tmn": 58649
+  },
+  "ETHTMN": {
+   "trades": 2,
+   "wins": 2,
+   "pnl_tmn": 25482
+  },
+  "FILTMN": {
+   "trades": 160,
+   "wins": 147,
+   "pnl_tmn": 1519175
+  },
+  "LTCTMN": {
+   "trades": 11,
+   "wins": 10,
+   "pnl_tmn": 64543
+  },
+  "PEPETMN": {
+   "trades": 40,
+   "wins": 38,
+   "pnl_tmn": 342887
+  },
+  "PUMPTMN": {
+   "trades": 49,
+   "wins": 49,
+   "pnl_tmn": 429204
+  },
+  "SANDTMN": {
+   "trades": 93,
+   "wins": 80,
+   "pnl_tmn": 754667
+  },
+  "SHIBTMN": {
+   "trades": 42,
+   "wins": 38,
+   "pnl_tmn": 299985
+  },
+  "SOLTMN": {
+   "trades": 11,
+   "wins": 10,
+   "pnl_tmn": 41454
+  },
+  "STMN": {
+   "trades": 157,
+   "wins": 151,
+   "pnl_tmn": 1434086
+  },
+  "SUITMN": {
+   "trades": 61,
+   "wins": 52,
+   "pnl_tmn": 245329
+  },
+  "TRXTMN": {
+   "trades": 11,
+   "wins": 11,
+   "pnl_tmn": 81224
+  },
+  "UNITMN": {
+   "trades": 48,
+   "wins": 40,
+   "pnl_tmn": 141206
+  },
+  "XAUTTMN": {
+   "trades": 2,
+   "wins": 2,
+   "pnl_tmn": 14011
+  },
+  "XRPTMN": {
+   "trades": 3,
+   "wins": 2,
+   "pnl_tmn": 23144
+  }
+ }
+}

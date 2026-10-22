@@ -1,0 +1,718 @@
+[qualify] BTCTMN qualified: premium sd 11 bps, 0 dips, 100% reverted in 60 min
+[qualify] ETHTMN qualified: premium sd 18 bps, 0 dips, 100% reverted in 60 min
+[qualify] BNBTMN qualified: premium sd 17 bps, 1 dips, 100% reverted in 60 min
+[qualify] XAUTTMN qualified: premium sd 15 bps, 0 dips, 100% reverted in 60 min
+[qualify] TRXTMN qualified: premium sd 32 bps, 2 dips, 100% reverted in 60 min
+[qualify] SOLTMN qualified: premium sd 22 bps, 3 dips, 100% reverted in 60 min
+[qualify] PUMPTMN qualified: premium sd 39 bps, 10 dips, 100% reverted in 60 min
+[qualify] XRPTMN qualified: premium sd 20 bps, 0 dips, 100% reverted in 60 min
+[qualify] DOGETMN qualified: premium sd 21 bps, 1 dips, 100% reverted in 60 min
+[qualify] PEPETMN qualified: premium sd 41 bps, 11 dips, 91% reverted in 60 min
+[qualify] ARBTMN qualified: premium sd 40 bps, 11 dips, 91% reverted in 60 min
+[fill] XAUTTMN BUY 0.0009 @ 1,100,958,609.2025 fee 0.300%
+[fill] ARBTMN BUY 20.9655 @ 47,803.8900 fee 0.300%
+[trade] ARBTMN SELL 20.9026 @ 48,116.0000 (take_profit) PnL +1,003 TMN (+0.10%)
+[trade] XAUTTMN SELL 0.00089 @ 1,118,025,010.0000 (take_profit) PnL +9,753 TMN (+0.99%)
+[fill] PEPETMN BUY 962590.0 @ 1.0411 fee 0.300%
+[fill] SOLTMN BUY 0.03375 @ 29,661,676.4265 fee 0.300%
+[fill] DOGETMN BUY 44.1 @ 22,700.0000 fee 0.250%
+[trade] SOLTMN SELL 0.03364 @ 29,862,727.1670 (take_profit) PnL +747 TMN (+0.07%)
+[trade] PEPETMN SELL 959702.0 @ 1.0492 (take_profit) PnL +2,230 TMN (+0.22%)
+[trade] DOGETMN SELL 43.9 @ 22,837.0000 (take_profit) PnL +1,010 TMN (+0.10%)
+[fill] PEPETMN BUY 970172.0 @ 1.0338 fee 0.250%
+[trade] PEPETMN SELL 967746.0 @ 1.0420 (take_profit) PnL +2,907 TMN (+0.29%)
+[fill] BTCTMN BUY 4.553e-05 @ 22,038,084,965.0000 fee 0.250%
+[trade] BTCTMN SELL 4.541e-05 @ 22,189,702,037.0000 (take_profit) PnL +1,858 TMN (+0.19%)
+[fill] PUMPTMN BUY 686.3 @ 1,462.7310 fee 0.300%
+[trade] PUMPTMN SELL 684.2 @ 1,477.2610 (take_profit) PnL +3,898 TMN (+0.39%)
+[fill] PUMPTMN BUY 689.2 @ 1,457.7285 fee 0.300%
+[trade] PUMPTMN SELL 687.1 @ 1,468.0000 (take_profit) PnL +1,522 TMN (+0.15%)
+[fill] PUMPTMN BUY 704.9 @ 1,425.7125 fee 0.300%
+[trade] PUMPTMN SELL 702.7 @ 1,440.2795 (take_profit) PnL +4,185 TMN (+0.42%)
+[fill] PUMPTMN BUY 698.1 @ 1,440.7200 fee 0.300%
+[trade] PUMPTMN SELL 696.0 @ 1,455.0000 (take_profit) PnL +4,390 TMN (+0.44%)
+[fill] PUMPTMN BUY 698.7 @ 1,440.7200 fee 0.300%
+[trade] PUMPTMN SELL 696.6 @ 1,452.0000 (take_profit) PnL +2,309 TMN (+0.23%)
+[fill] PUMPTMN BUY 690.4 @ 1,458.7290 fee 0.300%
+[trade] PUMPTMN SELL 688.3 @ 1,479.2600 (take_profit) PnL +8,056 TMN (+0.80%)
+[fill] PUMPTMN BUY 689.5 @ 1,463.0000 fee 0.250%
+[trade] PUMPTMN SELL 687.7 @ 1,473.0000 (take_profit) PnL +1,823 TMN (+0.18%)
+[qualify] ARBTMN disqualified: premium sd 34 bps, 18 dips, 89% reverted in 60 min
+[fill] XAUTTMN BUY 0.00091 @ 1,098,352,139.0000 fee 0.250%
+[qualify] ARBTMN qualified: premium sd 34 bps, 19 dips, 95% reverted in 60 min
+[trade] XAUTTMN SELL 0.0009 @ 1,106,998,254.0000 (take_profit) PnL +2,813 TMN (+0.28%)
+[fill] ARBTMN BUY 20.5035 @ 49,245.0000 fee 0.250%
+[trade] ARBTMN SELL 20.4522 @ 49,542.0000 (take_profit) PnL +1,017 TMN (+0.10%)
+[fill] ARBTMN BUY 20.5328 @ 49,185.5805 fee 0.300%
+[trade] ARBTMN SELL 20.4712 @ 49,657.0000 (take_profit) PnL +4,079 TMN (+0.40%)
+[fill] ARBTMN BUY 20.3916 @ 49,566.0000 fee 0.250%
+[qualify] BNBTMN disqualified: premium sd 19 bps, 3 dips, 67% reverted in 60 min
+[fill] PUMPTMN BUY 698.5 @ 1,444.7220 fee 0.300%
+[trade] PUMPTMN SELL 696.4 @ 1,459.0000 (take_profit) PnL +4,376 TMN (+0.43%)
+[trade] ARBTMN SELL 20.3406 @ 51,960.0000 (take_profit) PnL +43,526 TMN (+4.31%)
+[fill] PUMPTMN BUY 705.1 @ 1,447.0000 fee 0.250%
+[fill] ARBTMN BUY 20.6256 @ 49,431.7035 fee 0.300%
+[trade] ARBTMN SELL 20.5637 @ 50,908.0000 (take_profit) PnL +24,682 TMN (+2.42%)
+[fill] ARBTMN BUY 20.7034 @ 49,538.7570 fee 0.300%
+[trade] ARBTMN SELL 20.6412 @ 50,600.0000 (take_profit) PnL +16,217 TMN (+1.58%)
+[fill] ARBTMN BUY 20.3819 @ 50,375.1750 fee 0.300%
+[trade] PUMPTMN SELL 703.3 @ 1,443.2780 (max_hold) PnL -8,213 TMN (-0.81%)
+[trade] ARBTMN SELL 20.3207 @ 50,885.5445 (take_profit) PnL +4,189 TMN (+0.41%)
+[qualify] ARBTMN disqualified: premium sd 45 bps, 28 dips, 89% reverted in 60 min
+[qualify] ARBTMN qualified: premium sd 45 bps, 28 dips, 93% reverted in 60 min
+[fill] ARBTMN BUY 19.9264 @ 51,573.7740 fee 0.300%
+[trade] ARBTMN SELL 19.8666 @ 52,990.0000 (take_profit) PnL +22,421 TMN (+2.18%)
+[fill] ARBTMN BUY 19.8465 @ 52,006.9905 fee 0.300%
+[trade] ARBTMN SELL 19.7869 @ 52,595.6890 (take_profit) PnL +5,430 TMN (+0.53%)
+[fill] ARBTMN BUY 19.9873 @ 51,696.0000 fee 0.250%
+[trade] ARBTMN SELL 19.9373 @ 52,007.0000 (take_profit) PnL +1,025 TMN (+0.10%)
+[fill] ARBTMN BUY 19.6767 @ 52,522.0000 fee 0.250%
+[trade] ARBTMN SELL 19.6275 @ 53,001.4860 (take_profit) PnL +3,707 TMN (+0.36%)
+[fill] TRXTMN BUY 11.8 @ 87,372.0000 fee 0.250%
+[trade] TRXTMN SELL 11.7 @ 88,354.8005 (take_profit) PnL +5,835 TMN (+0.57%)
+[fill] ARBTMN BUY 20.1088 @ 51,487.7310 fee 0.300%
+[trade] ARBTMN SELL 20.0484 @ 51,904.0350 (take_profit) PnL +2,118 TMN (+0.20%)
+[fill] ARBTMN BUY 20.1694 @ 51,354.6645 fee 0.300%
+[trade] ARBTMN SELL 20.1088 @ 51,815.0000 (take_profit) PnL +3,545 TMN (+0.34%)
+[fill] ARBTMN BUY 20.1942 @ 51,326.6505 fee 0.300%
+[trade] ARBTMN SELL 20.1336 @ 52,306.8335 (take_profit) PnL +13,466 TMN (+1.30%)
+[fill] ARBTMN BUY 19.9544 @ 52,079.0000 fee 0.250%
+[trade] ARBTMN SELL 19.9045 @ 52,622.0000 (take_profit) PnL +5,592 TMN (+0.54%)
+[fill] ARBTMN BUY 19.9544 @ 52,135.0545 fee 0.300%
+[trade] ARBTMN SELL 19.8945 @ 52,475.0000 (take_profit) PnL +1,032 TMN (+0.10%)
+[fill] PEPETMN BUY 954660.0 @ 1.0899 fee 0.300%
+[trade] PEPETMN SELL 951796.0 @ 1.1025 (take_profit) PnL +6,205 TMN (+0.60%)
+[fill] PEPETMN BUY 967606.0 @ 1.0766 fee 0.300%
+[trade] PEPETMN SELL 964703.0 @ 1.0870 (take_profit) PnL +3,683 TMN (+0.35%)
+[fill] PEPETMN BUY 969104.0 @ 1.0757 fee 0.300%
+[trade] PEPETMN SELL 966196.0 @ 1.0868 (take_profit) PnL +4,936 TMN (+0.47%)
+[fill] PEPETMN BUY 969663.0 @ 1.0761 fee 0.300%
+[trade] PEPETMN SELL 966754.0 @ 1.0871 (take_profit) PnL +4,840 TMN (+0.46%)
+[fill] PEPETMN BUY 964631.0 @ 1.0827 fee 0.300%
+[trade] PEPETMN SELL 961737.0 @ 1.0963 (take_profit) PnL +6,697 TMN (+0.64%)
+[fill] ARBTMN BUY 20.2201 @ 51,719.8470 fee 0.300%
+[trade] ARBTMN SELL 20.1594 @ 52,233.8700 (take_profit) PnL +4,066 TMN (+0.39%)
+[fill] PEPETMN BUY 966797.0 @ 1.0825 fee 0.300%
+[trade] PEPETMN SELL 963896.0 @ 1.0929 (take_profit) PnL +4,212 TMN (+0.40%)
+[fill] PEPETMN BUY 967390.0 @ 1.0827 fee 0.300%
+[trade] PEPETMN SELL 964487.0 @ 1.0980 (take_profit) PnL +8,927 TMN (+0.85%)
+[fill] PEPETMN BUY 969230.0 @ 1.0825 fee 0.300%
+[fill] PUMPTMN BUY 708.9 @ 1,481.7405 fee 0.300%
+[trade] PUMPTMN SELL 706.7 @ 1,495.2520 (take_profit) PnL +3,228 TMN (+0.31%)
+[fill] SOLTMN BUY 0.03581 @ 29,343,020.0000 fee 0.250%
+[trade] PEPETMN SELL 966322.0 @ 1.1003 (take_profit) PnL +11,355 TMN (+1.08%)
+[trade] SOLTMN SELL 0.03572 @ 29,570,208.4995 (take_profit) PnL +2,320 TMN (+0.22%)
+[fill] PEPETMN BUY 955584.0 @ 1.1016 fee 0.300%
+[trade] PEPETMN SELL 952717.0 @ 1.1260 (take_profit) PnL +17,454 TMN (+1.66%)
+[fill] PUMPTMN BUY 671.9 @ 1,571.7855 fee 0.300%
+[trade] PUMPTMN SELL 669.8 @ 1,588.2055 (take_profit) PnL +4,639 TMN (+0.44%)
+[fill] PEPETMN BUY 963828.0 @ 1.0967 fee 0.250%
+[trade] PEPETMN SELL 961418.0 @ 1.1053 (take_profit) PnL +2,969 TMN (+0.28%)
+[fill] BTCTMN BUY 4.876e-05 @ 21,688,638,012.0000 fee 0.250%
+[trade] BTCTMN SELL 4.863e-05 @ 21,857,259,599.0000 (take_profit) PnL +2,899 TMN (+0.27%)
+[fill] ARBTMN BUY 21.0272 @ 50,323.0000 fee 0.250%
+[fill] PEPETMN BUY 985839.0 @ 1.0730 fee 0.300%
+[trade] PEPETMN SELL 982881.0 @ 1.0878 (take_profit) PnL +8,665 TMN (+0.82%)
+[qualify] PEPETMN disqualified: premium sd 41 bps, 29 dips, 90% reverted in 60 min
+[qualify] PEPETMN qualified: premium sd 41 bps, 28 dips, 93% reverted in 60 min
+[trade] ARBTMN SELL 20.9746 @ 48,876.5495 (stop_loss) PnL -36,060 TMN (-3.41%)
+[qualify] SOLTMN disqualified: premium sd 23 bps, 3 dips, 33% reverted in 60 min
+[fill] BTCTMN BUY 4.954e-05 @ 21,245,726,222.3340 fee 0.300%
+[trade] BTCTMN SELL 4.939e-05 @ 21,436,730,345.0000 (take_profit) PnL +3,629 TMN (+0.34%)
+[fill] ARBTMN BUY 22.1522 @ 47,550.0000 fee 0.250%
+[fill] PUMPTMN BUY 782.0 @ 1,345.0000 fee 0.250%
+[trade] ARBTMN SELL 22.0968 @ 48,028.9735 (take_profit) PnL +4,767 TMN (+0.45%)
+[trade] PUMPTMN SELL 780.0 @ 1,354.0000 (take_profit) PnL +1,750 TMN (+0.17%)
+[fill] ARBTMN BUY 22.1128 @ 47,693.8350 fee 0.300%
+[trade] ARBTMN SELL 22.0464 @ 48,115.0000 (take_profit) PnL +3,469 TMN (+0.33%)
+[fill] PUMPTMN BUY 790.1 @ 1,335.6675 fee 0.300%
+[trade] PUMPTMN SELL 787.7 @ 1,351.0000 (take_profit) PnL +6,251 TMN (+0.59%)
+[fill] XRPTMN BUY 3.0 @ 350,470.0000 fee 0.250%
+[fill] ARBTMN BUY 22.2767 @ 47,434.7055 fee 0.300%
+[trade] ARBTMN SELL 22.2098 @ 47,861.0575 (take_profit) PnL +3,110 TMN (+0.29%)
+[fill] PEPETMN BUY 1037557.0 @ 1.0186 fee 0.300%
+[fill] PUMPTMN BUY 817.5 @ 1,291.6455 fee 0.300%
+[trade] PEPETMN SELL 1034444.0 @ 1.0261 (take_profit) PnL +1,925 TMN (+0.18%)
+[fill] ARBTMN BUY 22.8089 @ 46,141.0590 fee 0.300%
+[trade] ARBTMN SELL 22.7404 @ 46,576.7000 (take_profit) PnL +3,572 TMN (+0.34%)
+[fill] ETHTMN BUY 0.00168 @ 624,782,339.0520 fee 0.300%
+[trade] ETHTMN SELL 0.00167 @ 630,916,552.0000 (take_profit) PnL +4,470 TMN (+0.43%)
+[fill] ARBTMN BUY 22.823 @ 46,143.0600 fee 0.300%
+[trade] ARBTMN SELL 22.7545 @ 46,444.0000 (take_profit) PnL +1,046 TMN (+0.10%)
+[trade] PUMPTMN SELL 815.0 @ 1,256.3715 (stop_loss) PnL -34,988 TMN (-3.31%)
+[fill] ARBTMN BUY 23.0946 @ 45,329.6535 fee 0.300%
+[fill] PUMPTMN BUY 833.6 @ 1,255.6275 fee 0.300%
+[trade] PUMPTMN SELL 831.0 @ 1,270.0000 (take_profit) PnL +6,165 TMN (+0.59%)
+[fill] PEPETMN BUY 1065149.0 @ 0.9850 fee 0.300%
+[trade] PEPETMN SELL 1061953.0 @ 0.9997 (take_profit) PnL +9,817 TMN (+0.94%)
+[fill] PEPETMN BUY 1057172.0 @ 1.0005 fee 0.300%
+[trade] PEPETMN SELL 1054000.0 @ 1.0139 (take_profit) PnL +8,279 TMN (+0.78%)
+[trade] ARBTMN SELL 23.0253 @ 46,827.5745 (take_profit) PnL +28,115 TMN (+2.69%)
+[fill] PEPETMN BUY 1050361.0 @ 1.0112 fee 0.300%
+[trade] PEPETMN SELL 1047209.0 @ 1.0192 (take_profit) PnL +2,517 TMN (+0.24%)
+[trade] XRPTMN SELL 2.9 @ 351,824.0000 (max_hold) PnL -1,682 TMN (-0.17%)
+[fill] PEPETMN BUY 1034047.0 @ 1.0281 fee 0.300%
+[trade] PEPETMN SELL 1030944.0 @ 1.0349 (take_profit) PnL +1,140 TMN (+0.11%)
+[fill] PUMPTMN BUY 820.0 @ 1,296.6480 fee 0.300%
+[trade] PUMPTMN SELL 817.5 @ 1,310.0000 (take_profit) PnL +5,048 TMN (+0.47%)
+[fill] DOGETMN BUY 48.8 @ 21,787.8885 fee 0.300%
+[trade] DOGETMN SELL 48.6 @ 21,941.0240 (take_profit) PnL +1,057 TMN (+0.10%)
+[qualify] PEPETMN disqualified: premium sd 50 bps, 32 dips, 94% reverted in 60 min
+[fill] ARBTMN BUY 21.8559 @ 48,712.0000 fee 0.250%
+[trade] ARBTMN SELL 21.8012 @ 49,380.0000 (take_profit) PnL +9,210 TMN (+0.87%)
+[fill] ETHTMN BUY 0.00164 @ 646,641,659.2500 fee 0.300%
+[trade] ETHTMN SELL 0.00163 @ 653,819,132.8970 (take_profit) PnL +5,331 TMN (+0.50%)
+[fill] ETHTMN BUY 0.00166 @ 641,005,849.7535 fee 0.300%
+[trade] ETHTMN SELL 0.00165 @ 650,497,837.0000 (take_profit) PnL +9,796 TMN (+0.92%)
+[fill] PUMPTMN BUY 831.0 @ 1,286.6430 fee 0.300%
+[trade] PUMPTMN SELL 828.5 @ 1,298.3505 (take_profit) PnL +3,265 TMN (+0.31%)
+[fill] ARBTMN BUY 22.6374 @ 47,263.6200 fee 0.300%
+[trade] ARBTMN SELL 22.5694 @ 47,669.0000 (take_profit) PnL +3,250 TMN (+0.30%)
+[fill] ETHTMN BUY 0.00168 @ 634,362,803.0000 fee 0.250%
+[trade] ETHTMN SELL 0.00167 @ 639,400,988.0000 (take_profit) PnL +3,089 TMN (+0.29%)
+[fill] ETHTMN BUY 0.00169 @ 632,141,464.7760 fee 0.300%
+[fill] ARBTMN BUY 22.9988 @ 46,533.2550 fee 0.300%
+[fill] PUMPTMN BUY 847.8 @ 1,262.6310 fee 0.300%
+[trade] ETHTMN SELL 0.00168 @ 640,602,157.0000 (take_profit) PnL +8,328 TMN (+0.78%)
+[trade] PUMPTMN SELL 845.2 @ 1,274.0000 (take_profit) PnL +3,706 TMN (+0.35%)
+[trade] ARBTMN SELL 22.9298 @ 47,214.3810 (take_profit) PnL +9,160 TMN (+0.86%)
+[fill] ETHTMN BUY 0.00169 @ 633,280,283.0000 fee 0.250%
+[trade] ETHTMN SELL 0.00168 @ 637,649,944.0000 (take_profit) PnL +1,996 TMN (+0.19%)
+[fill] ARBTMN BUY 23.0 @ 46,767.3720 fee 0.300%
+[fill] PUMPTMN BUY 852.5 @ 1,260.6300 fee 0.300%
+[trade] PUMPTMN SELL 849.9 @ 1,271.3640 (take_profit) PnL +2,657 TMN (+0.25%)
+[trade] ARBTMN SELL 22.931 @ 47,201.3875 (take_profit) PnL +3,478 TMN (+0.32%)
+[fill] DOGETMN BUY 50.6 @ 21,251.6205 fee 0.300%
+[trade] DOGETMN SELL 50.4 @ 21,419.0000 (take_profit) PnL +2,514 TMN (+0.23%)
+[fill] PUMPTMN BUY 856.7 @ 1,257.6285 fee 0.300%
+[trade] PUMPTMN SELL 854.1 @ 1,269.3650 (take_profit) PnL +3,540 TMN (+0.33%)
+[fill] ARBTMN BUY 22.8206 @ 47,249.0000 fee 0.250%
+[fill] PUMPTMN BUY 854.3 @ 1,260.6300 fee 0.300%
+[trade] PUMPTMN SELL 851.7 @ 1,272.0000 (take_profit) PnL +3,745 TMN (+0.35%)
+[trade] ARBTMN SELL 22.7635 @ 48,268.8535 (take_profit) PnL +17,224 TMN (+1.60%)
+[fill] ARBTMN BUY 22.627 @ 47,845.0000 fee 0.250%
+[trade] ARBTMN SELL 22.5704 @ 48,207.0000 (take_profit) PnL +2,744 TMN (+0.25%)
+[fill] ARBTMN BUY 22.4727 @ 48,194.0850 fee 0.300%
+[qualify] ADATMN qualified: premium sd 48 bps, 26 dips, 92% reverted in 60 min
+[trade] ARBTMN SELL 22.4052 @ 48,875.5500 (take_profit) PnL +8,734 TMN (+0.81%)
+[fill] TRXTMN BUY 12.8 @ 84,724.3410 fee 0.300%
+[trade] TRXTMN SELL 12.7 @ 85,700.0000 (take_profit) PnL +6,432 TMN (+0.60%)
+[fill] TRXTMN BUY 12.7 @ 85,134.0000 fee 0.250%
+[trade] TRXTMN SELL 12.6 @ 85,899.0000 (take_profit) PnL +4,245 TMN (+0.39%)
+[fill] TRXTMN BUY 12.8 @ 84,893.4255 fee 0.300%
+[trade] TRXTMN SELL 12.7 @ 85,832.0000 (take_profit) PnL +5,951 TMN (+0.55%)
+[fill] TRXTMN BUY 12.7 @ 85,114.5360 fee 0.300%
+[trade] TRXTMN SELL 12.6 @ 85,905.0000 (take_profit) PnL +4,027 TMN (+0.37%)
+[fill] TRXTMN BUY 12.8 @ 84,991.4745 fee 0.300%
+[trade] TRXTMN SELL 12.7 @ 85,814.0000 (take_profit) PnL +4,474 TMN (+0.41%)
+[fill] ARBTMN BUY 22.5715 @ 48,289.1325 fee 0.300%
+[trade] ARBTMN SELL 22.5037 @ 49,037.0000 (take_profit) PnL +10,801 TMN (+0.99%)
+[fill] TRXTMN BUY 12.8 @ 84,900.0000 fee 0.250%
+[fill] ARBTMN BUY 22.0532 @ 49,424.7000 fee 0.300%
+[trade] ARBTMN SELL 21.987 @ 49,943.0160 (take_profit) PnL +4,832 TMN (+0.44%)
+[trade] TRXTMN SELL 12.7 @ 85,311.3230 (max_hold) PnL -729 TMN (-0.07%)
+[qualify] BNBTMN qualified: premium sd 22 bps, 5 dips, 100% reverted in 60 min
+[fill] ARBTMN BUY 22.3305 @ 48,941.0000 fee 0.250%
+[fill] ADATMN BUY 18.0 @ 60,557.2635 fee 0.300%
+[trade] ARBTMN SELL 22.2746 @ 49,236.0000 (take_profit) PnL +1,097 TMN (+0.10%)
+[fill] PUMPTMN BUY 838.8 @ 1,304.0000 fee 0.250%
+[trade] ADATMN SELL 17.9 @ 61,148.4105 (take_profit) PnL +4,036 TMN (+0.37%)
+[qualify] ADATMN disqualified: premium sd 42 bps, 27 dips, 89% reverted in 60 min
+[fill] TRXTMN BUY 12.8 @ 85,331.0000 fee 0.250%
+[trade] TRXTMN SELL 12.7 @ 86,076.9400 (take_profit) PnL +3,478 TMN (+0.32%)
+[trade] PUMPTMN SELL 836.7 @ 1,314.3425 (take_profit) PnL +2,620 TMN (+0.24%)
+[qualify] ADATMN qualified: premium sd 43 bps, 27 dips, 93% reverted in 60 min
+[qualify] XRPTMN disqualified: premium sd 19 bps, 3 dips, 67% reverted in 60 min
+[fill] PUMPTMN BUY 852.1 @ 1,285.6425 fee 0.300%
+[fill] ARBTMN BUY 22.6225 @ 48,388.1820 fee 0.300%
+[trade] PUMPTMN SELL 849.5 @ 1,298.3505 (take_profit) PnL +4,200 TMN (+0.38%)
+[trade] ARBTMN SELL 22.5546 @ 48,716.6295 (take_profit) PnL +828 TMN (+0.08%)
+[fill] PUMPTMN BUY 866.0 @ 1,266.0000 fee 0.250%
+[trade] PUMPTMN SELL 863.8 @ 1,276.3615 (take_profit) PnL +2,902 TMN (+0.26%)
+[fill] PUMPTMN BUY 872.2 @ 1,257.6285 fee 0.300%
+[trade] PUMPTMN SELL 869.5 @ 1,271.0000 (take_profit) PnL +5,573 TMN (+0.51%)
+[qualify] ADATMN disqualified: premium sd 51 bps, 28 dips, 93% reverted in 60 min
+[fill] PUMPTMN BUY 885.1 @ 1,240.6200 fee 0.300%
+[trade] PUMPTMN SELL 882.4 @ 1,252.3735 (take_profit) PnL +3,762 TMN (+0.34%)
+[fill] TRXTMN BUY 12.4 @ 88,342.0000 fee 0.250%
+[fill] PUMPTMN BUY 876.6 @ 1,254.6270 fee 0.300%
+[trade] PUMPTMN SELL 873.9 @ 1,263.0000 (take_profit) PnL +1,259 TMN (+0.11%)
+[trade] TRXTMN SELL 12.3 @ 88,174.8905 (max_hold) PnL -8,032 TMN (-0.74%)
+[qualify] TRXTMN disqualified: premium sd 43 bps, 19 dips, 84% reverted in 60 min
+[fill] DOGETMN BUY 51.0 @ 21,512.7510 fee 0.300%
+[fill] ARBTMN BUY 23.0045 @ 47,729.0000 fee 0.250%
+[qualify] PEPETMN qualified: premium sd 50 bps, 34 dips, 100% reverted in 60 min
+[trade] ARBTMN SELL 22.9469 @ 46,176.9000 (stop_loss) PnL -41,540 TMN (-3.78%)
+[trade] DOGETMN SELL 50.8 @ 20,816.5865 (stop_loss) PnL -41,826 TMN (-3.82%)
+[qualify] ETHTMN disqualified: premium sd 22 bps, 7 dips, 86% reverted in 60 min
+[fill] DOGETMN BUY 51.7 @ 20,877.4335 fee 0.300%
+[fill] PUMPTMN BUY 912.7 @ 1,185.5925 fee 0.300%
+[trade] DOGETMN SELL 51.5 @ 21,189.4000 (take_profit) PnL +9,557 TMN (+0.89%)
+[trade] PUMPTMN SELL 909.9 @ 1,204.0000 (take_profit) PnL +10,764 TMN (+0.99%)
+[fill] PEPETMN BUY 1050049.0 @ 1.0330 fee 0.300%
+[trade] PEPETMN SELL 1046898.0 @ 1.0464 (take_profit) PnL +7,446 TMN (+0.69%)
+[fill] PEPETMN BUY 1049868.0 @ 1.0345 fee 0.300%
+[trade] PEPETMN SELL 1046718.0 @ 1.0413 (take_profit) PnL +1,117 TMN (+0.10%)
+[qualify] ETHTMN qualified: premium sd 22 bps, 7 dips, 100% reverted in 60 min
+[fill] PUMPTMN BUY 947.0 @ 1,147.0000 fee 0.250%
+[trade] PUMPTMN SELL 944.6 @ 1,154.4225 (take_profit) PnL +1,024 TMN (+0.09%)
+[qualify] SOLTMN qualified: premium sd 37 bps, 20 dips, 90% reverted in 60 min
+[fill] PEPETMN BUY 1051695.0 @ 1.0333 fee 0.300%
+[trade] PEPETMN SELL 1048539.0 @ 1.0425 (take_profit) PnL +3,067 TMN (+0.28%)
+[fill] ARBTMN BUY 23.2466 @ 46,775.3760 fee 0.300%
+[trade] ARBTMN SELL 23.1768 @ 47,310.3330 (take_profit) PnL +5,847 TMN (+0.54%)
+[fill] ARBTMN BUY 23.5647 @ 46,196.0865 fee 0.300%
+[trade] ARBTMN SELL 23.494 @ 46,555.7105 (take_profit) PnL +1,902 TMN (+0.17%)
+[fill] ARBTMN BUY 23.5173 @ 46,306.1415 fee 0.300%
+[trade] ARBTMN SELL 23.4467 @ 46,609.0000 (take_profit) PnL +1,102 TMN (+0.10%)
+[fill] ARBTMN BUY 23.6607 @ 46,023.0000 fee 0.300%
+[trade] ARBTMN SELL 23.5897 @ 46,324.0000 (take_profit) PnL +1,102 TMN (+0.10%)
+[fill] ARBTMN BUY 23.5788 @ 46,194.0855 fee 0.300%
+[trade] ARBTMN SELL 23.508 @ 46,496.0000 (take_profit) PnL +1,097 TMN (+0.10%)
+[fill] ARBTMN BUY 23.7666 @ 45,835.9065 fee 0.300%
+[trade] ARBTMN SELL 23.6953 @ 46,256.8600 (take_profit) PnL +3,418 TMN (+0.31%)
+[fill] ARBTMN BUY 23.7053 @ 45,983.9805 fee 0.300%
+[trade] ARBTMN SELL 23.6341 @ 47,226.3750 (take_profit) PnL +22,744 TMN (+2.09%)
+[fill] PUMPTMN BUY 950.6 @ 1,151.5755 fee 0.300%
+[trade] PUMPTMN SELL 947.7 @ 1,169.4150 (take_profit) PnL +10,298 TMN (+0.94%)
+[fill] ARBTMN BUY 22.9212 @ 47,855.9160 fee 0.300%
+[trade] ARBTMN SELL 22.8524 @ 48,229.0000 (take_profit) PnL +2,480 TMN (+0.23%)
+[fill] PEPETMN BUY 1022712.0 @ 1.0730 fee 0.300%
+[trade] PEPETMN SELL 1019643.0 @ 1.0868 (take_profit) PnL +7,972 TMN (+0.73%)
+[fill] PEPETMN BUY 1015854.0 @ 1.0820 fee 0.250%
+[trade] PEPETMN SELL 1013314.0 @ 1.0995 (take_profit) PnL +11,592 TMN (+1.05%)
+[fill] PEPETMN BUY 1008672.0 @ 1.0919 fee 0.300%
+[trade] PEPETMN SELL 1005645.0 @ 1.0995 (take_profit) PnL +925 TMN (+0.08%)
+[fill] ARBTMN BUY 21.5936 @ 51,024.4995 fee 0.300%
+[trade] ARBTMN SELL 21.5288 @ 51,427.2735 (take_profit) PnL +2,044 TMN (+0.19%)
+[fill] ARBTMN BUY 21.3808 @ 51,555.0000 fee 0.250%
+[trade] ARBTMN SELL 21.3273 @ 51,945.0000 (take_profit) PnL +2,792 TMN (+0.25%)
+[qualify] XRPTMN qualified: premium sd 22 bps, 5 dips, 100% reverted in 60 min
+[fill] ARBTMN BUY 21.5558 @ 51,162.5685 fee 0.300%
+[trade] ARBTMN SELL 21.4911 @ 51,709.0000 (take_profit) PnL +5,657 TMN (+0.51%)
+[fill] PUMPTMN BUY 919.4 @ 1,200.6000 fee 0.300%
+[fill] ARBTMN BUY 21.2425 @ 51,926.9505 fee 0.300%
+[trade] PUMPTMN SELL 916.6 @ 1,211.3940 (take_profit) PnL +3,251 TMN (+0.29%)
+[trade] ARBTMN SELL 21.1787 @ 52,446.7635 (take_profit) PnL +4,368 TMN (+0.40%)
+[fill] ARBTMN BUY 21.4097 @ 51,625.8000 fee 0.300%
+[trade] ARBTMN SELL 21.3454 @ 52,081.9460 (take_profit) PnL +3,086 TMN (+0.28%)
+[fill] ARBTMN BUY 21.2355 @ 52,077.0000 fee 0.250%
+[trade] ARBTMN SELL 21.1824 @ 52,458.7575 (take_profit) PnL +1,988 TMN (+0.18%)
+[fill] ARBTMN BUY 21.1445 @ 52,321.1475 fee 0.300%
+[trade] ARBTMN SELL 21.081 @ 52,817.0000 (take_profit) PnL +4,351 TMN (+0.39%)
+[fill] PUMPTMN BUY 953.1 @ 1,161.5805 fee 0.300%
+[trade] PUMPTMN SELL 950.2 @ 1,170.0000 (take_profit) PnL +1,900 TMN (+0.17%)
+[fill] ARBTMN BUY 21.2807 @ 52,047.0000 fee 0.250%
+[trade] ARBTMN SELL 21.2274 @ 52,373.8000 (take_profit) PnL +833 TMN (+0.08%)
+[fill] ARBTMN BUY 21.7046 @ 51,026.5005 fee 0.300%
+[trade] ARBTMN SELL 21.6394 @ 51,747.0000 (take_profit) PnL +9,469 TMN (+0.86%)
+[fill] ARBTMN BUY 22.1635 @ 50,046.0105 fee 0.300%
+[trade] ARBTMN SELL 22.097 @ 50,595.0000 (take_profit) PnL +6,008 TMN (+0.54%)
+[fill] SOLTMN BUY 0.0408 @ 27,217,165.7820 fee 0.300%
+[fill] BTCTMN BUY 5.19e-05 @ 21,414,788,681.3190 fee 0.300%
+[fill] ARBTMN BUY 21.7677 @ 51,026.5005 fee 0.300%
+[trade] ARBTMN SELL 21.7023 @ 51,360.0000 (take_profit) PnL +1,119 TMN (+0.10%)
+[trade] BTCTMN SELL 5.174e-05 @ 21,554,403,653.0000 (take_profit) PnL +1,102 TMN (+0.10%)
+[trade] SOLTMN SELL 0.04067 @ 27,550,209.0045 (take_profit) PnL +6,853 TMN (+0.62%)
+[fill] PUMPTMN BUY 934.2 @ 1,190.5950 fee 0.300%
+[trade] PUMPTMN SELL 931.3 @ 1,199.0000 (take_profit) PnL +1,700 TMN (+0.15%)
+[fill] PUMPTMN BUY 931.8 @ 1,194.0000 fee 0.250%
+[trade] PUMPTMN SELL 929.4 @ 1,211.3940 (take_profit) PnL +10,007 TMN (+0.90%)
+[fill] PUMPTMN BUY 920.0 @ 1,211.6055 fee 0.300%
+[trade] PUMPTMN SELL 917.2 @ 1,224.3875 (take_profit) PnL +5,011 TMN (+0.45%)
+[fill] PUMPTMN BUY 909.2 @ 1,227.0000 fee 0.250%
+[trade] PUMPTMN SELL 906.9 @ 1,236.0000 (take_profit) PnL +2,571 TMN (+0.23%)
+[fill] PUMPTMN BUY 917.5 @ 1,216.6080 fee 0.300%
+[trade] PUMPTMN SELL 914.7 @ 1,232.3835 (take_profit) PnL +7,700 TMN (+0.69%)
+[fill] PUMPTMN BUY 909.5 @ 1,229.0000 fee 0.250%
+[trade] PUMPTMN SELL 907.2 @ 1,247.0000 (take_profit) PnL +10,707 TMN (+0.96%)
+[fill] ARBTMN BUY 22.2714 @ 50,288.1315 fee 0.300%
+[trade] ARBTMN SELL 22.2045 @ 50,616.0000 (take_profit) PnL +1,110 TMN (+0.10%)
+[fill] PUMPTMN BUY 943.2 @ 1,187.5935 fee 0.300%
+[trade] PUMPTMN SELL 940.3 @ 1,202.3985 (take_profit) PnL +7,169 TMN (+0.64%)
+[fill] PUMPTMN BUY 938.1 @ 1,195.5975 fee 0.300%
+[trade] PUMPTMN SELL 935.2 @ 1,230.0000 (take_profit) PnL +25,933 TMN (+2.31%)
+[fill] BNBTMN BUY 0.00586 @ 192,096,000.0000 fee 0.300%
+[trade] BNBTMN SELL 0.00584 @ 193,535,367.0000 (take_profit) PnL +2,205 TMN (+0.20%)
+[fill] BNBTMN BUY 0.0059 @ 190,735,377.0285 fee 0.300%
+[trade] BNBTMN SELL 0.00588 @ 192,966,001.0000 (take_profit) PnL +6,905 TMN (+0.61%)
+[fill] PEPETMN BUY 1102327.0 @ 1.0238 fee 0.300%
+[trade] PEPETMN SELL 1099020.0 @ 1.0334 (take_profit) PnL +3,726 TMN (+0.33%)
+[fill] XRPTMN BUY 3.3 @ 335,073.4530 fee 0.300%
+[fill] PEPETMN BUY 1126189.0 @ 1.0030 fee 0.300%
+[fill] PUMPTMN BUY 998.3 @ 1,130.5650 fee 0.300%
+[trade] PUMPTMN SELL 995.3 @ 1,145.4270 (take_profit) PnL +7,986 TMN (+0.71%)
+[trade] PEPETMN SELL 1122810.0 @ 1.0142 (take_profit) PnL +5,761 TMN (+0.51%)
+[trade] XRPTMN SELL 3.2 @ 339,781.0245 (take_profit) PnL +8,576 TMN (+0.80%)
+[fill] ARBTMN BUY 24.051 @ 47,131.5540 fee 0.300%
+[trade] ARBTMN SELL 23.9788 @ 47,591.0000 (take_profit) PnL +4,763 TMN (+0.42%)
+[fill] ARBTMN BUY 23.7864 @ 47,698.8375 fee 0.300%
+[fill] XRPTMN BUY 3.3 @ 335,507.6700 fee 0.300%
+[trade] XRPTMN SELL 3.2 @ 340,466.0000 (take_profit) PnL +9,912 TMN (+0.92%)
+[fill] PUMPTMN BUY 983.2 @ 1,157.0000 fee 0.250%
+[trade] ARBTMN SELL 23.715 @ 47,947.0145 (max_hold) PnL -929 TMN (-0.08%)
+[trade] PUMPTMN SELL 980.7 @ 1,164.0000 (take_profit) PnL +1,167 TMN (+0.10%)
+[fill] PUMPTMN BUY 992.9 @ 1,145.0000 fee 0.250%
+[fill] ARBTMN BUY 23.4659 @ 48,499.2375 fee 0.300%
+[trade] PUMPTMN SELL 990.4 @ 1,158.4205 (take_profit) PnL +7,008 TMN (+0.62%)
+[qualify] BNBTMN disqualified: premium sd 42 bps, 5 dips, 80% reverted in 60 min
+[trade] ARBTMN SELL 23.3955 @ 47,700.1380 (max_hold) PnL -25,457 TMN (-2.24%)
+[fill] ARBTMN BUY 23.6865 @ 47,830.9035 fee 0.300%
+[trade] ARBTMN SELL 23.6154 @ 48,256.0000 (take_profit) PnL +3,791 TMN (+0.33%)
+[fill] ARBTMN BUY 24.2176 @ 46,793.3850 fee 0.300%
+[trade] ARBTMN SELL 24.1449 @ 47,259.3585 (take_profit) PnL +4,428 TMN (+0.39%)
+[fill] ARBTMN BUY 24.1192 @ 47,023.5000 fee 0.300%
+[trade] ARBTMN SELL 24.0468 @ 47,341.0000 (take_profit) PnL +1,386 TMN (+0.12%)
+[fill] ARBTMN BUY 23.997 @ 47,270.6235 fee 0.300%
+[qualify] TRXTMN qualified: premium sd 39 bps, 10 dips, 90% reverted in 60 min
+[trade] ARBTMN SELL 23.925 @ 45,778.0995 (stop_loss) PnL -42,397 TMN (-3.74%)
+[fill] DOGETMN BUY 56.9 @ 19,754.8725 fee 0.300%
+[trade] DOGETMN SELL 56.7 @ 19,958.0160 (take_profit) PnL +4,753 TMN (+0.42%)
+[fill] PUMPTMN BUY 1116.8 @ 1,008.5040 fee 0.300%
+[fill] ARBTMN BUY 24.6368 @ 45,622.8000 fee 0.300%
+[fill] SOLTMN BUY 0.04315 @ 26,058,151.5645 fee 0.300%
+[trade] SOLTMN SELL 0.04302 @ 26,240,301.0000 (take_profit) PnL +1,641 TMN (+0.15%)
+[fill] XRPTMN BUY 3.4 @ 324,277.0000 fee 0.250%
+[trade] XRPTMN SELL 3.3 @ 327,221.3075 (take_profit) PnL +3,795 TMN (+0.35%)
+[trade] ARBTMN SELL 24.5628 @ 45,949.0140 (take_profit) PnL +1,255 TMN (+0.11%)
+[trade] PUMPTMN SELL 1113.4 @ 1,020.0000 (take_profit) PnL +6,582 TMN (+0.58%)
+[qualify] TRXTMN disqualified: premium sd 41 bps, 13 dips, 85% reverted in 60 min
+[fill] ARBTMN BUY 24.5545 @ 45,991.9845 fee 0.300%
+[fill] DOGETMN BUY 56.2 @ 20,055.0225 fee 0.300%
+[fill] PEPETMN BUY 1123781.0 @ 1.0032 fee 0.300%
+[trade] PEPETMN SELL 1120409.0 @ 1.0210 (take_profit) PnL +13,116 TMN (+1.16%)
+[trade] ARBTMN SELL 24.4808 @ 47,357.3095 (take_profit) PnL +26,558 TMN (+2.35%)
+[qualify] TRXTMN qualified: premium sd 41 bps, 13 dips, 92% reverted in 60 min
+[fill] XRPTMN BUY 3.4 @ 334,270.0515 fee 0.300%
+[trade] XRPTMN SELL 3.3 @ 337,563.0000 (take_profit) PnL +4,763 TMN (+0.43%)
+[trade] DOGETMN SELL 56.0 @ 20,489.7500 (take_profit) PnL +17,523 TMN (+1.56%)
+[fill] PUMPTMN BUY 1083.1 @ 1,054.5270 fee 0.300%
+[trade] PUMPTMN SELL 1079.8 @ 1,065.0000 (take_profit) PnL +5,007 TMN (+0.44%)
+[qualify] DOGETMN disqualified: premium sd 22 bps, 9 dips, 89% reverted in 60 min
+[fill] PUMPTMN BUY 1078.9 @ 1,059.5295 fee 0.300%
+[trade] PUMPTMN SELL 1075.6 @ 1,071.0000 (take_profit) PnL +6,029 TMN (+0.53%)
+[fill] TRXTMN BUY 13.3 @ 85,664.0000 fee 0.250%
+[trade] TRXTMN SELL 13.2 @ 86,237.8595 (take_profit) PnL +1,326 TMN (+0.12%)
+[fill] PUMPTMN BUY 1061.4 @ 1,078.5390 fee 0.300%
+[fill] ARBTMN BUY 23.9539 @ 47,781.8790 fee 0.300%
+[trade] PUMPTMN SELL 1058.2 @ 1,087.4560 (take_profit) PnL +2,549 TMN (+0.22%)
+[fill] SOLTMN BUY 0.04256 @ 26,914,236.3930 fee 0.300%
+[trade] ARBTMN SELL 23.882 @ 48,406.0000 (take_profit) PnL +8,581 TMN (+0.75%)
+[fill] PEPETMN BUY 1105856.0 @ 1.0363 fee 0.300%
+[trade] PEPETMN SELL 1102538.0 @ 1.0444 (take_profit) PnL +1,994 TMN (+0.17%)
+[trade] SOLTMN SELL 0.04243 @ 27,114,439.0000 (take_profit) PnL +2,182 TMN (+0.19%)
+[fill] PUMPTMN BUY 1057.4 @ 1,085.5425 fee 0.300%
+[fill] ARBTMN BUY 23.7603 @ 48,397.1865 fee 0.300%
+[fill] PEPETMN BUY 1108556.0 @ 1.0390 fee 0.300%
+[trade] PEPETMN SELL 1105230.0 @ 1.0481 (take_profit) PnL +3,685 TMN (+0.32%)
+[fill] SOLTMN BUY 0.04259 @ 27,062,728.6020 fee 0.300%
+[trade] ARBTMN SELL 23.689 @ 49,211.0000 (take_profit) PnL +12,914 TMN (+1.12%)
+[fill] ARBTMN BUY 23.469 @ 49,266.6210 fee 0.300%
+[trade] PUMPTMN SELL 1054.2 @ 1,121.0000 (take_profit) PnL +30,981 TMN (+2.70%)
+[fill] PEPETMN BUY 1112169.0 @ 1.0411 fee 0.250%
+[trade] PEPETMN SELL 1109388.0 @ 1.0514 (take_profit) PnL +5,004 TMN (+0.43%)
+[trade] SOLTMN SELL 0.04246 @ 27,286,349.0005 (take_profit) PnL +2,562 TMN (+0.22%)
+[qualify] SOLTMN disqualified: premium sd 26 bps, 5 dips, 80% reverted in 60 min
+[trade] ARBTMN SELL 23.3985 @ 49,727.0000 (take_profit) PnL +4,395 TMN (+0.38%)
+[fill] ARBTMN BUY 23.3161 @ 49,749.0000 fee 0.250%
+[fill] PEPETMN BUY 1108624.0 @ 1.0457 fee 0.300%
+[trade] PEPETMN SELL 1105298.0 @ 1.0533 (take_profit) PnL +1,987 TMN (+0.17%)
+[trade] ARBTMN SELL 23.2578 @ 50,274.8500 (take_profit) PnL +5,822 TMN (+0.50%)
+[fill] ARBTMN BUY 23.3568 @ 49,727.8515 fee 0.300%
+[trade] ARBTMN SELL 23.2867 @ 50,226.0000 (take_profit) PnL +5,192 TMN (+0.45%)
+[fill] PUMPTMN BUY 1015.3 @ 1,145.0000 fee 0.250%
+[trade] PUMPTMN SELL 1012.7 @ 1,154.0000 (take_profit) PnL +3,287 TMN (+0.28%)
+[fill] ARBTMN BUY 22.7966 @ 51,026.5005 fee 0.300%
+[trade] ARBTMN SELL 22.7282 @ 51,360.0000 (take_profit) PnL +1,172 TMN (+0.10%)
+[fill] ARBTMN BUY 23.1183 @ 50,331.1530 fee 0.300%
+[trade] ARBTMN SELL 23.0489 @ 50,933.0000 (take_profit) PnL +7,446 TMN (+0.64%)
+[fill] PUMPTMN BUY 1006.5 @ 1,157.5785 fee 0.300%
+[fill] TRXTMN BUY 13.4 @ 86,556.2565 fee 0.300%
+[trade] TRXTMN SELL 13.3 @ 87,411.0000 (take_profit) PnL +4,998 TMN (+0.43%)
+[fill] PEPETMN BUY 1096280.0 @ 1.0643 fee 0.300%
+[trade] PEPETMN SELL 1092991.0 @ 1.0752 (take_profit) PnL +5,440 TMN (+0.47%)
+[trade] PUMPTMN SELL 1003.4 @ 1,168.4155 (take_profit) PnL +3,862 TMN (+0.33%)
+[fill] ARBTMN BUY 22.8724 @ 51,068.0000 fee 0.250%
+[trade] ARBTMN SELL 22.8152 @ 51,389.0000 (take_profit) PnL +1,472 TMN (+0.13%)
+[fill] PUMPTMN BUY 1007.4 @ 1,159.5795 fee 0.300%
+[trade] PUMPTMN SELL 1004.3 @ 1,168.0000 (take_profit) PnL +2,020 TMN (+0.17%)
+[fill] TRXTMN BUY 13.4 @ 86,744.0000 fee 0.250%
+[trade] TRXTMN SELL 13.3 @ 87,405.0000 (take_profit) PnL +2,994 TMN (+0.26%)
+[fill] ARBTMN BUY 23.1837 @ 50,425.2000 fee 0.300%
+[trade] ARBTMN SELL 23.1141 @ 50,886.0000 (take_profit) PnL +4,203 TMN (+0.36%)
+[fill] TRXTMN BUY 13.5 @ 86,517.0000 fee 0.250%
+[fill] ARBTMN BUY 23.2267 @ 50,352.0000 fee 0.250%
+[trade] ARBTMN SELL 23.1686 @ 50,666.0000 (take_profit) PnL +1,417 TMN (+0.12%)
+[fill] PUMPTMN BUY 1021.7 @ 1,144.5720 fee 0.300%
+[fill] ETHTMN BUY 0.00187 @ 623,689,392.8520 fee 0.300%
+[trade] ETHTMN SELL 0.00186 @ 628,915,764.8100 (take_profit) PnL +2,721 TMN (+0.23%)
+[trade] PUMPTMN SELL 1018.6 @ 1,159.0000 (take_profit) PnL +8,237 TMN (+0.70%)
+[trade] TRXTMN SELL 13.4 @ 87,002.4770 (max_hold) PnL +102 TMN (+0.01%)
+[qualify] TRXTMN disqualified: premium sd 45 bps, 16 dips, 81% reverted in 60 min
+[fill] ARBTMN BUY 23.3608 @ 50,177.0760 fee 0.300%
+[trade] ARBTMN SELL 23.2907 @ 51,864.0550 (take_profit) PnL +32,151 TMN (+2.74%)
+[fill] ARBTMN BUY 23.1314 @ 50,955.4650 fee 0.300%
+[fill] PUMPTMN BUY 1022.7 @ 1,151.5755 fee 0.300%
+[trade] PUMPTMN SELL 1019.6 @ 1,183.4080 (take_profit) PnL +25,304 TMN (+2.15%)
+[trade] ARBTMN SELL 23.062 @ 51,474.2500 (take_profit) PnL +4,867 TMN (+0.41%)
+[fill] ARBTMN BUY 23.3689 @ 50,692.3335 fee 0.300%
+[trade] ARBTMN SELL 23.2987 @ 51,231.3715 (take_profit) PnL +5,424 TMN (+0.46%)
+[fill] PUMPTMN BUY 1021.6 @ 1,160.5800 fee 0.300%
+[trade] PUMPTMN SELL 1018.5 @ 1,169.0000 (take_profit) PnL +2,042 TMN (+0.17%)
+[fill] ARBTMN BUY 23.3304 @ 50,845.0000 fee 0.250%
+[fill] PUMPTMN BUY 1048.3 @ 1,130.5650 fee 0.300%
+[trade] ARBTMN SELL 23.272 @ 51,438.0000 (take_profit) PnL +7,842 TMN (+0.66%)
+[qualify] ETHTMN disqualified: premium sd 17 bps, 4 dips, 75% reverted in 60 min
+[trade] PUMPTMN SELL 1045.1 @ 1,146.4265 (take_profit) PnL +9,427 TMN (+0.80%)
+[qualify] ETHTMN qualified: premium sd 18 bps, 4 dips, 100% reverted in 60 min
+[fill] PUMPTMN BUY 1038.5 @ 1,145.5725 fee 0.300%
+[trade] PUMPTMN SELL 1035.3 @ 1,156.4215 (take_profit) PnL +4,072 TMN (+0.34%)
+[fill] ARBTMN BUY 23.0791 @ 51,580.7775 fee 0.300%
+[trade] ARBTMN SELL 23.0098 @ 52,306.8335 (take_profit) PnL +9,524 TMN (+0.80%)
+[fill] PEPETMN BUY 1096763.0 @ 1.0872 fee 0.250%
+[trade] PEPETMN SELL 1094021.0 @ 1.0946 (take_profit) PnL +2,121 TMN (+0.18%)
+[qualify] XRPTMN disqualified: premium sd 23 bps, 7 dips, 86% reverted in 60 min
+[fill] PUMPTMN BUY 1034.2 @ 1,153.5765 fee 0.300%
+[trade] PUMPTMN SELL 1031.0 @ 1,163.0000 (take_profit) PnL +3,139 TMN (+0.26%)
+[qualify] XRPTMN qualified: premium sd 23 bps, 7 dips, 100% reverted in 60 min
+[fill] PUMPTMN BUY 1028.6 @ 1,160.5800 fee 0.300%
+[fill] PEPETMN BUY 1081620.0 @ 1.1046 fee 0.300%
+[trade] PEPETMN SELL 1078375.0 @ 1.1162 (take_profit) PnL +5,968 TMN (+0.50%)
+[trade] PUMPTMN SELL 1025.5 @ 1,173.0000 (take_profit) PnL +6,148 TMN (+0.52%)
+[fill] PEPETMN BUY 1088658.0 @ 1.0987 fee 0.300%
+[fill] PUMPTMN BUY 1031.6 @ 1,158.5790 fee 0.300%
+[trade] PUMPTMN SELL 1028.5 @ 1,169.4150 (take_profit) PnL +3,951 TMN (+0.33%)
+[trade] PEPETMN SELL 1085392.0 @ 1.1095 (take_profit) PnL +5,070 TMN (+0.42%)
+[fill] PEPETMN BUY 1070309.0 @ 1.1196 fee 0.300%
+[fill] ARBTMN BUY 23.9612 @ 49,968.9720 fee 0.300%
+[fill] PUMPTMN BUY 1020.1 @ 1,176.5880 fee 0.300%
+[trade] ARBTMN SELL 23.8893 @ 50,557.0000 (take_profit) PnL +7,436 TMN (+0.62%)
+[trade] PEPETMN SELL 1067098.0 @ 1.1749 (take_profit) PnL +52,325 TMN (+4.37%)
+[trade] PUMPTMN SELL 1017.0 @ 1,196.0000 (take_profit) PnL +13,101 TMN (+1.09%)
+[fill] PEPETMN BUY 1035445.0 @ 1.1717 fee 0.300%
+[fill] PUMPTMN BUY 1014.1 @ 1,196.5980 fee 0.300%
+[fill] ETHTMN BUY 0.00191 @ 634,683,240.0285 fee 0.300%
+[trade] PEPETMN SELL 1032338.0 @ 1.1973 (take_profit) PnL +19,713 TMN (+1.62%)
+[fill] ARBTMN BUY 24.0522 @ 50,635.0000 fee 0.250%
+[trade] PUMPTMN SELL 1011.0 @ 1,211.0000 (take_profit) PnL +7,859 TMN (+0.65%)
+[trade] ETHTMN SELL 0.0019 @ 641,572,418.0000 (take_profit) PnL +6,413 TMN (+0.53%)
+[fill] PUMPTMN BUY 1006.6 @ 1,212.6060 fee 0.300%
+[trade] PUMPTMN SELL 1003.5 @ 1,224.0000 (take_profit) PnL +4,702 TMN (+0.39%)
+[trade] ARBTMN SELL 23.992 @ 51,474.2500 (take_profit) PnL +13,386 TMN (+1.10%)
+[fill] PEPETMN BUY 1042014.0 @ 1.1745 fee 0.250%
+[trade] PEPETMN SELL 1039408.0 @ 1.1841 (take_profit) PnL +3,842 TMN (+0.31%)
+[fill] ARBTMN BUY 24.1469 @ 50,706.0000 fee 0.250%
+[fill] BTCTMN BUY 5.731e-05 @ 21,410,700,000.0000 fee 0.300%
+[trade] ARBTMN SELL 24.0865 @ 51,329.3225 (take_profit) PnL +8,244 TMN (+0.67%)
+[trade] BTCTMN SELL 5.713e-05 @ 21,655,511,920.0000 (take_profit) PnL +7,213 TMN (+0.59%)
+[fill] PEPETMN BUY 1060652.0 @ 1.1568 fee 0.250%
+[fill] ARBTMN BUY 25.1092 @ 48,867.4215 fee 0.300%
+[trade] ARBTMN SELL 25.0338 @ 49,351.3120 (take_profit) PnL +4,726 TMN (+0.39%)
+[trade] PEPETMN SELL 1058000.0 @ 1.1680 (take_profit) PnL +5,092 TMN (+0.41%)
+[fill] PEPETMN BUY 1059506.0 @ 1.1601 fee 0.300%
+[trade] PEPETMN SELL 1056327.0 @ 1.1698 (take_profit) PnL +2,889 TMN (+0.24%)
+[fill] PEPETMN BUY 1048223.0 @ 1.1732 fee 0.300%
+[trade] PEPETMN SELL 1045078.0 @ 1.1863 (take_profit) PnL +6,916 TMN (+0.56%)
+[fill] PEPETMN BUY 1040340.0 @ 1.1837 fee 0.300%
+[trade] PEPETMN SELL 1037218.0 @ 1.1919 (take_profit) PnL +1,729 TMN (+0.14%)
+[fill] PEPETMN BUY 1037741.0 @ 1.1870 fee 0.300%
+[trade] PEPETMN SELL 1034627.0 @ 1.1974 (take_profit) PnL +3,975 TMN (+0.32%)
+[fill] PEPETMN BUY 1028418.0 @ 1.1986 fee 0.250%
+[fill] PUMPTMN BUY 1034.3 @ 1,192.5960 fee 0.300%
+[trade] PEPETMN SELL 1025846.0 @ 1.2111 (take_profit) PnL +6,635 TMN (+0.54%)
+[trade] PUMPTMN SELL 1031.1 @ 1,204.0000 (take_profit) PnL +4,955 TMN (+0.40%)
+[fill] PUMPTMN BUY 995.3 @ 1,240.6200 fee 0.300%
+[trade] PUMPTMN SELL 992.3 @ 1,257.0000 (take_profit) PnL +9,431 TMN (+0.76%)
+[fill] PUMPTMN BUY 1003.9 @ 1,232.0000 fee 0.250%
+[trade] PUMPTMN SELL 1001.3 @ 1,240.0000 (take_profit) PnL +1,815 TMN (+0.15%)
+[fill] PUMPTMN BUY 980.5 @ 1,261.6305 fee 0.300%
+[trade] PUMPTMN SELL 977.5 @ 1,284.3575 (take_profit) PnL +14,738 TMN (+1.19%)
+[fill] PUMPTMN BUY 988.9 @ 1,254.0000 fee 0.250%
+[trade] PUMPTMN SELL 986.4 @ 1,262.3685 (take_profit) PnL +1,419 TMN (+0.11%)
+[fill] ARBTMN BUY 24.5774 @ 50,468.2215 fee 0.300%
+[trade] ARBTMN SELL 24.5036 @ 50,824.5750 (take_profit) PnL +1,275 TMN (+0.10%)
+[fill] ARBTMN BUY 24.8615 @ 49,902.0000 fee 0.250%
+[trade] ARBTMN SELL 24.7993 @ 50,409.0000 (take_profit) PnL +6,346 TMN (+0.51%)
+[fill] ARBTMN BUY 24.8246 @ 50,024.0000 fee 0.250%
+[trade] ARBTMN SELL 24.7625 @ 50,439.7675 (take_profit) PnL +3,444 TMN (+0.28%)
+[fill] ARBTMN BUY 25.2403 @ 49,225.6005 fee 0.300%
+[trade] ARBTMN SELL 25.1645 @ 49,858.0000 (take_profit) PnL +9,050 TMN (+0.73%)
+[fill] ARBTMN BUY 25.2593 @ 49,257.6165 fee 0.300%
+[fill] PEPETMN BUY 1068423.0 @ 1.1636 fee 0.250%
+[trade] PEPETMN SELL 1065751.0 @ 1.1727 (take_profit) PnL +2,855 TMN (+0.23%)
+[trade] ARBTMN SELL 25.1835 @ 49,584.0000 (take_profit) PnL +1,365 TMN (+0.11%)
+[qualify] BNBTMN qualified: premium sd 45 bps, 18 dips, 94% reverted in 60 min
+[fill] ARBTMN BUY 25.1135 @ 49,591.7835 fee 0.300%
+[trade] ARBTMN SELL 25.0381 @ 49,952.0000 (take_profit) PnL +2,156 TMN (+0.17%)
+[qualify] BNBTMN disqualified: premium sd 44 bps, 19 dips, 89% reverted in 60 min
+[fill] ARBTMN BUY 24.6834 @ 50,529.2520 fee 0.300%
+[trade] ARBTMN SELL 24.6093 @ 50,929.0000 (take_profit) PnL +2,963 TMN (+0.24%)
+[fill] ARBTMN BUY 24.8099 @ 50,279.1270 fee 0.300%
+[trade] ARBTMN SELL 24.7354 @ 50,760.0000 (take_profit) PnL +5,013 TMN (+0.40%)
+[qualify] ETHTMN disqualified: premium sd 18 bps, 7 dips, 86% reverted in 60 min
+[fill] PUMPTMN BUY 998.8 @ 1,250.0000 fee 0.250%
+[trade] PUMPTMN SELL 996.3 @ 1,260.0000 (take_profit) PnL +3,703 TMN (+0.30%)
+[qualify] ETHTMN qualified: premium sd 18 bps, 7 dips, 100% reverted in 60 min
+[fill] PEPETMN BUY 1021471.0 @ 1.2236 fee 0.300%
+[trade] PEPETMN SELL 1018406.0 @ 1.2476 (take_profit) PnL +17,504 TMN (+1.40%)
+[fill] ARBTMN BUY 24.5389 @ 51,086.5305 fee 0.300%
+[trade] ARBTMN SELL 24.4652 @ 51,699.1375 (take_profit) PnL +7,432 TMN (+0.59%)
+[fill] ARBTMN BUY 24.4033 @ 51,425.0000 fee 0.250%
+[trade] ARBTMN SELL 24.3422 @ 51,999.9870 (take_profit) PnL +7,062 TMN (+0.56%)
+[fill] PUMPTMN BUY 963.9 @ 1,303.6515 fee 0.300%
+[fill] PEPETMN BUY 1025241.0 @ 1.2253 fee 0.250%
+[trade] PEPETMN SELL 1022677.0 @ 1.2331 (take_profit) PnL +1,684 TMN (+0.13%)
+[trade] PUMPTMN SELL 961.0 @ 1,322.0000 (take_profit) PnL +10,687 TMN (+0.85%)
+[fill] ARBTMN BUY 24.2766 @ 51,894.0000 fee 0.250%
+[trade] ARBTMN SELL 24.2159 @ 52,494.0000 (take_profit) PnL +8,202 TMN (+0.65%)
+[fill] PUMPTMN BUY 933.2 @ 1,351.6755 fee 0.300%
+[trade] PUMPTMN SELL 930.4 @ 1,361.0000 (take_profit) PnL +1,726 TMN (+0.14%)
+[fill] PUMPTMN BUY 926.0 @ 1,362.6810 fee 0.300%
+[trade] PUMPTMN SELL 923.2 @ 1,382.0000 (take_profit) PnL +10,860 TMN (+0.86%)
+[fill] ARBTMN BUY 24.2629 @ 52,066.0000 fee 0.250%
+[qualify] DOGETMN qualified: premium sd 20 bps, 4 dips, 100% reverted in 60 min
+[trade] ARBTMN SELL 24.2022 @ 50,516.7290 (stop_loss) PnL -44,322 TMN (-3.51%)
+[fill] PUMPTMN BUY 921.9 @ 1,360.6800 fee 0.300%
+[trade] PUMPTMN SELL 919.1 @ 1,382.0000 (take_profit) PnL +12,657 TMN (+1.01%)
+[qualify] BTCTMN disqualified: premium sd 16 bps, 4 dips, 75% reverted in 60 min
+[qualify] BTCTMN qualified: premium sd 16 bps, 4 dips, 100% reverted in 60 min
+[qualify] ETHTMN disqualified: premium sd 18 bps, 8 dips, 88% reverted in 60 min
+[qualify] ETHTMN qualified: premium sd 18 bps, 8 dips, 100% reverted in 60 min
+[fill] PUMPTMN BUY 984.2 @ 1,276.0000 fee 0.250%
+[trade] PUMPTMN SELL 981.7 @ 1,289.3550 (take_profit) PnL +6,174 TMN (+0.49%)
+[fill] PUMPTMN BUY 985.4 @ 1,276.0000 fee 0.250%
+[trade] PUMPTMN SELL 982.9 @ 1,285.0000 (take_profit) PnL +2,545 TMN (+0.20%)
+[qualify] SOLTMN qualified: premium sd 28 bps, 5 dips, 100% reverted in 60 min
+[fill] PEPETMN BUY 1062273.0 @ 1.1846 fee 0.250%
+{
+ "tag": "all20_fresh1_edge0.8_qual1",
+ "period": [
+  "2026-10-08T13:34:00+03:30",
+  "2026-10-22T12:47:00+03:30"
+ ],
+ "days": 13.97,
+ "coins": [
+  "PEPE",
+  "BTC",
+  "PUMP",
+  "ETH",
+  "BNB",
+  "DOGE",
+  "XRP",
+  "XAUT",
+  "ARB",
+  "SOL",
+  "TRX",
+  "S",
+  "LTC",
+  "SUI",
+  "APE",
+  "ADA",
+  "UNI",
+  "FIL",
+  "SAND",
+  "SHIB"
+ ],
+ "params": {
+  "entry_edge": 0.008,
+  "fee_maker": 0.0025,
+  "fee_taker": 0.003,
+  "pos_frac": 0.2,
+  "max_pos": 3,
+  "stop_loss": 0.03,
+  "max_hold": 14400.0,
+  "spread": 0.001,
+  "fill_margin": 0.0005,
+  "min_minute_volume_tmn": 1000000.0,
+  "fresh_quotes": true
+ },
+ "trades": 266,
+ "wins": 254,
+ "pnl_tmn": 1277760,
+ "final_equity": 6297684,
+ "return_pct": 25.954,
+ "max_drawdown_pct": 1.802,
+ "exits": {
+  "take_profit": 253,
+  "max_hold": 7,
+  "stop_loss": 6
+ },
+ "trades_per_day": {
+  "2026-10-09": 10,
+  "2026-10-10": 4,
+  "2026-10-11": 23,
+  "2026-10-12": 18,
+  "2026-10-13": 36,
+  "2026-10-14": 15,
+  "2026-10-15": 22,
+  "2026-10-16": 14,
+  "2026-10-17": 12,
+  "2026-10-18": 18,
+  "2026-10-19": 34,
+  "2026-10-20": 34,
+  "2026-10-21": 21,
+  "2026-10-22": 5
+ },
+ "by_market": {
+  "ADATMN": {
+   "trades": 1,
+   "wins": 1,
+   "pnl_tmn": 4036
+  },
+  "ARBTMN": {
+   "trades": 96,
+   "wins": 90,
+   "pnl_tmn": 407068
+  },
+  "BNBTMN": {
+   "trades": 2,
+   "wins": 2,
+   "pnl_tmn": 9109
+  },
+  "BTCTMN": {
+   "trades": 5,
+   "wins": 5,
+   "pnl_tmn": 16701
+  },
+  "DOGETMN": {
+   "trades": 7,
+   "wins": 6,
+   "pnl_tmn": -5411
+  },
+  "ETHTMN": {
+   "trades": 8,
+   "wins": 8,
+   "pnl_tmn": 42145
+  },
+  "PEPETMN": {
+   "trades": 47,
+   "wins": 47,
+   "pnl_tmn": 319906
+  },
+  "PUMPTMN": {
+   "trades": 74,
+   "wins": 72,
+   "pnl_tmn": 394872
+  },
+  "SOLTMN": {
+   "trades": 6,
+   "wins": 6,
+   "pnl_tmn": 16304
+  },
+  "TRXTMN": {
+   "trades": 13,
+   "wins": 11,
+   "pnl_tmn": 35099
+  },
+  "XAUTTMN": {
+   "trades": 2,
+   "wins": 2,
+   "pnl_tmn": 12566
+  },
+  "XRPTMN": {
+   "trades": 5,
+   "wins": 4,
+   "pnl_tmn": 25364
+  }
+ }
+}
