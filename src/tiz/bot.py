@@ -50,16 +50,20 @@ def env(k, d):
 
 
 MODE = env("MODE", "paper")
-COINS = env("COINS", "BTC,ETH,XRP,DOGE,SOL,PEPE").split(",")
+COINS = env("COINS", "TRX,BTC,BNB,ETH,XRP,DOGE,XAUT").split(",")  # markets that revert reliably (study/, 14 days)
 FEE_MAKER = env("FEE_MAKER", 0.0025)  # /v1/account/fee for TMN markets on 2026-10-22; live re-reads it
 FEE_TAKER = env("FEE_TAKER", 0.003)
 ENTRY_EDGE = env("ENTRY_EDGE", 0.008)  # buy this far below baseline-fair
 ZERO_FEE_EDGE = env("ZERO_FEE_EDGE", 0.005)  # used once a real fill proves fees are 0 (backtest optimum at fee 0)
 EXIT_EDGE = env("EXIT_EDGE", 0.0)  # sell this far above baseline-fair
 MIN_PROFIT = env("MIN_PROFIT", 0.001)  # net of both fees
-STOP_LOSS = env("STOP_LOSS", 0.015)
-MAX_HOLD = env("MAX_HOLD", 3600.0)
+STOP_LOSS = env("STOP_LOSS", 0.03)  # 1.5% cut dips that later reverted
+MAX_HOLD = env("MAX_HOLD", 4 * 3600.0)
 ORDER_TTL = env("ORDER_TTL", 120.0)
+REQUOTE = env("REQUOTE", 0.0005)  # replace a resting order once its ideal price moved this much (stale quotes get picked off)
+SHOCK_SEC = env("SHOCK_SEC", 300.0)
+SHOCK_REF = env("SHOCK_REF", 0.005)  # no entries after Binance falls this much within SHOCK_SEC
+SHOCK_USDT = env("SHOCK_USDT", 0.003)  # ... or USDTTMN moves this much
 POS_FRAC = env("POS_FRAC", 0.2)  # share of equity per position
 MAX_POS = env("MAX_POS", 3)  # positions + open entry orders; 3 × 20% keeps 40% in TMN
 DAILY_STOP = env("DAILY_STOP", 0.03)
@@ -269,6 +273,10 @@ class Market:
         self.last_hist = self.last_sample = self.last_step = 0.0
         self.was_stale = False
         self.last_reject = None
+        self.fair = 0.0
+        self.prox = 1.0  # ask / our buy price - 1: how close a fill is, for ranking slots
+        self.entry_base = 0.0  # baseline frozen at entry, so the exit target doesn't drift with the dip
+        self.refs = deque(maxlen=400)  # (ts, binance mid) for the shock gate
 
 
 class Bot:
@@ -277,6 +285,7 @@ class Bot:
         self.judge = judge or Judge(enabled=False)
         self.m = {m.sym: m for m in markets}
         self.usdt = {"bid": (0.0, 0.0), "ask": (0.0, 0.0)}
+        self.usdts = deque(maxlen=400)
         self.bal, self.last_bal, self.adopted = {}, 0.0, False
         self.day, self.day_equity, self.halted, self.peak, self.max_dd = None, None, False, 0.0, 0.0
         self.t0 = now
@@ -290,6 +299,11 @@ class Bot:
             self.usdt[side] = (levels[0][0], now)
         elif sym in self.m:
             self.m[sym].book[side] = (levels[0][0], now)
+
+    def on_usdt_tick(self, now):
+        mid = (self.usdt["bid"][0] + self.usdt["ask"][0]) / 2
+        if mid and (not self.usdts or now - self.usdts[-1][0] >= 10):
+            self.usdts.append((now, mid))
 
     def on_ref(self, coin, mid, now=None):
         m = self.m.get(coin + "TMN")
@@ -307,6 +321,20 @@ class Bot:
         left = END_TS - now
         return "flatten" if left <= FLATTEN_BEFORE else "closing" if left <= ENTRY_CUTOFF else "open"
 
+    def shock(self, m, now):
+        """Binance falling fast or USDTTMN jumping: Wallex dips then are moves, not gaps."""
+        old = [p for t, p in m.refs if now - t <= SHOCK_SEC]
+        ou = [p for t, p in self.usdts if now - t <= SHOCK_SEC]
+        return bool(old and m.ref[0] < max(old) * (1 - SHOCK_REF)) or bool(ou and (max(ou) / min(ou) - 1) > SHOCK_USDT)
+
+    def entry_price(self, m, target):
+        return min(rnd(target * (1 - ENTRY_EDGE), m.tick), m.book["ask"][0])
+
+    def take_price(self, m, fair, bid):
+        entry = m.pos_cost / m.pos_qty
+        floor_px = entry * (1 + FEE_MAKER + MIN_PROFIT)
+        return max(rnd(max(fair * (1 + m.entry_base) * (1 + EXIT_EDGE), floor_px), m.tick, up=True), bid)
+
     def busy_slots(self):
         return sum(1 for m in self.m.values() if m.pos_qty > 0 or (m.order and m.order["side"] == "BUY"))
 
@@ -319,6 +347,7 @@ class Bot:
             if not self.adopted and all(m.book["bid"][0] for m in self.m.values()):
                 self.adopt(now)
         self.risk_day(now)
+        self.on_usdt_tick(now)
         phase = self.phase(now)
         for m in self.m.values():
             await self.step(m, now, phase)
@@ -345,7 +374,8 @@ class Bot:
             self.halted = True
             self.event("halt", f"daily stop: equity {eq:,.0f} < {self.day_equity:,.0f} -{DAILY_STOP:.0%}; no entries until tomorrow")
 
-    async def step(self, m, now, phase):
+    async def step(self, m, now, phase, fresh_only=False):
+        """fresh_only: re-price resting orders on new Binance/USDT data without a new Wallex print (backtest)."""
         if self.stale(m, now):
             if not m.was_stale:
                 m.was_stale = True
@@ -357,15 +387,20 @@ class Bot:
         bid, ask = m.book["bid"][0], m.book["ask"][0]
         fair = m.ref[0] * (self.usdt["bid"][0] + self.usdt["ask"][0]) / 2
         prem = (bid + ask) / 2 / fair - 1
-        m.n += 1
-        a = max(1 / m.n, min(now - m.last_step, 60) / BASELINE_SEC)  # mean while warming up, then time-based EMA
-        m.last_step = now
-        m.base = prem if m.base is None else m.base + a * (prem - m.base)
+        if not fresh_only:
+            m.n += 1
+            a = max(1 / m.n, min(now - m.last_step, 60) / BASELINE_SEC)  # mean while warming up, then time-based EMA
+            m.last_step = now
+            m.base = prem if m.base is None else m.base + a * (prem - m.base)
         target = fair * (1 + m.base)
-        if now - m.last_hist >= 60:
+        m.fair = fair
+        m.prox = ask / max(self.entry_price(m, target), 1e-12) - 1
+        if not m.refs or now - m.refs[-1][0] >= 10:
+            m.refs.append((now, m.ref[0]))
+        if not fresh_only and now - m.last_hist >= 60:
             m.last_hist = now
             m.hist.append((now, prem, m.ref[0], (ask - bid) / bid))
-        if now - m.last_sample >= 15:
+        if not fresh_only and now - m.last_sample >= 15:
             m.last_sample = now
             self.j.add("samples", now, m.sym, bid, ask, fair, prem, m.base)
         sig = dict(rule="premium_reversion", fair=round(fair, 4), baseline_fair=round(target, 4), bid=bid, ask=ask,
@@ -379,7 +414,7 @@ class Bot:
             await self.exit(m, now, bid, ask, target, phase, sig)
         elif m.pos_qty:
             m.pos_qty = m.pos_cost = 0.0  # dust below min notional cannot be sold; stop tracking it
-        elif phase == "open" and not self.halted and now - self.t0 >= WARMUP:
+        elif phase == "open" and not self.halted and now - self.t0 >= WARMUP and not self.shock(m, now):
             await self.enter(m, now, bid, ask, target, sig)
 
     def ranked_ok(self, m, now):
@@ -387,15 +422,15 @@ class Bot:
         v = self.judge.get(m.sym, now)
         if v["verdict"] != "approve":
             return False, v
-        free = MAX_POS - self.busy_slots()
-        better = sorted((self.judge.get(s, now)["confidence"], s) for s, x in self.m.items()
-                        if not x.order and not x.pos_qty and self.judge.get(s, now)["verdict"] == "approve")
-        mine = [s for _, s in reversed(better)][:free]
-        return m.sym in mine, v
+        free = MAX_POS - sum(1 for x in self.m.values() if x.pos_qty > 0)
+        # slots go to the most AI-confident markets, then to those whose ask is closest to our buy price
+        cands = sorted((-self.judge.get(s, now)["confidence"], x.prox, s) for s, x in self.m.items()
+                       if not x.pos_qty and self.judge.get(s, now)["verdict"] == "approve")
+        return m.sym in [s for *_, s in cands[:free]], v
 
     async def enter(self, m, now, bid, ask, target, sig):
         ok, v = self.ranked_ok(m, now)
-        price = min(rnd(target * (1 - ENTRY_EDGE), m.tick), ask)
+        price = self.entry_price(m, target)
         eq = self.equity()
         budget = min(POS_FRAC * eq, self.bal.get("TMN", 0) * 0.995)
         qty = rnd(budget / price, m.step) if price > 0 else 0
@@ -426,8 +461,7 @@ class Bot:
         elif held >= MAX_HOLD:
             reason, price = "max_hold", bid
         else:
-            floor_px = entry * (1 + FEE_MAKER + MIN_PROFIT)
-            reason, price = "take_profit", max(rnd(max(target * (1 + EXIT_EDGE), floor_px), m.tick, up=True), bid)
+            reason, price = "take_profit", self.take_price(m, m.fair, bid)
         if qty * bid >= MIN_NOTIONAL:
             await self.place(m, now, "SELL", price, qty, reason, (bid, ask), sig, None,
                              dict(entry=round(entry, 4), held_s=round(held), stop_px=round(entry * (1 - STOP_LOSS), 4)))
@@ -461,8 +495,10 @@ class Bot:
             if target is not None and m.pos_qty and o["side"] == "SELL" and o["reason"] == "take_profit":
                 entry = m.pos_cost / m.pos_qty
                 urgent = book[0] <= entry * (1 - STOP_LOSS) or now - m.pos_ts >= MAX_HOLD or phase == "flatten"
-            if target is not None and o["side"] == "BUY" and (phase != "open" or self.halted):
-                urgent = True
+                urgent = urgent or abs(o["price"] / self.take_price(m, m.fair, book[0]) - 1) > REQUOTE
+            if target is not None and o["side"] == "BUY":
+                urgent = (phase != "open" or self.halted or self.shock(m, now) or not self.ranked_ok(m, now)[0]
+                          or abs(o["price"] / self.entry_price(m, target) - 1) > REQUOTE)
             if not st["done"] and target is not None and (now - o["ts"] >= ORDER_TTL or urgent):
                 st = await self.broker.cancel(o["cid"], book)
         except (WallexError, httpx.HTTPError) as e:
@@ -490,7 +526,7 @@ class Bot:
         b = m.base_asset
         if o["side"] == "BUY":
             if m.pos_qty == 0:
-                m.pos_ts = now
+                m.pos_ts, m.entry_base = now, m.base
             m.pos_qty += st["filled"] - st["fee_base"]
             m.pos_cost += st["filled"] * st["avg"] + st["fee_tmn"]
             self.bal["TMN"] = self.bal.get("TMN", 0) - st["filled"] * st["avg"] - st["fee_tmn"]

@@ -21,6 +21,7 @@ DATA, OUT = B.ROOT / "data", B.ROOT / "results"
 SPREAD = float(os.environ.get("BT_SPREAD", 0.001))
 MARGIN = float(os.environ.get("BT_MARGIN", 0.0005))
 MIN_VOL = float(os.environ.get("BT_MIN_VOL", 1_000_000))  # TMN traded in the minute
+FRESH = os.environ.get("BT_FRESH", "1") == "1"  # 0 = orders priced off the previous minute (pessimistic)
 
 
 def get(url, params):
@@ -93,6 +94,16 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
     for t in range(lo_t // 60 * 60, int(hi_t), 60):
         u = usdt.get(t, u)
         now = t + 59.0
+        if FRESH and u is not None and all(last.values()) and bot.t0:
+            # live re-quotes within seconds of a Binance move; approximate that by pricing this minute's resting
+            # orders off this minute's Binance close before the Wallex candle can fill them
+            for c, (w, bn) in series.items():
+                if bn.get(t):
+                    bot.on_ref(c, bn[t], now - 30)
+            bot.on_depth("USDTTMN", "bid", [(u - 1, 0)], now - 30)
+            bot.on_depth("USDTTMN", "ask", [(u + 1, 0)], now - 30)
+            for m in bot.m.values():
+                await bot.step(m, now - 30, bot.phase(now), fresh_only=True)
         for c, (w, bn) in series.items():
             m = bot.m[c + "TMN"]
             if t in w:
@@ -130,7 +141,7 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
     res = dict(tag=tag, period=[B.iso(lo_t), B.iso(hi_t)], days=round((hi_t - lo_t) / 86400, 2), coins=B.COINS,
                params=dict(entry_edge=B.ENTRY_EDGE, fee_maker=B.FEE_MAKER, fee_taker=B.FEE_TAKER, pos_frac=B.POS_FRAC,
                            max_pos=B.MAX_POS, stop_loss=B.STOP_LOSS, max_hold=B.MAX_HOLD, spread=SPREAD,
-                           fill_margin=MARGIN, min_minute_volume_tmn=MIN_VOL),
+                           fill_margin=MARGIN, min_minute_volume_tmn=MIN_VOL, fresh_quotes=FRESH),
                trades=len(rows), wins=sum(r[5] > 0 for r in rows), pnl_tmn=round(sum(r[5] for r in rows)),
                final_equity=round(eq), return_pct=round((eq / 5_000_000 - 1) * 100, 3),
                max_drawdown_pct=round(bot.max_dd * 100, 3), exits=dict(reasons), trades_per_day=dict(sorted(by_day.items())),
