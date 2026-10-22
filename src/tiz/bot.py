@@ -1,0 +1,641 @@
+"""TIZ: Wallex premium mean-reversion bot with an AI judge and a hard risk gate.
+
+Signal (rule): fair = Binance <COIN>USDT mid × Wallex USDTTMN mid. Each Wallex <COIN>TMN market trades at a
+slowly drifting premium to fair; we track it with an EMA (baseline). A dip of ENTRY_EDGE below baseline-fair
+is a liquidity gap that historically closes within the hour, so we rest a limit buy there and sell back at
+baseline-fair (never below breakeven + fees + MIN_PROFIT).
+AI judge: every AI_EVERY seconds an LLM reads per-market context and approves/rejects quoting each market,
+with a written reason and confidence. Only approved markets get entry orders; ranking by confidence fills slots.
+Risk gate (code, AI cannot override): POS_FRAC per position, MAX_POS concurrent (rest stays TMN), STOP_LOSS,
+MAX_HOLD, DAILY_STOP, stale-feed pause, no entries ENTRY_CUTOFF before END_TS, flatten FLATTEN_BEFORE END_TS.
+Run: uv run python -m tiz.bot   (MODE=paper → shadow test on live data; MODE=live → real orders)."""
+import asyncio
+import json
+import logging
+import math
+import os
+import shlex
+import sqlite3
+import statistics
+import tempfile
+import time
+import uuid
+from collections import deque
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+import httpx
+import websockets
+
+from tiz.wallex import Rest, WallexError, stream_depth
+
+log = logging.getLogger("tiz")
+ROOT = Path(__file__).resolve().parents[2]
+TEHRAN = timezone(timedelta(hours=3, minutes=30))
+
+
+def load_env(path=ROOT / ".env"):
+    if os.path.exists(path):
+        for line in open(path):
+            k, sep, v = line.strip().partition("=")
+            if sep and k and not k.startswith("#"):
+                os.environ.setdefault(k.strip(), v.split(" #")[0].strip().strip('"'))
+
+
+load_env()
+
+
+def env(k, d):
+    return type(d)(os.environ.get(k, d))
+
+
+MODE = env("MODE", "paper")
+COINS = env("COINS", "BTC,ETH,XRP,DOGE,SOL,PEPE").split(",")
+FEE_MAKER = env("FEE_MAKER", 0.0025)  # /v1/account/fee for TMN markets on 2026-10-22; live re-reads it
+FEE_TAKER = env("FEE_TAKER", 0.003)
+ENTRY_EDGE = env("ENTRY_EDGE", 0.008)  # buy this far below baseline-fair
+ZERO_FEE_EDGE = env("ZERO_FEE_EDGE", 0.005)  # used once a real fill proves fees are 0 (backtest optimum at fee 0)
+EXIT_EDGE = env("EXIT_EDGE", 0.0)  # sell this far above baseline-fair
+MIN_PROFIT = env("MIN_PROFIT", 0.001)  # net of both fees
+STOP_LOSS = env("STOP_LOSS", 0.015)
+MAX_HOLD = env("MAX_HOLD", 3600.0)
+ORDER_TTL = env("ORDER_TTL", 120.0)
+POS_FRAC = env("POS_FRAC", 0.2)  # share of equity per position
+MAX_POS = env("MAX_POS", 3)  # positions + open entry orders; 3 × 20% keeps 40% in TMN
+DAILY_STOP = env("DAILY_STOP", 0.03)
+STALE = env("STALE", 30.0)
+BASELINE_SEC = env("BASELINE_SEC", 1800.0)
+WARMUP = env("WARMUP", 600.0)
+END_TS = datetime.fromisoformat(env("END_TS", "2026-10-23T23:50:00+03:30")).timestamp()
+ENTRY_CUTOFF = env("ENTRY_CUTOFF", 3 * 3600.0)
+FLATTEN_BEFORE = env("FLATTEN_BEFORE", 3600.0)
+AI_EVERY = env("AI_EVERY", 300.0)
+AI_CMD = env("AI_CMD", "claude -p --model haiku")  # any CLI that reads a prompt on stdin and prints JSON
+AI_MAX_AGE = env("AI_MAX_AGE", 900.0)  # older verdicts count as reject
+MIN_NOTIONAL = 50_000  # TMN, /v1/markets
+PAPER_TMN = env("PAPER_TMN", 5_000_000.0)
+DB = env("DB", str(ROOT / "journal.db"))
+DECISIONS = env("DECISIONS", str(ROOT / "decisions.jsonl"))
+
+
+def disallowed():
+    p = ROOT / "config" / "disallowed_markets.txt"
+    return {ln.strip().replace("/", "") for ln in open(p) if ln.strip() and not ln.startswith("#")}
+
+
+def rnd(x, decimals, up=False):
+    f = 10 ** decimals
+    return (math.ceil if up else math.floor)(x * f + (-1e-9 if up else 1e-9)) / f
+
+
+# ---------------------------------------------------------------- brokers
+class Paper:
+    """Shadow broker: a resting order fills when the opposite best price reaches it (full fill)."""
+
+    def __init__(self, tmn):
+        self.bal, self.orders = {"TMN": tmn}, {}
+
+    async def balances(self):
+        return dict(self.bal)
+
+    async def place(self, m, side, price, qty, book):
+        sym = m.sym
+        cid = "P" + uuid.uuid4().hex[:12]
+        self.orders[cid] = o = dict(sym=sym, side=side, price=price, qty=qty, filled=0.0, avg=0.0,
+                                    fee_base=0.0, fee_tmn=0.0, done=False)
+        need = price * qty if side == "BUY" else qty
+        if self.bal.get("TMN" if side == "BUY" else sym[:-3], 0) + 1e-9 < need:
+            raise WallexError(f"paper: insufficient balance for {side} {qty} {sym}")
+        self._match(o, book, taker=True)
+        return cid
+
+    def _match(self, o, book, taker=False):
+        bid, ask = book
+        base = o["sym"][:-3]
+        if o["done"]:
+            return
+        if o["side"] == "BUY" and ask <= o["price"]:
+            px, fee = (ask, FEE_TAKER) if taker else (o["price"], FEE_MAKER)
+            self.bal["TMN"] -= px * o["qty"]
+            o["fee_base"] = o["qty"] * fee
+            self.bal[base] = self.bal.get(base, 0) + o["qty"] - o["fee_base"]
+        elif o["side"] == "SELL" and bid >= o["price"]:
+            px, fee = (bid, FEE_TAKER) if taker else (o["price"], FEE_MAKER)
+            self.bal[base] = self.bal.get(base, 0) - o["qty"]
+            o["fee_tmn"] = px * o["qty"] * fee
+            self.bal["TMN"] += px * o["qty"] - o["fee_tmn"]
+        else:
+            return
+        o.update(filled=o["qty"], avg=px, done=True)
+
+    async def status(self, cid, book):
+        o = self.orders[cid]
+        self._match(o, book)
+        return o
+
+    async def cancel(self, cid, book):
+        o = await self.status(cid, book)
+        o["done"] = True
+        return o
+
+
+class Live:
+    def __init__(self, rest: Rest):
+        self.rest = rest
+
+    async def balances(self):
+        return {a: free for a, (free, _locked) in (await self.rest.balances()).items()}
+
+    async def place(self, m, side, price, qty, book):
+        cid = "T" + uuid.uuid4().hex[:16].upper()
+        await self.rest.place(m.sym, side, f"{price:.{m.tick}f}", f"{qty:.{m.step}f}", cid)
+        return cid
+
+    @staticmethod
+    def _parse(r):
+        fills = r.get("fills") or []
+        quote = r.get("symbol", "")[-3:]
+        fee_tmn = sum(float(f["fee"]) for f in fills if f.get("feeAsset") == quote)
+        fee_base = sum(float(f["fee"]) for f in fills if f.get("feeAsset") not in (quote, None))
+        filled = float(r.get("executedQty") or 0)
+        avg = float(r.get("executedSum") or 0) / filled if filled else 0.0
+        done = not r.get("active") or r.get("status") in ("FILLED", "CANCELED", "EXPIRED", "REJECTED")
+        return dict(side=r.get("side"), price=float(r.get("price") or 0), qty=float(r.get("origQty") or 0),
+                    filled=filled, avg=avg, fee_base=fee_base, fee_tmn=fee_tmn, done=done, nfills=len(fills))
+
+    async def status(self, cid, book):
+        return self._parse(await self.rest.order(cid))
+
+    async def cancel(self, cid, book):
+        try:
+            await self.rest.cancel(cid)
+        except WallexError as e:  # already filled/cancelled; the re-read below is the truth
+            log.info("cancel %s: %s", cid, e)
+        await asyncio.sleep(0.5)
+        return self._parse(await self.rest.order(cid))
+
+
+# ---------------------------------------------------------------- journal
+class Journal:
+    def __init__(self, path=DB, decisions=DECISIONS):
+        self.db = sqlite3.connect(path)
+        self.db.executescript("""
+        create table if not exists samples(ts real, sym text, bid real, ask real, fair real, prem real, base real);
+        create table if not exists orders(ts real, mode text, sym text, cid text, side text, price real, qty real, reason text);
+        create table if not exists fills(ts real, mode text, sym text, cid text, side text, price real, qty real,
+                                         fee_base real, fee_tmn real);
+        create table if not exists trades(ts_open real, ts_close real, mode text, sym text, qty real, entry real,
+                                          exit real, pnl_tmn real, pnl_pct real, reason text);
+        create table if not exists events(ts real, kind text, msg text);""")
+        self.decisions = open(decisions, "a") if decisions else None
+
+    def add(self, table, *row):
+        self.db.execute(f"insert into {table} values ({','.join('?' * len(row))})", row)
+        self.db.commit()
+
+    def decision(self, rec):
+        if self.decisions:
+            self.decisions.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            self.decisions.flush()
+
+
+# ---------------------------------------------------------------- AI judge
+class Judge:
+    PROMPT = """You are the risk-aware trade judge of an automated spot bot on the Iranian exchange Wallex.
+Strategy: for each market we may rest a limit BUY {edge:.2%} below "baseline fair" (Binance USDT price × Wallex
+USDT/TMN, adjusted by the market's own 30-min average premium) and sell when the premium returns to baseline.
+Fees are {fee:.2%} per side, so a dip only pays if it is a temporary liquidity gap that reverts within ~1h, not a
+local price move that keeps going (news, Binance trend, persistent premium shift, thin or erratic book).
+Approve a market only when its context supports reversion; reject when the premium is trending, the spread or
+premium volatility is erratic, Binance is moving fast, or recent trades there lost. You do NOT size or place
+orders; hard risk rules are enforced elsewhere. At most {slots} markets can be quoted now.
+
+Context (JSON):
+{ctx}
+
+Reply with ONLY a JSON object, no prose, no code fence:
+{{"markets": {{"<SYMBOL>": {{"verdict": "approve"|"reject", "confidence": 0.0-1.0, "reason": "<= 20 words"}}}}}}"""
+
+    def __init__(self, enabled=True):
+        self.enabled, self.verdicts, self.ts, self.busy = enabled, {}, 0.0, False
+
+    def get(self, sym, now):
+        if not self.enabled:
+            return dict(verdict="approve", confidence=1.0, reason="AI disabled (backtest): rules only")
+        v = self.verdicts.get(sym)
+        if v is None or now - self.ts > AI_MAX_AGE:
+            return dict(verdict="reject", confidence=0.0, reason="no fresh AI verdict")
+        return v
+
+    async def refresh(self, ctx, slots, now):
+        self.busy = True
+        try:
+            prompt = self.PROMPT.format(edge=ENTRY_EDGE, fee=FEE_MAKER, slots=slots, ctx=json.dumps(ctx, indent=1))
+            p = await asyncio.create_subprocess_exec(
+                *shlex.split(AI_CMD), stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE, cwd=tempfile.gettempdir())  # neutral cwd: no project context
+            out, err = await asyncio.wait_for(p.communicate(prompt.encode()), 120)
+            text = out.decode()
+            raw = json.loads(text[text.index("{"): text.rindex("}") + 1])["markets"]
+            self.verdicts = {s: dict(verdict=str(v.get("verdict", "reject")).lower(),
+                                     confidence=float(v.get("confidence", 0)), reason=str(v.get("reason", "")))
+                             for s, v in raw.items()}
+            self.ts = now
+            return self.verdicts
+        except Exception as e:  # any AI failure → verdicts age out → reject (fail closed)
+            log.warning("AI judge failed: %r", e)
+            return None
+        finally:
+            self.busy = False
+
+
+# ---------------------------------------------------------------- market state
+class Market:
+    def __init__(self, sym, tick, step):
+        self.sym, self.base_asset, self.tick, self.step = sym, sym[:-3], tick, step
+        self.book = {"bid": (0.0, 0.0), "ask": (0.0, 0.0)}
+        self.ref = (0.0, 0.0)
+        self.base, self.n = None, 0
+        self.order = None
+        self.pos_qty = self.pos_cost = self.pos_ts = 0.0
+        self.hist = deque(maxlen=120)  # (ts, prem, ref) per minute, for AI context
+        self.pnls = deque(maxlen=5)
+        self.last_hist = self.last_sample = self.last_step = 0.0
+        self.was_stale = False
+        self.last_reject = None
+
+
+class Bot:
+    def __init__(self, broker, journal, markets, judge=None, alert=lambda msg: None, now=None):
+        self.broker, self.j, self.alert = broker, journal, alert
+        self.judge = judge or Judge(enabled=False)
+        self.m = {m.sym: m for m in markets}
+        self.usdt = {"bid": (0.0, 0.0), "ask": (0.0, 0.0)}
+        self.bal, self.last_bal, self.adopted = {}, 0.0, False
+        self.day, self.day_equity, self.halted, self.peak, self.max_dd = None, None, False, 0.0, 0.0
+        self.t0 = now
+
+    # --- feeds
+    def on_depth(self, sym, side, levels, now=None):
+        if not levels:
+            return
+        now = now or time.time()
+        if sym == "USDTTMN":
+            self.usdt[side] = (levels[0][0], now)
+        elif sym in self.m:
+            self.m[sym].book[side] = (levels[0][0], now)
+
+    def on_ref(self, coin, mid, now=None):
+        m = self.m.get(coin + "TMN")
+        if m:
+            m.ref = (mid, now or time.time())
+
+    def stale(self, m, now):
+        ts = [m.ref[1], m.book["bid"][1], m.book["ask"][1], self.usdt["bid"][1], self.usdt["ask"][1]]
+        return now - min(ts) > STALE
+
+    def equity(self):
+        return self.bal.get("TMN", 0) + sum(self.bal.get(m.base_asset, 0) * m.book["bid"][0] for m in self.m.values())
+
+    def phase(self, now):
+        left = END_TS - now
+        return "flatten" if left <= FLATTEN_BEFORE else "closing" if left <= ENTRY_CUTOFF else "open"
+
+    def busy_slots(self):
+        return sum(1 for m in self.m.values() if m.pos_qty > 0 or (m.order and m.order["side"] == "BUY"))
+
+    # --- main step, ~1/s live, 1/min in backtest
+    async def tick(self, now):
+        self.t0 = self.t0 or now
+        if now - self.last_bal >= 15:
+            self.last_bal = now
+            self.bal = await self.broker.balances()
+            if not self.adopted and all(m.book["bid"][0] for m in self.m.values()):
+                self.adopt(now)
+        self.risk_day(now)
+        phase = self.phase(now)
+        for m in self.m.values():
+            await self.step(m, now, phase)
+
+    def adopt(self, now):
+        """After a restart, coins already held in our markets become positions so they still get exited."""
+        self.adopted = True
+        for m in self.m.values():
+            qty, bid = self.bal.get(m.base_asset, 0), m.book["bid"][0]
+            if qty * bid >= MIN_NOTIONAL and m.pos_qty == 0:
+                m.pos_qty, m.pos_cost, m.pos_ts = qty, qty * bid, now
+                self.event("adopt", f"{m.sym}: managing {qty} already on the account at {bid:,.4f}")
+
+    def risk_day(self, now):
+        eq = self.equity()
+        if eq <= 0:
+            return
+        day = datetime.fromtimestamp(now, TEHRAN).date()
+        if day != self.day:
+            self.day, self.day_equity, self.halted = day, eq, False
+        self.peak = max(self.peak, eq)
+        self.max_dd = max(self.max_dd, 1 - eq / self.peak)
+        if not self.halted and eq < self.day_equity * (1 - DAILY_STOP):
+            self.halted = True
+            self.event("halt", f"daily stop: equity {eq:,.0f} < {self.day_equity:,.0f} -{DAILY_STOP:.0%}; no entries until tomorrow")
+
+    async def step(self, m, now, phase):
+        if self.stale(m, now):
+            if not m.was_stale:
+                m.was_stale = True
+                self.event("stale", f"{m.sym} feed older than {STALE:.0f}s, pausing it")
+                if m.order:
+                    await self.close_order(m, now)
+            return
+        m.was_stale = False
+        bid, ask = m.book["bid"][0], m.book["ask"][0]
+        fair = m.ref[0] * (self.usdt["bid"][0] + self.usdt["ask"][0]) / 2
+        prem = (bid + ask) / 2 / fair - 1
+        m.n += 1
+        a = max(1 / m.n, min(now - m.last_step, 60) / BASELINE_SEC)  # mean while warming up, then time-based EMA
+        m.last_step = now
+        m.base = prem if m.base is None else m.base + a * (prem - m.base)
+        target = fair * (1 + m.base)
+        if now - m.last_hist >= 60:
+            m.last_hist = now
+            m.hist.append((now, prem, m.ref[0], (ask - bid) / bid))
+        if now - m.last_sample >= 15:
+            m.last_sample = now
+            self.j.add("samples", now, m.sym, bid, ask, fair, prem, m.base)
+        sig = dict(rule="premium_reversion", fair=round(fair, 4), baseline_fair=round(target, 4), bid=bid, ask=ask,
+                   prem=round(prem, 5), base=round(m.base, 5))
+
+        if m.order:
+            await self.manage_order(m, now, (bid, ask), target, phase)
+        if m.order:
+            return
+        if m.pos_qty * bid >= MIN_NOTIONAL:
+            await self.exit(m, now, bid, ask, target, phase, sig)
+        elif m.pos_qty:
+            m.pos_qty = m.pos_cost = 0.0  # dust below min notional cannot be sold; stop tracking it
+        elif phase == "open" and not self.halted and now - self.t0 >= WARMUP:
+            await self.enter(m, now, bid, ask, target, sig)
+
+    def ranked_ok(self, m, now):
+        """AI approval and confidence rank within free slots."""
+        v = self.judge.get(m.sym, now)
+        if v["verdict"] != "approve":
+            return False, v
+        free = MAX_POS - self.busy_slots()
+        better = sorted((self.judge.get(s, now)["confidence"], s) for s, x in self.m.items()
+                        if not x.order and not x.pos_qty and self.judge.get(s, now)["verdict"] == "approve")
+        mine = [s for _, s in reversed(better)][:free]
+        return m.sym in mine, v
+
+    async def enter(self, m, now, bid, ask, target, sig):
+        ok, v = self.ranked_ok(m, now)
+        price = min(rnd(target * (1 - ENTRY_EDGE), m.tick), ask)
+        eq = self.equity()
+        budget = min(POS_FRAC * eq, self.bal.get("TMN", 0) * 0.995)
+        qty = rnd(budget / price, m.step) if price > 0 else 0
+        risk = dict(size_tmn=round(qty * price), size_pct=round(qty * price / eq * 100, 1) if eq else 0,
+                    stop_pct=-STOP_LOSS * 100, daily_dd_pct=round((1 - eq / self.day_equity) * 100, 2) if self.day_equity else 0,
+                    busy_slots=self.busy_slots(), max_pos=MAX_POS)
+        if not ok:
+            key = (v["verdict"], v["reason"])
+            if m.last_reject != key:  # log each distinct rejection once, not every second
+                m.last_reject = key
+                self.j.decision(dict(ts=iso(now), market=m.sym, signal=sig, ai=v, risk=risk,
+                                     decision="skipped", why="AI reject" if v["verdict"] != "approve" else "no free slot",
+                                     manual=False))
+            return
+        m.last_reject = None
+        if qty * price < MIN_NOTIONAL:
+            return
+        await self.place(m, now, "BUY", price, qty, "entry", (bid, ask), sig, v, risk)
+
+    async def exit(self, m, now, bid, ask, target, phase, sig):
+        entry = m.pos_cost / m.pos_qty
+        held = now - m.pos_ts
+        qty = rnd(min(m.pos_qty, self.bal.get(m.base_asset, m.pos_qty)), m.step)
+        if phase == "flatten":
+            reason, price = "end_of_challenge", bid
+        elif bid <= entry * (1 - STOP_LOSS):
+            reason, price = "stop_loss", bid
+        elif held >= MAX_HOLD:
+            reason, price = "max_hold", bid
+        else:
+            floor_px = entry * (1 + FEE_MAKER + MIN_PROFIT)
+            reason, price = "take_profit", max(rnd(max(target * (1 + EXIT_EDGE), floor_px), m.tick, up=True), bid)
+        if qty * bid >= MIN_NOTIONAL:
+            await self.place(m, now, "SELL", price, qty, reason, (bid, ask), sig, None,
+                             dict(entry=round(entry, 4), held_s=round(held), stop_px=round(entry * (1 - STOP_LOSS), 4)))
+
+    async def place(self, m, now, side, price, qty, reason, book, sig, ai, risk):
+        rec = dict(ts=iso(now), market=m.sym, signal=sig, ai=ai, risk=risk, decision=f"{side.lower()} ({reason})",
+                   order=dict(side=side, type="LIMIT", price=price, qty=qty), manual=False)
+        try:
+            cid = await self.broker.place(m, side, price, qty, book)
+        except (WallexError, httpx.HTTPError) as e:
+            rec["order"]["status"] = f"error: {e}"
+            self.j.decision(rec)
+            self.event("error", f"{m.sym} place {side} {qty}@{price}: {e}")
+            return
+        rec["order"].update(cid=cid, status="placed")
+        self.j.decision(rec)
+        m.order = dict(cid=cid, side=side, price=price, ts=now, reason=reason)
+        self.j.add("orders", now, MODE, m.sym, cid, side, price, qty, reason)
+        log.info("%s %s %s %s @ %s (%s)", m.sym, side, cid, qty, price, reason)
+        await self.manage_order(m, now, book, None, None)
+
+    async def manage_order(self, m, now, book, target, phase):
+        o = m.order
+        try:
+            st = await self.broker.status(o["cid"], book)
+            urgent = False
+            if target is not None and m.pos_qty and o["side"] == "SELL" and o["reason"] == "take_profit":
+                entry = m.pos_cost / m.pos_qty
+                urgent = book[0] <= entry * (1 - STOP_LOSS) or now - m.pos_ts >= MAX_HOLD or phase == "flatten"
+            if target is not None and o["side"] == "BUY" and (phase != "open" or self.halted):
+                urgent = True
+            if not st["done"] and target is not None and (now - o["ts"] >= ORDER_TTL or urgent):
+                st = await self.broker.cancel(o["cid"], book)
+        except (WallexError, httpx.HTTPError) as e:
+            self.event("error", f"{m.sym} order {o['cid']}: {e}")
+            return
+        if st["done"]:
+            m.order = None
+            if st["filled"] > 0:
+                self.on_fill(m, now, o, st)
+
+    async def check_fills(self, m, now, book):
+        """Backtest helper: let resting orders see an intrabar price."""
+        if m.order:
+            await self.manage_order(m, now, book, None, None)
+
+    async def close_order(self, m, now):
+        st = await self.broker.cancel(m.order["cid"], (m.book["bid"][0], m.book["ask"][0]))
+        o, m.order = m.order, None
+        if st["filled"] > 0:
+            self.on_fill(m, now, o, st)
+
+    def on_fill(self, m, now, o, st):
+        self.j.add("fills", now, MODE, m.sym, o["cid"], o["side"], st["avg"], st["filled"], st["fee_base"], st["fee_tmn"])
+        self.last_bal = 0  # refresh balances next tick
+        b = m.base_asset
+        if o["side"] == "BUY":
+            if m.pos_qty == 0:
+                m.pos_ts = now
+            m.pos_qty += st["filled"] - st["fee_base"]
+            m.pos_cost += st["filled"] * st["avg"] + st["fee_tmn"]
+            self.bal["TMN"] = self.bal.get("TMN", 0) - st["filled"] * st["avg"] - st["fee_tmn"]
+            self.bal[b] = self.bal.get(b, 0) + st["filled"] - st["fee_base"]
+            fee_rate = (st["fee_base"] / st["filled"]) if st["filled"] else 0
+            if MODE == "live" and st.get("nfills") and fee_rate == 0 and st["fee_tmn"] == 0 and FEE_MAKER > 0:
+                self.zero_fee()
+            self.event("fill", f"{m.sym} BUY {st['filled']} @ {st['avg']:,.4f} fee {fee_rate:.3%}")
+        else:
+            share = min(st["filled"] / m.pos_qty, 1.0)
+            cost = m.pos_cost * share
+            proceeds = st["filled"] * st["avg"] - st["fee_tmn"]
+            pnl = proceeds - cost
+            self.j.add("trades", m.pos_ts, now, MODE, m.sym, st["filled"], cost / st["filled"], st["avg"], pnl, pnl / cost, o["reason"])
+            m.pos_qty -= st["filled"]
+            m.pos_cost -= cost
+            m.pnls.append(round(pnl / cost * 100, 2))
+            self.bal["TMN"] = self.bal.get("TMN", 0) + proceeds
+            self.bal[b] = self.bal.get(b, 0) - st["filled"]
+            self.j.decision(dict(ts=iso(now), market=m.sym, decision="trade_closed", reason=o["reason"],
+                                 pnl_tmn=round(pnl), pnl_pct=round(pnl / cost * 100, 3), manual=False))
+            self.event("trade", f"{m.sym} SELL {st['filled']} @ {st['avg']:,.4f} ({o['reason']}) PnL {pnl:+,.0f} TMN ({pnl / cost:+.2%})")
+
+    def zero_fee(self):
+        """The API reports 0.25% but Wallex says spot is fee-free; a real fill with fee 0 settles it."""
+        global FEE_MAKER, FEE_TAKER, ENTRY_EDGE
+        FEE_MAKER = FEE_TAKER = 0.0
+        ENTRY_EDGE = ZERO_FEE_EDGE
+        self.event("fees", f"real fill charged no fee: fees set to 0, entry edge {ENTRY_EDGE}")
+
+    def ai_context(self, now):
+        eq = self.equity()
+        ctx = dict(now_tehran=datetime.fromtimestamp(now, TEHRAN).strftime("%Y-%m-%d %H:%M"),
+                   hours_to_end=round((END_TS - now) / 3600, 1), equity_tmn=round(eq),
+                   day_drawdown_pct=round((1 - eq / self.day_equity) * 100, 2) if self.day_equity else 0,
+                   free_slots=MAX_POS - self.busy_slots(), markets={})
+        for m in self.m.values():
+            h = list(m.hist)
+            if len(h) < 10:
+                continue
+            last30 = [x[1] for x in h[-30:]]
+            rets = [h[i][2] / h[i - 1][2] - 1 for i in range(max(1, len(h) - 60), len(h))]
+            ctx["markets"][m.sym] = dict(
+                premium_now_pct=round(h[-1][1] * 100, 3), baseline_pct=round(m.base * 100, 3),
+                premium_30m_mean_pct=round(statistics.mean(last30) * 100, 3),
+                premium_30m_sd_pct=round(statistics.pstdev(last30) * 100, 3),
+                premium_2h_min_max_pct=[round(min(x[1] for x in h) * 100, 3), round(max(x[1] for x in h) * 100, 3)],
+                binance_1h_change_pct=round((h[-1][2] / h[max(0, len(h) - 60)][2] - 1) * 100, 2),
+                binance_1m_vol_pct=round(statistics.pstdev(rets) * 100, 3) if len(rets) > 1 else 0,
+                wallex_spread_pct=round(h[-1][3] * 100, 3),
+                recent_trade_pnls_pct=list(m.pnls), holding=bool(m.pos_qty))
+        return ctx
+
+    async def ai_round(self, now):
+        ctx = self.ai_context(now)
+        if not ctx["markets"]:
+            return
+        v = await self.judge.refresh(ctx, MAX_POS, now)
+        self.j.decision(dict(ts=iso(now), decision="ai_review", context=ctx, verdicts=v, ok=v is not None, manual=False))
+        if v is None:
+            self.event("ai", "AI judge failed; no new entries until it answers")
+        else:
+            log.info("AI: %s", {s: (x["verdict"], x["confidence"]) for s, x in v.items()})
+
+    def event(self, kind, msg):
+        log.warning("[%s] %s", kind, msg)
+        self.j.add("events", time.time(), kind, msg)
+        self.alert(f"TIZ {MODE} {kind}: {msg}")
+
+
+def iso(ts):
+    return datetime.fromtimestamp(ts, TEHRAN).isoformat(timespec="seconds")
+
+
+# ---------------------------------------------------------------- live wiring
+async def binance_feed(coins, on_ref):
+    streams = "/".join(f"{c.lower()}usdt@bookTicker" for c in coins)
+    url = f"wss://data-stream.binance.vision/stream?streams={streams}"  # api.binance.com is geo-blocked from Iran
+    while True:
+        try:
+            async with websockets.connect(url) as ws:
+                async for msg in ws:
+                    d = json.loads(msg)["data"]
+                    on_ref(d["s"][:-4], (float(d["b"]) + float(d["a"])) / 2)
+        except Exception as e:  # staleness gate pauses trading meanwhile
+            log.warning("binance reconnect: %r", e)
+            await asyncio.sleep(2)
+
+
+def telegram(http: httpx.AsyncClient):
+    token, chat = os.environ.get("TELEGRAM_TOKEN"), os.environ.get("TELEGRAM_CHAT_ID")
+    if not (token and chat):
+        return lambda msg: None
+
+    async def send(msg):
+        try:
+            await http.post(f"https://api.telegram.org/bot{token}/sendMessage", json={"chat_id": chat, "text": msg})
+        except httpx.HTTPError as e:
+            log.info("telegram: %r", e)
+
+    return lambda msg: asyncio.get_running_loop().create_task(send(msg))
+
+
+async def main():
+    global FEE_MAKER, FEE_TAKER
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    rest = Rest(os.environ.get("WALLEX_API_KEY"))
+    syms = [c + "TMN" for c in COINS]
+    if bad := set(syms) & disallowed():
+        raise SystemExit(f"not tradable on the challenge account: {bad}")
+    info = await rest.markets()
+    markets = [Market(s, int(info[s]["tickSize"]), int(info[s]["stepSize"])) for s in syms]
+    if MODE == "live":
+        if not os.environ.get("WALLEX_API_KEY"):
+            raise SystemExit("MODE=live needs WALLEX_API_KEY in .env")
+        fee = (await rest.fees()).get(syms[0], {})
+        FEE_MAKER, FEE_TAKER = float(fee.get("makerFeeRate", FEE_MAKER)), float(fee.get("takerFeeRate", FEE_TAKER))
+        broker = Live(rest)
+        if open_ := [o for o in await rest.open_orders() if o.get("symbol") in syms]:
+            raise SystemExit(f"{len(open_)} open orders on bot markets; cancel them first")
+    else:
+        broker = Paper(PAPER_TMN)
+    bot = Bot(broker, Journal(), markets, Judge(), telegram(rest.http))
+    bot.event("start", f"{MODE} {syms} fees {FEE_MAKER}/{FEE_TAKER} edge {ENTRY_EDGE} pos {POS_FRAC}×{MAX_POS} "
+                       f"end {iso(END_TS)}")
+    asyncio.create_task(stream_depth(syms + ["USDTTMN"], bot.on_depth))
+    asyncio.create_task(binance_feed(COINS, bot.on_ref))
+    last_status = next_ai = 0.0
+    while True:
+        await asyncio.sleep(1)
+        now = time.time()
+        try:
+            for s in syms + ["USDTTMN"]:  # socket pushes only on change, no snapshot: top up quiet books via REST
+                book = bot.usdt if s == "USDTTMN" else bot.m[s].book
+                if now - min(book["bid"][1], book["ask"][1]) > 10:
+                    d = await rest.depth(s)
+                    bot.on_depth(s, "bid", [(float(x["price"]), 0) for x in d["bid"]])
+                    bot.on_depth(s, "ask", [(float(x["price"]), 0) for x in d["ask"]])
+            await bot.tick(now)
+            if not bot.judge.busy and now >= next_ai and now - bot.t0 >= WARMUP / 2:
+                next_ai = now + 60  # retry in 60 s if this round fails; success pushes it to AI_EVERY
+                asyncio.create_task(bot.ai_round(now))
+            if bot.judge.ts and next_ai < bot.judge.ts + AI_EVERY and not bot.judge.busy:
+                next_ai = bot.judge.ts + AI_EVERY
+            if now - last_status >= 300:
+                last_status = now
+                eq = bot.equity()
+                log.info("status equity %s TMN (%+.2f%%) max_dd %.2f%% positions %s halted %s phase %s", f"{eq:,.0f}",
+                         (eq / 5_000_000 - 1) * 100, bot.max_dd * 100,
+                         {m.sym: m.pos_qty for m in bot.m.values() if m.pos_qty}, bot.halted, bot.phase(now))
+        except Exception as e:  # keep running; journal it
+            bot.event("error", repr(e))
+            log.exception("tick")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

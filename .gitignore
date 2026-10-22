@@ -1,0 +1,8 @@
+.env
+.venv/
+__pycache__/
+*.db
+*.log
+.DS_Store
+docs/wallex.html
+logs/
