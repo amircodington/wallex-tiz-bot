@@ -361,8 +361,10 @@ class Bot:
                 i += 30  # one dip per half hour, not every minute of the same dip
             i += 1
         rev = back / dips if dips else 1.0
-        m.qual = sd <= QUAL_SD and (dips < 3 or rev >= QUAL_REV)
+        was, m.qual = m.qual, sd <= QUAL_SD and (dips < 3 or rev >= QUAL_REV)
         m.qual_why = f"premium sd {sd * 1e4:.0f} bps, {dips} dips, {rev:.0%} reverted in 60 min"
+        if m.qual != was:
+            self.event("qualify", f"{m.sym} {'qualified' if m.qual else 'disqualified'}: {m.qual_why}")
         return m.qual
 
     def entry_price(self, m, target):
