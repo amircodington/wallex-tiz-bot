@@ -61,7 +61,7 @@ STOP_LOSS = env("STOP_LOSS", 0.03)  # 1.5% cut dips that later reverted
 MAX_HOLD = env("MAX_HOLD", 4 * 3600.0)
 ORDER_TTL = env("ORDER_TTL", 120.0)
 REQUOTE = env("REQUOTE", 0.0005)  # replace a resting order once its ideal price moved this much (stale quotes get picked off)
-QUALIFY = env("QUALIFY", 1)  # daily structural check per market from its own last QUAL_DAYS of premiums
+QUALIFY = env("QUALIFY", 0)  # structural check per market on its last QUAL_DAYS of premiums; off: it cost money on safe-7 (README)
 QUAL_DAYS = env("QUAL_DAYS", 3.0)
 QUAL_MIN_HOURS = env("QUAL_MIN_HOURS", 24.0)  # less history than this: market not qualified yet
 QUAL_SD = env("QUAL_SD", 0.005)  # premium standard deviation must stay below 50 bps
@@ -339,16 +339,19 @@ class Bot:
         return bool(old and m.ref[0] < max(old) * (1 - SHOCK_REF)) or bool(ou and (max(ou) / min(ou) - 1) > SHOCK_USDT)
 
     def qualify(self, m, now):
-        """Structural check, hourly: is this market's premium calm and do its dips come back? (study/, Fable report)"""
-        if now - m.qual_ts < 3600:
+        """Hourly per-market gate: liquid enough, and with QUALIFY also a calm premium whose dips come back."""
+        if m.qual_ts and now - m.qual_ts < 3600:
             return m.qual
         m.qual_ts = now
+        if m.vol_day < QUAL_VOL:
+            m.qual, m.qual_why = False, f"thin: {m.vol_day / 1e9:.1f}B TMN/day"
+            return m.qual
+        if not QUALIFY:
+            m.qual, m.qual_why = True, "structural check off"
+            return m.qual
         h = [x for x in m.hist if now - x[0] <= QUAL_DAYS * 86400]
         if len(h) < QUAL_MIN_HOURS * 60:
             m.qual, m.qual_why = False, f"only {len(h) / 60:.0f}h of history"
-            return m.qual
-        if m.vol_day < QUAL_VOL:
-            m.qual, m.qual_why = False, f"thin: {m.vol_day / 1e9:.1f}B TMN/day"
             return m.qual
         sd = statistics.pstdev(x[1] for x in h)
         dips = back = 0
@@ -455,7 +458,7 @@ class Bot:
         elif m.pos_qty:
             m.pos_qty = m.pos_cost = 0.0  # dust below min notional cannot be sold; stop tracking it
         elif (phase == "open" and not self.halted and now - self.t0 >= WARMUP and not self.shock(m, now)
-              and (not QUALIFY or self.qualify(m, now))):
+              and self.qualify(m, now)):
             await self.enter(m, now, bid, ask, target, sig)
 
     def ranked_ok(self, m, now):
@@ -466,7 +469,7 @@ class Bot:
         free = MAX_POS - sum(1 for x in self.m.values() if x.pos_qty > 0)
         # slots go to the most AI-confident markets, then to those whose ask is closest to our buy price
         cands = sorted((-self.judge.get(s, now)["confidence"], x.prox, s) for s, x in self.m.items()
-                       if not x.pos_qty and self.judge.get(s, now)["verdict"] == "approve" and (not QUALIFY or x.qual))
+                       if not x.pos_qty and self.judge.get(s, now)["verdict"] == "approve" and x.qual)
         return m.sym in [s for *_, s in cands[:free]], v
 
     async def enter(self, m, now, bid, ask, target, sig):

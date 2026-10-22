@@ -142,7 +142,7 @@ def test_qualify_needs_history_and_reverting_dips(monkeypatch):
 
 
 def test_qualify_rejects_thin_market(monkeypatch):
-    b = make(monkeypatch, QUALIFY=1, QUAL_VOL=20e9)
+    b = make(monkeypatch, QUAL_VOL=20e9)  # liquidity gate holds even with the structural check off
     m = b.m["BTCTMN"]
     m.hist.extend((60.0 * i, 0.002, REF, 0.0004, 0.002) for i in range(2 * 1440))
     m.vol_day = 5e9
