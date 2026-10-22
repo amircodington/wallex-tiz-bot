@@ -172,3 +172,31 @@ def test_exit_decay_slides_to_breakeven(monkeypatch):
     assert b.take_price(m, 110.0, 0.0, 2000.0) == 110  # full target until DECAY_AFTER
     assert b.take_price(m, 110.0, 0.0, 3000.0) == 105  # halfway down
     assert b.take_price(m, 110.0, 0.0, 4000.0) == 100  # break-even at MAX_HOLD
+
+
+def _trailing(monkeypatch, mode):
+    b, t = make(monkeypatch, TRAIL=mode), [1000.0]
+    run(b, t, [FAIR * 1.002] * 20)
+    run(b, t, [order(b)["price"] * 0.999] * 2)  # buy fills, no resting take-profit order
+    m = b.m["BTCTMN"]
+    tp = b.take_price(m, m.fair, 0.0, t[0])
+    assert m.pos_qty > 0 and order(b) is None
+    run(b, t, [tp * 1.001] * 2)  # take-profit level reached: trailing, still holding
+    assert m.pos_qty > 0 and m.trail_hi
+    return b, t, m, tp
+
+
+def test_trail_locks_profit(monkeypatch):
+    b, t, m, tp = _trailing(monkeypatch, "atr")
+    run(b, t, [tp * 1.010] * 3 + [tp * 1.007] * 2)  # runs further up, then pulls back
+    (pnl, reason), = b.j.trades()
+    exit_px = b.j.db.execute("select exit from trades").fetchone()[0]
+    assert reason == "trail" and pnl > 0 and exit_px > tp
+
+
+def test_trail_floor(monkeypatch):
+    b, t, m, tp = _trailing(monkeypatch, "sar")
+    asyncio.run(b.check_fills(m, t[0], (tp * 0.99, tp * 0.99)))  # immediate collapse inside a minute
+    (pnl, reason), = b.j.trades()
+    exit_px = b.j.db.execute("select exit from trades").fetchone()[0]
+    assert reason == "trail" and exit_px == pytest.approx(tp * (1 - B.TRAIL_GIVEBACK))

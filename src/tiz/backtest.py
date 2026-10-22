@@ -22,6 +22,9 @@ SPREAD = float(os.environ.get("BT_SPREAD", 0.001))
 MARGIN = float(os.environ.get("BT_MARGIN", 0.0005))
 MIN_VOL = float(os.environ.get("BT_MIN_VOL", 1_000_000))  # TMN traded in the minute
 FRESH = os.environ.get("BT_FRESH", "1") == "1"  # 0 = orders priced off the previous minute (pessimistic)
+AI = os.environ.get("BT_AI") == "1"  # ask the live AI judge every BT_AI_EVERY simulated seconds
+AI_EVERY = float(os.environ.get("BT_AI_EVERY", 3600))
+AI_CACHE = OUT / os.environ.get("BT_AI_CACHE", "ai_cache.jsonl")  # verdicts by minute, shared by every run and window
 
 
 def get(url, params):
@@ -93,7 +96,12 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
     # like the live start: history, baseline, daily volume and WARMUP from the data before the window, if any
     w0 = max(t_data, lo_t - int(B.QUAL_DAYS * 86400)) // 60 * 60
     warm = lo_t - w0 >= B.WARMUP
-    bot = B.Bot(broker, j, markets, now=lo_t - B.WARMUP if warm else None)
+    bot = B.Bot(broker, j, markets, judge=B.Judge(enabled=AI), now=lo_t - B.WARMUP if warm else None)
+    cache, used = {}, []
+    if AI:
+        B.AI_MAX_AGE = AI_EVERY + 60  # a verdict lasts until the next round
+        if AI_CACHE.exists():
+            cache = {r["ts"]: r["verdicts"] for r in map(json.loads, open(AI_CACHE))}
     last = {c: None for c in series}
     u, h, equity = None, SPREAD / 2, []
     for c, (w, bn) in series.items():
@@ -136,6 +144,8 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
             continue
         bot.on_depth("USDTTMN", "bid", [(u - 1, 0)], now)
         bot.on_depth("USDTTMN", "ask", [(u + 1, 0)], now)
+        if AI and t % AI_EVERY == 0:
+            used.append(await ai_round(bot, t, now, cache))
         await bot.tick(now)
         if t % 1800 == 0:
             equity.append([t, round(bot.equity())])
@@ -154,13 +164,13 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
         by_day[datetime.fromtimestamp(tc, B.TEHRAN).date().isoformat()] += 1
     res = dict(tag=tag, period=[B.iso(lo_t), B.iso(hi_t)], days=round((hi_t - lo_t) / 86400, 2), coins=B.COINS,
                params=dict(entry_edge=B.ENTRY_EDGE, fee_maker=B.FEE_MAKER, fee_taker=B.FEE_TAKER, pos_frac=B.POS_FRAC,
-                           max_pos=B.MAX_POS, stop_loss=B.STOP_LOSS, max_hold=B.MAX_HOLD, exit_decay=B.EXIT_DECAY, spread=SPREAD,
+                           max_pos=B.MAX_POS, stop_loss=B.STOP_LOSS, max_hold=B.MAX_HOLD, exit_decay=B.EXIT_DECAY, trail=B.TRAIL, trail_k=B.TRAIL_K, spread=SPREAD,
                            fill_margin=MARGIN, min_minute_volume_tmn=MIN_VOL, fresh_quotes=FRESH),
                trades=len(rows), wins=sum(r[5] > 0 for r in rows), pnl_tmn=round(sum(r[5] for r in rows)),
                final_equity=round(eq), return_pct=round((eq / 5_000_000 - 1) * 100, 3),
                max_drawdown_pct=round(bot.max_dd * 100, 3), exits=dict(reasons), trades_per_day=dict(sorted(by_day.items())),
                by_market={s: dict(trades=n, wins=wn, pnl_tmn=round(p)) for s, (n, p, wn) in sorted(by_sym.items())},
-               equity=equity,
+               equity=equity, ai=ai_stats(used) if AI else None,
                trade_list=[dict(sym=r[0], open=int(r[1]), close=int(r[2]), entry=r[3], exit=r[4], pnl_tmn=round(r[5]),
                                 pnl_pct=round(r[6] * 100, 3), reason=r[7]) for r in rows])
     if not quiet:
@@ -168,6 +178,30 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
     if not quiet:
         print(json.dumps({k: v for k, v in res.items() if k not in ("equity", "trade_list")}, indent=1))
     return res
+
+
+async def ai_round(bot, t, now, cache):
+    """Bot.ai_round with a cache: a minute already judged costs nothing the second time."""
+    ctx = bot.ai_context(now)
+    ctx.pop("hours_to_end")  # END_TS is infinite in history
+    if t in cache:
+        v = bot.judge.verdicts = cache[t]
+        bot.judge.ts = now
+    else:
+        v = await bot.judge.refresh(ctx, B.MAX_POS - bot.busy_slots(), now)
+        if v is not None:  # failures are retried on the next run
+            cache[t] = v
+            with open(AI_CACHE, "a") as f:
+                f.write(json.dumps(dict(ts=t, ctx=ctx, verdicts=v), ensure_ascii=False) + "\n")
+    bot.j.decision(dict(ts=B.iso(now), decision="ai_review", context=ctx, verdicts=v, ok=v is not None, manual=False))
+    return v
+
+
+def ai_stats(used):
+    vs = [x for v in used if v for x in v.values()]
+    return dict(rounds=len(used), failed=sum(v is None for v in used),
+                reject_pct=round(100 * sum(x["verdict"] != "approve" for x in vs) / max(len(vs), 1), 1),
+                mean_confidence=round(sum(x["confidence"] for x in vs) / max(len(vs), 1), 3))
 
 
 async def sweep():

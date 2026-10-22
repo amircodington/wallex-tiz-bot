@@ -63,6 +63,9 @@ STOP_LOSS = env("STOP_LOSS", 0.03)  # 1.5% cut dips that later reverted
 MAX_HOLD = env("MAX_HOLD", 4 * 3600.0)
 EXIT_DECAY = env("EXIT_DECAY", 0)  # after DECAY_AFTER the sell target slides linearly to break-even + MIN_PROFIT at MAX_HOLD
 DECAY_AFTER = env("DECAY_AFTER", MAX_HOLD / 2)
+TRAIL = env("TRAIL", "off")  # off | atr | sar: past the take-profit level, follow the price up and sell on a pullback
+TRAIL_K = env("TRAIL_K", 2.0)  # atr: stop = high - K x (sd of 1-min mid returns, last 30 min) x high
+TRAIL_GIVEBACK = env("TRAIL_GIVEBACK", 0.002)  # never give back more than this below the take-profit level
 ORDER_TTL = env("ORDER_TTL", 120.0)
 PULL = env("PULL", 0.003)  # a buy this far above its ideal price is pulled at once, skipping the status-poll wait
 REQUOTE = env("REQUOTE", 0.0005)  # replace a resting order once its ideal price moved this much (stale quotes get picked off)
@@ -282,7 +285,7 @@ class Market:
         self.base, self.n = None, 0
         self.order = None
         self.pos_qty = self.pos_cost = self.pos_ts = 0.0
-        self.hist = deque(maxlen=int(3 * 1440))  # (ts, prem, ref, spread, base) per minute: AI context, qualifier
+        self.hist = deque(maxlen=int(3 * 1440))  # (ts, prem, ref, spread, base, mid) per minute: AI context, qualifier, trail
         self.pnls = deque(maxlen=5)
         self.last_hist = self.last_sample = self.last_step = 0.0
         self.was_stale = False
@@ -293,6 +296,7 @@ class Market:
         self.refs = deque(maxlen=400)  # (ts, binance mid) for the shock gate
         self.qual, self.qual_ts, self.qual_why = False, 0.0, "no history yet"
         self.vol_day = float("inf")  # mean TMN/day, set once by warm_history / the backtest
+        self.trail_hi = None  # highest bid since the take-profit level was reached; None = not trailing
 
 
 class Bot:
@@ -362,7 +366,7 @@ class Bot:
         dips = back = 0
         i = 0
         while i < len(h):
-            ts, prem, *_, base = h[i]
+            ts, prem, base = h[i][0], h[i][1], h[i][4]
             if prem < base - QUAL_DIP:
                 dips += 1
                 back += any(y[1] >= base for y in h[i + 1:i + 61] if y[0] - ts <= 3600)
@@ -385,6 +389,33 @@ class Bot:
         if EXIT_DECAY and now - m.pos_ts > DECAY_AFTER:
             target -= (target - floor_px) * min(1.0, (now - m.pos_ts - DECAY_AFTER) / (MAX_HOLD - DECAY_AFTER))
         return max(rnd(target, m.tick, up=True), bid)
+
+    def trail_px(self, m, now, px, intrabar=False):
+        """TRAIL: one price observation; returns the sell price once the trailing stop is hit, else None.
+        intrabar (backtest minute low/high): the stop is assumed hit exactly at its level."""
+        if m.trail_hi is None:
+            tp = self.take_price(m, m.fair, 0.0, now)
+            if px >= tp:  # where take-profit would have filled: start trailing instead
+                m.trail_hi = m.trail_ep = px
+                m.trail_floor = m.trail_sar = tp * (1 - TRAIL_GIVEBACK)
+                m.trail_af, m.trail_t = 0.02, now
+            return None
+        if TRAIL == "atr":
+            mids = [x[5] for x in list(m.hist)[-31:]]
+            rets = [b / a - 1 for a, b in zip(mids, mids[1:])]
+            stop = m.trail_hi * (1 - TRAIL_K * (statistics.pstdev(rets) if rets else 0.0))
+        else:  # sar: classic Parabolic SAR on 1-minute highs, long side only
+            if now - m.trail_t >= 60:
+                if m.trail_hi > m.trail_ep:
+                    m.trail_af = min(m.trail_af + 0.02, 0.2)
+                m.trail_ep, m.trail_t = m.trail_hi, now
+                m.trail_sar += m.trail_af * (m.trail_ep - m.trail_sar)
+            stop = m.trail_sar
+        stop = max(stop, m.trail_floor)
+        if px <= stop:  # check against the previous high first: order inside a minute is unknown
+            return stop if intrabar else px
+        m.trail_hi = max(m.trail_hi, px)
+        return None
 
     def busy_slots(self):
         return sum(1 for m in self.m.values() if m.pos_qty > 0 or (m.order and m.order["side"] == "BUY"))
@@ -450,7 +481,7 @@ class Bot:
             m.refs.append((now, m.ref[0]))
         if not fresh_only and now - m.last_hist >= 60:
             m.last_hist = now
-            m.hist.append((now, prem, m.ref[0], (ask - bid) / bid, m.base))
+            m.hist.append((now, prem, m.ref[0], (ask - bid) / bid, m.base, (bid + ask) / 2))
         if not fresh_only and now - m.last_sample >= 15:
             m.last_sample = now
             self.j.add("samples", now, m.sym, bid, ask, fair, prem, m.base)
@@ -512,6 +543,11 @@ class Bot:
             reason, price = "stop_loss", bid
         elif held >= MAX_HOLD:
             reason, price = "max_hold", bid
+        elif TRAIL != "off":
+            price = self.trail_px(m, now, bid)
+            if price is None:
+                return
+            reason = "trail"
         else:
             reason, price = "take_profit", self.take_price(m, m.fair, bid, now)
         if qty * bid >= MIN_NOTIONAL:
@@ -563,9 +599,14 @@ class Bot:
                 self.on_fill(m, now, o, st)
 
     async def check_fills(self, m, now, book):
-        """Backtest helper: let resting orders see an intrabar price."""
+        """Backtest helper: let resting orders and the trailing stop see an intrabar price."""
         if m.order:
             await self.manage_order(m, now, book, None, None)
+        elif TRAIL != "off" and m.pos_qty * book[0] >= MIN_NOTIONAL and m.pos_ts < now:
+            px = self.trail_px(m, now, book[0], intrabar=True)
+            if px:
+                qty = rnd(min(m.pos_qty, self.bal.get(m.base_asset, m.pos_qty)), m.step)
+                await self.place(m, now, "SELL", px, qty, "trail", (px, px), None, None, {})
 
     async def close_order(self, m, now):
         st = await self.broker.cancel(m.order["cid"], (m.book["bid"][0], m.book["ask"][0]))
@@ -579,7 +620,7 @@ class Bot:
         b = m.base_asset
         if o["side"] == "BUY":
             if m.pos_qty == 0:
-                m.pos_ts, m.entry_base = now, m.base
+                m.pos_ts, m.entry_base, m.trail_hi = now, m.base, None
             m.pos_qty += st["filled"] - st["fee_base"]
             m.pos_cost += st["filled"] * st["avg"] + st["fee_tmn"]
             self.bal["TMN"] = self.bal.get("TMN", 0) - st["filled"] * st["avg"] - st["fee_tmn"]
@@ -669,7 +710,7 @@ def warm_from(m, wx, bn, usdt, frm, to):
         prem = c[3] / (b * u) - 1
         m.n += 1
         m.base = prem if m.base is None else m.base + max(1 / m.n, 60 / BASELINE_SEC) * (prem - m.base)
-        m.hist.append((float(t), prem, b, 0.0, m.base))
+        m.hist.append((float(t), prem, b, 0.0, m.base, c[3]))
 
 
 def warm_history(bot, days=QUAL_DAYS):
