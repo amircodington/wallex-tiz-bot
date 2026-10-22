@@ -23,6 +23,7 @@ class Mem(B.Journal):
 def make(monkeypatch, **kw):
     monkeypatch.setattr(B, "WARMUP", 10.0)
     monkeypatch.setattr(B, "POLL", 0.0)
+    monkeypatch.setattr(B, "QUALIFY", 0)
     monkeypatch.setattr(B, "END_TS", 10_000_000.0)
     for k, v in kw.items():
         monkeypatch.setattr(B, k, v)
@@ -119,3 +120,22 @@ def test_live_parse():
          "executedSum": "0.1", "active": False, "status": "FILLED", "fills": [{"fee": "0.000001", "feeAsset": "BTC"}]}
     st = B.Live._parse(r)
     assert st["done"] and st["avg"] == pytest.approx(100) and st["fee_base"] == pytest.approx(1e-6) and st["nfills"] == 1
+
+
+def test_qualify_needs_history_and_reverting_dips(monkeypatch):
+    b = make(monkeypatch, QUALIFY=1)
+    m = b.m["BTCTMN"]
+    assert not b.qualify(m, 0.0) and "history" in m.qual_why
+    # 2 days of calm premium around a 0.2% baseline
+    m.hist.extend((60.0 * i, 0.002, REF, 0.0004, 0.002) for i in range(2 * 1440))
+    m.qual_ts = 0.0
+    assert b.qualify(m, 2 * 86400.0)
+    # same history but three deep dips that never come back
+    m.hist.clear()
+    m.hist.extend((60.0 * i, -0.01 if i % 600 == 0 else 0.002, REF, 0.0004, 0.002) for i in range(2 * 1440))
+    m.qual_ts = 0.0
+    assert b.qualify(m, 2 * 86400.0)  # spikes are rare, sd still small, and each dip reverts next minute
+    m.hist.clear()
+    m.hist.extend((60.0 * i, -0.01 if (i // 200) % 2 else 0.002, REF, 0.0004, 0.002) for i in range(2 * 1440))
+    m.qual_ts = 0.0
+    assert not b.qualify(m, 2 * 86400.0) and "reverted" in m.qual_why

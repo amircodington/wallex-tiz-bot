@@ -61,6 +61,12 @@ STOP_LOSS = env("STOP_LOSS", 0.03)  # 1.5% cut dips that later reverted
 MAX_HOLD = env("MAX_HOLD", 4 * 3600.0)
 ORDER_TTL = env("ORDER_TTL", 120.0)
 REQUOTE = env("REQUOTE", 0.0005)  # replace a resting order once its ideal price moved this much (stale quotes get picked off)
+QUALIFY = env("QUALIFY", 1)  # daily structural check per market from its own last QUAL_DAYS of premiums
+QUAL_DAYS = env("QUAL_DAYS", 3.0)
+QUAL_MIN_HOURS = env("QUAL_MIN_HOURS", 24.0)  # less history than this: market not qualified yet
+QUAL_SD = env("QUAL_SD", 0.005)  # premium standard deviation must stay below 50 bps
+QUAL_DIP = env("QUAL_DIP", 0.006)  # a dip = close premium this far below baseline
+QUAL_REV = env("QUAL_REV", 0.9)  # share of dips back at baseline within 60 min
 SHOCK_SEC = env("SHOCK_SEC", 300.0)
 SHOCK_REF = env("SHOCK_REF", 0.005)  # no entries after Binance falls this much within SHOCK_SEC
 SHOCK_USDT = env("SHOCK_USDT", 0.003)  # ... or USDTTMN moves this much
@@ -268,7 +274,7 @@ class Market:
         self.base, self.n = None, 0
         self.order = None
         self.pos_qty = self.pos_cost = self.pos_ts = 0.0
-        self.hist = deque(maxlen=120)  # (ts, prem, ref) per minute, for AI context
+        self.hist = deque(maxlen=int(3 * 1440))  # (ts, prem, ref, spread, base) per minute: AI context, qualifier
         self.pnls = deque(maxlen=5)
         self.last_hist = self.last_sample = self.last_step = 0.0
         self.was_stale = False
@@ -277,6 +283,7 @@ class Market:
         self.prox = 1.0  # ask / our buy price - 1: how close a fill is, for ranking slots
         self.entry_base = 0.0  # baseline frozen at entry, so the exit target doesn't drift with the dip
         self.refs = deque(maxlen=400)  # (ts, binance mid) for the shock gate
+        self.qual, self.qual_ts, self.qual_why = False, 0.0, "no history yet"
 
 
 class Bot:
@@ -326,6 +333,30 @@ class Bot:
         old = [p for t, p in m.refs if now - t <= SHOCK_SEC]
         ou = [p for t, p in self.usdts if now - t <= SHOCK_SEC]
         return bool(old and m.ref[0] < max(old) * (1 - SHOCK_REF)) or bool(ou and (max(ou) / min(ou) - 1) > SHOCK_USDT)
+
+    def qualify(self, m, now):
+        """Structural check, hourly: is this market's premium calm and do its dips come back? (study/, Fable report)"""
+        if now - m.qual_ts < 3600:
+            return m.qual
+        m.qual_ts = now
+        h = [x for x in m.hist if now - x[0] <= QUAL_DAYS * 86400]
+        if len(h) < QUAL_MIN_HOURS * 60:
+            m.qual, m.qual_why = False, f"only {len(h) / 60:.0f}h of history"
+            return m.qual
+        sd = statistics.pstdev(x[1] for x in h)
+        dips = back = 0
+        i = 0
+        while i < len(h):
+            ts, prem, *_, base = h[i]
+            if prem < base - QUAL_DIP:
+                dips += 1
+                back += any(y[1] >= base for y in h[i + 1:i + 61] if y[0] - ts <= 3600)
+                i += 30  # one dip per half hour, not every minute of the same dip
+            i += 1
+        rev = back / dips if dips else 1.0
+        m.qual = sd <= QUAL_SD and (dips < 3 or rev >= QUAL_REV)
+        m.qual_why = f"premium sd {sd * 1e4:.0f} bps, {dips} dips, {rev:.0%} reverted in 60 min"
+        return m.qual
 
     def entry_price(self, m, target):
         return min(rnd(target * (1 - ENTRY_EDGE), m.tick), m.book["ask"][0])
@@ -399,7 +430,7 @@ class Bot:
             m.refs.append((now, m.ref[0]))
         if not fresh_only and now - m.last_hist >= 60:
             m.last_hist = now
-            m.hist.append((now, prem, m.ref[0], (ask - bid) / bid))
+            m.hist.append((now, prem, m.ref[0], (ask - bid) / bid, m.base))
         if not fresh_only and now - m.last_sample >= 15:
             m.last_sample = now
             self.j.add("samples", now, m.sym, bid, ask, fair, prem, m.base)
@@ -414,7 +445,8 @@ class Bot:
             await self.exit(m, now, bid, ask, target, phase, sig)
         elif m.pos_qty:
             m.pos_qty = m.pos_cost = 0.0  # dust below min notional cannot be sold; stop tracking it
-        elif phase == "open" and not self.halted and now - self.t0 >= WARMUP and not self.shock(m, now):
+        elif (phase == "open" and not self.halted and now - self.t0 >= WARMUP and not self.shock(m, now)
+              and (not QUALIFY or self.qualify(m, now))):
             await self.enter(m, now, bid, ask, target, sig)
 
     def ranked_ok(self, m, now):
@@ -425,7 +457,7 @@ class Bot:
         free = MAX_POS - sum(1 for x in self.m.values() if x.pos_qty > 0)
         # slots go to the most AI-confident markets, then to those whose ask is closest to our buy price
         cands = sorted((-self.judge.get(s, now)["confidence"], x.prox, s) for s, x in self.m.items()
-                       if not x.pos_qty and self.judge.get(s, now)["verdict"] == "approve")
+                       if not x.pos_qty and self.judge.get(s, now)["verdict"] == "approve" and (not QUALIFY or x.qual))
         return m.sym in [s for *_, s in cands[:free]], v
 
     async def enter(self, m, now, bid, ask, target, sig):
@@ -574,7 +606,7 @@ class Bot:
                 minutes_of_history=len(h), premium_now_bps=round(h[-1][1] * bp, 1), baseline_bps=round(m.base * bp, 1),
                 premium_30m_mean_bps=round(statistics.mean(last30) * bp, 1),
                 premium_30m_sd_bps=round(statistics.pstdev(last30) * bp, 1),
-                premium_range_min_max_bps=[round(min(x[1] for x in h) * bp, 1), round(max(x[1] for x in h) * bp, 1)],
+                premium_range_min_max_bps=[round(min(x[1] for x in h[-120:]) * bp, 1), round(max(x[1] for x in h[-120:]) * bp, 1)],
                 binance_change_last_60m_bps=round((h[-1][2] / h[max(0, len(h) - 60)][2] - 1) * bp, 1),
                 binance_1m_return_sd_bps=round(statistics.pstdev(rets) * bp, 1) if len(rets) > 1 else 0,
                 wallex_spread_bps=round(h[-1][3] * bp, 1),
