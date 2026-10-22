@@ -61,6 +61,8 @@ EXIT_EDGE = env("EXIT_EDGE", 0.0)  # sell this far above baseline-fair
 MIN_PROFIT = env("MIN_PROFIT", 0.001)  # net of both fees
 STOP_LOSS = env("STOP_LOSS", 0.03)  # 1.5% cut dips that later reverted
 MAX_HOLD = env("MAX_HOLD", 4 * 3600.0)
+EXIT_DECAY = env("EXIT_DECAY", 0)  # after DECAY_AFTER the sell target slides linearly to break-even + MIN_PROFIT at MAX_HOLD
+DECAY_AFTER = env("DECAY_AFTER", MAX_HOLD / 2)
 ORDER_TTL = env("ORDER_TTL", 120.0)
 PULL = env("PULL", 0.003)  # a buy this far above its ideal price is pulled at once, skipping the status-poll wait
 REQUOTE = env("REQUOTE", 0.0005)  # replace a resting order once its ideal price moved this much (stale quotes get picked off)
@@ -376,10 +378,13 @@ class Bot:
     def entry_price(self, m, target):
         return min(rnd(target * (1 - ENTRY_EDGE), m.tick), m.book["ask"][0])
 
-    def take_price(self, m, fair, bid):
+    def take_price(self, m, fair, bid, now):
         entry = m.pos_cost / m.pos_qty
         floor_px = entry * (1 + FEE_MAKER + MIN_PROFIT)
-        return max(rnd(max(fair * (1 + m.entry_base) * (1 + EXIT_EDGE), floor_px), m.tick, up=True), bid)
+        target = max(fair * (1 + m.entry_base) * (1 + EXIT_EDGE), floor_px)
+        if EXIT_DECAY and now - m.pos_ts > DECAY_AFTER:
+            target -= (target - floor_px) * min(1.0, (now - m.pos_ts - DECAY_AFTER) / (MAX_HOLD - DECAY_AFTER))
+        return max(rnd(target, m.tick, up=True), bid)
 
     def busy_slots(self):
         return sum(1 for m in self.m.values() if m.pos_qty > 0 or (m.order and m.order["side"] == "BUY"))
@@ -508,7 +513,7 @@ class Bot:
         elif held >= MAX_HOLD:
             reason, price = "max_hold", bid
         else:
-            reason, price = "take_profit", self.take_price(m, m.fair, bid)
+            reason, price = "take_profit", self.take_price(m, m.fair, bid, now)
         if qty * bid >= MIN_NOTIONAL:
             await self.place(m, now, "SELL", price, qty, reason, (bid, ask), sig, None,
                              dict(entry=round(entry, 4), held_s=round(held), stop_px=round(entry * (1 - STOP_LOSS), 4)))
@@ -543,7 +548,7 @@ class Bot:
             if target is not None and m.pos_qty and o["side"] == "SELL" and o["reason"] == "take_profit":
                 entry = m.pos_cost / m.pos_qty
                 urgent = book[0] <= entry * (1 - STOP_LOSS) or now - m.pos_ts >= MAX_HOLD or phase == "flatten"
-                urgent = urgent or abs(o["price"] / self.take_price(m, m.fair, book[0]) - 1) > REQUOTE
+                urgent = urgent or abs(o["price"] / self.take_price(m, m.fair, book[0], now) - 1) > REQUOTE
             if target is not None and o["side"] == "BUY":
                 urgent = (phase != "open" or self.halted or self.shock(m, now) or not self.ranked_ok(m, now)[0]
                           or pull or abs(o["price"] / self.entry_price(m, target) - 1) > REQUOTE)

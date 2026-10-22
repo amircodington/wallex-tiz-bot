@@ -154,7 +154,7 @@ async def run(t_from=None, t_to=None, tag="backtest", quiet=False):
         by_day[datetime.fromtimestamp(tc, B.TEHRAN).date().isoformat()] += 1
     res = dict(tag=tag, period=[B.iso(lo_t), B.iso(hi_t)], days=round((hi_t - lo_t) / 86400, 2), coins=B.COINS,
                params=dict(entry_edge=B.ENTRY_EDGE, fee_maker=B.FEE_MAKER, fee_taker=B.FEE_TAKER, pos_frac=B.POS_FRAC,
-                           max_pos=B.MAX_POS, stop_loss=B.STOP_LOSS, max_hold=B.MAX_HOLD, spread=SPREAD,
+                           max_pos=B.MAX_POS, stop_loss=B.STOP_LOSS, max_hold=B.MAX_HOLD, exit_decay=B.EXIT_DECAY, spread=SPREAD,
                            fill_margin=MARGIN, min_minute_volume_tmn=MIN_VOL, fresh_quotes=FRESH),
                trades=len(rows), wins=sum(r[5] > 0 for r in rows), pnl_tmn=round(sum(r[5] for r in rows)),
                final_equity=round(eq), return_pct=round((eq / 5_000_000 - 1) * 100, 3),

@@ -163,3 +163,12 @@ def test_warm_history_fills_qualifier(monkeypatch):
     m = b.m["BTCTMN"]
     assert len(m.hist) == n and abs(m.base - 0.002) < 1e-9 and m.vol_day == pytest.approx(25e9, rel=1e-6)
     assert b.qualify(m, float(t1))
+
+
+def test_exit_decay_slides_to_breakeven(monkeypatch):
+    b = make(monkeypatch, EXIT_DECAY=1, MAX_HOLD=4000.0, DECAY_AFTER=2000.0, FEE_MAKER=0.0, MIN_PROFIT=0.0, EXIT_EDGE=0.0)
+    m = b.m["BTCTMN"]
+    m.pos_qty, m.pos_cost, m.pos_ts, m.entry_base = 1.0, 100.0, 0.0, 0.0
+    assert b.take_price(m, 110.0, 0.0, 2000.0) == 110  # full target until DECAY_AFTER
+    assert b.take_price(m, 110.0, 0.0, 3000.0) == 105  # halfway down
+    assert b.take_price(m, 110.0, 0.0, 4000.0) == 100  # break-even at MAX_HOLD
