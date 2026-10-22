@@ -51,6 +51,8 @@ def env(k, d):
 
 MODE = env("MODE", "paper")
 COINS = env("COINS", "TRX,BTC,BNB,ETH,XRP,DOGE,XAUT").split(",")  # markets that revert reliably (study/, 14 days)
+# watched from the start but traded only after a real fill proves fees are 0: their dips pay only without fees
+ZERO_FEE_COINS = [c for c in env("ZERO_FEE_COINS", "PEPE,PUMP,SOL,ARB,S").split(",") if c and c not in COINS]
 FEE_MAKER = env("FEE_MAKER", 0.0025)  # /v1/account/fee for TMN markets on 2026-10-22; live re-reads it
 FEE_TAKER = env("FEE_TAKER", 0.003)
 ENTRY_EDGE = env("ENTRY_EDGE", 0.008)  # buy this far below baseline-fair
@@ -60,6 +62,7 @@ MIN_PROFIT = env("MIN_PROFIT", 0.001)  # net of both fees
 STOP_LOSS = env("STOP_LOSS", 0.03)  # 1.5% cut dips that later reverted
 MAX_HOLD = env("MAX_HOLD", 4 * 3600.0)
 ORDER_TTL = env("ORDER_TTL", 120.0)
+PULL = env("PULL", 0.003)  # a buy this far above its ideal price is pulled at once, skipping the status-poll wait
 REQUOTE = env("REQUOTE", 0.0005)  # replace a resting order once its ideal price moved this much (stale quotes get picked off)
 QUALIFY = env("QUALIFY", 0)  # structural check per market on its last QUAL_DAYS of premiums; off: it cost money on safe-7 (README)
 QUAL_DAYS = env("QUAL_DAYS", 3.0)
@@ -270,8 +273,8 @@ Reply with ONLY a JSON object, no prose, no code fence:
 
 # ---------------------------------------------------------------- market state
 class Market:
-    def __init__(self, sym, tick, step):
-        self.sym, self.base_asset, self.tick, self.step = sym, sym[:-3], tick, step
+    def __init__(self, sym, tick, step, active=True):
+        self.sym, self.base_asset, self.tick, self.step, self.active = sym, sym[:-3], tick, step, active
         self.book = {"bid": (0.0, 0.0), "ask": (0.0, 0.0)}
         self.ref = (0.0, 0.0)
         self.base, self.n = None, 0
@@ -469,7 +472,7 @@ class Bot:
         free = MAX_POS - sum(1 for x in self.m.values() if x.pos_qty > 0)
         # slots go to the most AI-confident markets, then to those whose ask is closest to our buy price
         cands = sorted((-self.judge.get(s, now)["confidence"], x.prox, s) for s, x in self.m.items()
-                       if not x.pos_qty and self.judge.get(s, now)["verdict"] == "approve" and x.qual)
+                       if x.active and not x.pos_qty and self.judge.get(s, now)["verdict"] == "approve" and x.qual)
         return m.sym in [s for *_, s in cands[:free]], v
 
     async def enter(self, m, now, bid, ask, target, sig):
@@ -529,7 +532,8 @@ class Bot:
 
     async def manage_order(self, m, now, book, target, phase):
         o = m.order
-        if target is not None:
+        pull = target is not None and o["side"] == "BUY" and o["price"] > self.entry_price(m, target) * (1 + PULL)
+        if target is not None and not pull:
             if now - o.get("checked", 0) < POLL:
                 return  # stay well under Wallex rate limits
             o["checked"] = now
@@ -542,7 +546,7 @@ class Bot:
                 urgent = urgent or abs(o["price"] / self.take_price(m, m.fair, book[0]) - 1) > REQUOTE
             if target is not None and o["side"] == "BUY":
                 urgent = (phase != "open" or self.halted or self.shock(m, now) or not self.ranked_ok(m, now)[0]
-                          or abs(o["price"] / self.entry_price(m, target) - 1) > REQUOTE)
+                          or pull or abs(o["price"] / self.entry_price(m, target) - 1) > REQUOTE)
             if not st["done"] and target is not None and (now - o["ts"] >= ORDER_TTL or urgent):
                 st = await self.broker.cancel(o["cid"], book)
         except (WallexError, httpx.HTTPError) as e:
@@ -599,7 +603,10 @@ class Bot:
         global FEE_MAKER, FEE_TAKER, ENTRY_EDGE
         FEE_MAKER = FEE_TAKER = 0.0
         ENTRY_EDGE = ZERO_FEE_EDGE
-        self.event("fees", f"real fill charged no fee: fees set to 0, entry edge {ENTRY_EDGE}")
+        for m in self.m.values():
+            m.active = True
+        self.event("fees", f"real fill charged no fee: fees set to 0, entry edge {ENTRY_EDGE}, now trading "
+                           f"{[m.sym for m in self.m.values()]}")
 
     def ai_context(self, now):
         eq = self.equity()
@@ -706,11 +713,11 @@ async def main():
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     logging.getLogger("httpx").setLevel(logging.WARNING)
     rest = Rest(os.environ.get("WALLEX_API_KEY"))
-    syms = [c + "TMN" for c in COINS]
+    syms = [c + "TMN" for c in COINS + ZERO_FEE_COINS]
     if bad := set(syms) & disallowed():
         raise SystemExit(f"not tradable on the challenge account: {bad}")
     info = await rest.markets()
-    markets = [Market(s, int(info[s]["tickSize"]), int(info[s]["stepSize"])) for s in syms]
+    markets = [Market(s, int(info[s]["tickSize"]), int(info[s]["stepSize"]), s[:-3] in COINS) for s in syms]
     if MODE == "live":
         if not os.environ.get("WALLEX_API_KEY"):
             raise SystemExit("MODE=live needs WALLEX_API_KEY in .env")
@@ -729,7 +736,7 @@ async def main():
     bot.event("start", f"{MODE} {syms} fees {FEE_MAKER}/{FEE_TAKER} edge {ENTRY_EDGE} pos {POS_FRAC}×{MAX_POS} "
                        f"end {iso(END_TS)}")
     asyncio.create_task(stream_depth(syms + ["USDTTMN"], bot.on_depth))
-    asyncio.create_task(binance_feed(COINS, bot.on_ref))
+    asyncio.create_task(binance_feed(COINS + ZERO_FEE_COINS, bot.on_ref))
     last_status = next_ai = 0.0
     while True:
         await asyncio.sleep(1)
