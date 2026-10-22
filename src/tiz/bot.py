@@ -64,6 +64,7 @@ POS_FRAC = env("POS_FRAC", 0.2)  # share of equity per position
 MAX_POS = env("MAX_POS", 3)  # positions + open entry orders; 3 × 20% keeps 40% in TMN
 DAILY_STOP = env("DAILY_STOP", 0.03)
 STALE = env("STALE", 30.0)
+POLL = env("POLL", 3.0)  # seconds between order-status checks per order
 BASELINE_SEC = env("BASELINE_SEC", 1800.0)
 WARMUP = env("WARMUP", 600.0)
 END_TS = datetime.fromisoformat(env("END_TS", "2026-10-23T23:50:00+03:30")).timestamp()
@@ -159,7 +160,7 @@ class Live:
         fee_base = sum(float(f["fee"]) for f in fills if f.get("feeAsset") not in (quote, None))
         filled = float(r.get("executedQty") or 0)
         avg = float(r.get("executedSum") or 0) / filled if filled else 0.0
-        done = not r.get("active") or r.get("status") in ("FILLED", "CANCELED", "EXPIRED", "REJECTED")
+        done = r.get("active") is False or r.get("status") in ("FILLED", "CANCELED", "EXPIRED", "REJECTED")
         return dict(side=r.get("side"), price=float(r.get("price") or 0), qty=float(r.get("origQty") or 0),
                     filled=filled, avg=avg, fee_base=fee_base, fee_tmn=fee_tmn, done=done, nfills=len(fills))
 
@@ -450,6 +451,10 @@ class Bot:
 
     async def manage_order(self, m, now, book, target, phase):
         o = m.order
+        if target is not None:
+            if now - o.get("checked", 0) < POLL:
+                return  # stay well under Wallex rate limits
+            o["checked"] = now
         try:
             st = await self.broker.status(o["cid"], book)
             urgent = False

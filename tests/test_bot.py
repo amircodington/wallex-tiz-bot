@@ -22,6 +22,7 @@ class Mem(B.Journal):
 
 def make(monkeypatch, **kw):
     monkeypatch.setattr(B, "WARMUP", 10.0)
+    monkeypatch.setattr(B, "POLL", 0.0)
     monkeypatch.setattr(B, "END_TS", 10_000_000.0)
     for k, v in kw.items():
         monkeypatch.setattr(B, k, v)
