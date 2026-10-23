@@ -84,7 +84,10 @@ body.paper .stripe{display:flex}
 .count b{font:600 18px var(--mono);color:var(--fg)}
 
 /* ticker: live prices */
-.ticker{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,178px),1fr));margin-top:4px}
+/* flex, not grid: cards in a short last row stretch, so 7 coins read as 4 + 3 full rows instead of 6 + 1 */
+.ticker{display:flex;flex-wrap:wrap;gap:14px;margin-top:4px}
+.ticker .tk{flex:1 1 250px;min-width:0}
+@media (max-width:640px){.ticker .tk{flex-basis:150px}}
 .tk{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px 0;display:grid;gap:4px;box-shadow:var(--shadow);
   transition:transform 260ms var(--ease-out),border-color 200ms ease,box-shadow 260ms var(--ease-out)}
 .tk::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 100% 0%,color-mix(in srgb,var(--c) 18%,transparent),transparent 60%);opacity:.7;transition:opacity 260ms ease;pointer-events:none}
