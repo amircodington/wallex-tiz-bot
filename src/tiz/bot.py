@@ -60,6 +60,12 @@ ZERO_FEE_EDGE = env("ZERO_FEE_EDGE", 0.005)  # used once a real fill proves fees
 EXIT_EDGE = env("EXIT_EDGE", 0.0)  # sell this far above baseline-fair
 MIN_PROFIT = env("MIN_PROFIT", 0.001)  # net of both fees
 STOP_LOSS = env("STOP_LOSS", 0.03)  # 1.5% cut dips that later reverted
+STRATEGY = env("STRATEGY", "premium")  # "trend": buy a steady rise at the bid, sell once it pays the fees (Bot.trend)
+TREND_RET = env("TREND_RET", 0.003)  # trend entry: Wallex mid up this much over 30 min, still up over 10, global price up
+TREND_TP = env("TREND_TP", 0.001)  # trend exit: entry + fee + this + TREND_K x the 30-min rise (steeper aims higher)
+TREND_K = env("TREND_K", 0.5)
+if STRATEGY == "trend":
+    STOP_LOSS = env("TREND_STOP", 0.01)  # a failed breakout is cut early
 MAX_HOLD = env("MAX_HOLD", 4 * 3600.0)
 EXIT_DECAY = env("EXIT_DECAY", 0)  # after DECAY_AFTER the sell target slides linearly to break-even + MIN_PROFIT at MAX_HOLD
 DECAY_AFTER = env("DECAY_AFTER", MAX_HOLD / 2)
@@ -244,6 +250,22 @@ Context (JSON):
 Reply with ONLY a JSON object, no prose, no code fence:
 {{"markets": {{"<SYMBOL>": {{"verdict": "approve"|"reject", "confidence": 0.0-1.0, "reason": "<= 20 words"}}}}}}"""
 
+    TREND = """You are the risk-aware trade judge of an automated spot bot on the Iranian exchange Wallex.
+Strategy (trend mode): in an approved market the bot joins the best bid when the Wallex price has risen at least
+{trend_bps:.0f} bps over 30 min, is still rising over the last 10 min, and the global <COIN>USDT price is up too. It sells at
+entry + fees + a margin that grows with the 30-min rise (stop loss {stop_bps:.0f} bps, max hold {hold_h:.0f}h). Fees are
+{fee_bps:.0f} bps per side. Approve markets whose rise looks orderly and likely to continue a little: a steady climb
+(wallex_change_30m_bps and wallex_change_10m_bps both positive), the global price confirming (ref_change_last_60m_bps
+positive), normal spreads. Reject spikes that look exhausted, thin or wide books, a global price falling, or recent
+losses in that market. All numbers are in basis points (1 bp = 0.01%). You do NOT size or place orders; hard risk
+rules are enforced elsewhere. {slots} slots are free.
+
+Context (JSON):
+{ctx}
+
+Reply with ONLY a JSON object, no prose, no code fence:
+{{"markets": {{"<SYMBOL>": {{"verdict": "approve"|"reject", "confidence": 0.0-1.0, "reason": "<= 20 words"}}}}}}"""
+
     def __init__(self, enabled=True):
         self.enabled, self.verdicts, self.ts, self.busy = enabled, {}, 0.0, False
 
@@ -258,7 +280,7 @@ Reply with ONLY a JSON object, no prose, no code fence:
     async def refresh(self, ctx, slots, now):
         self.busy = True
         try:
-            prompt = self.PROMPT.format(edge_bps=ENTRY_EDGE * 1e4, stop_bps=STOP_LOSS * 1e4, fee_bps=FEE_MAKER * 1e4,
+            prompt = (self.TREND if STRATEGY == "trend" else self.PROMPT).format(trend_bps=TREND_RET * 1e4, edge_bps=ENTRY_EDGE * 1e4, stop_bps=STOP_LOSS * 1e4, fee_bps=FEE_MAKER * 1e4,
                                          hold_h=MAX_HOLD / 3600,
                                          slots=slots, ctx=json.dumps(ctx, indent=1))
             p = await asyncio.create_subprocess_exec(
@@ -287,6 +309,7 @@ class Market:
         self.ref = (0.0, 0.0)
         self.base, self.n = None, 0
         self.order = None
+        self.entry_slope = 0.0  # trend mode: 30-min rise when the entry was placed
         self.place_fails = 0  # place errors in a row; Wallex answers 422 for a few s after a cancel, until it frees the TMN
         self.pos_qty = self.pos_cost = self.pos_ts = 0.0
         self.hist = deque(maxlen=int(3 * 1440))  # (ts, prem, ref, spread, base, mid) per minute: AI context, qualifier, trail
@@ -384,11 +407,25 @@ class Bot:
             self.event("qualify", f"{m.sym} {'qualified' if m.qual else 'disqualified'}: {m.qual_why}")
         return m.qual
 
+    def trend(self, m, now):
+        """(30-min and 10-min change of the Wallex mid, 30-min change of the global price), None before 30 min of history."""
+        h = m.hist
+        if not h or now - h[0][0] < 1800:
+            return None
+        at = lambda sec: next(x for x in reversed(h) if now - x[0] >= sec)  # latest minute at least sec ago
+        mid = (m.book["bid"][0] + m.book["ask"][0]) / 2
+        a30, a10 = at(1800), at(600)
+        return mid / a30[5] - 1, mid / a10[5] - 1, m.ref[0] / a30[2] - 1
+
     def entry_price(self, m, target):
+        if STRATEGY == "trend":
+            return m.book["bid"][0]  # join the best bid: maker fee
         return min(rnd(target * (1 - ENTRY_EDGE), m.tick), m.book["ask"][0])
 
     def take_price(self, m, fair, bid, now):
         entry = m.pos_cost / m.pos_qty
+        if STRATEGY == "trend":
+            return max(rnd(entry * (1 + FEE_MAKER + TREND_TP + TREND_K * min(m.entry_slope, 0.02)), m.tick, up=True), bid)
         floor_px = entry * (1 + FEE_MAKER + MIN_PROFIT)
         target = max(fair * (1 + m.entry_base) * (1 + EXIT_EDGE), floor_px)
         if EXIT_DECAY and now - m.pos_ts > DECAY_AFTER:
@@ -517,6 +554,12 @@ class Bot:
         return m.sym in [s for *_, s in cands[:free]], v
 
     async def enter(self, m, now, bid, ask, target, sig):
+        if STRATEGY == "trend":
+            tr = self.trend(m, now)
+            if not tr or tr[0] < TREND_RET or tr[1] <= 0 or tr[2] <= 0:
+                return
+            m.entry_slope = tr[0]
+            sig = dict(sig, rule="trend", wallex_30m=round(tr[0], 5), wallex_10m=round(tr[1], 5), ref_30m=round(tr[2], 5))
         ok, v = self.ranked_ok(m, now)
         price = self.entry_price(m, target)
         eq = self.equity()
@@ -693,6 +736,8 @@ class Bot:
                 ref_change_last_60m_bps=round((h[-1][2] / h[max(0, len(h) - 60)][2] - 1) * bp, 1),
                 ref_1m_return_sd_bps=round(statistics.pstdev(rets) * bp, 1) if len(rets) > 1 else 0,
                 wallex_spread_bps=round(h[-1][3] * bp, 1),
+                wallex_change_30m_bps=round((h[-1][5] / h[max(0, len(h) - 30)][5] - 1) * bp, 1),
+                wallex_change_10m_bps=round((h[-1][5] / h[max(0, len(h) - 10)][5] - 1) * bp, 1),
                 recent_trade_pnls_bps=[round(x * 100, 1) for x in m.pnls], holding=bool(m.pos_qty))
         return ctx
 
@@ -865,7 +910,7 @@ async def main():
     except Exception as e:  # the qualifier then waits QUAL_MIN_HOURS for live history
         bot.event("error", f"history warm-up failed: {e!r}")
     bot.event("start", f"{MODE} {syms} fees {FEE_MAKER}/{FEE_TAKER} edge {ENTRY_EDGE} pos {POS_FRAC}×{MAX_POS} "
-                       f"end {iso(END_TS)} ref {ref}")
+                       f"end {iso(END_TS)} ref {ref} strategy {STRATEGY}")
     asyncio.create_task(stream_depth(syms + ["USDTTMN"] + list(refb), on_wallex))
     if ref == "binance":
         asyncio.create_task(binance_feed(COINS + ZERO_FEE_COINS, bot.on_ref))

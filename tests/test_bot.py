@@ -286,3 +286,21 @@ def test_network_blip_is_quiet_and_outage_alerts_once(monkeypatch):
         b.trouble("net", "error", "ConnectTimeout('')", 2000.0 + t, B.NET_GRACE)
     b.clear("net")
     assert len(sent) == 2 and "for 66s" in sent[0] and sent[1].startswith("✅ <b>Back to normal</b>")
+
+
+def test_trend_mode_buys_a_rise_and_sells_above_fees(monkeypatch):
+    b, t = make(monkeypatch, STRATEGY="trend", STOP_LOSS=0.01), [1000.0]
+    async def climb():  # Wallex and the global price rise together: +0.96% in 40 min
+        for i in range(2400):
+            feed(b, t[0], FAIR * (1 + 0.000004 * i))
+            b.on_ref("BTC", REF * (1 + 0.000004 * i), t[0])
+            await b.tick(t[0])
+            t[0] += 1
+    asyncio.run(climb())
+    assert order(b)["side"] == "BUY" and abs(order(b)["price"] / b.m["BTCTMN"].book["bid"][0] - 1) <= 2 * B.REQUOTE
+    mid = FAIR * (1 + 0.000004 * 2400)
+    run(b, t, [mid * 0.998] * 2)  # trades through our bid
+    m = b.m["BTCTMN"]
+    entry = m.pos_cost / m.pos_qty
+    assert m.pos_qty > 0 and order(b)["side"] == "SELL"
+    assert order(b)["price"] >= entry * (1 + B.FEE_MAKER + B.TREND_TP)
