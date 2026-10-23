@@ -218,3 +218,15 @@ def test_ai_http_reads_openai_reply(monkeypatch):
     monkeypatch.setattr(ai_http.httpx, "post", lambda url, **kw: seen.update(url=url, **kw) or R())
     assert ai_http.ask("hi") == '{"markets": {}}'
     assert seen["url"] == "https://gw.example/v1/chat/completions" and seen["headers"]["Authorization"] == "Bearer k"
+
+
+def test_live_equity_counts_locked_balance(monkeypatch):
+    class Rest:
+        async def balances(self):
+            return {"TMN": (500_000.0, 4_500_000.0)}  # three resting buys lock 4.5M
+
+    b = make(monkeypatch)
+    b.broker = B.Live(Rest())
+    b.m["BTCTMN"].book["bid"] = (FAIR, 0.0)
+    b.bal = asyncio.run(b.broker.balances())
+    assert b.equity() == 5_000_000

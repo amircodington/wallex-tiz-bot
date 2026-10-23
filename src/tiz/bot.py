@@ -164,7 +164,8 @@ class Live:
         self.rest = rest
 
     async def balances(self):
-        return {a: free for a, (free, _locked) in (await self.rest.balances()).items()}
+        # total, not free: TMN locked in our resting buys is still ours (free only read equity -90% and tripped the daily stop)
+        return {a: free + locked for a, (free, locked) in (await self.rest.balances()).items()}
 
     async def place(self, m, side, price, qty, book):
         cid = "T" + uuid.uuid4().hex[:16].upper()
