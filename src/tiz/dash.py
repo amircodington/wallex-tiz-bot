@@ -6,6 +6,7 @@ import json
 import os
 import re
 import secrets
+import shutil
 import signal
 import sqlite3
 import subprocess
@@ -35,7 +36,9 @@ PROFILES = {  # what the start button launches; paths match SOURCES so the page 
 }
 LIMITS = dict(POS_FRAC=(0.05, 0.34), MAX_POS=(1, 3), ENTRY_EDGE=(0.004, 0.02), STOP_LOSS=(0.01, 0.05), DAILY_STOP=(0.01, 0.05))
 AI_CMDS = dict(cli=None, boxapi="uv run python -m tiz.ai_http", off=None)
-COMMIT = subprocess.run(["git", "-C", str(B.ROOT), "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
+COMMIT = os.environ.get("COMMIT") or (shutil.which("git") and subprocess.run(["git", "-C", str(B.ROOT), "rev-parse", "--short", "HEAD"],
+                                                                     capture_output=True, text=True).stdout.strip()) or ""
+NO_LIVE = os.environ.get("NO_LIVE") == "1"  # public server: paper only, no exchange account calls
 
 
 def tail_lines(path, n=4000):
@@ -142,6 +145,8 @@ def dotenv_keys():
 def start(profile, body):
     if profile in running():
         return 409, dict(error=f"{profile} is already running")
+    if profile == "live" and NO_LIVE:
+        return 403, dict(error="live is disabled on this server (NO_LIVE=1)")
     if profile == "live" and body.get("confirm") != "LIVE":
         return 400, dict(error="live needs confirm=LIVE")
     env = {k: v for k, v in os.environ.items() if k not in dotenv_keys()}  # the bot reads .env itself; keep secrets out of ps
@@ -159,7 +164,8 @@ def start(profile, body):
     if body["AI"] == "off":
         env["AI_JUDGE"] = "0"
     log = open(PROFILES[profile]["log"], "a")
-    p = subprocess.Popen(["caffeinate", "-ims", "uv", "run", "python", "-m", "tiz.bot"], cwd=B.ROOT, env=env, stdout=log,
+    awake = ["caffeinate", "-ims"] if shutil.which("caffeinate") else []  # macOS only: keep the laptop awake
+    p = subprocess.Popen([*awake, "uv", "run", "python", "-m", "tiz.bot"], cwd=B.ROOT, env=env, stdout=log,
                          stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, start_new_session=True)  # survives the dashboard
     return 200, dict(ok=True, pid=p.pid)
 
@@ -201,6 +207,8 @@ _acct = [0.0, None]
 
 def account():
     """Real balances (read-only), cached 15 s; valued at the bot's last recorded bids."""
+    if NO_LIVE:
+        raise RuntimeError("NO_LIVE=1: no exchange account on this server")
     if time.time() - _acct[0] < 15:
         return _acct[1]
     bal = asyncio.run(Rest(os.environ.get("WALLEX_API_KEY")).balances())
@@ -243,7 +251,7 @@ def chat_state():
 class Handler(SimpleHTTPRequestHandler):
     def do_POST(self):
         host = self.headers.get("Host", "")
-        if self.headers.get("X-TIZ-Token") != TOKEN or self.headers.get("Origin") not in (f"http://{host}", None):
+        if self.headers.get("X-TIZ-Token") != TOKEN or self.headers.get("Origin") not in (f"http://{host}", f"https://{host}", None):
             return self.send(b'{"error":"forbidden"}', "application/json", 403)
         body = json.loads(self.rfile.read(int(self.headers.get("Content-Length") or 0)) or b"{}")
         if self.path == "/api/chat":
@@ -311,5 +319,9 @@ class Handler(SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     (OUT / "live").mkdir(parents=True, exist_ok=True)
-    print("http://localhost:8787")
-    ThreadingHTTPServer(("127.0.0.1", 8787), partial(Handler, directory=str(OUT))).serve_forever()
+    (B.ROOT / "logs").mkdir(exist_ok=True)
+    host, port = os.environ.get("HOST", "127.0.0.1"), int(os.environ.get("PORT", "8787"))
+    if os.environ.get("AUTOSTART") == "shadow":
+        print("autostart shadow:", start("shadow", {"AI": "boxapi"}), flush=True)
+    print(f"serving on http://{host}:{port}", flush=True)
+    ThreadingHTTPServer((host, port), partial(Handler, directory=str(OUT))).serve_forever()
