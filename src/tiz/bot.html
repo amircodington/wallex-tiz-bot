@@ -312,6 +312,61 @@ footer a{color:var(--accent)}
 .chat-f .btn{padding:11px 14px}
 .chat-f .btn svg{transform:scaleX(-1)}
 
+/* bot mind: live, derived from the bot's own data */
+.con-meta{display:flex;align-items:center;gap:12px}
+.live-b{display:inline-flex;align-items:center;gap:7px;font:700 12px var(--mono);letter-spacing:.08em;color:var(--ask);padding:4px 10px;border-radius:var(--pill);background:var(--ask-soft)}
+.live-b i{position:relative;width:8px;height:8px;border-radius:50%;background:currentColor}
+.live-b i::after{content:"";position:absolute;inset:0;border-radius:50%;background:currentColor;animation:ping 1.6s cubic-bezier(0,0,.2,1) infinite}
+.live-b.off{color:var(--dim);background:var(--sunk)}.live-b.off i::after{animation:none}
+.mind{overflow:hidden}
+.mind::before{content:"";position:absolute;inset:-40% -20% auto auto;width:60%;height:120%;background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 14%,transparent),transparent);pointer-events:none}
+.mind>*{position:relative}
+.mind-g{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:28px;align-items:center;margin-bottom:20px}
+@media (max-width:760px){.mind-g{grid-template-columns:1fr}}
+.core-w{display:grid;justify-items:center;gap:14px;text-align:center}
+.core{position:relative;width:170px;height:170px;display:grid;place-items:center;--spd:1}
+.core .orb{position:relative;z-index:2;display:grid;place-items:center;width:96px;height:96px;border-radius:50%;color:#fff;
+  background:radial-gradient(circle at 35% 30%,#D9C2FF,var(--accent) 45%,var(--accent-2) 80%);box-shadow:0 0 40px -4px var(--glow),inset 0 -8px 20px rgba(0,0,0,.25);animation:breathe calc(3.2s / var(--spd)) ease-in-out infinite}
+.core .orb svg.i{width:38px;height:38px;animation:spin-slow calc(10s / var(--spd)) linear infinite}
+.core .ring{position:absolute;inset:0;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--accent) 55%,transparent);animation:spin-slow calc(14s / var(--spd)) linear infinite}
+.core .ring.r2{inset:18px;border-style:solid;border-color:transparent;border-top-color:var(--accent);border-left-color:color-mix(in srgb,var(--accent-2) 70%,transparent);animation-direction:reverse;animation-duration:calc(5s / var(--spd))}
+.core .pulse{position:absolute;inset:37px;border-radius:50%;border:2px solid var(--accent);animation:ripple calc(2.4s / var(--spd)) var(--ease-out) infinite}
+.core.busy{--spd:3}
+.core.busy .orb{box-shadow:0 0 70px 6px var(--glow),inset 0 -8px 20px rgba(0,0,0,.25)}
+.focus{display:flex;align-items:center;gap:10px;min-height:40px;font-size:15px}
+.focus .av{width:32px;height:32px}
+.thinking{font-size:13.5px;color:var(--accent);display:flex;align-items:center;gap:6px}
+.thinking span{display:inline-flex;gap:3px}.thinking i{width:5px;height:5px;border-radius:50%;background:currentColor;animation:dot 1.1s ease-in-out infinite}.thinking i:nth-child(2){animation-delay:.15s}.thinking i:nth-child(3){animation-delay:.3s}
+.radar{display:grid;gap:4px}
+.radar-h{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);margin-bottom:6px}
+.rd{position:relative;display:grid;grid-template-columns:34px 64px 1fr 108px;gap:12px;align-items:center;padding:7px 10px;border-radius:12px;transition:background-color 300ms ease}
+.rd .av{width:30px;height:30px}
+.rd b{font:600 14px var(--mono)}
+.rd .trk{position:relative;height:10px;border-radius:5px;background:var(--sunk);overflow:hidden}
+.rd .trk i{position:absolute;inset:0;border-radius:5px;background:linear-gradient(90deg,color-mix(in srgb,var(--c) 35%,transparent),var(--c));transform-origin:right;transition:transform 900ms var(--ease-out)}
+.rd .lb{font-size:13px;color:var(--muted);text-align:left}
+.rd.near .lb{color:var(--bid);font-weight:600}.rd.near .trk{box-shadow:0 0 0 1px var(--bid),0 0 14px -2px var(--bid)}
+.rd.scan{background:color-mix(in srgb,var(--accent) 9%,transparent)}
+.rd.scan::after{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(270deg,transparent,color-mix(in srgb,var(--accent) 22%,transparent),transparent);animation:sweep 1.4s var(--ease-in-out) both;pointer-events:none}
+.thought{display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 16px;margin-bottom:14px;border-radius:16px;background:linear-gradient(90deg,var(--accent-soft),transparent 80%);border:1px solid color-mix(in srgb,var(--accent) 25%,var(--line))}
+.thought .th{display:flex;align-items:center;gap:12px;min-width:0;flex:1;transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out),filter 220ms ease}
+.thought .th.out{opacity:0;transform:translateY(-6px);filter:blur(3px)}
+.thought .q{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--grad);color:#fff;flex:none}
+.thought .q svg.i{width:18px;height:18px}
+.thought .w{min-width:0}.thought .w b{font-size:14.5px;display:flex;align-items:center;gap:8px}
+.thought .w span{display:block;font-size:14px;color:var(--muted);direction:ltr;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.thought .dots{display:flex;gap:4px;flex:none}.thought .dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background-color 200ms ease,transform 200ms var(--ease-out)}.thought .dots i.on{background:var(--accent);transform:scale(1.3)}
+.stream{display:grid;gap:2px;max-height:300px;overflow:hidden;mask-image:linear-gradient(#000 70%,transparent);-webkit-mask-image:linear-gradient(#000 70%,transparent)}
+.tw{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;padding:8px 6px;border-radius:12px;font-size:15px}
+.tw.new{animation:pop 320ms var(--ease-out) both}
+.tw .ei{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:var(--sunk);color:var(--muted)}
+.tw .ei svg.i{width:18px;height:18px}
+.tw.ai .ei{background:var(--accent-soft);color:var(--accent)}.tw.buy .ei{background:var(--info-soft);color:var(--info)}.tw.sell .ei{background:var(--bid-soft);color:var(--bid)}
+.tw.warn .ei{background:var(--warn-soft);color:var(--warn)}.tw.err .ei{background:var(--ask-soft);color:var(--ask)}
+.tw .tx b{font-family:var(--mono)}
+.tw .tx .car{display:inline-block;width:2px;height:1em;margin-inline-start:2px;vertical-align:-2px;background:var(--accent);animation:blink 1s steps(2,start) infinite}
+.tw .t{font:12.5px var(--mono);color:var(--dim)}
+
 /* motion */
 @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -321,6 +376,10 @@ footer a{color:var(--accent)}
 @keyframes dot{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-5px);opacity:1}}
 @keyframes wiggle{30%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}}
 @keyframes spin-slow{to{transform:rotate(360deg)}}
+@keyframes breathe{50%{transform:scale(1.06)}}
+@keyframes ripple{from{transform:scale(1);opacity:.7}to{transform:scale(1.9);opacity:0}}
+@keyframes sweep{from{transform:translateX(100%);opacity:0}30%{opacity:1}to{transform:translateX(-100%);opacity:0}}
+@keyframes blink{to{visibility:hidden}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 /* page load: sections rise in once, staggered; hidden only when JS is ready to reveal them */
 .js [data-rise]{opacity:0;transform:translateY(18px)}
@@ -331,7 +390,7 @@ footer a{color:var(--accent)}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important}
   .js [data-rise],.js [data-rise] .tk,.js [data-rise] .stat,.js [data-rise] .mk{transform:none!important}
-  .ev.pre{transform:none}
+  .ev.pre{transform:none}.core *{animation:none!important}.rd.scan::after{display:none}.thought .th.out{transform:none;filter:none}
   .seg .thumb,.gauge i,.icon-btn svg{transition:none}
   .stat:hover,.mk:hover,.tk:hover,.kv-chip:hover{transform:none!important}.stat:hover .ic,.mk:hover .av,.tk:hover .av,.card:hover .card-h h2 .ic,.brand:hover svg{transform:none!important}
   dialog,.chat{transform:none}.fab:hover{transform:none}
@@ -384,6 +443,7 @@ document.documentElement.dataset.mode = document.documentElement.dataset.theme |
   <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></symbol>
   <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v.1A3 3 0 0 0 4.6 9a3 3 0 0 0 .4 5.2A3 3 0 0 0 9 19.5 2.5 2.5 0 0 0 12 21V4.5A2.5 2.5 0 0 0 9.5 2zM14.5 2A2.5 2.5 0 0 1 17 4.5v.1A3 3 0 0 1 19.4 9a3 3 0 0 1-.4 5.2 3 3 0 0 1-4 5.3A2.5 2.5 0 0 1 12 21"/></symbol>
+  <symbol id="i-term" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m6 9 3 3-3 3M12 15h6"/></symbol>
   <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></symbol>
 </svg>
 <div class="stripe"><svg class="i"><use href="#i-moon"/></svg>حالت سایه · پول واقعی در کار نیست، سفارش‌ها فقط شبیه‌سازی می‌شوند</div>
@@ -423,6 +483,21 @@ document.documentElement.dataset.mode = document.documentElement.dataset.theme |
   </div>
 
   <section class="stats" id="stats" data-rise></section>
+
+  <section class="card mind" data-rise>
+    <div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-brain"/></svg></span>ذهن ربات</h2>
+      <div class="con-meta"><span class="sub" id="lastEv"></span><span class="live-b"><i></i>LIVE</span></div></div>
+    <div class="mind-g">
+      <div class="core-w">
+        <div class="core" id="core"><span class="ring r1"></span><span class="ring r2"></span><span class="pulse"></span><span class="orb"><svg class="i"><use href="#i-spark"/></svg></span></div>
+        <div class="focus" id="focus"></div>
+        <div class="thinking" id="thinking">در حال فکر کردن<span><i></i><i></i><i></i></span></div>
+      </div>
+      <div class="radar"><div class="radar-h"><span>فاصله تا نقطه‌ی خرید</span><span class="dim" id="radarEdge"></span></div><div id="radar"></div></div>
+    </div>
+    <div class="thought" id="thought"></div>
+    <div class="stream" id="stream" aria-live="polite"></div>
+  </section>
 
   <div class="grid g2">
     <section class="card" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-layers"/></svg></span>پوزیشن‌های باز</h2><span class="sub" id="posn"></span></div><div class="tbl" id="pos"></div></section>
@@ -515,7 +590,8 @@ document.querySelectorAll('#src button').forEach(b => b.onclick = () => {
   if (b.dataset.src === src) return;
   src = b.dataset.src; document.body.classList.toggle('paper', src === 'shadow');
   document.querySelectorAll('#src button').forEach(x => x.setAttribute('aria-pressed', x === b));
-  placeThumb(); seenFeed = new Set(); firstFeed = true; last = {}; $('feed').innerHTML = ''; poll(); drawAccount();
+  placeThumb(); seenFeed = new Set(); firstFeed = true; last = {}; $('feed').innerHTML = '';
+  con.seen = new Set(); con.first = true; $('stream').innerHTML = ''; $('radar').innerHTML = ''; $('thought').innerHTML = ''; th.i = 0; poll(); drawAccount();
 });
 
 /* ---------- control ---------- */
@@ -847,6 +923,108 @@ $('forget').onclick = async () => {
 };
 addEventListener('keydown', e => { if (e.key === 'Escape' && !$('chat').hidden) openChat(false); });
 
+/* ---------- bot mind: the bot's own log + quotes, said as sentences ---------- */
+const con = {seen: new Set(), first: true, lastTs: 0, lastBuy: {}};
+const nowHms = () => new Date().toLocaleTimeString('en-GB', {timeZone: 'Asia/Tehran', hour12: false});
+const faPct = v => `<b class="num">${fmt(v, 2)}%</b>`;
+function busy() { const c = $('core'); c.classList.add('busy'); clearTimeout(busy.t); busy.t = setTimeout(() => c.classList.remove('busy'), 3500); }
+function thoughtOf([t, lvl, x]) {  // a log line → [kind, icon, Persian sentence] or null (noise)
+  const c = s => s.replace('TMN', ''), ev = (x.match(/^\[(\w+)\] /) || [])[1];
+  let m;
+  if (x.startsWith('AI: ')) {
+    const v = [...x.matchAll(/'(\w+?)TMN': \('(\w+)', ([\d.]+)\)/g)].filter(([, s]) => (data.coins || []).includes(s));
+    const ok = v.filter(z => z[2] === 'approve').map(z => z[1]);
+    return ['ai', 'spark', `${v.length} بازار را دوباره سنجیدم. ${ok.length ? `برای <b>${ok.join('، ')}</b> اجازه‌ی خرید دادم` : 'فعلاً هیچ‌کدام ارزش خرید ندارد'}${ok.length < v.length ? `؛ ${v.length - ok.length} بازار را کنار گذاشتم` : ''}.`];
+  }
+  if ((m = x.match(/^(\w+) (BUY|SELL) \S+ ([\d.e-]+) @ ([\d.]+) \((\w+)\)/))) {
+    const coin = c(m[1]), ts = tsOf(`${new Date().toISOString().slice(0, 10)}T${t}+03:30`);
+    if (m[2] === 'SELL') return ['sell', 'up', `<b>${coin}</b> را برای ${REASON[m[5]] || m[5]} به قیمت ${price(Number(m[4]))} گذاشتم برای فروش.`];
+    const again = ts - (con.lastBuy[coin] || 0) < 300; con.lastBuy[coin] = ts;
+    return again ? null : ['buy', 'target', `کمین کردم: سفارش خرید <b>${coin}</b> در ${price(Number(m[4]))}، پایین‌تر از قیمت جهانی. اگر بازار بیاید پایین، پر می‌شود.`];
+  }
+  if (x.startsWith('status ') && (m = x.match(/equity ([\d,]+) TMN \(([-+\d.]+)%\) max_dd ([\d.]+)%/))) return ['', 'wallet', `حساب: <b class="num">${m[1]}</b> تومان (${pct(Number(m[2]))}) · بیشترین افت ${faPct(Number(m[3]))}.`];
+  if (ev === 'fill') return ['sell', 'check', `خرید انجام شد! ${esc(x.slice(7))}`];
+  if (ev === 'trade') return ['sell', 'trend', `یک معامله بسته شد: ${esc(x.slice(8))}`];
+  if (ev === 'stale' && (m = x.match(/(\w+)TMN feed/))) return ['warn', 'clock', `داده‌ی <b>${m[1]}</b> دیر رسید؛ تا تازه شود، رویش تصمیم نمی‌گیرم.`];
+  if (ev === 'halt') return ['err', 'shield', 'افت روزانه به سقف رسید؛ تا فردا خرید جدید نمی‌کنم.'];
+  if (ev === 'start') return ['ai', 'play', 'بیدار شدم و دارم تاریخچه‌ی بازارها را مرور می‌کنم.'];
+  if (/reconnect/.test(x)) return ['warn', 'pulse', 'ارتباط لحظه‌ای با والکس قطع و وصل شد؛ دوباره وصل شدم.'];
+  if (ev === 'error' || lvl === 'ERROR') return ['err', 'alert', 'یک درخواست به والکس جواب نداد؛ دوباره تلاش می‌کنم.'];
+  return null;
+}
+function typeInto(el, html) {  // typewriter for the newest thought; text nodes only, markup appears whole
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.innerHTML = html; return; }
+  const tmp = document.createElement('div'); tmp.innerHTML = html;
+  const nodes = []; (function walk(n) { for (const k of [...n.childNodes]) { if (k.nodeType === 3) { nodes.push([k, k.textContent]); k.textContent = ''; } else walk(k); } })(tmp);
+  el.innerHTML = ''; el.append(...tmp.childNodes); const car = document.createElement('span'); car.className = 'car'; el.append(car);
+  let i = 0, j = 0;
+  const step = () => { if (i >= nodes.length) { car.remove(); return; } const [n, full] = nodes[i]; n.textContent = full.slice(0, ++j); if (j >= full.length) { i++; j = 0; } setTimeout(step, 16); };
+  step();
+}
+function addThought(t, [k, icon, html], animate) {
+  const el = document.createElement('div'); el.className = `tw ${k}${animate ? ' new' : ''}`;
+  el.innerHTML = `<span class="ei">${ic(icon)}</span><span class="tx"></span><span class="t">${t.slice(0, 5)}</span>`;
+  $('stream').prepend(el);
+  animate ? typeInto(el.querySelector('.tx'), html) : (el.querySelector('.tx').innerHTML = html);
+  while ($('stream').children.length > 12) $('stream').lastChild.remove();
+}
+function drawConsole(d) {
+  const fresh = (d.log || []).filter(l => { const k = l[0] + l[2]; if (con.seen.has(k)) return false; con.seen.add(k); return true; });
+  const th = fresh.map(l => [l[0], thoughtOf(l)]).filter(([, x]) => x);
+  (con.first ? th.slice(-8) : th).forEach(([t, x]) => addThought(t, x, !con.first));
+  if (th.length && !con.first) { busy(); con.lastTs = Date.now(); }
+  if (con.first && th.length) con.lastTs = Date.now();
+  con.first = false;
+  drawRadar(d);
+}
+/* radar: how close each market is to its buy trigger; one market is "in focus" at a time */
+const scan = {i: 0};
+function gaps(d) {
+  const edge = d.params.entry_edge * 1e4;
+  return Object.entries(d.markets).filter(([, m]) => m.active && m.last).map(([s, m]) => [s.replace('TMN', ''), (m.last.prem - (m.last.base - edge)) / 100, m]);
+}
+function drawRadar(d) {
+  const g = gaps(d); if (!g.length) { $('radar').innerHTML = empty('radar', 'داده‌ی بازار هنوز نرسیده.'); return; }
+  $('radarEdge').innerHTML = `آستانه <span class="num">${fmt(d.params.entry_edge * 100, 1)}%</span>`;
+  const rows = $('radar').children.length === g.length && $('radar').querySelector('.rd') ? [...$('radar').children] : null;
+  g.forEach(([c, gap, m], i) => {
+    const f = Math.max(0.03, Math.min(1, 1 - gap / (d.params.entry_edge * 100 * 1.5))), near = gap <= 0.1;
+    const lb = m.position ? 'خریده شده' : gap <= 0 ? 'در محدوده‌ی خرید' : `<span class="num">${fmt(gap, 2)}%</span> مانده`;
+    if (rows) { const r = rows[i]; r.classList.toggle('near', near); r.querySelector('.trk i').style.transform = `scaleX(${f})`; r.querySelector('.lb').innerHTML = lb; return; }
+    $('radar').insertAdjacentHTML('beforeend', `<div class="rd ${near ? 'near' : ''}" style="--c:${COLOR[c] || '#8B5CF6'}">${av(c)}<b>${c}</b><span class="trk"><i style="transform:scaleX(${f})"></i></span><span class="lb">${lb}</span></div>`);
+  });
+}
+function scanStep() {  // every 2.6 s: look at the next market and say what we see
+  if (!data) return;
+  const g = gaps(data); if (!g.length) return;
+  const k = scan.i++ % g.length, [c, gap, m] = g[k], run = ctl && ctl.running[src];
+  $('radar').querySelectorAll('.rd').forEach((r, i) => { r.classList.toggle('scan', i === k); if (i === k) { r.style.animation = 'none'; r.offsetWidth; r.style.animation = ''; } });
+  const v = ((data.ai.last || {}).verdicts || {})[c + 'TMN'];
+  const say = !run ? 'ربات خاموش است؛ فقط نگاه می‌کنم.'
+    : m.position ? `در ${c} هستم؛ منتظر رسیدن به هدف سود.`
+    : gap <= 0 ? `${c} به نقطه‌ی خرید رسید!${v && v.verdict !== 'approve' ? ' ولی داور ردش کرده.' : ''}`
+    : gap < 0.25 ? `${c} نزدیک است؛ فقط ${fmt(gap, 2)}% مانده. حواسم هست.`
+    : `${c} آرام است؛ ${fmt(gap, 2)}% تا خرید فاصله دارد.`;
+  $('focus').innerHTML = `${av(c)}<span>${esc(say)}</span>`;
+  $('thinking').style.visibility = run ? 'visible' : 'hidden';
+}
+setInterval(scanStep, 2600);
+
+/* what the judge said, one market at a time */
+const th = {i: 0, key: ''};
+function drawThought() {
+  const v = Object.entries(((data && data.ai.last) || {}).verdicts || {});
+  if (!v.length) { $('thought').innerHTML = `<div class="th"><span class="q">${ic('spark')}</span><div class="w"><b>داور هنوز چیزی نگفته</b><span>first verdict ~5 min after start</span></div></div>`; return; }
+  const [s, a] = v[th.i % v.length], c = s.replace('TMN', ''), ok = a.verdict === 'approve';
+  const html = `<span class="q">${ic('spark')}</span>${av(c)}<div class="w"><b>${c} <span class="pill ${ok ? 'ok' : 'warn'}" style="display:inline-flex;font-size:12.5px;padding:1px 10px">${ok ? 'تأیید' : 'رد'} · <span class="num">${Math.round(a.confidence * 100)}%</span></span></b><span>${esc(a.reason)}</span></div>`;
+  const dots = `<div class="dots">${v.map((_, j) => `<i class="${j === th.i % v.length ? 'on' : ''}"></i>`).join('')}</div>`;
+  let el = $('thought').querySelector('.th');
+  if (!el) { $('thought').innerHTML = `<div class="th">${html}</div>${dots}`; return; }
+  el.classList.add('out');
+  setTimeout(() => { el.innerHTML = html; el.classList.remove('out'); const d0 = $('thought').querySelector('.dots'); if (d0) d0.outerHTML = dots; else $('thought').insertAdjacentHTML('beforeend', dots); }, 220);
+}
+setInterval(() => { th.i++; drawThought(); }, 4500);
+
 /* ---------- clock (every second) ---------- */
 function tick() {
   if (!data) return;
@@ -859,12 +1037,14 @@ function tick() {
   $('phase').className = 'pill ' + ph[0]; $('phase').innerHTML = `<i></i>${ph[1]}`;
   if (window._aiNext && run) { const s = Math.max(0, window._aiNext - now); $('ainext').innerHTML = `رأی بعدی <span class="num">${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}</span>`; }
   else $('ainext').textContent = '';
+  const lb = document.querySelector('.live-b'); lb.classList.toggle('off', !run); lb.lastChild.textContent = run ? 'LIVE' : 'OFF';
+  if (con.lastTs) { const a = Math.round((Date.now() - con.lastTs) / 1000); $('lastEv').innerHTML = `آخرین فکر <span class="num">${a < 60 ? a + 's' : Math.floor(a / 60) + 'm'}</span> پیش`; }
 }
 
 async function poll() {
   try {
     data = await (await fetch('/api/bot/' + src, {cache: 'no-store'})).json();
-    drawTicker(data); drawHero(data); drawStats(data); drawTables(data); drawMarkets(data); drawAI(data); drawFeed(data); drawInfo(data); tick();
+    drawConsole(data); drawTicker(data); drawHero(data); drawStats(data); drawTables(data); drawMarkets(data); drawAI(data); if (!$('thought').children.length) drawThought(); drawFeed(data); drawInfo(data); tick();
     if (firstPaint) { firstPaint = false; reveal(); }
   } catch (e) { console.warn(e); }
 }

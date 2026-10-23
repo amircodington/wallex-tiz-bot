@@ -27,6 +27,7 @@ SOURCES = {  # journal, decisions, log of each running bot
 }
 STATUS = re.compile(r"^(\S+ \S+),\d+ INFO status equity ([\d,]+) TMN \(([-+\d.]+)%\) max_dd ([\d.]+)% positions (\{.*\}) "
                     r"halted (\w+) phase (\w+)")
+LOGLINE = re.compile(r"^\d{4}-\d\d-\d\d (\d\d:\d\d:\d\d),\d+ (INFO|WARNING|ERROR) (.+)$")  # one-line records only: no tracebacks
 TOKEN = secrets.token_hex(16)  # put into the page; POSTs without it (e.g. from another website) are refused
 PROFILES = {  # what the start button launches; paths match SOURCES so the page reads what it started
     "live": dict(env=dict(MODE="live"), log=SOURCES["live"][2]),
@@ -54,8 +55,9 @@ def snapshot(src):
     out = dict(src=src, now=now, commit=COMMIT, end_ts=B.END_TS, coins=B.COINS, watch=B.ZERO_FEE_COINS,
                params=dict(entry_edge=B.ENTRY_EDGE, stop_loss=B.STOP_LOSS, max_hold=B.MAX_HOLD, daily_stop=B.DAILY_STOP,
                            max_pos=B.MAX_POS, ai_every=B.AI_EVERY, entry_cutoff=B.ENTRY_CUTOFF, flatten_before=B.FLATTEN_BEFORE))
-    status, start = [], None
-    for ln in tail_lines(log_path):
+    status, start, lines = [], None, tail_lines(log_path)
+    out["log"] = [[m[1], m[2], m[3][:400]] for m in map(LOGLINE.match, lines[-1500:]) if m and m[3] != "tick"][-80:]
+    for ln in lines:
         if m := STATUS.match(ln):
             ts = datetime.strptime(m[1], "%Y-%m-%d %H:%M:%S").timestamp()
             status.append(dict(ts=ts, equity=int(m[2].replace(",", "")), ret=float(m[3]), dd=float(m[4]),
