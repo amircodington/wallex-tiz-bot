@@ -73,7 +73,7 @@ def snapshot(src):
     markets = {}
     for sym in [c + "TMN" for c in B.COINS + B.ZERO_FEE_COINS]:
         rows = q("select ts, bid, ask, fair, prem, base from samples where sym = ? and ts > ? order by ts", sym, now - 7200)
-        series = [[round(r[0]), round(r[4] * 1e4, 1), round(r[5] * 1e4, 1)] for r in rows[::4]]  # ~1 per minute, bps
+        series = [[round(r[0]), round(r[4] * 1e4, 1), round(r[5] * 1e4, 1), (r[1] + r[2]) / 2] for r in rows[::4]]  # ~1 per minute: ts, prem/base bps, mid
         last = rows[-1] if rows else None
         o = q("select ts, cid, side, price, qty, reason from orders where sym = ? order by ts desc limit 1", sym)
         order = None
@@ -86,7 +86,7 @@ def snapshot(src):
             else:
                 pos, opened = max(0.0, pos - qty), None if pos - qty <= 1e-12 else opened
         markets[sym] = dict(active=sym[:-3] in B.COINS, series=series, order=order,
-                            last=dict(ts=last[0], bid=last[1], ask=last[2], prem=round(last[4] * 1e4, 1),
+                            last=dict(ts=last[0], bid=last[1], ask=last[2], fair=last[3], prem=round(last[4] * 1e4, 1),
                                       base=round(last[5] * 1e4, 1)) if last else None,
                             position=dict(qty=pos, entry=entry, opened=opened, stop=entry * (1 - B.STOP_LOSS)) if pos > 1e-12 else None)
     out["markets"] = markets
