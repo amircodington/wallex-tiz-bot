@@ -16,6 +16,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from tiz import bot as B
+from tiz import chat
 from tiz.backtest import OUT
 from tiz.wallex import Rest
 
@@ -32,7 +33,7 @@ PROFILES = {  # what the start button launches; paths match SOURCES so the page 
     "shadow": dict(env=dict(MODE="paper", DB=str(SOURCES["shadow"][0]), DECISIONS=str(SOURCES["shadow"][1])), log=SOURCES["shadow"][2]),
 }
 LIMITS = dict(POS_FRAC=(0.05, 0.34), MAX_POS=(1, 3), ENTRY_EDGE=(0.004, 0.02), STOP_LOSS=(0.01, 0.05), DAILY_STOP=(0.01, 0.05))
-AI_CMDS = dict(cli=None, boxapi="uv run python -m tiz.ai_http")
+AI_CMDS = dict(cli=None, boxapi="uv run python -m tiz.ai_http", off=None)
 COMMIT = subprocess.run(["git", "-C", str(B.ROOT), "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
 
 
@@ -124,7 +125,7 @@ def running():
         pid, started = int(f[0]), datetime.strptime(" ".join(f[1:6]), "%a %b %d %H:%M:%S %Y").timestamp()
         envs = subprocess.run(["ps", "eww", "-o", "command=", "-p", str(pid)], capture_output=True, text=True).stdout
         got = dict(re.findall(r"(?:^| )(MODE|POS_FRAC|MAX_POS|ENTRY_EDGE|STOP_LOSS|DAILY_STOP)=(\S+)", envs))  # whitelist only
-        got["AI"] = "boxapi" if "AI_CMD=uv run python -m tiz.ai_http" in envs else "cli"
+        got["AI"] = "off" if "AI_JUDGE=0" in envs else "boxapi" if "AI_CMD=uv run python -m tiz.ai_http" in envs else "cli"
         out["live" if got.get("MODE") == "live" else "shadow"] = dict(pid=pid, started=started, settings=got)
     return out
 
@@ -150,9 +151,11 @@ def start(profile, body):
                 return 400, dict(error=f"{k}={v} outside [{lo}, {hi}]")
             env[k] = str(int(v) if k == "MAX_POS" else v)
     if body.get("AI") not in AI_CMDS:
-        return 400, dict(error="AI must be cli or boxapi")
+        return 400, dict(error="AI must be cli, boxapi or off")
     if AI_CMDS[body["AI"]]:
         env["AI_CMD"] = AI_CMDS[body["AI"]]
+    if body["AI"] == "off":
+        env["AI_JUDGE"] = "0"
     log = open(PROFILES[profile]["log"], "a")
     p = subprocess.Popen(["caffeinate", "-ims", "uv", "run", "python", "-m", "tiz.bot"], cwd=B.ROOT, env=env, stdout=log,
                          stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, start_new_session=True)  # survives the dashboard
@@ -214,15 +217,45 @@ def account():
     return _acct[1]
 
 
+def chat_state():
+    """What the chat model sees: settings, last status, trades, judge votes and real equity; no keys, no raw logs."""
+    run, out = running(), {}
+    for src in SOURCES:
+        d = snapshot(src)
+        st = (d.get("status") or [None])[-1]
+        mk = d.get("markets") or {}
+        last = (d.get("ai") or {}).get("last") or {}
+        out[src] = dict(running=src in run, settings=run.get(src, {}).get("settings"), status=st,
+                        trades=[{k: t[k] for k in ("sym", "reason", "pnl", "pct")} for t in d.get("trades", [])][-10:],
+                        open_positions=[s for s, m in mk.items() if m.get("position")], open_orders=[s for s, m in mk.items() if m.get("order")],
+                        judge_votes={s: (v.get("verdict"), v.get("confidence")) for s, v in (last.get("verdicts") or {}).items()},
+                        premium_minus_baseline_bps={s: round(m["last"]["prem"] - m["last"]["base"], 1) for s, m in mk.items() if m.get("last") and m.get("active")})
+    try:
+        out["account_tmn"] = account().get("total_tmn")
+    except Exception:
+        pass
+    out["now_tehran"], out["end"] = datetime.now().strftime("%Y-%m-%d %H:%M"), "23:50, entries stop 20:50"
+    return out
+
+
 class Handler(SimpleHTTPRequestHandler):
     def do_POST(self):
         host = self.headers.get("Host", "")
         if self.headers.get("X-TIZ-Token") != TOKEN or self.headers.get("Origin") not in (f"http://{host}", None):
             return self.send(b'{"error":"forbidden"}', "application/json", 403)
+        body = json.loads(self.rfile.read(int(self.headers.get("Content-Length") or 0)) or b"{}")
+        if self.path == "/api/chat":
+            try:
+                res = chat.ask(str(body.get("message", ""))[:2000], chat_state(), LIMITS, AI_CMDS)
+            except Exception as e:  # gateway down or bad reply: say so in the chat
+                return self.send(json.dumps(dict(error=repr(e))).encode(), "application/json", 502)
+            return self.send(json.dumps(res, ensure_ascii=False).encode(), "application/json")
+        if self.path == "/api/chat/forget":
+            chat.save(dict(notes=[], history=[]))
+            return self.send(b'{"ok":true}', "application/json")
         m = re.fullmatch(r"/api/control/(live|shadow)/(start|stop)", self.path)
         if not m:
             return self.send(b'{"error":"not found"}', "application/json", 404)
-        body = json.loads(self.rfile.read(int(self.headers.get("Content-Length") or 0)) or b"{}")
         code, res = start(m[1], body) if m[2] == "start" else stop(m[1])
         self.send(json.dumps(res).encode(), "application/json", code)
 
@@ -235,6 +268,8 @@ class Handler(SimpleHTTPRequestHandler):
             f = Path(__file__).with_name("static") / self.path[8:]
             if f.is_file():
                 return self.send(f.read_bytes(), {"woff2": "font/woff2", "svg": "image/svg+xml"}.get(f.suffix[1:], "application/octet-stream"))
+        if self.path == "/api/chat":
+            return self.send(json.dumps(chat.load(), ensure_ascii=False).encode(), "application/json")
         if self.path == "/api/control":
             return self.send(json.dumps(dict(running=running(), limits=LIMITS)).encode(), "application/json")
         if self.path == "/api/account":

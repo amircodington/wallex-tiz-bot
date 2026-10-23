@@ -780,7 +780,7 @@ async def main():
             raise SystemExit(f"{len(open_)} open orders on bot markets; cancel them first")
     else:
         broker = Paper(PAPER_TMN)
-    bot = Bot(broker, Journal(), markets, Judge(), telegram(rest.http))
+    bot = Bot(broker, Journal(), markets, Judge(enabled=env("AI_JUDGE", "1") != "0"), telegram(rest.http))  # AI_JUDGE=0: rules only
     try:
         warm_history(bot)
     except Exception as e:  # the qualifier then waits QUAL_MIN_HOURS for live history

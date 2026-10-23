@@ -12,3 +12,4 @@ results/*_decisions.jsonl
 results/live/
 # Dana is a commercial font: local copy only, never in the public repo
 src/tiz/static/fonts/
+results/chat_memory.json

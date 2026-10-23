@@ -230,3 +230,13 @@ def test_live_equity_counts_locked_balance(monkeypatch):
     b.m["BTCTMN"].book["bid"] = (FAIR, 0.0)
     b.bal = asyncio.run(b.broker.balances())
     assert b.equity() == 5_000_000
+
+
+def test_chat_settings_stay_inside_limits():
+    from tiz import chat, dash
+    s, dropped = chat.clean_set({"live": {"POS_FRAC": 0.34, "MAX_POS": 3.0, "ENTRY_EDGE": 0.003, "AI": "off", "MODE": "x"},
+                                 "other": {"POS_FRAC": 0.1}}, dash.LIMITS, dash.AI_CMDS)
+    assert s == {"live": {"POS_FRAC": 0.34, "MAX_POS": 3, "AI": "off"}}
+    assert dropped == ["live.ENTRY_EDGE=0.003", "live.MODE=x"]
+    assert chat.parse('ok ```{"reply": "سلام", "set": {}}```')["reply"] == "سلام"
+    assert chat.parse("plain text")["reply"] == "plain text"

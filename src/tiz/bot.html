@@ -268,11 +268,56 @@ dl.kv dt:nth-last-child(2),dl.kv dd:last-child{border-bottom:0}
 footer{color:var(--dim);font-size:14px;text-align:center;display:grid;gap:6px;padding-top:12px}
 footer a{color:var(--accent)}
 
+/* assistant chat */
+.fab{position:fixed;left:24px;bottom:24px;z-index:20;display:inline-flex;align-items:center;gap:9px;padding:14px 22px;border:0;border-radius:var(--pill);background:var(--grad);color:#fff;font:700 15px var(--fa);cursor:pointer;
+  box-shadow:0 14px 36px -10px var(--glow),0 0 0 1px rgba(255,255,255,.08) inset;transition:transform 200ms var(--ease-out),box-shadow 200ms ease,opacity 200ms ease}
+.fab svg.i{width:22px;height:22px}
+.fab:active{transform:scale(.96)}
+.fab[aria-expanded="true"]{opacity:0;transform:scale(.9);pointer-events:none}
+@media (hover:hover) and (pointer:fine){.fab:hover{transform:translateY(-3px);box-shadow:0 20px 44px -10px rgba(166,107,255,.7)}.fab:hover svg{animation:wiggle 500ms var(--ease-out)}}
+.chat{position:fixed;left:24px;bottom:24px;z-index:21;width:min(440px,calc(100vw - 32px));height:min(640px,calc(100vh - 48px));display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:22px;
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.65),0 0 0 1px color-mix(in srgb,var(--accent) 18%,transparent);transform-origin:left bottom;
+  transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out),display 220ms allow-discrete}
+.chat[hidden]{display:none;opacity:0;transform:scale(.94) translateY(10px)}
+@starting-style{.chat:not([hidden]){opacity:0;transform:scale(.94) translateY(10px)}}
+@media (max-width:520px){.chat,.fab{left:16px;bottom:16px}}
+.chat-h{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.chat-h>div{flex:1;min-width:0}.chat-h b{display:block;font-size:16px}.chat-h small{font-size:12.5px;color:var(--muted)}
+.bot-av{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:var(--grad);color:#fff;flex:none;box-shadow:0 8px 20px -10px var(--glow)}
+.bot-av svg{animation:spin-slow 8s linear infinite}
+.icon-btn.sm{width:36px;height:36px}.icon-btn.sm svg.i{width:17px;height:17px}
+.mem{padding:12px 16px;border-bottom:1px solid var(--line);background:var(--surface-2);font-size:13.5px;max-height:180px;overflow:auto;display:grid;gap:6px}
+.mem div{display:flex;gap:8px;align-items:flex-start;color:var(--muted)}.mem svg.i{width:15px;height:15px;color:var(--accent);margin-top:4px}
+.msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.bub{max-width:88%;padding:11px 15px;border-radius:18px;font-size:15px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere;animation:pop 260ms var(--ease-out) both}
+.bub.me{align-self:flex-start;background:var(--grad);color:#fff;border-end-start-radius:6px}
+.bub.ai{align-self:flex-end;background:var(--surface-2);border:1px solid var(--line);border-end-end-radius:6px}
+.bub.err{border-color:color-mix(in srgb,var(--ask) 45%,var(--line));color:var(--ask)}
+.cs{margin-top:10px;padding:10px 12px;border-radius:14px;background:var(--bid-soft);color:var(--bid);font-size:13.5px;display:grid;gap:8px;white-space:normal}
+.cs.wait{background:var(--warn-soft);color:var(--warn)}
+.cs b{display:flex;align-items:center;gap:6px}.cs .chips{gap:6px}.cs .kv-chip{cursor:default;font-size:12.5px;padding:3px 10px}
+.mem[hidden],.sugg[hidden]{display:none}
+.typing{align-self:flex-end;display:flex;gap:5px;padding:14px 16px;border-radius:18px;background:var(--surface-2);border:1px solid var(--line)}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:dot 1s ease-in-out infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+.sugg{display:flex;gap:8px;padding:0 16px 10px;overflow-x:auto;scrollbar-width:none}
+.sugg button{flex:none;font:500 13px var(--fa);padding:6px 12px;border-radius:var(--pill);border:1px solid var(--line);background:var(--sunk);color:var(--muted);cursor:pointer;transition:border-color 160ms ease,color 160ms ease,transform 160ms var(--ease-out)}
+.sugg button:active{transform:scale(.96)}
+@media (hover:hover) and (pointer:fine){.sugg button:hover{border-color:var(--accent);color:var(--fg)}}
+.chat-f{display:flex;gap:8px;padding:12px 16px 16px;border-top:1px solid var(--line)}
+.chat-f input{flex:1;min-width:0;background:var(--sunk);border:1px solid var(--line);border-radius:var(--pill);padding:11px 16px;color:var(--fg);font:400 15px var(--fa);transition:border-color 160ms ease}
+.chat-f input:focus{outline:none;border-color:var(--accent)}
+.chat-f .btn{padding:11px 14px}
+.chat-f .btn svg{transform:scaleX(-1)}
+
 /* motion */
 @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @keyframes grow{from{transform:scaleX(0)}to{transform:none}}
 @keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes dot{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-5px);opacity:1}}
+@keyframes wiggle{30%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 /* page load: sections rise in once, staggered; hidden only when JS is ready to reveal them */
 .js [data-rise]{opacity:0;transform:translateY(18px)}
@@ -286,7 +331,7 @@ footer a{color:var(--accent)}
   .ev.pre{transform:none}
   .seg .thumb,.gauge i,.icon-btn svg{transition:none}
   .stat:hover,.mk:hover,.tk:hover,.kv-chip:hover{transform:none!important}.stat:hover .ic,.mk:hover .av,.tk:hover .av,.card:hover .card-h h2 .ic,.brand:hover svg{transform:none!important}
-  dialog{transform:none}
+  dialog,.chat{transform:none}.fab:hover{transform:none}
 }
 </style>
 <script>
@@ -331,6 +376,11 @@ document.documentElement.dataset.mode = document.documentElement.dataset.theme |
   <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
   <symbol id="i-save" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v.1A3 3 0 0 0 4.6 9a3 3 0 0 0 .4 5.2A3 3 0 0 0 9 19.5 2.5 2.5 0 0 0 12 21V4.5A2.5 2.5 0 0 0 9.5 2zM14.5 2A2.5 2.5 0 0 1 17 4.5v.1A3 3 0 0 1 19.4 9a3 3 0 0 1-.4 5.2 3 3 0 0 1-4 5.3A2.5 2.5 0 0 1 12 21"/></symbol>
   <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></symbol>
 </svg>
 <div class="stripe"><svg class="i"><use href="#i-moon"/></svg>حالت سایه · پول واقعی در کار نیست، سفارش‌ها فقط شبیه‌سازی می‌شوند</div>
@@ -396,6 +446,18 @@ document.documentElement.dataset.mode = document.documentElement.dataset.theme |
     <div class="dlg-b" id="dlgB"></div>
     <div class="dlg-f"><button class="btn primary" value="ok" id="dlgOk"><svg class="i"><use href="#i-save"/></svg><span>ذخیره</span></button><button class="btn" value="cancel">انصراف</button></div>
   </form></dialog>
+  <button class="fab" id="fab" aria-label="گفتگو با دستیار" aria-expanded="false"><svg class="i"><use href="#i-chat"/></svg><span>دستیار</span></button>
+  <section class="chat" id="chat" aria-label="گفتگو با دستیار" hidden>
+    <div class="chat-h"><span class="bot-av"><svg class="i"><use href="#i-spark"/></svg></span>
+      <div><b>دستیار سیگنال آپس</b><small>Claude Haiku · BoxAPI · <span id="memn">حافظه خالی</span></small></div>
+      <button class="icon-btn sm" id="memBtn" title="حافظه" aria-label="نمایش حافظه"><svg class="i"><use href="#i-brain"/></svg></button>
+      <button class="icon-btn sm" id="forget" title="پاک کردن حافظه و گفتگو" aria-label="پاک کردن حافظه"><svg class="i"><use href="#i-trash"/></svg></button>
+      <button class="icon-btn sm" id="chatX" aria-label="بستن"><svg class="i"><use href="#i-close"/></svg></button></div>
+    <div class="mem" id="mem" hidden></div>
+    <div class="msgs" id="msgs"></div>
+    <div class="sugg" id="sugg"></div>
+    <form class="chat-f" id="chatF"><input id="chatIn" autocomplete="off" placeholder="مثلاً: ریسک رو بیشتر کن"><button class="btn primary" aria-label="ارسال"><svg class="i"><use href="#i-send"/></svg></button></form>
+  </section>
   <footer><span>این سیستم ابزار پژوهش و اجرای خودکار است و توصیهٔ سرمایه‌گذاری نیست.</span>
     <span>داده‌ها از فایل‌های خود ربات و موجودی فقط‌خواندنی والکس · <a href="/backtests">آزمایشگاه بک‌تست</a></span></footer>
 </main>
@@ -459,7 +521,10 @@ const FIELDS = [['POS_FRAC', 'سهم هر پوزیشن', 0.3, 0.01, 'pie', 'چه
                 ['ENTRY_EDGE', 'آستانه‌ی ورود', 0.008, 0.001, 'target', 'چقدر زیر قیمت جهانی بخرد (0.008 یعنی ۰٫۸٪)؛ کمتر = معامله‌ی بیشتر'],
                 ['STOP_LOSS', 'حد ضرر', 0.03, 0.005, 'shield', 'اگر قیمت این‌قدر زیر خرید رفت، می‌فروشد'],
                 ['DAILY_STOP', 'توقف روزانه', 0.03, 0.005, 'alert', 'اگر حساب این‌قدر افت کرد، تا فردا ورود نمی‌کند']];
-const pending = {live: {}, shadow: {}};  // settings picked in the dialog, sent on the next start
+const pending = {live: {}, shadow: {}};  // settings picked in the dialog or by the assistant, sent on the next start
+try { Object.assign(pending, JSON.parse(localStorage.getItem('pending') || '{}')); } catch (e) {}
+const keepPending = () => { try { localStorage.setItem('pending', JSON.stringify(pending)); } catch (e) {} };
+const AIN = {boxapi: 'BoxAPI', cli: 'CLI', off: 'خاموش'};  // settings picked in the dialog, sent on the next start
 const chip = (icon, k, v) => `<button class="kv-chip" data-set>${ic(icon)}${k}<b>${v}</b></button>`;
 function setOf(p) {
   const r = ctl && ctl.running[p], s = r ? r.settings : pending[p];
@@ -469,7 +534,7 @@ function runCard(p) {
   const r = ctl.running[p], on = !!r, val = setOf(p);
   const live = p === 'live', title = live ? 'ربات واقعی' : 'ربات سایه';
   const chips = chip('pie', 'سهم', `${fmt(val('POS_FRAC') * 100)}%`) + chip('layers', 'جا', fmt(val('MAX_POS'))) + chip('target', 'آستانه', `${fmt(val('ENTRY_EDGE') * 100, 1)}%`) +
-    chip('shield', 'حد ضرر', `${fmt(val('STOP_LOSS') * 100, 1)}%`) + chip('cpu', 'داور', (val('AI') || 'boxapi') === 'cli' ? 'CLI' : 'BoxAPI');
+    chip('shield', 'حد ضرر', `${fmt(val('STOP_LOSS') * 100, 1)}%`) + chip('alert', 'توقف روزانه', `${fmt(val('DAILY_STOP') * 100, 1)}%`) + chip('cpu', 'داور', AIN[val('AI') || 'boxapi']);
   const btn = on ? `<button class="btn danger" data-act="stop" data-p="${p}">${ic('stop')}<span>توقف</span></button>`
     : live ? `<button class="btn primary hold" data-act="start" data-p="live"><span class="fill"></span>${ic('play')}<span>برای شروع نگه دار</span></button>`
     : `<button class="btn primary" data-act="start" data-p="shadow">${ic('play')}<span>شروع سایه</span></button>`;
@@ -481,6 +546,7 @@ function runCard(p) {
 }
 function drawCtl() {
   if (!ctl) return;
+  keepPending();
   $('ctl').innerHTML = runCard('live') + runCard('shadow');
   $('ctl').querySelectorAll('[data-act="stop"], [data-act="start"][data-p="shadow"]').forEach(b => b.onclick = () => act(b));
   $('ctl').querySelectorAll('[data-set]').forEach(b => b.onclick = () => openSettings(b.closest('[data-row]').dataset.row));
@@ -497,7 +563,7 @@ function openSettings(p) {
   $('dlgT').textContent = `تنظیمات ${p === 'live' ? 'ربات واقعی' : 'ربات سایه'}`;
   $('dlgB').innerHTML = (on ? `<div class="note">${ic('info')}ربات در حال اجراست؛ برای تغییر اول متوقفش کن.</div>` : '') +
     FIELDS.map(([k, t, , st, icon, h]) => `<label class="field"><span class="ic">${ic(icon)}</span><span class="t">${t}</span><span class="h">${h}</span><input type="number" step="${st}" data-k="${k}" value="${val(k)}" ${dis}></label>`).join('') +
-    `<label class="field"><span class="ic">${ic('cpu')}</span><span class="t">داور هوش مصنوعی</span><span class="h">مدلی که قبل از هر خرید رأی می‌دهد</span><select data-k="AI" ${dis}><option value="boxapi" ${val('AI') !== 'cli' ? 'selected' : ''}>Haiku · BoxAPI</option><option value="cli" ${val('AI') === 'cli' ? 'selected' : ''}>Haiku · CLI</option></select></label>`;
+    `<label class="field"><span class="ic">${ic('cpu')}</span><span class="t">داور هوش مصنوعی</span><span class="h">مدلی که قبل از هر خرید رأی می‌دهد</span><select data-k="AI" ${dis}><option value="boxapi" ${val('AI') !== 'cli' ? 'selected' : ''}>Haiku · BoxAPI</option><option value="cli" ${val('AI') === 'cli' ? 'selected' : ''}>Haiku · CLI</option><option value="off" ${val('AI') === 'off' ? 'selected' : ''}>خاموش · فقط قوانین</option></select></label>`;
   $('dlgOk').hidden = on; $('dlg').dataset.p = p; $('dlg').returnValue = ''; $('dlg').showModal();
 }
 $('dlg').addEventListener('close', () => {
@@ -703,10 +769,80 @@ function drawInfo(d) {
     ${row('target', 'آستانه‌ی ورود', `<span class="num">${fmt((s.ENTRY_EDGE || p.entry_edge) * 100, 2)}%</span> زیر قیمت پایه`)}
     ${row('shield', 'حد ضرر / توقف روزانه', `<span class="num">${fmt((s.STOP_LOSS || p.stop_loss) * 100, 1)}% / ${fmt((s.DAILY_STOP || p.daily_stop) * 100, 1)}%</span>`)}
     ${row('clock', 'نگه‌داری حداکثر', `<span class="num">${fmt(p.max_hold / 3600)}</span> ساعت`)}
-    ${row('cpu', 'داور', `Claude Haiku از ${s.AI === 'cli' ? 'claude CLI' : 'BoxAPI'} · هر <span class="num">${fmt(p.ai_every / 60)}</span> دقیقه`)}
+    ${row('cpu', 'داور', s.AI === 'off' ? 'خاموش · ورود فقط با قوانین' : `Claude Haiku از ${s.AI === 'cli' ? 'claude CLI' : 'BoxAPI'} · هر <span class="num">${fmt(p.ai_every / 60)}</span> دقیقه`)}
     ${row('flag', 'توقف ورود · بستن همه · پایان', `<span class="num">${hm(d.end_ts - p.entry_cutoff)} · ${hm(d.end_ts - p.flatten_before)} · ${hm(d.end_ts)}</span>`)}
     ${row('git', 'نسخه‌ی کد', `<span class="num">${esc(d.commit)}</span>`)}</dl>`;
 }
+
+/* ---------- assistant chat (BoxAPI, with memory; may change start settings) ---------- */
+const KN = {POS_FRAC: ['pie', 'سهم', v => fmt(v * 100) + '%'], MAX_POS: ['layers', 'جا', v => fmt(v)], ENTRY_EDGE: ['target', 'آستانه', v => fmt(v * 100, 1) + '%'],
+            STOP_LOSS: ['shield', 'حد ضرر', v => fmt(v * 100, 1) + '%'], DAILY_STOP: ['alert', 'توقف روزانه', v => fmt(v * 100, 1) + '%'], AI: ['cpu', 'داور', v => AIN[v] || v]};
+const BOTN = {live: 'ربات واقعی', shadow: 'ربات سایه'};
+const SUGG = ['بیشترین ریسک رو بذار', 'الان وضعیت چطوره؟', 'چرا معامله‌ای نشده؟', 'تنظیم امن‌تر پیشنهاد بده'];
+function setCard(set) {
+  return Object.entries(set || {}).map(([p, s]) => {
+    const chips = Object.entries(s).map(([k, v]) => KN[k] ? `<span class="kv-chip">${ic(KN[k][0])}${KN[k][1]}<b>${KN[k][2](v)}</b></span>` : '').join('');
+    if (ctl && ctl.running[p]) return `<div class="cs wait"><b>${ic('alert')}${BOTN[p]} در حال اجراست؛ برای اعمال باید ری‌استارت شود</b><div class="chips">${chips}</div>
+      <button class="btn danger" data-restart="${p}" data-set='${esc(JSON.stringify(s))}'>${ic('play')}<span>اعمال و ری‌استارت</span></button></div>`;
+    Object.assign(pending[p], s);
+    return `<div class="cs"><b>${ic('check')}روی تنظیمات ${BOTN[p]} اعمال شد · با شروع بعدی</b><div class="chips">${chips}</div></div>`;
+  }).join('');
+}
+function bubble(role, text, set) {
+  const el = document.createElement('div'); el.className = 'bub ' + role; el.textContent = text;
+  if (set && Object.keys(set).length) { el.insertAdjacentHTML('beforeend', setCard(set)); drawCtl(); }
+  el.querySelectorAll('[data-restart]').forEach(b => b.onclick = () => restart(b));
+  $('msgs').append(el); $('msgs').scrollTop = $('msgs').scrollHeight; return el;
+}
+function drawMem(notes) {
+  $('memn').textContent = notes.length ? `حافظه: ${notes.length} یادداشت` : 'حافظه خالی';
+  $('mem').innerHTML = notes.length ? notes.map(n => `<div>${ic('brain')}<span>${esc(n)}</span></div>`).join('') : '<div>هنوز چیزی به خاطر نسپرده.</div>';
+}
+async function restart(b) {
+  const p = b.dataset.restart, s = JSON.parse(b.dataset.set);
+  if (!confirm(`${BOTN[p]} متوقف و با تنظیمات جدید دوباره شروع شود؟${p === 'live' ? '\nسفارش‌های باز لغو می‌شوند.' : ''}`)) return;
+  b.disabled = true;
+  const post = (k, body) => fetch(`/api/control/${p}/${k}`, {method: 'POST', headers: {'Content-Type': 'application/json', 'X-TIZ-Token': TOKEN}, body: JSON.stringify(body)}).then(r => r.json());
+  const old = ctl.running[p].settings, base = Object.fromEntries(FIELDS.map(f => [f[0], Number(old[f[0]] ?? f[2])]));
+  await post('stop', {});
+  const r = await post('start', {...base, AI: old.AI || 'boxapi', ...s, confirm: 'LIVE'});
+  bubble('ai', r.ok ? `${BOTN[p]} با تنظیمات جدید شروع شد.` : `شروع نشد: ${r.error}`); pollCtl();
+}
+async function sendChat(text) {
+  text = text.trim(); if (!text) return;
+  bubble('me', text); $('chatIn').value = ''; $('sugg').hidden = true;
+  const t = document.createElement('div'); t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>'; $('msgs').append(t); $('msgs').scrollTop = 1e9;
+  try {
+    const r = await fetch('/api/chat', {method: 'POST', headers: {'Content-Type': 'application/json', 'X-TIZ-Token': TOKEN}, body: JSON.stringify({message: text})});
+    const j = await r.json(); t.remove();
+    if (!r.ok) return bubble('ai err', 'دستیار جواب نداد: ' + (j.error || r.status));
+    bubble('ai', j.reply, j.set); drawMem(j.notes || []);
+  } catch (e) { t.remove(); bubble('ai err', String(e)); }
+}
+let chatLoaded = false;
+async function openChat(open) {
+  $('chat').hidden = !open; $('fab').setAttribute('aria-expanded', open);
+  if (!open) return;
+  if (!chatLoaded) {
+    chatLoaded = true;
+    try {
+      const m = await (await fetch('/api/chat', {cache: 'no-store'})).json(); drawMem(m.notes);
+      if (!m.history.length) bubble('ai', 'سلام! من دستیار سیگنال آپس هستم. می‌تونم وضعیت ربات رو توضیح بدم و تنظیماتش رو برات عوض کنم. سفارش نمی‌دم؛ معامله با خود رباته.');
+      m.history.forEach(h => { const el = bubble(h.role === 'owner' ? 'me' : 'ai', h.text); el.style.animation = 'none'; });
+    } catch (e) {}
+  }
+  $('chatIn').focus();
+}
+$('sugg').innerHTML = SUGG.map(s => `<button type="button">${s}</button>`).join('');
+$('sugg').querySelectorAll('button').forEach(b => b.onclick = () => sendChat(b.textContent));
+$('fab').onclick = () => openChat(true); $('chatX').onclick = () => openChat(false);
+$('chatF').onsubmit = e => { e.preventDefault(); sendChat($('chatIn').value); };
+$('memBtn').onclick = () => { $('mem').hidden = !$('mem').hidden; };
+$('forget').onclick = async () => {
+  if (!confirm('حافظه و گفتگوی دستیار پاک شود؟')) return;
+  await fetch('/api/chat/forget', {method: 'POST', headers: {'X-TIZ-Token': TOKEN}}); $('msgs').innerHTML = ''; drawMem([]); $('sugg').hidden = false;
+};
+addEventListener('keydown', e => { if (e.key === 'Escape' && !$('chat').hidden) openChat(false); });
 
 /* ---------- clock (every second) ---------- */
 function tick() {
