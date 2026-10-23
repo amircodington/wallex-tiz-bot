@@ -1,0 +1,209 @@
+[fill] TRXTMN BUY 16.7 @ 89,509.0000 fee 0.250%
+[trade] TRXTMN SELL 16.6 @ 89,439.2580 (max_hold) PnL -9,336 TMN (-0.63%)
+[fill] XAUTTMN BUY 0.00134 @ 1,115,923,500.0000 fee 0.250%
+[trade] XAUTTMN SELL 0.00133 @ 1,119,022,710.7490 (max_hold) PnL -4,063 TMN (-0.27%)
+[fill] BTCTMN BUY 6.775e-05 @ 22,079,823,902.0000 fee 0.250%
+[trade] BTCTMN SELL 6.758e-05 @ 22,216,217,892.2210 (take_profit) PnL +974 TMN (+0.07%)
+[fill] BNBTMN BUY 0.0076 @ 196,847,608.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00758 @ 198,031,654.0000 (take_profit) PnL +1,483 TMN (+0.10%)
+[fill] BTCTMN BUY 6.854e-05 @ 21,834,258,112.0000 fee 0.250%
+[fill] XAUTTMN BUY 0.00136 @ 1,101,155,113.0000 fee 0.250%
+[trade] XAUTTMN SELL 0.00135 @ 1,107,964,962.0000 (take_profit) PnL +1,728 TMN (+0.12%)
+[trade] BTCTMN SELL 6.836e-05 @ 21,890,059,495.0000 (max_hold) PnL -4,415 TMN (-0.30%)
+[fill] BNBTMN BUY 0.00756 @ 197,775,838.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00754 @ 198,965,468.0000 (take_profit) PnL +1,482 TMN (+0.10%)
+[fill] BNBTMN BUY 0.00749 @ 199,702,356.2775 fee 0.300%
+[fill] XAUTTMN BUY 0.00135 @ 1,099,586,262.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00746 @ 198,302,283.2580 (max_hold) PnL -19,365 TMN (-1.30%)
+[trade] XAUTTMN SELL 0.00134 @ 1,103,833,721.0430 (max_hold) PnL -2,439 TMN (-0.17%)
+[fill] BTCTMN BUY 6.861e-05 @ 21,710,387,870.0000 fee 0.250%
+[trade] BTCTMN SELL 6.843e-05 @ 21,840,976,670.0000 (take_profit) PnL +1,476 TMN (+0.10%)
+[fill] BTCTMN BUY 6.882e-05 @ 21,651,711,023.0000 fee 0.250%
+[trade] BTCTMN SELL 6.864e-05 @ 21,781,946,879.0000 (take_profit) PnL +1,477 TMN (+0.10%)
+[fill] BTCTMN BUY 6.892e-05 @ 21,625,807,500.0000 fee 0.300%
+[trade] BTCTMN SELL 6.871e-05 @ 21,782,037,881.8255 (take_profit) PnL +1,774 TMN (+0.12%)
+[fill] BTCTMN BUY 7.014e-05 @ 21,257,038,440.0000 fee 0.250%
+[trade] BTCTMN SELL 6.996e-05 @ 21,384,900,326.0000 (take_profit) PnL +1,478 TMN (+0.10%)
+[fill] BTCTMN BUY 6.98e-05 @ 21,366,791,548.0000 fee 0.250%
+[trade] BTCTMN SELL 6.962e-05 @ 21,495,313,603.0000 (take_profit) PnL +1,478 TMN (+0.10%)
+[stale] TRXTMN feed older than 30s, pausing it
+[stale] BNBTMN feed older than 30s, pausing it
+[stale] ETHTMN feed older than 30s, pausing it
+[stale] XRPTMN feed older than 30s, pausing it
+[stale] DOGETMN feed older than 30s, pausing it
+[stale] XAUTTMN feed older than 30s, pausing it
+[stale] BTCTMN feed older than 30s, pausing it
+[fill] TRXTMN BUY 17.5 @ 85,121.0000 fee 0.250%
+[trade] TRXTMN SELL 17.4 @ 85,634.0000 (take_profit) PnL +1,489 TMN (+0.10%)
+[fill] TRXTMN BUY 17.4 @ 85,492.7250 fee 0.300%
+[trade] TRXTMN SELL 17.3 @ 86,051.0000 (take_profit) PnL +1,486 TMN (+0.10%)
+[fill] TRXTMN BUY 17.6 @ 84,695.0000 fee 0.250%
+[trade] TRXTMN SELL 17.5 @ 83,241.3585 (max_hold) PnL -33,524 TMN (-2.26%)
+[fill] BTCTMN BUY 7.047e-05 @ 21,034,788,504.0000 fee 0.250%
+[trade] BTCTMN SELL 7.029e-05 @ 21,165,633,730.0000 (take_profit) PnL +1,772 TMN (+0.12%)
+[fill] TRXTMN BUY 17.4 @ 84,792.3750 fee 0.300%
+[trade] TRXTMN SELL 17.3 @ 85,346.0000 (take_profit) PnL +1,473 TMN (+0.10%)
+[fill] XRPTMN BUY 4.2 @ 352,350.0000 fee 0.250%
+[trade] XRPTMN SELL 4.1 @ 354,470.0000 (take_profit) PnL +1,438 TMN (+0.10%)
+[fill] TRXTMN BUY 17.4 @ 84,892.0000 fee 0.250%
+[trade] TRXTMN SELL 17.3 @ 85,449.0000 (take_profit) PnL +2,260 TMN (+0.15%)
+[fill] XRPTMN BUY 4.2 @ 353,100.0000 fee 0.250%
+[fill] TRXTMN BUY 17.3 @ 85,374.0000 fee 0.250%
+[trade] XRPTMN SELL 4.1 @ 355,224.0000 (take_profit) PnL +1,439 TMN (+0.10%)
+[trade] TRXTMN SELL 17.2 @ 86,837.0000 (take_profit) PnL +17,749 TMN (+1.21%)
+[fill] TRXTMN BUY 16.8 @ 88,308.0000 fee 0.250%
+[trade] TRXTMN SELL 16.7 @ 88,840.0000 (take_profit) PnL +1,479 TMN (+0.10%)
+[fill] TRXTMN BUY 16.7 @ 89,043.0000 fee 0.250%
+[trade] TRXTMN SELL 16.6 @ 88,135.9100 (max_hold) PnL -23,151 TMN (-1.56%)
+[fill] TRXTMN BUY 16.8 @ 88,196.0760 fee 0.300%
+[trade] TRXTMN SELL 16.7 @ 88,158.8985 (max_hold) PnL -9,470 TMN (-0.64%)
+[fill] ETHTMN BUY 0.00239 @ 626,409,388.0000 fee 0.250%
+[trade] ETHTMN SELL 0.00238 @ 630,177,265.0000 (take_profit) PnL +1,482 TMN (+0.10%)
+[fill] XAUTTMN BUY 0.00136 @ 1,101,160,670.0000 fee 0.250%
+[trade] XAUTTMN SELL 0.00135 @ 1,107,784,193.0000 (take_profit) PnL +1,477 TMN (+0.10%)
+[fill] BNBTMN BUY 0.00781 @ 192,107,238.6165 fee 0.300%
+[trade] BNBTMN SELL 0.00778 @ 193,359,694.0000 (take_profit) PnL +1,486 TMN (+0.10%)
+[fill] DOGETMN BUY 69.5 @ 21,601.7955 fee 0.300%
+[trade] DOGETMN SELL 69.2 @ 21,743.0000 (take_profit) PnL +1,512 TMN (+0.10%)
+[fill] ETHTMN BUY 0.0023 @ 650,211,726.0000 fee 0.250%
+[fill] BNBTMN BUY 0.00774 @ 193,296,600.0000 fee 0.300%
+[trade] ETHTMN SELL 0.00229 @ 645,186,657.2940 (max_hold) PnL -19,672 TMN (-1.32%)
+[trade] BNBTMN SELL 0.00771 @ 192,503,700.0000 (max_hold) PnL -15,050 TMN (-1.01%)
+[fill] ETHTMN BUY 0.00234 @ 635,775,196.0000 fee 0.250%
+[trade] ETHTMN SELL 0.00233 @ 639,867,804.0510 (take_profit) PnL +1,350 TMN (+0.09%)
+[fill] DOGETMN BUY 70.5 @ 21,139.0000 fee 0.250%
+[trade] DOGETMN SELL 70.3 @ 20,993.4980 (max_hold) PnL -18,381 TMN (-1.23%)
+[fill] ETHTMN BUY 0.00233 @ 636,646,247.0415 fee 0.300%
+[trade] ETHTMN SELL 0.00232 @ 630,224,358.1860 (max_hold) PnL -23,730 TMN (-1.60%)
+[fill] TRXTMN BUY 16.9 @ 87,269.6130 fee 0.300%
+[trade] TRXTMN SELL 16.8 @ 87,839.0000 (take_profit) PnL +1,465 TMN (+0.10%)
+[fill] TRXTMN BUY 16.8 @ 87,879.0000 fee 0.250%
+[trade] TRXTMN SELL 16.7 @ 86,184.8860 (max_hold) PnL -36,288 TMN (-2.47%)
+[stale] TRXTMN feed older than 30s, pausing it
+[stale] ETHTMN feed older than 30s, pausing it
+[stale] XAUTTMN feed older than 30s, pausing it
+[stale] BTCTMN feed older than 30s, pausing it
+[stale] DOGETMN feed older than 30s, pausing it
+[stale] BTCTMN feed older than 30s, pausing it
+[stale] BNBTMN feed older than 30s, pausing it
+[stale] XRPTMN feed older than 30s, pausing it
+[stale] DOGETMN feed older than 30s, pausing it
+[fill] XRPTMN BUY 4.2 @ 343,886.8575 fee 0.300%
+[trade] XRPTMN SELL 4.1 @ 346,129.0000 (take_profit) PnL +1,402 TMN (+0.10%)
+[fill] BNBTMN BUY 0.00748 @ 196,200,395.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00746 @ 197,578,347.4070 (take_profit) PnL +2,189 TMN (+0.15%)
+[fill] BNBTMN BUY 0.00734 @ 200,100,000.0000 fee 0.300%
+[trade] BNBTMN SELL 0.00731 @ 199,800,050.0000 (max_hold) PnL -10,976 TMN (-0.75%)
+[fill] TRXTMN BUY 16.6 @ 88,343.1495 fee 0.300%
+[fill] BNBTMN BUY 0.00739 @ 198,174,005.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00737 @ 199,366,030.0000 (take_profit) PnL +1,451 TMN (+0.10%)
+[trade] TRXTMN SELL 16.5 @ 88,370.7925 (max_hold) PnL -8,304 TMN (-0.57%)
+[fill] TRXTMN BUY 16.4 @ 89,044.5000 fee 0.300%
+[trade] TRXTMN SELL 16.3 @ 89,697.0000 (take_profit) PnL +2,613 TMN (+0.18%)
+[fill] TRXTMN BUY 16.3 @ 89,593.7745 fee 0.300%
+[trade] TRXTMN SELL 16.2 @ 89,844.0555 (end_of_challenge) PnL -4,679 TMN (-0.32%)
+[fill] TRXTMN BUY 16.7 @ 89,509.0000 fee 0.250%
+[trade] TRXTMN SELL 16.6 @ 89,439.2580 (max_hold) PnL -9,336 TMN (-0.63%)
+[fill] XAUTTMN BUY 0.00134 @ 1,115,923,500.0000 fee 0.250%
+[trade] XAUTTMN SELL 0.00133 @ 1,119,022,710.7490 (max_hold) PnL -4,063 TMN (-0.27%)
+[fill] BTCTMN BUY 6.775e-05 @ 22,079,823,902.0000 fee 0.250%
+[trade] BTCTMN SELL 6.758e-05 @ 22,216,217,892.2210 (take_profit) PnL +974 TMN (+0.07%)
+[fill] BNBTMN BUY 0.0076 @ 196,847,608.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00758 @ 198,031,654.0000 (take_profit) PnL +1,483 TMN (+0.10%)
+[fill] BTCTMN BUY 6.854e-05 @ 21,834,258,112.0000 fee 0.250%
+[fill] XAUTTMN BUY 0.00136 @ 1,101,155,113.0000 fee 0.250%
+[trade] XAUTTMN SELL 0.00135 @ 1,107,964,962.0000 (take_profit) PnL +1,728 TMN (+0.12%)
+[trade] BTCTMN SELL 6.836e-05 @ 21,890,059,495.0000 (max_hold) PnL -4,415 TMN (-0.30%)
+[fill] BNBTMN BUY 0.00756 @ 197,775,838.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00754 @ 198,965,468.0000 (take_profit) PnL +1,482 TMN (+0.10%)
+[fill] BNBTMN BUY 0.00749 @ 199,702,356.2775 fee 0.300%
+[fill] XAUTTMN BUY 0.00135 @ 1,099,586,262.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00746 @ 198,302,283.2580 (max_hold) PnL -19,365 TMN (-1.30%)
+[trade] XAUTTMN SELL 0.00134 @ 1,103,833,721.0430 (max_hold) PnL -2,439 TMN (-0.17%)
+[fill] BTCTMN BUY 6.861e-05 @ 21,710,387,870.0000 fee 0.250%
+[trade] BTCTMN SELL 6.843e-05 @ 21,840,976,670.0000 (take_profit) PnL +1,476 TMN (+0.10%)
+[fill] BTCTMN BUY 6.882e-05 @ 21,651,711,023.0000 fee 0.250%
+[trade] BTCTMN SELL 6.864e-05 @ 21,781,946,879.0000 (take_profit) PnL +1,477 TMN (+0.10%)
+[fill] BTCTMN BUY 6.892e-05 @ 21,625,807,500.0000 fee 0.300%
+[trade] BTCTMN SELL 6.871e-05 @ 21,782,037,881.8255 (take_profit) PnL +1,774 TMN (+0.12%)
+[fill] BTCTMN BUY 7.014e-05 @ 21,257,038,440.0000 fee 0.250%
+[trade] BTCTMN SELL 6.996e-05 @ 21,384,900,326.0000 (take_profit) PnL +1,478 TMN (+0.10%)
+[fill] BTCTMN BUY 6.98e-05 @ 21,366,791,548.0000 fee 0.250%
+[trade] BTCTMN SELL 6.962e-05 @ 21,495,313,603.0000 (take_profit) PnL +1,478 TMN (+0.10%)
+[stale] TRXTMN feed older than 30s, pausing it
+[stale] BNBTMN feed older than 30s, pausing it
+[stale] ETHTMN feed older than 30s, pausing it
+[stale] XRPTMN feed older than 30s, pausing it
+[stale] DOGETMN feed older than 30s, pausing it
+[stale] XAUTTMN feed older than 30s, pausing it
+[stale] BTCTMN feed older than 30s, pausing it
+[fill] TRXTMN BUY 17.5 @ 85,121.0000 fee 0.250%
+[trade] TRXTMN SELL 17.4 @ 85,634.0000 (take_profit) PnL +1,489 TMN (+0.10%)
+[fill] TRXTMN BUY 17.4 @ 85,492.7250 fee 0.300%
+[trade] TRXTMN SELL 17.3 @ 86,051.0000 (take_profit) PnL +1,486 TMN (+0.10%)
+[fill] TRXTMN BUY 17.6 @ 84,695.0000 fee 0.250%
+[trade] TRXTMN SELL 17.5 @ 83,241.3585 (max_hold) PnL -33,524 TMN (-2.26%)
+[fill] BTCTMN BUY 7.047e-05 @ 21,034,788,504.0000 fee 0.250%
+[trade] BTCTMN SELL 7.029e-05 @ 21,165,633,730.0000 (take_profit) PnL +1,772 TMN (+0.12%)
+[fill] TRXTMN BUY 17.4 @ 84,792.3750 fee 0.300%
+[trade] TRXTMN SELL 17.3 @ 85,346.0000 (take_profit) PnL +1,473 TMN (+0.10%)
+[fill] XRPTMN BUY 4.2 @ 352,350.0000 fee 0.250%
+[trade] XRPTMN SELL 4.1 @ 354,470.0000 (take_profit) PnL +1,438 TMN (+0.10%)
+[fill] TRXTMN BUY 17.4 @ 84,892.0000 fee 0.250%
+[trade] TRXTMN SELL 17.3 @ 85,449.0000 (take_profit) PnL +2,260 TMN (+0.15%)
+[fill] XRPTMN BUY 4.2 @ 353,100.0000 fee 0.250%
+[fill] TRXTMN BUY 17.3 @ 85,374.0000 fee 0.250%
+[trade] XRPTMN SELL 4.1 @ 355,224.0000 (take_profit) PnL +1,439 TMN (+0.10%)
+[trade] TRXTMN SELL 17.2 @ 86,837.0000 (take_profit) PnL +17,749 TMN (+1.21%)
+[fill] TRXTMN BUY 16.8 @ 88,308.0000 fee 0.250%
+[trade] TRXTMN SELL 16.7 @ 88,840.0000 (take_profit) PnL +1,479 TMN (+0.10%)
+[fill] TRXTMN BUY 16.7 @ 89,043.0000 fee 0.250%
+[trade] TRXTMN SELL 16.6 @ 88,135.9100 (max_hold) PnL -23,151 TMN (-1.56%)
+[fill] TRXTMN BUY 16.8 @ 88,196.0760 fee 0.300%
+[trade] TRXTMN SELL 16.7 @ 88,158.8985 (max_hold) PnL -9,470 TMN (-0.64%)
+[fill] ETHTMN BUY 0.00236 @ 626,409,388.0000 fee 0.250%
+[trade] ETHTMN SELL 0.00235 @ 630,177,265.0000 (take_profit) PnL +1,463 TMN (+0.10%)
+[fill] XAUTTMN BUY 0.00134 @ 1,101,160,670.0000 fee 0.250%
+[trade] XAUTTMN SELL 0.00133 @ 1,107,784,193.0000 (take_profit) PnL +1,455 TMN (+0.10%)
+[fill] BNBTMN BUY 0.00771 @ 192,107,238.6165 fee 0.300%
+[trade] BNBTMN SELL 0.00768 @ 193,359,694.0000 (take_profit) PnL +1,467 TMN (+0.10%)
+[fill] DOGETMN BUY 68.6 @ 21,601.7955 fee 0.300%
+[trade] DOGETMN SELL 68.3 @ 21,743.0000 (take_profit) PnL +1,492 TMN (+0.10%)
+[fill] ETHTMN BUY 0.00228 @ 650,211,726.0000 fee 0.250%
+[fill] BNBTMN BUY 0.00765 @ 193,296,600.0000 fee 0.300%
+[trade] ETHTMN SELL 0.00227 @ 645,186,657.2940 (max_hold) PnL -19,500 TMN (-1.32%)
+[trade] BNBTMN SELL 0.00762 @ 192,503,700.0000 (max_hold) PnL -14,875 TMN (-1.01%)
+[fill] ETHTMN BUY 0.00231 @ 635,775,196.0000 fee 0.250%
+[trade] ETHTMN SELL 0.0023 @ 639,867,804.0510 (take_profit) PnL +1,333 TMN (+0.09%)
+[fill] DOGETMN BUY 69.6 @ 21,139.0000 fee 0.250%
+[trade] DOGETMN SELL 69.4 @ 20,993.4980 (max_hold) PnL -18,145 TMN (-1.23%)
+[fill] ETHTMN BUY 0.0023 @ 636,646,247.0415 fee 0.300%
+[trade] ETHTMN SELL 0.00229 @ 630,224,358.1860 (max_hold) PnL -23,423 TMN (-1.60%)
+[fill] TRXTMN BUY 16.7 @ 87,269.6130 fee 0.300%
+[trade] TRXTMN SELL 16.6 @ 87,839.0000 (take_profit) PnL +1,447 TMN (+0.10%)
+[fill] TRXTMN BUY 16.6 @ 87,879.0000 fee 0.250%
+[trade] TRXTMN SELL 16.5 @ 86,184.8860 (max_hold) PnL -35,853 TMN (-2.47%)
+[stale] TRXTMN feed older than 30s, pausing it
+[stale] ETHTMN feed older than 30s, pausing it
+[stale] XAUTTMN feed older than 30s, pausing it
+[stale] BTCTMN feed older than 30s, pausing it
+[stale] DOGETMN feed older than 30s, pausing it
+[stale] BTCTMN feed older than 30s, pausing it
+[stale] BNBTMN feed older than 30s, pausing it
+[stale] XRPTMN feed older than 30s, pausing it
+[stale] DOGETMN feed older than 30s, pausing it
+[fill] XRPTMN BUY 4.2 @ 343,886.8575 fee 0.300%
+[trade] XRPTMN SELL 4.1 @ 346,129.0000 (take_profit) PnL +1,402 TMN (+0.10%)
+[fill] BNBTMN BUY 0.00739 @ 196,200,395.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00737 @ 197,578,347.4070 (take_profit) PnL +2,163 TMN (+0.15%)
+[fill] BNBTMN BUY 0.00726 @ 200,100,000.0000 fee 0.300%
+[trade] BNBTMN SELL 0.00723 @ 199,800,050.0000 (max_hold) PnL -10,856 TMN (-0.75%)
+[fill] TRXTMN BUY 16.4 @ 88,343.1495 fee 0.300%
+[fill] BNBTMN BUY 0.0073 @ 198,174,005.0000 fee 0.250%
+[trade] BNBTMN SELL 0.00728 @ 199,366,030.0000 (take_profit) PnL +1,434 TMN (+0.10%)
+[trade] TRXTMN SELL 16.3 @ 88,370.7925 (max_hold) PnL -8,204 TMN (-0.57%)
+[fill] TRXTMN BUY 16.2 @ 89,044.5000 fee 0.300%
+[trade] TRXTMN SELL 16.1 @ 89,697.0000 (take_profit) PnL +2,581 TMN (+0.18%)
+[fill] TRXTMN BUY 16.1 @ 89,593.7745 fee 0.300%
+[trade] TRXTMN SELL 16.0 @ 89,844.0555 (end_of_challenge) PnL -4,621 TMN (-0.32%)
+0.0025 0.006 {'train': (26, -1.232, 1.451), 'test': (18, -2.376, 2.65), 'full': (44, -3.529, 3.758)}
