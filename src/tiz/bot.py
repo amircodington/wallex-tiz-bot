@@ -306,6 +306,7 @@ class Market:
 class Bot:
     def __init__(self, broker, journal, markets, judge=None, alert=lambda msg: None, now=None):
         self.broker, self.j, self.alert, self.sent = broker, journal, alert, {}
+        self.since, self.told = {}, set()  # ongoing troubles: first seen, and which were alerted
         self.judge = judge or Judge(enabled=False)
         self.m = {m.sym: m for m in markets}
         self.usdt = {"bid": (0.0, 0.0), "ask": (0.0, 0.0)}
@@ -600,7 +601,10 @@ class Bot:
                           or pull or abs(o["price"] / self.entry_price(m, target) - 1) > REQUOTE)
             if not st["done"] and target is not None and (now - o["ts"] >= ORDER_TTL or urgent):
                 st = await self.broker.cancel(o["cid"], book)
-        except (WallexError, httpx.HTTPError) as e:
+        except httpx.HTTPError as e:  # network: the next poll retries
+            self.trouble("net", "error", f"{m.sym} order {o['cid']}: {e!r}", now, NET_GRACE)
+            return
+        except WallexError as e:
             self.event("error", f"{m.sym} order {o['cid']}: {e}")
             return
         if st["done"]:
@@ -699,8 +703,9 @@ class Bot:
         v = await self.judge.refresh(ctx, MAX_POS, now)
         self.j.decision(dict(ts=iso(now), decision="ai_review", context=ctx, verdicts=v, ok=v is not None, manual=False))
         if v is None:
-            self.event("ai", "AI judge failed; no new entries until it answers")
+            self.trouble("ai", "ai", "AI judge failed; no new entries until it answers", now, AI_GRACE)
         else:
+            self.clear("ai")
             log.info("AI: %s", {s: (x["verdict"], x["confidence"]) for s, x in v.items()})
 
     def event(self, kind, msg):
@@ -714,11 +719,28 @@ class Bot:
         self.alert(tg_text(kind, msg))
 
 
-QUIET = {"warm"}  # journal and log only: 12 per start, the start message covers them
+    def trouble(self, key, kind, msg, now, grace):
+        """A failure that usually clears by itself (network blip, one slow judge round): logged, alerted only when it
+        lasts grace s, and an all-clear when it ends."""
+        t0 = self.since.setdefault(key, now)
+        log.warning("[%s] %s", kind, msg)
+        if now - t0 >= grace and key not in self.told:
+            self.told.add(key)
+            self.event(kind, f"{msg} (for {now - t0:.0f}s)")
+
+    def clear(self, key):
+        if self.since.pop(key, None) is not None and key in self.told:
+            self.told.discard(key)
+            self.event("ok", f"{'Wallex connection' if key == 'net' else 'AI judge'} back to normal")
+
+
+NET_GRACE = 60.0  # network errors alert only after this long
+AI_GRACE = 600.0  # judge failures (fail closed: no entries) alert after ~2 missed rounds
+QUIET = {"warm", "stale"}  # journal and log only: warm is 12 per start, stale follows a network outage that alerts itself
 ALERT_GAP = 300.0  # same alert at most once per 5 min
 TG = dict(start=("🟢", "Bot started"), error=("🚨", "Error"), fill=("🛒", "Bought"), halt=("🛑", "Daily stop: no new entries"),
           stale=("⏸️", "Feed paused"), ai=("🤖", "AI judge not answering"), qualify=("📋", "Market check"),
-          adopt=("📥", "Holding found on the account"), fees=("💸", "Fees changed"))
+          adopt=("📥", "Holding found on the account"), fees=("💸", "Fees changed"), ok=("✅", "Back to normal"))
 
 
 def tg_text(kind, msg):
@@ -870,7 +892,10 @@ async def main():
                 log.info("status equity %s TMN (%+.2f%%) max_dd %.2f%% positions %s halted %s phase %s", f"{eq:,.0f}",
                          (eq / 5_000_000 - 1) * 100, bot.max_dd * 100,
                          {m.sym: m.pos_qty for m in bot.m.values() if m.pos_qty}, bot.halted, bot.phase(now))
-        except Exception as e:  # keep running; journal it
+            bot.clear("net")
+        except (httpx.HTTPError, WallexError, OSError, asyncio.TimeoutError) as e:  # network: retried next second
+            bot.trouble("net", "error", repr(e), now, NET_GRACE)
+        except Exception as e:  # a bug: keep running, say so now
             bot.event("error", repr(e))
             log.exception("tick")
 

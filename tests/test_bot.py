@@ -273,3 +273,16 @@ def test_telegram_alerts_formatted_and_not_repeated(monkeypatch):
     b.event("trade", "BTCTMN SELL 0.1 @ 1 (take_profit) PnL +4,484 TMN (+0.20%)")
     assert len(sent) == 2 and "&lt;x&gt;" in sent[0] and "Signal Ops" in sent[0]
     assert sent[1].startswith("✅ <b>Trade closed in profit</b>")
+
+
+def test_network_blip_is_quiet_and_outage_alerts_once(monkeypatch):
+    b, sent = make(monkeypatch), []
+    b.alert = sent.append
+    for t in range(0, 30, 11):
+        b.trouble("net", "error", "ConnectTimeout('')", 1000.0 + t, B.NET_GRACE)
+    b.clear("net")
+    assert sent == []  # a 30 s blip: log only
+    for t in range(0, 200, 11):
+        b.trouble("net", "error", "ConnectTimeout('')", 2000.0 + t, B.NET_GRACE)
+    b.clear("net")
+    assert len(sent) == 2 and "for 66s" in sent[0] and sent[1].startswith("✅ <b>Back to normal</b>")
