@@ -240,3 +240,25 @@ def test_chat_settings_stay_inside_limits():
     assert dropped == ["live.ENTRY_EDGE=0.003", "live.MODE=x"]
     assert chat.parse('ok ```{"reply": "سلام", "set": {}}```')["reply"] == "سلام"
     assert chat.parse("plain text")["reply"] == "plain text"
+
+
+def test_place_422_alerts_only_when_it_lasts(monkeypatch):
+    b = make(monkeypatch)
+    m, sent, fails = b.m["BTCTMN"], [], [4]
+    b.alert = sent.append
+    real = b.broker.place
+
+    async def flaky(*a):
+        if fails[0]:
+            fails[0] -= 1
+            raise B.WallexError("POST /v1/account/orders -> 422 422")
+        return await real(*a)
+    b.broker.place = flaky
+    go = lambda: asyncio.run(b.place(m, 1000.0, "BUY", FAIR * 0.99, 0.0001, "entry", (FAIR, FAIR), None, None, {}))
+    for _ in range(2):
+        go()
+    assert sent == [] and m.order is None  # the usual post-cancel 422: retried quietly
+    go()
+    assert len(sent) == 1 and "3 in a row" in sent[0]
+    go(), go()
+    assert m.order and m.place_fails == 0 and len(sent) == 1

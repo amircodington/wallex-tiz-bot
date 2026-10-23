@@ -67,6 +67,7 @@ TRAIL = env("TRAIL", "off")  # off | atr | sar: past the take-profit level, foll
 TRAIL_K = env("TRAIL_K", 2.0)  # atr: stop = high - K x (sd of 1-min mid returns, last 30 min) x high
 TRAIL_GIVEBACK = env("TRAIL_GIVEBACK", 0.002)  # never give back more than this below the take-profit level
 ORDER_TTL = env("ORDER_TTL", 120.0)
+PLACE_ALERT = env("PLACE_ALERT", 3)  # alert after this many failed places in a row on one market
 PULL = env("PULL", 0.003)  # a buy this far above its ideal price is pulled at once, skipping the status-poll wait
 REQUOTE = env("REQUOTE", 0.0005)  # replace a resting order once its ideal price moved this much (stale quotes get picked off)
 QUALIFY = env("QUALIFY", 0)  # structural check per market on its last QUAL_DAYS of premiums; off: it cost money on safe-7 (README)
@@ -286,6 +287,7 @@ class Market:
         self.ref = (0.0, 0.0)
         self.base, self.n = None, 0
         self.order = None
+        self.place_fails = 0  # place errors in a row; Wallex answers 422 for a few s after a cancel, until it frees the TMN
         self.pos_qty = self.pos_cost = self.pos_ts = 0.0
         self.hist = deque(maxlen=int(3 * 1440))  # (ts, prem, ref, spread, base, mid) per minute: AI context, qualifier, trail
         self.pnls = deque(maxlen=5)
@@ -564,8 +566,14 @@ class Bot:
         except (WallexError, httpx.HTTPError) as e:
             rec["order"]["status"] = f"error: {e}"
             self.j.decision(rec)
-            self.event("error", f"{m.sym} place {side} {qty}@{price}: {e}")
+            m.place_fails += 1
+            msg = f"{m.sym} place {side} {qty}@{price}: {e}"
+            if m.place_fails == PLACE_ALERT or m.place_fails % 50 == 0:  # a lasting refusal, not the post-cancel 422
+                self.event("error", f"{msg} ({m.place_fails} in a row)")
+            else:
+                log.info("place refused, retrying: %s", msg)
             return
+        m.place_fails = 0
         rec["order"].update(cid=cid, status="placed")
         self.j.decision(rec)
         m.order = dict(cid=cid, side=side, price=price, ts=now, reason=reason)
