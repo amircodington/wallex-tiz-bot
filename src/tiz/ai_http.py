@@ -1,5 +1,6 @@
 """AI_CMD for machines without the claude CLI: prompt on stdin → reply on stdout, via an OpenAI-compatible HTTP gateway
-(default BoxAPI, reachable from Iran; the hackathon key allows gpt-5.4-mini, not Claude). AI_CMD="uv run python -m tiz.ai_http" with AI_API_KEY (or BOX_API) in .env."""
+(default BoxAPI, reachable from Iran). AI_CMD="uv run python -m tiz.ai_http"; key from AI_API_KEY, else BOX_API_SECONF
+(allows Claude Haiku, the backtested judge), else BOX_API (hackathon key: gpt-5.4-mini only, set AI_MODEL)."""
 import os
 import sys
 
@@ -10,8 +11,8 @@ from tiz import bot as B  # loads .env
 
 def ask(prompt):
     r = httpx.post(B.env("AI_BASE_URL", "https://ai.boxapi.ir/ai/v1").rstrip("/") + "/chat/completions", timeout=110,
-                   headers={"Authorization": f"Bearer {os.environ.get('AI_API_KEY') or os.environ['BOX_API']}"},
-                   json=dict(model=B.env("AI_MODEL", "gpt-5.4-mini"), messages=[dict(role="user", content=prompt)]))
+                   headers={"Authorization": f"Bearer {next(os.environ[k] for k in ('AI_API_KEY', 'BOX_API_SECONF', 'BOX_API') if os.environ.get(k)).strip()}"},
+                   json=dict(model=B.env("AI_MODEL", "anthropic/claude-haiku-5.5"), messages=[dict(role="user", content=prompt)]))
     r.raise_for_status()
     return r.json()["choices"][0]["message"]["content"]
 
