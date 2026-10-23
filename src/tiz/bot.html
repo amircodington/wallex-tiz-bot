@@ -102,6 +102,8 @@ body.paper .stripe{display:flex}
 /* coin avatar: brand-tinted */
 .av{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;flex:none;font:700 12px var(--mono);color:#fff;
   background:linear-gradient(140deg,var(--c),color-mix(in srgb,var(--c) 55%,#000));box-shadow:0 6px 14px -8px var(--c),inset 0 1px 0 rgba(255,255,255,.25);transition:transform 320ms var(--ease-out)}
+.av.logo{background:none;padding:0;overflow:hidden;border-radius:50%}
+.av.logo img{display:block;width:100%;height:100%}
 .coin{display:flex;align-items:center;gap:10px}
 .coin b{font:600 16px var(--mono)} .coin small{display:block;font-size:13px;color:var(--muted);line-height:1.3}
 
@@ -241,7 +243,9 @@ tr:last-child td{border-bottom:0}
 .empty{display:flex;align-items:center;gap:16px;color:var(--muted);font-size:15px;padding:20px;border:1px dashed var(--line);border-radius:var(--r);background:var(--surface-2)}
 .empty .ic{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:var(--accent-soft);color:var(--accent);flex:none;animation:bob 3.2s ease-in-out infinite}
 .empty .ic svg.i{width:24px;height:24px}
-.feed{display:grid;max-height:520px;overflow:auto;margin:-4px -8px 0;padding:0 8px}
+.card.fill{display:flex;flex-direction:column}
+.fill-box{position:relative;flex:1;min-height:520px}
+.feed{position:absolute;inset:0;display:grid;align-content:start;overflow:auto;margin:-4px -8px 0;padding:0 8px}
 .ev{display:grid;grid-template-columns:38px 1fr auto;gap:14px;align-items:start;padding:12px 6px;border-bottom:1px solid var(--line);font-size:15px;border-radius:10px;transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out),background-color 160ms ease}
 @media (hover:hover) and (pointer:fine){.ev:hover{background:color-mix(in srgb,var(--accent) 6%,transparent)}.ev:hover .ei{transform:scale(1.1)}}
 .ev.pre{opacity:0;transform:translateY(-8px)}
@@ -380,7 +384,7 @@ document.documentElement.dataset.mode = document.documentElement.dataset.theme |
 
   <div class="grid g2">
     <section class="card" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-cpu"/></svg></span>داور هوش مصنوعی</h2><span class="sub" id="ainext"></span></div><div id="ai"></div></section>
-    <section class="card" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-list"/></svg></span>اتفاق‌های اخیر</h2><span class="sub">تازه‌ترین بالا</span></div><div class="feed" id="feed"></div></section>
+    <section class="card fill" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-list"/></svg></span>اتفاق‌های اخیر</h2><span class="sub">تازه‌ترین بالا</span></div><div class="fill-box"><div class="feed" id="feed"></div></div></section>
   </div>
 
   <div class="grid g2">
@@ -407,7 +411,9 @@ const hm = t => new Date(t * 1000).toLocaleTimeString('en-GB', {timeZone: 'Asia/
 const tsOf = s => typeof s === 'number' ? s : Date.parse(s) / 1000;
 const NAMES = {TRX: 'ترون', BTC: 'بیت‌کوین', BNB: 'بی‌ان‌بی', ETH: 'اتریوم', XRP: 'ریپل', DOGE: 'دوج‌کوین', XAUT: 'تتر طلا', PEPE: 'پپه', PUMP: 'پامپ', SOL: 'سولانا', ARB: 'آربیتروم', S: 'سونیک'};
 const COLOR = {TRX: '#EF4444', BTC: '#F7931A', BNB: '#F0B90B', ETH: '#7B8CF0', XRP: '#3B82F6', DOGE: '#C2A633', XAUT: '#D4A537', PEPE: '#3DA34A', PUMP: '#22C55E', SOL: '#9945FF', ARB: '#28A0F0', S: '#64748B'};
-const av = c => `<span class="av" style="--c:${COLOR[c] || '#8B5CF6'}">${c.slice(0, 4)}</span>`;
+const LOGO = new Set(['BTC', 'ETH', 'BNB', 'TRX', 'XRP', 'DOGE', 'XAUT', 'PEPE', 'SOL', 'ARB', 'S']);  // static/coins/*.svg from @web3icons/core (MIT)
+const av = c => LOGO.has(c) ? `<span class="av logo" style="--c:${COLOR[c] || '#8B5CF6'}"><img src="/static/coins/${c}.svg" alt="${c}" width="38" height="38"></span>`
+  : `<span class="av" style="--c:${COLOR[c] || '#8B5CF6'}">${c.slice(0, 4)}</span>`;
 const REASON = {take_profit: 'هدف سود', stop_loss: 'حد ضرر', max_hold: 'سقف زمان', end_of_challenge: 'پایان چالش', trail: 'trail', entry: 'ورود'};
 const empty = (icon, text) => `<div class="empty"><span class="ic">${ic(icon)}</span><span>${text}</span></div>`;
 let src = 'live', data = null, ctl = null, acct = null, seenFeed = new Set(), firstFeed = true, last = {}, firstPaint = true;
