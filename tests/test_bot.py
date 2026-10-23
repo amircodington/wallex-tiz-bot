@@ -259,6 +259,17 @@ def test_place_422_alerts_only_when_it_lasts(monkeypatch):
         go()
     assert sent == [] and m.order is None  # the usual post-cancel 422: retried quietly
     go()
-    assert len(sent) == 1 and "3 in a row" in sent[0] and sent[0].startswith("سیگنال آپس")
+    assert len(sent) == 1 and "3 in a row" in sent[0] and sent[0].startswith("🚨 <b>Error</b>")
     go(), go()
     assert m.order and m.place_fails == 0 and len(sent) == 1
+
+
+def test_telegram_alerts_formatted_and_not_repeated(monkeypatch):
+    b, sent = make(monkeypatch), []
+    b.alert = sent.append
+    for _ in range(3):
+        b.event("error", "ConnectTimeout('<x>')")  # an outage: same error every 11 s
+    b.event("warm", "BTCTMN: 72h of history")
+    b.event("trade", "BTCTMN SELL 0.1 @ 1 (take_profit) PnL +4,484 TMN (+0.20%)")
+    assert len(sent) == 2 and "&lt;x&gt;" in sent[0] and "Signal Ops" in sent[0]
+    assert sent[1].startswith("✅ <b>Trade closed in profit</b>")

@@ -305,7 +305,7 @@ class Market:
 
 class Bot:
     def __init__(self, broker, journal, markets, judge=None, alert=lambda msg: None, now=None):
-        self.broker, self.j, self.alert = broker, journal, alert
+        self.broker, self.j, self.alert, self.sent = broker, journal, alert, {}
         self.judge = judge or Judge(enabled=False)
         self.m = {m.sym: m for m in markets}
         self.usdt = {"bid": (0.0, 0.0), "ask": (0.0, 0.0)}
@@ -705,8 +705,29 @@ class Bot:
 
     def event(self, kind, msg):
         log.warning("[%s] %s", kind, msg)
-        self.j.add("events", time.time(), kind, msg)
-        self.alert(f"سیگنال آپس {MODE} {kind}: {msg}")
+        now = time.time()
+        self.j.add("events", now, kind, msg)
+        key = (kind, msg[:40])  # a network outage repeats the same error every few seconds
+        if kind in QUIET or now - self.sent.get(key, 0) < ALERT_GAP:
+            return
+        self.sent[key] = now
+        self.alert(tg_text(kind, msg))
+
+
+QUIET = {"warm"}  # journal and log only: 12 per start, the start message covers them
+ALERT_GAP = 300.0  # same alert at most once per 5 min
+TG = dict(start=("🟢", "Bot started"), error=("🚨", "Error"), fill=("🛒", "Bought"), halt=("🛑", "Daily stop: no new entries"),
+          stale=("⏸️", "Feed paused"), ai=("🤖", "AI judge not answering"), qualify=("📋", "Market check"),
+          adopt=("📥", "Holding found on the account"), fees=("💸", "Fees changed"))
+
+
+def tg_text(kind, msg):
+    """Telegram HTML: emoji + bold title, mode, the details in monospace. English: Persian mixed with symbols renders badly."""
+    esc = lambda t: t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    icon, title = TG.get(kind, ("ℹ️", kind))
+    if kind == "trade":
+        icon, title = ("✅", "Trade closed in profit") if "PnL +" in msg else ("🔻", "Trade closed at a loss")
+    return f"{icon} <b>{title}</b>\n<i>Signal Ops · {'LIVE' if MODE == 'live' else 'shadow'}</i>\n<code>{esc(msg)}</code>"
 
 
 def warm_from(m, wx, bn, usdt, frm, to):
@@ -776,7 +797,7 @@ def telegram(http: httpx.AsyncClient):
 
     async def send(msg):
         try:
-            await http.post(f"https://api.telegram.org/bot{token}/sendMessage", json={"chat_id": chat, "text": msg})
+            await http.post(f"https://api.telegram.org/bot{token}/sendMessage", json={"chat_id": chat, "text": msg, "parse_mode": "HTML"})
         except httpx.HTTPError as e:
             log.info("telegram: %r", e)
 
