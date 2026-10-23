@@ -595,11 +595,11 @@ document.querySelectorAll('#src button').forEach(b => b.onclick = () => {
 });
 
 /* ---------- control ---------- */
-const FIELDS = [['POS_FRAC', 'سهم هر پوزیشن', 0.3, 0.01, 'pie', 'چه کسری از سرمایه در هر خرید می‌رود (0.3 یعنی ۳۰٪)'],
+const FIELDS = [['POS_FRAC', 'سهم هر پوزیشن', 0.32, 0.01, 'pie', 'چه کسری از سرمایه در هر خرید می‌رود (0.3 یعنی ۳۰٪)'],
                 ['MAX_POS', 'تعداد پوزیشن هم‌زمان', 3, 1, 'layers', 'حداکثر چند بازار با هم خریده شوند'],
-                ['ENTRY_EDGE', 'آستانه‌ی ورود', 0.008, 0.001, 'target', 'چقدر زیر قیمت جهانی بخرد (0.008 یعنی ۰٫۸٪)؛ کمتر = معامله‌ی بیشتر'],
+                ['ENTRY_EDGE', 'آستانه‌ی ورود', 0.006, 0.001, 'target', 'چقدر زیر قیمت جهانی بخرد (0.008 یعنی ۰٫۸٪)؛ کمتر = معامله‌ی بیشتر'],
                 ['STOP_LOSS', 'حد ضرر', 0.03, 0.005, 'shield', 'اگر قیمت این‌قدر زیر خرید رفت، می‌فروشد'],
-                ['DAILY_STOP', 'توقف روزانه', 0.03, 0.005, 'alert', 'اگر حساب این‌قدر افت کرد، تا فردا ورود نمی‌کند']];
+                ['DAILY_STOP', 'توقف روزانه', 0.05, 0.005, 'alert', 'اگر حساب این‌قدر افت کرد، تا فردا ورود نمی‌کند']];
 const pending = {live: {}, shadow: {}};  // settings picked in the dialog or by the assistant, sent on the next start
 try { Object.assign(pending, JSON.parse(localStorage.getItem('pending') || '{}')); } catch (e) {}
 const keepPending = () => { try { localStorage.setItem('pending', JSON.stringify(pending)); } catch (e) {} };

@@ -344,6 +344,6 @@ if __name__ == "__main__":
     (B.ROOT / "logs").mkdir(exist_ok=True)
     host, port = os.environ.get("HOST", "127.0.0.1"), int(os.environ.get("PORT", "8787"))
     if os.environ.get("AUTOSTART") == "shadow":
-        print("autostart shadow:", start("shadow", {"AI": "boxapi"}), flush=True)
+        print("autostart shadow:", start("shadow", dict(AI="boxapi", POS_FRAC=0.32, MAX_POS=3, ENTRY_EDGE=0.006, STOP_LOSS=0.03, DAILY_STOP=0.05)), flush=True)  # as the laptop runs
     print(f"serving on http://{host}:{port}", flush=True)
     ThreadingHTTPServer((host, port), partial(Handler, directory=str(OUT))).serve_forever()
