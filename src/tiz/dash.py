@@ -229,6 +229,8 @@ class Handler(SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path in ("/", "/index.html"):
             return self.send(BOT_PAGE.read_bytes().replace(b"__TIZ_TOKEN__", TOKEN.encode()), "text/html; charset=utf-8")
+        if self.path == "/favicon.ico":
+            self.path = "/static/favicon.svg"
         if self.path.startswith("/static/") and ".." not in self.path:  # Dana webfonts (local only, gitignored)
             f = Path(__file__).with_name("static") / self.path[8:]
             if f.is_file():
