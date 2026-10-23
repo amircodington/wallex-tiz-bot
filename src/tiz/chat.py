@@ -10,7 +10,7 @@ from tiz.backtest import OUT
 MEM = OUT / "chat_memory.json"  # gitignored: notes + recent turns
 FACTS = """Strategy: buy a safe-7 coin (TRX BTC BNB ETH XRP DOGE XAUT) ENTRY_EDGE below its Binance-implied fair price, sell at
 the frozen baseline (take profit), STOP_LOSS below entry, max hold 4 h, DAILY_STOP halts entries, no entries in the last 3 h,
-everything sold 1 h before 2026-10-23 23:50 Tehran. Fees ~0.25% maker each side, so the round trip costs ~0.5%.
+everything sold 1 h before the end (see "end" in the current state). Fees ~0.25% maker each side, so the round trip costs ~0.5%.
 60-day backtest, no AI judge, POS_FRAC 0.3 (pessimistic / optimistic fills): edge 0.4%: 9-17 trades/day, +7%/+10% but the
 unseen second half LOST -12%/-7%, drawdown 19%. edge 0.5%: 9-10/day, +17%/+31%, second half -2%/+1%, dd 18-20%.
 edge 0.6%: 8-10/day, +24%/+40%, second half +6%/+16%, dd 10-16%. edge 0.7%: 5-8/day, +24%/+51%, second half +10%/+14%, dd 6-9%.

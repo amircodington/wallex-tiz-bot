@@ -1,0 +1,6 @@
+fresh min_vol 1M {'train': (35, 2.035, 1.053), 'test': (36, 3.607, 0.435)}
+fresh min_vol 5M {'train': (35, 2.035, 1.053), 'test': (35, 3.55, 0.433)}
+fresh min_vol 20M {'train': (34, 1.922, 1.051), 'test': (34, 3.425, 0.446)}
+stale min_vol 1M {'train': (30, 0.224, 2.193), 'test': (26, 2.947, 0.416)}
+stale min_vol 5M {'train': (30, 0.224, 2.193), 'test': (25, 2.859, 0.415)}
+stale min_vol 20M {'train': (29, 0.105, 2.198), 'test': (24, 2.736, 0.423)}

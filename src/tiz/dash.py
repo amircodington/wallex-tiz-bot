@@ -58,6 +58,8 @@ def snapshot(src):
     out = dict(src=src, now=now, commit=COMMIT, end_ts=B.END_TS, coins=B.COINS, watch=B.ZERO_FEE_COINS,
                params=dict(entry_edge=B.ENTRY_EDGE, stop_loss=B.STOP_LOSS, max_hold=B.MAX_HOLD, daily_stop=B.DAILY_STOP,
                            max_pos=B.MAX_POS, ai_every=B.AI_EVERY, entry_cutoff=B.ENTRY_CUTOFF, flatten_before=B.FLATTEN_BEFORE))
+    if s := (running().get(src) or {}).get("settings"):  # the running bot's start settings, not this panel's defaults
+        out["params"].update({k.lower(): (int if k == "MAX_POS" else float)(s[k]) for k in ("ENTRY_EDGE", "STOP_LOSS", "DAILY_STOP", "MAX_POS") if k in s})
     status, start, lines = [], None, tail_lines(log_path)
     out["log"] = [[m[1], m[2], m[3][:400]] for m in map(LOGLINE.match, lines[-1500:]) if m and m[3] != "tick"][-80:]
     for ln in lines:
@@ -76,14 +78,14 @@ def snapshot(src):
                      for r in q("select sym, ts_open, ts_close, qty, entry, exit, pnl_tmn, pnl_pct, reason from trades order by ts_close")]
     out["events"] = [dict(ts=r[0], kind=r[1], msg=r[2]) for r in q("select ts, kind, msg from events order by ts desc limit 60")]
     filled = {r[0] for r in q("select cid from fills")}
-    markets = {}
+    markets, resting = {}, open_cids() if src == "live" else None
     for sym in [c + "TMN" for c in B.COINS + B.ZERO_FEE_COINS]:
         rows = q("select ts, bid, ask, fair, prem, base from samples where sym = ? and ts > ? order by ts", sym, now - 7200)
         series = [[round(r[0]), round(r[4] * 1e4, 1), round(r[5] * 1e4, 1), (r[1] + r[2]) / 2] for r in rows[::4]]  # ~1 per minute: ts, prem/base bps, mid
         last = rows[-1] if rows else None
         o = q("select ts, cid, side, price, qty, reason from orders where sym = ? order by ts desc limit 1", sym)
         order = None
-        if o and o[0][1] not in filled and now - o[0][0] < B.ORDER_TTL + 15:
+        if o and o[0][1] not in filled and now - o[0][0] < B.ORDER_TTL + 15 and (resting is None or o[0][1] in resting):
             order = dict(ts=o[0][0], side=o[0][2], price=o[0][3], qty=o[0][4], reason=o[0][5])
         pos, entry, opened = 0.0, None, None
         for ts, side, price, qty, fee_base in q("select ts, side, price, qty, fee_base from fills where sym = ? order by ts", sym):
@@ -203,6 +205,20 @@ def stop(profile):
 
 
 _acct = [0.0, None]
+_open = [0.0, None]
+
+
+def open_cids():
+    """Client ids resting on Wallex (read-only), cached 5 s: the journal has no cancels. None when unknown."""
+    if NO_LIVE:
+        return None
+    if time.time() - _open[0] >= 5:
+        try:
+            got = asyncio.run(Rest(os.environ.get("WALLEX_API_KEY")).open_orders())
+            _open[:] = time.time(), {o.get("clientOrderId") or o.get("client_id") for o in got}
+        except Exception:  # Wallex slow or down: fall back to the TTL guess
+            _open[:] = time.time(), None
+    return _open[1]
 
 
 def account():
@@ -244,11 +260,17 @@ def chat_state():
         out["account_tmn"] = account().get("total_tmn")
     except Exception:
         pass
-    out["now_tehran"], out["end"] = datetime.now().strftime("%Y-%m-%d %H:%M"), "23:50, entries stop 20:50"
+    out["now_tehran"], out["end"] = datetime.now().strftime("%Y-%m-%d %H:%M"), f"{B.iso(B.END_TS)}, entries stop {B.iso(B.END_TS - B.ENTRY_CUTOFF)}"
     return out
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def handle(self):
+        try:
+            super().handle()
+        except (BrokenPipeError, ConnectionResetError):  # the browser left (reload, closed tab) before the reply
+            pass
+
     def do_POST(self):
         host = self.headers.get("Host", "")
         if self.headers.get("X-TIZ-Token") != TOKEN or self.headers.get("Origin") not in (f"http://{host}", f"https://{host}", None):
