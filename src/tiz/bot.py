@@ -669,7 +669,8 @@ class Bot:
             rets = [h[i][2] / h[i - 1][2] - 1 for i in range(max(1, len(h) - 60), len(h))]
             bp = 1e4
             ctx["markets"][m.sym] = dict(
-                minutes_of_history=len(h), premium_now_bps=round(h[-1][1] * bp, 1), baseline_bps=round(m.base * bp, 1),
+                minutes_of_history=round((h[-1][0] - h[0][0]) / 60) + 1,  # span, not rows: Wallex has no candle for minutes without trades
+                premium_now_bps=round(h[-1][1] * bp, 1), baseline_bps=round(m.base * bp, 1),
                 premium_30m_mean_bps=round(statistics.mean(last30) * bp, 1),
                 premium_30m_sd_bps=round(statistics.pstdev(last30) * bp, 1),
                 premium_6h_sd_bps=round(statistics.pstdev(x[1] for x in h[-360:]) * bp, 1),

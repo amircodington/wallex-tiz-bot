@@ -229,6 +229,10 @@ class Handler(SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path in ("/", "/index.html"):
             return self.send(BOT_PAGE.read_bytes().replace(b"__TIZ_TOKEN__", TOKEN.encode()), "text/html; charset=utf-8")
+        if self.path.startswith("/static/") and ".." not in self.path:  # Dana webfonts (local only, gitignored)
+            f = Path(__file__).with_name("static") / self.path[8:]
+            if f.is_file():
+                return self.send(f.read_bytes(), {"woff2": "font/woff2", "svg": "image/svg+xml"}.get(f.suffix[1:], "application/octet-stream"))
         if self.path == "/api/control":
             return self.send(json.dumps(dict(running=running(), limits=LIMITS)).encode(), "application/json")
         if self.path == "/api/account":

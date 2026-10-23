@@ -3,402 +3,554 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TIZ کنترل</title>
+<title>سیگنال آپس</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23A66BFF'/%3E%3Cstop offset='1' stop-color='%236D5BFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='16' fill='%2314121C'/%3E%3Cpath d='M14 46 L25 30 L31 38 L38 22 L43 32 L50 20' fill='none' stroke='url(%23g)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='20' r='5' fill='%23C9A6FF'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
+/* Signal Ops: TIZ Brand Book tokens (violet grid). Dana for Persian (local, commercial), JetBrains Mono for numbers. */
+@font-face{font-family:Dana;src:url(/static/fonts/Dana-Light.woff2) format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:Dana;src:url(/static/fonts/Dana-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Dana;src:url(/static/fonts/Dana-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Dana;src:url(/static/fonts/Dana-DemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:Dana;src:url(/static/fonts/Dana-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Dana;src:url(/static/fonts/Dana-ExtraBold.woff2) format("woff2");font-weight:800;font-display:swap}
 :root{
-  --bg:#0b0e12; --panel:#12161c; --panel2:#171c24; --line:#232a34; --ink:#e7ebf0; --mute:#8b95a3; --dim:#5b6573;
-  --acc:#43cf9c; --acc-ink:#04140d; --pos:#43cf9c; --neg:#ff6b5e; --warn:#e3b341; --info:#79a7ff;
-  --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-in-out:cubic-bezier(0.77,0,0.175,1);
-  --mono:"IBM Plex Mono",ui-monospace,monospace; color-scheme:dark;
+  --bg:#0B0A10; --surface:#14121C; --surface-2:#1A1724; --sunk:#070609; --fg:#EEEAF6; --muted:#9A93AE; --dim:#6B6580; --line:#272336;
+  --accent:#A66BFF; --accent-2:#6D5BFF; --accent-soft:#261A3D; --glow:rgba(166,107,255,.38);
+  --warn:#F5B84B; --warn-soft:#30250F; --bid:#34D399; --bid-soft:#0F2E24; --ask:#FB5C7C; --ask-soft:#3A1622; --info:#7DA2FF; --info-soft:#17203A;
+  --grad:linear-gradient(90deg,var(--accent),var(--accent-2));
+  --fa:Dana,Vazirmatn,Tahoma,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r:12px; --pill:999px; --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-in-out:cubic-bezier(0.77,0,0.175,1);
+  color-scheme:dark;
 }
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
-  --bg:#f3f5f7; --panel:#fff; --panel2:#f7f8fa; --line:#e2e6eb; --ink:#141a21; --mute:#5f6b7a; --dim:#8a95a3;
-  --acc:#0d7856; --acc-ink:#fff; --pos:#0d7856; --neg:#c0392b; --warn:#9a6700; --info:#2f5fd0; color-scheme:light}}
+  --bg:#F3F0FA; --surface:#FFFFFF; --surface-2:#F8F6FC; --sunk:#E8E3F3; --fg:#17131F; --muted:#5E5872; --dim:#8A84A0; --line:#D6D0E4;
+  --accent:#7A3FE6; --accent-2:#4F46E5; --accent-soft:#E9DEFF; --glow:rgba(122,63,230,.22);
+  --warn:#9A6300; --warn-soft:#F6E8CC; --bid:#0F8A5F; --bid-soft:#D8F3E8; --ask:#D32F52; --ask-soft:#FADCE3; --info:#3B5BDB; --info-soft:#DEE5FB; color-scheme:light}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 Vazirmatn,Tahoma,system-ui,sans-serif}
-main{max-width:1280px;margin:0 auto;padding:16px;display:grid;gap:14px}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:400 15px/1.7 var(--fa);
+  background-image:linear-gradient(color-mix(in srgb,var(--fg) 4%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--fg) 4%,transparent) 1px,transparent 1px);background-size:64px 64px}
 .num{font-family:var(--mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
-.mute{color:var(--mute)} .dim{color:var(--dim)} .pos{color:var(--pos)} .neg{color:var(--neg)} .warn{color:var(--warn)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}
-.card>h2{margin:0 0 10px;font-size:13px;font-weight:700;color:var(--mute);display:flex;gap:8px;align-items:center;justify-content:space-between}
-.grid{display:grid;gap:14px}
-.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.muted{color:var(--muted)} .dim{color:var(--dim)} .up{color:var(--bid)} .dn{color:var(--ask)}
+svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+main{max-width:1240px;margin:0 auto;padding:0 16px 40px;display:grid;gap:16px}
 
-/* top bar */
-.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
-.brand i{width:12px;height:12px;border-radius:50%;background:var(--dim);position:relative}
-.brand i.live{background:var(--acc)}
-.brand i.live::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--acc);animation:ping 1.6s var(--ease-out) infinite}
-.brand i.stale{background:var(--neg)}
-@keyframes ping{from{transform:scale(1);opacity:.8}to{transform:scale(2.6);opacity:0}}
-.seg{position:relative;display:inline-flex;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:3px}
-.seg button{position:relative;z-index:1;border:0;background:none;color:var(--mute);font:inherit;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;transition:color 160ms ease}
-.seg button[aria-pressed="true"]{color:var(--ink)}
-.seg .ind{position:absolute;top:3px;bottom:3px;left:0;border-radius:7px;background:var(--line);transition:transform 220ms var(--ease-in-out),width 220ms var(--ease-in-out)}
-.clock{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700;background:var(--panel2)}
-.chip.ok{color:var(--pos);border-color:color-mix(in srgb,var(--pos) 40%,var(--line))}
-.chip.bad{color:var(--neg);border-color:color-mix(in srgb,var(--neg) 40%,var(--line))}
-.chip.warn{color:var(--warn)}
-.bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
-.bar>i{display:block;height:100%;background:var(--acc);transform-origin:right center}
+/* paper stripe + top bar */
+.stripe{display:none;align-items:center;justify-content:center;gap:8px;background:var(--warn-soft);color:var(--warn);font-size:13px;font-weight:600;padding:5px 12px;border-bottom:1px solid color-mix(in srgb,var(--warn) 30%,transparent)}
+body.paper .stripe{display:flex}
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 -16px;padding:10px 16px}
+.top-in{max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:38px;height:38px}
+.brand b{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.brand small{display:block;font-size:11.5px;color:var(--muted);font-weight:400;line-height:1.2}
+.seg{position:relative;display:inline-flex;background:var(--sunk);border:1px solid var(--line);border-radius:var(--pill);padding:3px}
+.seg button{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:var(--muted);font:500 13.5px var(--fa);padding:5px 14px;border-radius:var(--pill);cursor:pointer;transition:color 200ms ease}
+.seg button[aria-pressed="true"]{color:#fff}
+.seg .thumb{position:absolute;top:3px;bottom:3px;left:0;border-radius:var(--pill);background:var(--grad);transition:transform 220ms var(--ease-in-out),width 220ms var(--ease-in-out)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;padding:3px 11px;border-radius:var(--pill);border:1px solid var(--line);color:var(--muted);background:var(--surface);white-space:nowrap}
+.pill i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.pill.ok{color:var(--bid);border-color:color-mix(in srgb,var(--bid) 35%,transparent);background:var(--bid-soft)}
+.pill.warn{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 35%,transparent);background:var(--warn-soft)}
+.pill.halt{color:var(--ask);border-color:color-mix(in srgb,var(--ask) 35%,transparent);background:var(--ask-soft)}
+.pill.info{color:var(--info);border-color:color-mix(in srgb,var(--info) 35%,transparent);background:var(--info-soft)}
+.clock{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.count{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.count b{font:600 16px var(--mono);color:var(--fg)}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g-hero{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
+@media (max-width:900px){.g-hero{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0;position:relative;transition:border-color 200ms ease,transform 200ms var(--ease-out)}
+.card-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.card-h h2{margin:0;display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600}
+.card-h h2 .ic{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--accent-soft);color:var(--accent)}
+.card-h .sub{font-size:12.5px;color:var(--dim)}
+@media (hover:hover) and (pointer:fine){.card:hover{border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}}
+
+/* hero equity (the one glow on the page) */
+.hero{overflow:hidden;border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 15%,transparent),0 18px 50px -28px var(--glow)}
+.hero::after{content:"";position:absolute;inset:auto -10% -55% -10%;height:70%;background:radial-gradient(50% 60% at 50% 100%,var(--glow),transparent 70%);pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.eq-big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.eq-big .v{font:600 clamp(30px,4.4vw,42px)/1.1 var(--mono);letter-spacing:-.02em}
+.eq-big .u{color:var(--muted);font-size:15px}
+.eq-row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 6px}
+.chart{height:150px;margin-top:6px}
+svg.full{display:block;width:100%;height:100%}
 
 /* control */
 .ctl{display:grid;gap:12px}
-.ctl-row{display:grid;grid-template-columns:150px 1fr auto;gap:14px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
-@media (max-width:820px){.ctl-row{grid-template-columns:1fr}}
-.ctl-row h3{margin:0;font-size:15px}
-.fields{display:flex;flex-wrap:wrap;gap:10px}
-.field{display:grid;gap:2px;font-size:11px;color:var(--mute)}
-.field input,.field select{width:92px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px;font:13px var(--mono);direction:ltr}
-.field input:disabled,.field select:disabled{opacity:.6}
-.btn{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-weight:800;border-radius:10px;padding:9px 18px;cursor:pointer;transition:transform 140ms var(--ease-out),border-color 160ms ease;min-width:150px}
+.run{border:1px solid var(--line);border-radius:var(--r);background:var(--surface-2);padding:12px;display:grid;gap:10px}
+.run-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.run-h h3{margin:0;font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+.run-h .meta{font-size:12.5px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.kv-chip{display:inline-flex;gap:5px;align-items:center;font-size:12px;padding:2px 9px;border-radius:var(--pill);background:var(--sunk);border:1px solid var(--line);color:var(--muted)}
+.kv-chip b{color:var(--fg);font:500 12px var(--mono)}
+details.set summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--accent)}
+details.set summary::-webkit-details-marker{display:none}
+details.set summary svg{transition:transform 200ms var(--ease-out)}
+details.set[open] summary svg{transform:rotate(-90deg)}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:10px}
+.field{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+.field input,.field select{width:100%;background:var(--sunk);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:7px 10px;font:500 13px var(--mono);direction:ltr;transition:border-color 160ms ease}
+.field select{font-family:var(--fa);direction:rtl}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent)}
+.field input:disabled,.field select:disabled{opacity:.55}
+.btns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 14px var(--fa);padding:9px 18px;border-radius:var(--pill);border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;
+  transition:transform 140ms var(--ease-out),box-shadow 180ms ease,border-color 180ms ease,opacity 160ms ease;user-select:none;-webkit-user-select:none}
 .btn:active{transform:scale(0.97)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
-.btn.go{background:var(--acc);color:var(--acc-ink);border-color:transparent}
-.btn.stop{color:var(--neg);border-color:color-mix(in srgb,var(--neg) 50%,var(--line))}
-.btn .fill{position:absolute;inset:0;background:color-mix(in srgb,#000 28%,transparent);clip-path:inset(0 0 0 100%);transition:clip-path 200ms var(--ease-out)}
-.btn.hold:active .fill{clip-path:inset(0 0 0 0);transition:clip-path 2s linear}
-.btn span{position:relative}
-@media (hover:hover) and (pointer:fine){.btn:not(:disabled):hover{border-color:var(--mute)}}
-.msg{font-size:12px;min-height:18px}
+.btn.primary{color:#fff;border-color:transparent;background:var(--grad);box-shadow:0 8px 24px -10px var(--glow)}
+.btn.danger{color:var(--ask);border-color:color-mix(in srgb,var(--ask) 45%,var(--line));background:var(--ask-soft)}
+.btn .fill{position:absolute;inset:0;background:rgba(255,255,255,.22);clip-path:inset(0 0 0 100%);transition:clip-path 200ms var(--ease-out)}
+.btn.hold.pressing .fill{clip-path:inset(0 0 0 0);transition:clip-path 2s linear}
+.btn>span,.btn>svg{position:relative}
+@media (hover:hover) and (pointer:fine){
+  .btn:not(:disabled):hover{border-color:var(--muted)}
+  .btn.primary:not(:disabled):hover{box-shadow:0 10px 30px -8px rgba(166,107,255,.6)}
+}
+.msg{font-size:12.5px;min-height:18px}
 
-/* kpis */
-.kpis{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:4px;transition:background-color 700ms ease}
-.kpi.flash{background:color-mix(in srgb,var(--acc) 14%,var(--panel));transition:none}
-.kpi .k{font-size:12px;color:var(--mute)} .kpi .v{font-size:22px;font-weight:700}
-.slots{display:flex;gap:6px;margin-top:4px}.slots i{flex:1;height:8px;border-radius:4px;background:var(--line)}.slots i.on{background:var(--acc)}.slots i.ord{background:var(--info)}
-
-svg{display:block;width:100%;height:auto}
-.chart{height:220px}
+/* stat tiles */
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:center;transition:border-color 200ms ease,transform 200ms var(--ease-out),background-color 600ms ease}
+.stat .ic{grid-row:span 2;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--sunk);border:1px solid var(--line);color:var(--accent);transition:transform 200ms var(--ease-out)}
+.stat .k{font-size:12.5px;color:var(--muted)}
+.stat .v{font:600 20px/1.2 var(--mono)}
+.stat .v small{font:400 12px var(--fa);color:var(--muted)}
+.stat.flash{background:color-mix(in srgb,var(--accent) 12%,var(--surface));transition:none}
+@media (hover:hover) and (pointer:fine){.stat:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));transform:translateY(-2px)}.stat:hover .ic{transform:scale(1.08) rotate(-4deg)}}
+.gauge{grid-column:1/-1;height:6px;border-radius:3px;background:var(--sunk);overflow:hidden;margin-top:4px}
+.gauge i{display:block;height:100%;border-radius:3px;background:var(--bid);transform-origin:right center;transition:transform 400ms var(--ease-out)}
+.slots{grid-column:1/-1;display:flex;gap:5px;margin-top:4px}.slots i{flex:1;height:6px;border-radius:3px;background:var(--sunk);border:1px solid var(--line)}
+.slots i.on{background:var(--bid);border-color:transparent}.slots i.ord{background:var(--info);border-color:transparent}
 
 /* markets */
-.mkts{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
-.mk{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--panel2);display:grid;gap:6px;opacity:1;transform:none;transition:opacity 300ms var(--ease-out),transform 300ms var(--ease-out),border-color 200ms ease}
-.mk.pre{opacity:0;transform:translateY(8px)}
-.mk.idle{opacity:.55}
-.mk.hold{border-color:var(--acc)} .mk.ord{border-color:color-mix(in srgb,var(--info) 60%,var(--line))}
-.mk .hd{display:flex;justify-content:space-between;align-items:center;gap:6px}
-.mk .sym{font-weight:800}
-.mk .why{font-size:11.5px;color:var(--mute);min-height:2.6em}
-.conf{height:4px;border-radius:2px;background:var(--line);overflow:hidden}.conf i{display:block;height:100%;background:currentColor}
-.spark{height:46px}
+.mkts{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,232px),1fr))}
+.mk{border:1px solid var(--line);border-radius:var(--r);padding:12px;background:var(--surface-2);display:grid;gap:7px;transition:border-color 200ms ease,transform 200ms var(--ease-out)}
+.mk.idle{opacity:.5}
+.mk.hold{border-color:color-mix(in srgb,var(--bid) 55%,var(--line))} .mk.ord{border-color:color-mix(in srgb,var(--info) 55%,var(--line))}
+@media (hover:hover) and (pointer:fine){.mk:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}}
+.mk-h{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.coin{display:flex;align-items:center;gap:8px}
+.coin .av{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--sunk);border:1px solid var(--line);font:600 11px var(--mono);color:var(--accent)}
+.coin b{font:600 14px var(--mono)} .coin small{display:block;font-size:11.5px;color:var(--muted);line-height:1.2}
+.verdict{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600}
+.verdict svg{width:15px;height:15px}
+.meter{height:4px;border-radius:2px;background:var(--sunk);overflow:hidden}.meter i{display:block;height:100%;border-radius:2px;background:currentColor}
+.why{font-size:12px;color:var(--muted);line-height:1.5;min-height:3em;direction:ltr;text-align:left}
+.spark{height:44px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:16px;height:0;border-top:2px solid}
 
-/* tables + feed */
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
-th{font-size:11.5px;color:var(--mute);font-weight:700}
-.scroll{overflow-x:auto}
-.empty{color:var(--dim);font-size:13px;padding:10px 0}
-.feed{display:grid;gap:0;max-height:430px;overflow:auto}
-.ev{display:grid;grid-template-columns:52px 1fr;gap:8px;padding:7px 2px;border-bottom:1px solid var(--line);font-size:13px;transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out)}
-.ev.pre{opacity:0;transform:translateY(-6px)}
-.ev .t{font-family:var(--mono);color:var(--dim);font-size:12px}
-.tag{display:inline-block;font-size:11px;font-weight:700;padding:0 6px;border-radius:5px;background:var(--line);color:var(--mute);margin-inline-end:6px}
-.tag.buy{color:var(--info)} .tag.sell{color:var(--pos)} .tag.rej{color:var(--warn)} .tag.err{color:var(--neg)}
-dl.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0;font-size:13px} dl.kv dt{color:var(--mute)} dl.kv dd{margin:0}
-.donut{display:flex;gap:14px;align-items:center}
-footer{color:var(--dim);font-size:12px;text-align:center;padding:8px}
-a{color:var(--info)}
+/* tables, feed, empty states */
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:12px;color:var(--muted);font-weight:500;background:var(--sunk)}
+tr:last-child td{border-bottom:0}
+.empty{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13.5px;padding:14px;border:1px dashed var(--line);border-radius:var(--r);background:var(--surface-2)}
+.empty .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--sunk);color:var(--dim)}
+.feed{display:grid;max-height:470px;overflow:auto;margin:-4px -6px 0;padding:0 6px}
+.ev{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:start;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px;transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out)}
+.ev.pre{opacity:0;transform:translateY(-8px)}
+.ev .ei{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--sunk);color:var(--muted)}
+.ev .ei.buy{color:var(--info);background:var(--info-soft)} .ev .ei.sell{color:var(--bid);background:var(--bid-soft)}
+.ev .ei.rej{color:var(--warn);background:var(--warn-soft)} .ev .ei.err{color:var(--ask);background:var(--ask-soft)} .ev .ei.ai{color:var(--accent);background:var(--accent-soft)}
+.ev .t{font:12px var(--mono);color:var(--dim);padding-top:5px}
+.ev .tx b{font-family:var(--mono);font-weight:600}
+.ev .tx .r{display:block;color:var(--muted);font-size:12.5px;direction:ltr;text-align:right}
+.donut{display:flex;gap:16px;align-items:center;margin-bottom:10px}
+.ai-row{display:grid;grid-template-columns:62px 70px 1fr;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:13px}
+.ai-row:last-child{border-bottom:0}
+.ai-row .why{min-height:0}
+dl.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0;font-size:13.5px}
+dl.kv dt{color:var(--muted);display:flex;align-items:center;gap:7px} dl.kv dt svg{width:15px;height:15px;color:var(--dim)} dl.kv dd{margin:0}
+footer{color:var(--dim);font-size:12.5px;text-align:center;display:grid;gap:4px;padding-top:8px}
+footer a{color:var(--accent)}
 
+/* page load: sections rise in once, staggered; hidden only when JS is ready to reveal them */
+.js [data-rise]{opacity:0;transform:translateY(14px)}
+.js [data-rise].in{opacity:1;transform:none;transition:opacity 520ms var(--ease-out),transform 520ms var(--ease-out)}
 @media (prefers-reduced-motion:reduce){
-  .brand i.live::after{animation:none}
-  .mk,.ev{transition:opacity 200ms ease}.mk.pre,.ev.pre{transform:none}
-  .seg .ind{transition:none}
-  .btn.hold:active .fill{transition:clip-path 2s linear}
+  .js [data-rise]{transform:none}.js [data-rise].in{transition:opacity 200ms ease}
+  .ev{transition:opacity 200ms ease}.ev.pre{transform:none}
+  .seg .thumb,.gauge i{transition:none}
+  .stat:hover,.mk:hover{transform:none!important}.stat:hover .ic{transform:none!important}
 }
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="lg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#A66BFF"/><stop offset="1" stop-color="#6D5BFF"/></linearGradient></defs>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-coins" viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18M7 6h1v4M16.71 13.88l.7.71-2.82 2.82"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 16V4M3 8l4-4 4 4M17 8v12M21 16l-4 4-4-4"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 3l14 9-14 9z"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4v16"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-git" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M3 12h6M15 12h6"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V4a1 1 0 0 1 1-1h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
+</svg>
+<div class="stripe"><svg class="i"><use href="#i-moon"/></svg>حالت سایه · پول واقعی در کار نیست، سفارش‌ها فقط شبیه‌سازی می‌شوند</div>
 <main>
-  <header class="top">
-    <div class="brand"><i id="hb"></i>TIZ <span class="mute" style="font-weight:500;font-size:14px">ربات معاملاتی والکس</span></div>
-    <div class="seg" id="src" role="group" aria-label="منبع داده">
-      <span class="ind"></span>
-      <button data-src="live" aria-pressed="true">واقعی (Live)</button>
-      <button data-src="shadow" aria-pressed="false">سایه (Paper)</button>
+  <header class="top"><div class="top-in">
+    <div class="brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="16" fill="var(--surface)" stroke="var(--line)"/><path d="M14 46 L25 30 L31 38 L38 22 L43 32 L50 20" fill="none" stroke="url(#lg)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="20" r="8" fill="var(--accent)" opacity=".25"/><circle cx="50" cy="20" r="4.6" fill="#C9A6FF"/></svg>
+      <div><b>سیگنال آپس</b><small>Signal Ops · ربات معاملاتی والکس</small></div>
+    </div>
+    <div class="seg" id="src" role="group" aria-label="کدام ربات">
+      <span class="thumb"></span>
+      <button data-src="live" aria-pressed="true"><svg class="i"><use href="#i-coins"/></svg>واقعی</button>
+      <button data-src="shadow" aria-pressed="false"><svg class="i"><use href="#i-moon"/></svg>سایه</button>
     </div>
     <div class="clock">
-      <span id="phase" class="chip">…</span>
-      <span>تا پایان چالش <b id="left" class="num">--:--:--</b></span>
-      <span class="mute" id="hbtxt"></span>
+      <span id="state" class="pill"><i></i>…</span>
+      <span id="phase" class="pill">…</span>
+      <span class="count"><svg class="i"><use href="#i-clock"/></svg>تا پایان <b id="left">--:--:--</b></span>
     </div>
-  </header>
-  <div class="bar" aria-hidden="true"><i id="prog" style="transform:scaleX(0)"></i></div>
+  </div></header>
 
-  <section class="card">
-    <h2>کنترل ربات <span class="dim">فقط از همین لپ‌تاپ · شروع واقعی با نگه داشتن دکمه (۲ ثانیه)</span></h2>
-    <div class="ctl" id="ctl"></div>
+  <div class="grid g-hero">
+    <section class="card hero" data-rise>
+      <div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-wallet"/></svg></span>ارزش حساب</h2><span class="sub" id="acctTs"></span></div>
+      <div class="eq-big"><span class="v num" id="eqv">—</span><span class="u">تومان</span></div>
+      <div class="eq-row" id="eqrow"></div>
+      <div class="chart"><svg class="full" id="eq" viewBox="0 0 600 150" preserveAspectRatio="none"></svg></div>
+      <div id="assets" style="margin-top:10px"></div>
+    </section>
+    <section class="card" data-rise>
+      <div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-sliders"/></svg></span>کنترل ربات</h2><span class="sub">فقط از همین لپ‌تاپ</span></div>
+      <div class="ctl" id="ctl"></div>
+    </section>
+  </div>
+
+  <section class="stats" id="stats" data-rise></section>
+
+  <div class="grid g2">
+    <section class="card" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-layers"/></svg></span>پوزیشن‌های باز</h2><span class="sub" id="posn"></span></div><div class="tbl" id="pos"></div></section>
+    <section class="card" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-swap"/></svg></span>سفارش‌های در انتظار</h2><span class="sub" id="ordn"></span></div><div class="tbl" id="ords"></div></section>
+  </div>
+
+  <section class="card" data-rise>
+    <div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-radar"/></svg></span>بازارها</h2>
+      <div class="legend"><span><i style="border-color:var(--accent)"></i>پریمیوم</span><span><i style="border-color:var(--dim)"></i>خط پایه</span><span><i style="border-color:var(--info);border-top-style:dashed"></i>آستانه‌ی خرید</span><span class="dim">۲ ساعت اخیر</span></div></div>
+    <div class="mkts" id="mkts"></div>
   </section>
 
-  <section class="kpis" id="kpis"></section>
-
   <div class="grid g2">
-    <section class="card"><h2>منحنی سرمایه <span class="dim" id="eqnote"></span></h2><div class="chart"><svg id="eq" viewBox="0 0 600 220" preserveAspectRatio="none"></svg></div></section>
-    <section class="card"><h2>حساب والکس <span class="dim" id="acctTs"></span></h2><div id="acct" class="empty">…</div></section>
+    <section class="card" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-cpu"/></svg></span>داور هوش مصنوعی</h2><span class="sub" id="ainext"></span></div><div id="ai"></div></section>
+    <section class="card" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-list"/></svg></span>اتفاق‌های اخیر</h2><span class="sub">تازه‌ترین بالا</span></div><div class="feed" id="feed"></div></section>
   </div>
 
   <div class="grid g2">
-    <section class="card"><h2>پوزیشن‌های باز</h2><div class="scroll" id="pos"></div></section>
-    <section class="card"><h2>سفارش‌های در انتظار</h2><div class="scroll" id="ords"></div></section>
+    <section class="card" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-trend"/></svg></span>معاملات بسته‌شده</h2><span class="sub" id="trn"></span></div><div class="tbl" id="trades"></div></section>
+    <section class="card" data-rise><div class="card-h"><h2><span class="ic"><svg class="i"><use href="#i-info"/></svg></span>تنظیمات این اجرا</h2></div><div id="info"></div></section>
   </div>
-
-  <section class="card"><h2>بازارها <span class="dim">پریمیوم ۲ ساعت اخیر (bps) · خط‌چین: آستانه‌ی خرید</span></h2><div class="mkts" id="mkts"></div></section>
-
-  <div class="grid g3">
-    <section class="card"><h2>داور AI <span class="dim" id="ainext"></span></h2><div id="ai"></div></section>
-    <section class="card" style="grid-column:span 2;min-width:min(100%,600px)"><h2>جریان تصمیم‌ها <span class="dim">تازه‌ترین بالا</span></h2><div class="feed" id="feed"></div></section>
-  </div>
-
-  <div class="grid g2">
-    <section class="card"><h2>معاملات بسته‌شده</h2><div class="scroll" id="trades"></div></section>
-    <section class="card"><h2>تنظیمات و اطلاعات اجرا</h2><div id="info"></div></section>
-  </div>
-  <footer>داده‌ها فقط از فایل‌های خود ربات (journal، decisions، لاگ) و موجودی فقط‌خواندنی والکس · <a href="/backtests">داشبورد بک‌تست‌ها</a></footer>
+  <footer><span>این سیستم ابزار پژوهش و اجرای خودکار است و توصیهٔ سرمایه‌گذاری نیست.</span>
+    <span>داده‌ها از فایل‌های خود ربات و موجودی فقط‌خواندنی والکس · <a href="/backtests">آزمایشگاه بک‌تست</a></span></footer>
 </main>
 <script>
 const TOKEN = "__TIZ_TOKEN__";
 const $ = id => document.getElementById(id);
+const ic = (n, cls = 'i') => `<svg class="${cls}"><use href="#i-${n}"/></svg>`;
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
-const fa = (n, d = 0) => n == null || isNaN(n) ? '—' : Number(n).toLocaleString('fa-IR', {maximumFractionDigits: d, minimumFractionDigits: 0});
-const sgn = (n, d = 2) => `<span class="num ${n > 0 ? 'pos' : n < 0 ? 'neg' : ''}">${n > 0 ? '+' : ''}${fa(n, d)}٪</span>`;
-const hm = t => new Date(t * 1000).toLocaleTimeString('fa-IR', {timeZone: 'Asia/Tehran', hour: '2-digit', minute: '2-digit'});
+const fmt = (n, d = 0) => n == null || isNaN(n) ? '—' : Number(n).toLocaleString('en-US', {maximumFractionDigits: d, minimumFractionDigits: d});
+const pct = (n, d = 2, pill = false) => { const c = n > 0 ? 'up' : n < 0 ? 'dn' : ''; const t = `${n > 0 ? '+' : ''}${fmt(n, d)}%`;
+  return pill ? `<span class="pill ${n > 0 ? 'ok' : n < 0 ? 'halt' : ''}"><i></i><span class="num">${t}</span></span>` : `<span class="num ${c}">${t}</span>`; };
+const hm = t => new Date(t * 1000).toLocaleTimeString('en-GB', {timeZone: 'Asia/Tehran', hour: '2-digit', minute: '2-digit'});
 const tsOf = s => typeof s === 'number' ? s : Date.parse(s) / 1000;
-const NAMES = {TRX: 'ترون', BTC: 'بیت‌کوین', BNB: 'بایننس‌کوین', ETH: 'اتریوم', XRP: 'ریپل', DOGE: 'دوج', XAUT: 'تتر طلا', PEPE: 'پپه', PUMP: 'پامپ', SOL: 'سولانا', ARB: 'آربیتروم', S: 'سونیک'};
-const REASON = {take_profit: 'سود', stop_loss: 'حد ضرر', max_hold: 'سقف زمان', end_of_challenge: 'پایان چالش', trail: 'trail', entry: 'ورود'};
-let src = 'live', data = null, ctl = null, acct = null, seenFeed = new Set(), firstFeed = true, lastEq = {}, mkBuilt = false;
+const NAMES = {TRX: 'ترون', BTC: 'بیت‌کوین', BNB: 'بی‌ان‌بی', ETH: 'اتریوم', XRP: 'ریپل', DOGE: 'دوج‌کوین', XAUT: 'تتر طلا', PEPE: 'پپه', PUMP: 'پامپ', SOL: 'سولانا', ARB: 'آربیتروم', S: 'سونیک'};
+const REASON = {take_profit: 'هدف سود', stop_loss: 'حد ضرر', max_hold: 'سقف زمان', end_of_challenge: 'پایان چالش', trail: 'trail', entry: 'ورود'};
+const empty = (icon, text) => `<div class="empty"><span class="ic">${ic(icon)}</span><span>${text}</span></div>`;
+let src = 'live', data = null, ctl = null, acct = null, seenFeed = new Set(), firstFeed = true, last = {}, firstPaint = true;
+
+/* ---------- page load: reveal sections once, staggered ---------- */
+function reveal() {
+  document.querySelectorAll('[data-rise]').forEach((el, i) => setTimeout(() => el.classList.add('in'), 60 + i * 70));
+}
+/* count a number up on first paint only (rare, so it may delight); later updates just swap */
+function countUp(el, to, d = 0) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !isFinite(to)) { el.textContent = fmt(to, d); return; }
+  const t0 = performance.now(), dur = 700;
+  const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(to * e, d); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
 
 /* ---------- source switch ---------- */
-function placeInd() {
-  const b = document.querySelector('#src button[aria-pressed="true"]'), seg = $('src'), ind = seg.querySelector('.ind');
-  ind.style.width = b.offsetWidth + 'px';
-  ind.style.transform = `translateX(${b.offsetLeft}px)`;
+function placeThumb() {
+  const b = document.querySelector('#src button[aria-pressed="true"]'), th = $('src').querySelector('.thumb');
+  th.style.width = b.offsetWidth + 'px'; th.style.transform = `translateX(${b.offsetLeft}px)`;
 }
 document.querySelectorAll('#src button').forEach(b => b.onclick = () => {
   if (b.dataset.src === src) return;
-  src = b.dataset.src;
+  src = b.dataset.src; document.body.classList.toggle('paper', src === 'shadow');
   document.querySelectorAll('#src button').forEach(x => x.setAttribute('aria-pressed', x === b));
-  placeInd(); seenFeed = new Set(); firstFeed = true; lastEq = {}; $('feed').innerHTML = ''; mkBuilt = false; poll();
+  placeThumb(); seenFeed = new Set(); firstFeed = true; last = {}; $('feed').innerHTML = ''; poll(); drawAccount();
 });
 
 /* ---------- control ---------- */
 const FIELDS = [['POS_FRAC', 'سهم هر پوزیشن', 0.3, 0.01], ['MAX_POS', 'تعداد پوزیشن', 3, 1], ['ENTRY_EDGE', 'آستانه‌ی ورود', 0.008, 0.001],
                 ['STOP_LOSS', 'حد ضرر', 0.03, 0.005], ['DAILY_STOP', 'توقف روزانه', 0.03, 0.005]];
-function ctlRow(p) {
+const chip = (k, v) => `<span class="kv-chip">${k}<b>${v}</b></span>`;
+function runCard(p) {
   const r = ctl.running[p], on = !!r, s = on ? r.settings : {};
-  const label = p === 'live' ? 'واقعی' : 'سایه';
-  const fields = FIELDS.map(([k, t, d, st]) => `<label class="field">${t}<input type="number" step="${st}" data-k="${k}" value="${s[k] ?? d}" ${on ? 'disabled' : ''}></label>`).join('') +
-    `<label class="field">داور AI<select data-k="AI" ${on ? 'disabled' : ''}><option value="boxapi" ${s.AI !== 'cli' ? 'selected' : ''}>BoxAPI · Haiku</option><option value="cli" ${s.AI === 'cli' ? 'selected' : ''}>claude CLI</option></select></label>`;
-  const btn = on ? `<button class="btn stop" data-act="stop" data-p="${p}"><span>توقف ${label}</span></button>`
-    : p === 'live' ? `<button class="btn go hold" data-act="start" data-p="live"><span class="fill"></span><span>نگه دار: شروع واقعی</span></button>`
-    : `<button class="btn" data-act="start" data-p="shadow"><span>شروع سایه</span></button>`;
-  return `<div class="ctl-row" data-row="${p}"><div><h3>${label} ${on ? '<span class="chip ok">در حال اجرا</span>' : '<span class="chip">متوقف</span>'}</h3>
-    <div class="mute" style="font-size:12px">${on ? `از ساعت <span class="num">${hm(r.started)}</span> · pid <span class="num">${r.pid}</span>` : (p === 'live' ? 'سفارش واقعی با پول حساب چالش' : 'همان کد، بدون ارسال سفارش')}</div></div>
-    <div class="fields">${fields}</div><div style="display:grid;gap:4px;justify-items:end">${btn}<div class="msg" data-msg="${p}"></div></div></div>`;
+  const live = p === 'live', title = live ? 'ربات واقعی' : 'ربات سایه';
+  const val = (k, d) => s[k] ?? d;
+  const chips = chip('سهم', `${fmt(val('POS_FRAC', 0.3) * 100)}%`) + chip('جا', fmt(val('MAX_POS', 3))) + chip('آستانه', `${fmt(val('ENTRY_EDGE', 0.008) * 100, 1)}%`) +
+    chip('حد ضرر', `${fmt(val('STOP_LOSS', 0.03) * 100, 1)}%`) + chip('داور', (s.AI || 'boxapi') === 'cli' ? 'CLI' : 'BoxAPI');
+  const fields = FIELDS.map(([k, t, d, st]) => `<label class="field">${t}<input type="number" step="${st}" data-k="${k}" value="${val(k, d)}" ${on ? 'disabled' : ''}></label>`).join('') +
+    `<label class="field">داور هوش مصنوعی<select data-k="AI" ${on ? 'disabled' : ''}><option value="boxapi" ${s.AI !== 'cli' ? 'selected' : ''}>Haiku · BoxAPI</option><option value="cli" ${s.AI === 'cli' ? 'selected' : ''}>Haiku · claude CLI</option></select></label>`;
+  const btn = on ? `<button class="btn danger" data-act="stop" data-p="${p}">${ic('stop')}<span>توقف</span></button>`
+    : live ? `<button class="btn primary hold" data-act="start" data-p="live"><span class="fill"></span>${ic('play')}<span>برای شروع نگه دار</span></button>`
+    : `<button class="btn" data-act="start" data-p="shadow">${ic('play')}<span>شروع سایه</span></button>`;
+  return `<div class="run" data-row="${p}">
+    <div class="run-h"><h3>${ic(live ? 'coins' : 'moon')}${title} ${on ? '<span class="pill ok"><i></i>در حال اجرا</span>' : '<span class="pill"><i></i>متوقف</span>'}</h3>
+      <div class="btns">${btn}</div></div>
+    <div class="run-h"><span class="meta">${on ? `از ساعت <span class="num">${hm(r.started)}</span> · کد <span class="num">${esc(data ? data.commit : '')}</span>` : (live ? 'با پول واقعی حساب چالش معامله می‌کند' : 'همان کد، بدون ارسال سفارش')}</span><span class="msg" data-msg="${p}"></span></div>
+    <div class="chips">${chips}</div>
+    ${on ? '' : `<details class="set"><summary>${ic('chev')}تغییر تنظیمات</summary><div class="fields">${fields}</div></details>`}</div>`;
 }
 function drawCtl() {
   if (!ctl) return;
-  const active = document.activeElement && $('ctl').contains(document.activeElement) && document.activeElement.tagName !== 'BUTTON';
-  if (active) return;  // don't wipe a field the user is typing in
-  $('ctl').innerHTML = ctlRow('live') + ctlRow('shadow');
-  $('ctl').querySelectorAll('[data-act="start"][data-p="shadow"], [data-act="stop"]').forEach(b => b.onclick = () => act(b));
-  const live = $('ctl').querySelector('[data-act="start"][data-p="live"]');
-  if (live) {  // hold-to-confirm: 2 s press, release early cancels
-    let timer;
-    const cancel = () => clearTimeout(timer);
-    live.addEventListener('pointerdown', () => { timer = setTimeout(() => act(live), 2000); });
-    ['pointerup', 'pointerleave', 'pointercancel'].forEach(e => live.addEventListener(e, cancel));
+  const a = document.activeElement;
+  if (a && $('ctl').contains(a) && a.tagName !== 'BUTTON') return;  // don't wipe a field mid-edit
+  const open = [...$('ctl').querySelectorAll('details[open]')].map(d => d.closest('[data-row]').dataset.row);
+  $('ctl').innerHTML = runCard('live') + runCard('shadow');
+  open.forEach(p => { const d = $('ctl').querySelector(`[data-row="${p}"] details`); if (d) d.open = true; });
+  $('ctl').querySelectorAll('[data-act="stop"], [data-act="start"][data-p="shadow"]').forEach(b => b.onclick = () => act(b));
+  const hold = $('ctl').querySelector('.hold');
+  if (hold) {  // press and hold 2 s to start live money; releasing early cancels
+    let t;
+    const off = () => { clearTimeout(t); hold.classList.remove('pressing'); };
+    hold.addEventListener('pointerdown', e => { e.preventDefault(); hold.classList.add('pressing'); t = setTimeout(() => { off(); act(hold); }, 2000); });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => hold.addEventListener(ev, off));
   }
 }
 async function act(b) {
   const p = b.dataset.p, kind = b.dataset.act, row = $('ctl').querySelector(`[data-row="${p}"]`), msg = row.querySelector('.msg');
-  if (kind === 'stop' && !confirm(p === 'live' ? 'ربات واقعی متوقف شود؟ سفارش‌های باز لغو می‌شوند؛ کوین‌های خریده‌شده می‌مانند.' : 'سایه متوقف شود؟')) return;
-  const body = {};
+  if (kind === 'stop' && !confirm(p === 'live' ? 'ربات واقعی متوقف شود؟\nسفارش‌های باز لغو می‌شوند؛ کوین‌های خریده‌شده سر جایشان می‌مانند.' : 'ربات سایه متوقف شود؟')) return;
+  const body = {AI: 'boxapi'};
   row.querySelectorAll('[data-k]').forEach(i => body[i.dataset.k] = i.tagName === 'SELECT' ? i.value : Number(i.value));
   if (p === 'live') body.confirm = 'LIVE';
-  b.disabled = true; msg.textContent = kind === 'start' ? 'در حال شروع…' : 'در حال توقف…';
+  b.disabled = true; msg.innerHTML = `<span class="muted">${kind === 'start' ? 'در حال شروع…' : 'در حال توقف…'}</span>`;
   try {
     const r = await fetch(`/api/control/${p}/${kind}`, {method: 'POST', headers: {'Content-Type': 'application/json', 'X-TIZ-Token': TOKEN}, body: JSON.stringify(body)});
     const j = await r.json();
-    msg.innerHTML = r.ok ? (kind === 'start' ? 'شروع شد؛ گرم شدن حدود ۴ دقیقه، ورود بعد از ۱۰ دقیقه' : `متوقف شد${j.cancelled ? ` · ${fa(j.cancelled.length)} سفارش لغو شد` : ''}${j.cancel_error ? ' · <span class="neg">لغو سفارش‌ها خطا داد</span>' : ''}`)
-      : `<span class="neg">${esc(j.error)}</span>`;
-  } catch (e) { msg.innerHTML = `<span class="neg">${esc(e)}</span>`; }
-  b.disabled = false;
-  setTimeout(pollCtl, 600);
+    msg.innerHTML = r.ok ? `<span class="up">${kind === 'start' ? 'شروع شد · حدود ۱۴ دقیقه تا اولین ورود' : `متوقف شد${j.cancelled ? ` · ${j.cancelled.length} سفارش لغو شد` : ''}`}</span>${j.cancel_error ? ' <span class="dn">لغو سفارش‌ها خطا داد</span>' : ''}`
+      : `<span class="dn">${esc(j.error)}</span>`;
+  } catch (e) { msg.innerHTML = `<span class="dn">${esc(e)}</span>`; }
+  b.disabled = false; setTimeout(pollCtl, 700);
 }
 async function pollCtl() { try { ctl = await (await fetch('/api/control', {cache: 'no-store'})).json(); drawCtl(); } catch (e) {} }
 
-/* ---------- kpis ---------- */
-function kpi(id, k, v, sub = '') { return `<div class="kpi" data-id="${id}"><span class="k">${k}</span><span class="v">${v}</span>${sub}</div>`; }
-function drawKpis(d) {
-  const st = d.status.at(-1), eq = st ? st.equity : null, trades = d.trades || [];
-  const pnl = trades.reduce((a, t) => a + t.pnl, 0), wins = trades.filter(t => t.pnl > 0).length;
-  const busy = Object.values(d.markets || {}).filter(m => m.position).length, ords = Object.values(d.markets || {}).filter(m => m.order && m.order.side === 'BUY').length;
-  const dd = st ? st.dd : 0, maxpos = d.params.max_pos;
-  const vals = {eq: fa(eq), ret: st ? sgn(st.ret) : '—', pnl: `<span class="num ${pnl >= 0 ? 'pos' : 'neg'}">${pnl >= 0 ? '+' : ''}${fa(pnl)}</span>`,
-                dd: `<span class="num ${dd >= 2 ? 'neg' : ''}">${fa(dd, 2)}٪</span>`, tr: `${fa(trades.length)} <span class="mute" style="font-size:14px">(${fa(wins)} برد)</span>`,
-                ai: `${fa(d.ai.rounds)} <span class="mute" style="font-size:14px">دور · ${fa(d.ai.reject_pct, 0)}٪ رد</span>`};
-  const slots = `<div class="slots">${Array.from({length: maxpos}, (_, i) => `<i class="${i < busy ? 'on' : i < busy + ords ? 'ord' : ''}"></i>`).join('')}</div>`;
-  $('kpis').innerHTML = kpi('eq', 'ارزش حساب (تومان)', vals.eq) + kpi('ret', 'بازده از ۵ میلیون', vals.ret) + kpi('pnl', 'سود و زیان محقق (تومان)', vals.pnl) +
-    kpi('dd', `بیشترین افت · توقف روزانه ${fa(d.params.daily_stop * 100)}٪`, vals.dd) + kpi('tr', 'معامله', vals.tr) +
-    kpi('sl', 'ظرفیت', `${fa(busy)} پوزیشن · ${fa(ords)} سفارش`, slots) + kpi('ai', 'داور AI', vals.ai);
-  for (const [id, v] of Object.entries(vals)) {  // flash a tile only when its value changed (state indication, not decoration)
-    if (lastEq[id] !== undefined && lastEq[id] !== v) { const el = $('kpis').querySelector(`[data-id="${id}"]`); el.classList.add('flash'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('flash'))); }
-    lastEq[id] = v;
+/* ---------- hero: equity + account ---------- */
+function drawHero(d) {
+  const st = d.status.at(-1), eq = src === 'live' && acct && !acct.error ? acct.total_tmn : st ? st.equity : null;
+  if (eq != null && last.eq !== eq) { firstPaint ? countUp($('eqv'), eq) : ($('eqv').textContent = fmt(eq)); last.eq = eq; }
+  const ret = eq != null ? (eq / 5e6 - 1) * 100 : null;
+  $('eqrow').innerHTML = (ret != null ? pct(ret, 2, true) : '') + `<span class="pill">${ic('flag')}<span>اعتبار چالش <span class="num">5,000,000</span></span></span>` +
+    (st && st.halted ? `<span class="pill halt"><i></i>توقف روزانه فعال</span>` : '');
+  const pts = d.status.map(s => [s.ts, s.equity]), svg = $('eq');
+  if (pts.length < 2) { svg.innerHTML = `<text x="300" y="80" text-anchor="middle" fill="var(--dim)" font-size="13" font-family="Dana,Vazirmatn">منحنی بعد از چند دقیقه اجرا پیدا می‌شود</text>`; return; }
+  const W = 600, H = 150, xs = pts.map(p => p[0]), ys = pts.map(p => p[1]).concat([5e6]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), lo = Math.min(...ys), hi = Math.max(...ys), pad = Math.max((hi - lo) * 0.2, 4000);
+  const X = t => W - (t - x0) / Math.max(1, x1 - x0) * W, Y = v => H - 8 - (v - lo + pad) / (hi - lo + 2 * pad) * (H - 16);
+  const line = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join('');
+  svg.innerHTML = `<defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".35"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+    <line x1="0" x2="${W}" y1="${Y(5e6)}" y2="${Y(5e6)}" stroke="var(--dim)" stroke-dasharray="4 5" vector-effect="non-scaling-stroke"/>
+    <path d="${line}L${X(x1)},${H}L${X(x0)},${H}Z" fill="url(#ga)"/>
+    <path d="${line}" fill="none" stroke="url(#lg)" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>`;
+}
+function drawAccount() {
+  if (src !== 'live') { $('assets').innerHTML = `<div class="dim" style="font-size:12.5px">موجودی شبیه‌سازی‌شده‌ی سایه از ۵ میلیون تومان شروع می‌شود.</div>`; $('acctTs').textContent = 'شبیه‌سازی'; return; }
+  if (!acct) return;
+  if (acct.error) { $('assets').innerHTML = `<span class="pill halt"><i></i>خواندن موجودی خطا داد</span>`; return; }
+  $('acctTs').innerHTML = `موجودی واقعی والکس · <span class="num">${hm(acct.ts)}</span>`;
+  $('assets').innerHTML = `<div class="tbl"><table><tr><th>دارایی</th><th>آزاد</th><th>قفل در سفارش</th><th>ارزش (تومان)</th></tr>${acct.assets.map(a =>
+    `<tr><td><b class="num">${a.asset}</b></td><td class="num">${fmt(a.free, a.asset === 'TMN' ? 0 : 6)}</td><td class="num">${fmt(a.locked, a.asset === 'TMN' ? 0 : 6)}</td><td class="num">${fmt(a.value_tmn)}</td></tr>`).join('')}</table></div>`;
+  if (data) drawHero(data);
+}
+
+/* ---------- stat tiles ---------- */
+function stat(id, icon, k, v, extra = '', color = 'var(--accent)') {
+  return `<div class="stat" data-id="${id}"><span class="ic" style="color:${color}">${ic(icon)}</span><span class="k">${k}</span><span class="v">${v}</span>${extra}</div>`;
+}
+function drawStats(d) {
+  const st = d.status.at(-1), trades = d.trades || [], pnl = trades.reduce((a, t) => a + t.pnl, 0), wins = trades.filter(t => t.pnl > 0).length;
+  const mk = Object.values(d.markets || {}), busy = mk.filter(m => m.position).length, ords = mk.filter(m => m.order && m.order.side === 'BUY').length;
+  const dd = st ? st.dd : 0, lim = d.params.daily_stop * 100, mp = d.params.max_pos;
+  const ddc = dd >= lim * 0.8 ? 'var(--ask)' : dd >= lim * 0.5 ? 'var(--warn)' : 'var(--bid)';
+  const vals = {
+    pnl: `<span class="${pnl > 0 ? 'up' : pnl < 0 ? 'dn' : ''}">${pnl > 0 ? '+' : ''}${fmt(pnl)}</span> <small>تومان</small>`,
+    dd: `${fmt(dd, 2)}% <small>از ${fmt(lim)}% مجاز</small>`,
+    tr: `${fmt(trades.length)} <small>${fmt(wins)} برد</small>`,
+    sl: `${fmt(busy)}/${fmt(mp)} <small>${ords ? `${fmt(ords)} سفارش خرید` : 'پوزیشن'}</small>`,
+    ai: `${fmt(d.ai.rounds)} <small>دور · ${fmt(d.ai.reject_pct)}% رد</small>`};
+  $('stats').innerHTML =
+    stat('pnl', 'trend', 'سود و زیان محقق', vals.pnl, '', pnl < 0 ? 'var(--ask)' : 'var(--bid)') +
+    stat('dd', 'shield', 'بیشترین افت حساب', vals.dd, `<span class="gauge"><i style="transform:scaleX(${Math.min(1, dd / lim)});background:${ddc}"></i></span>`, ddc) +
+    stat('tr', 'swap', 'معاملات', vals.tr) +
+    stat('sl', 'layers', 'جای خالی', vals.sl, `<span class="slots">${Array.from({length: mp}, (_, i) => `<i class="${i < busy ? 'on' : i < busy + ords ? 'ord' : ''}"></i>`).join('')}</span>`, 'var(--info)') +
+    stat('ai', 'cpu', 'داور هوش مصنوعی', vals.ai);
+  for (const [id, v] of Object.entries(vals)) {  // flash a tile only when its value changes
+    if (last[id] !== undefined && last[id] !== v) { const el = $('stats').querySelector(`[data-id="${id}"]`); el.classList.add('flash'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('flash'))); }
+    last[id] = v;
   }
 }
 
-/* ---------- charts ---------- */
-function drawEquity(d) {
-  const pts = d.status.map(s => [s.ts, s.equity]), svg = $('eq');
-  $('eqnote').textContent = pts.length ? `${fa(pts.length)} نقطه · هر ۵ دقیقه` : '';
-  if (pts.length < 2) { svg.innerHTML = `<text x="300" y="115" text-anchor="middle" fill="var(--dim)" font-size="13">بعد از ۱۰ دقیقه اجرا منحنی پیدا می‌شود</text>`; return; }
-  const W = 600, H = 220, P = 14, xs = pts.map(p => p[0]), ys = pts.map(p => p[1]).concat([5e6]);
-  const x0 = Math.min(...xs), x1 = Math.max(...xs), lo = Math.min(...ys), hi = Math.max(...ys), pad = Math.max((hi - lo) * 0.15, 5000);
-  const X = t => W - P - (t - x0) / Math.max(1, x1 - x0) * (W - 2 * P), Y = v => H - P - (v - lo + pad) / (hi - lo + 2 * pad) * (H - 2 * P);
-  const line = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join('');
-  svg.innerHTML = `<defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--acc)" stop-opacity=".28"/><stop offset="1" stop-color="var(--acc)" stop-opacity="0"/></linearGradient></defs>
-    <line x1="0" x2="${W}" y1="${Y(5e6)}" y2="${Y(5e6)}" stroke="var(--dim)" stroke-dasharray="4 5" vector-effect="non-scaling-stroke"/>
-    <text x="${P}" y="${Y(5e6) - 5}" fill="var(--dim)" font-size="11">۵ میلیون</text>
-    <path d="${line}L${X(x1)},${H}L${X(x0)},${H}Z" fill="url(#ga)"/>
-    <path d="${line}" fill="none" stroke="var(--acc)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
-    <text x="${W - P}" y="${H - 2}" fill="var(--dim)" font-size="11" text-anchor="start">${hm(x0)}</text><text x="${P}" y="${H - 2}" fill="var(--dim)" font-size="11">${hm(x1)}</text>`;
-}
+/* ---------- markets ---------- */
 function spark(m, edge) {
-  const s = m.series; if (s.length < 3) return `<svg class="spark" viewBox="0 0 200 46"><text x="100" y="27" text-anchor="middle" fill="var(--dim)" font-size="11">داده‌ای نیست</text></svg>`;
+  const s = m.series;
+  if (s.length < 3) return `<svg class="spark full" viewBox="0 0 200 44"><text x="100" y="26" text-anchor="middle" fill="var(--dim)" font-size="11" font-family="Dana,Vazirmatn">داده‌ای نیست</text></svg>`;
   const t0 = s[0][0], t1 = s.at(-1)[0], vals = s.flatMap(p => [p[1], p[2], p[2] - edge]);
-  const lo = Math.min(...vals) - 3, hi = Math.max(...vals) + 3, X = t => 200 - (t - t0) / Math.max(1, t1 - t0) * 200, Y = v => 44 - (v - lo) / (hi - lo) * 42;
-  const pl = k => s.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[k]).toFixed(1)}`).join('');
-  const th = s.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[2] - edge).toFixed(1)}`).join('');
-  return `<svg class="spark" viewBox="0 0 200 46" preserveAspectRatio="none"><path d="${th}" fill="none" stroke="var(--info)" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" opacity=".7"/>
-    <path d="${pl(2)}" fill="none" stroke="var(--dim)" vector-effect="non-scaling-stroke"/><path d="${pl(1)}" fill="none" stroke="var(--acc)" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>`;
+  const lo = Math.min(...vals) - 3, hi = Math.max(...vals) + 3, X = t => 200 - (t - t0) / Math.max(1, t1 - t0) * 200, Y = v => 42 - (v - lo) / (hi - lo) * 40;
+  const path = f => s.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(f(p)).toFixed(1)}`).join('');
+  return `<svg class="spark full" viewBox="0 0 200 44" preserveAspectRatio="none"><path d="${path(p => p[2] - edge)}" fill="none" stroke="var(--info)" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" opacity=".8"/>
+    <path d="${path(p => p[2])}" fill="none" stroke="var(--dim)" vector-effect="non-scaling-stroke"/><path d="${path(p => p[1])}" fill="none" stroke="var(--accent)" stroke-width="1.8" vector-effect="non-scaling-stroke"/></svg>`;
 }
 function drawMarkets(d) {
   const v = (d.ai.last || {}).verdicts || {}, edge = d.params.entry_edge * 1e4;
-  const html = Object.entries(d.markets).map(([sym, m], i) => {
-    const c = sym.replace('TMN', ''), a = v[sym], ok = a && a.verdict === 'approve';
-    const cls = ['mk', m.active ? '' : 'idle', m.position ? 'hold' : m.order ? 'ord' : '', mkBuilt ? '' : 'pre'].join(' ');
-    const state = m.position ? `<span class="chip ok">پوزیشن باز</span>` : m.order ? `<span class="chip" style="color:var(--info)">سفارش ${m.order.side === 'BUY' ? 'خرید' : 'فروش'}</span>` : m.active ? '' : `<span class="chip">فقط با کارمزد صفر</span>`;
-    const prem = m.last ? `پریمیوم <span class="num">${fa(m.last.prem, 1)}</span> · پایه <span class="num">${fa(m.last.base, 1)}</span>` : '';
-    return `<div class="${cls}" style="transition-delay:${mkBuilt ? 0 : i * 40}ms"><div class="hd"><span><span class="sym">${c}</span> <span class="mute" style="font-size:12px">${NAMES[c] || ''}</span></span>${state}</div>
-      ${spark(m, edge)}<div class="mute" style="font-size:12px">${prem}</div>
-      ${a ? `<div style="color:${ok ? 'var(--pos)' : 'var(--warn)'};font-size:12px;font-weight:700">${ok ? 'AI تأیید' : 'AI رد'} · اطمینان <span class="num">${fa(a.confidence * 100)}٪</span></div><div class="conf" style="color:${ok ? 'var(--pos)' : 'var(--warn)'}"><i style="width:${a.confidence * 100}%"></i></div><div class="why">${esc(a.reason)}</div>` : '<div class="why">هنوز رأیی نیست</div>'}</div>`;
+  $('mkts').innerHTML = Object.entries(d.markets).map(([sym, m]) => {
+    const c = sym.replace('TMN', ''), a = v[sym], ok = a && a.verdict === 'approve', col = ok ? 'var(--bid)' : 'var(--warn)';
+    const state = m.position ? `<span class="pill ok"><i></i>پوزیشن</span>` : m.order ? `<span class="pill info"><i></i>سفارش ${m.order.side === 'BUY' ? 'خرید' : 'فروش'}</span>` : m.active ? '' : `<span class="pill">غیرفعال</span>`;
+    const gap = m.last ? (m.last.prem - (m.last.base - edge)) : null;
+    return `<div class="mk ${m.active ? '' : 'idle'} ${m.position ? 'hold' : m.order ? 'ord' : ''}">
+      <div class="mk-h"><div class="coin"><span class="av">${c.slice(0, 4)}</span><div><b>${c}</b><small>${NAMES[c] || ''}</small></div></div>${state}</div>
+      ${spark(m, edge)}
+      <div class="muted" style="font-size:12px">${gap == null ? '' : `فاصله تا خرید <span class="num">${fmt(gap / 100, 2)}%</span>`}</div>
+      ${a ? `<div class="verdict" style="color:${col}">${ic(ok ? 'check' : 'x')}${ok ? 'تأیید داور' : 'رد داور'} <span class="num" style="margin-inline-start:auto">${fmt(a.confidence * 100)}%</span></div><div class="meter" style="color:${col}"><i style="width:${a.confidence * 100}%"></i></div><div class="why">${esc(a.reason)}</div>`
+          : m.active ? '<div class="why" style="text-align:right;direction:rtl">هنوز رأیی نیست</div>' : '<div class="why" style="text-align:right;direction:rtl">فقط اگر کارمزد صفر شود معامله می‌شود</div>'}</div>`;
   }).join('');
-  $('mkts').innerHTML = html;
-  if (!mkBuilt) { mkBuilt = true; requestAnimationFrame(() => requestAnimationFrame(() => $('mkts').querySelectorAll('.mk.pre').forEach(e => e.classList.remove('pre')))); }
 }
 
 /* ---------- positions, orders, trades ---------- */
-function drawPositions(d) {
-  const rows = Object.entries(d.markets).filter(([, m]) => m.position).map(([sym, m]) => {
-    const p = m.position, bid = m.last ? m.last.bid : null, pct = bid ? (bid / p.entry - 1) * 100 : null, held = (d.now - p.opened) / 60, left = d.params.max_hold / 60 - held;
-    return `<tr><td><b>${sym.replace('TMN', '')}</b></td><td class="num">${fa(p.qty, 6)}</td><td class="num">${fa(p.entry)}</td><td class="num">${fa(bid)}</td><td>${pct == null ? '—' : sgn(pct)}</td><td class="num">${fa(p.stop)}</td><td>${fa(held)} دقیقه <span class="dim">(${fa(Math.max(0, left))} مانده)</span></td></tr>`;
-  });
-  $('pos').innerHTML = rows.length ? `<table><tr><th>بازار</th><th>مقدار</th><th>قیمت ورود</th><th>bid الان</th><th>سود/زیان</th><th>حد ضرر</th><th>زمان نگه‌داری</th></tr>${rows.join('')}</table>` : '<div class="empty">پوزیشن بازی نیست. ربات منتظر یک افت ۰.۸٪ زیر قیمت جهانی با تأیید AI است.</div>';
-  const os = Object.entries(d.markets).filter(([, m]) => m.order).map(([sym, m]) => {
-    const o = m.order, dist = m.last ? (m.last.ask / o.price - 1) * 100 : null;
-    return `<tr><td><b>${sym.replace('TMN', '')}</b></td><td><span class="tag ${o.side === 'BUY' ? 'buy' : 'sell'}">${o.side === 'BUY' ? 'خرید' : 'فروش'}</span>${REASON[o.reason] || o.reason}</td><td class="num">${fa(o.price)}</td><td class="num">${fa(o.price * o.qty)}</td><td class="num">${dist == null ? '—' : fa(dist, 2) + '٪'}</td></tr>`;
-  });
-  $('ords').innerHTML = os.length ? `<table><tr><th>بازار</th><th>نوع</th><th>قیمت</th><th>ارزش (تومان)</th><th>فاصله‌ی ask تا سفارش</th></tr>${os.join('')}</table>` : '<div class="empty">سفارشی در انتظار نیست.</div>';
-  const tr = (d.trades || []).slice().reverse().map(t => `<tr><td>${hm(t.close)}</td><td><b>${t.sym.replace('TMN', '')}</b></td><td>${REASON[t.reason] || t.reason}</td><td class="num">${fa(t.entry)}</td><td class="num">${fa(t.exit)}</td><td>${sgn(t.pct * 100)}</td><td class="num ${t.pnl >= 0 ? 'pos' : 'neg'}">${fa(t.pnl)}</td><td>${fa((t.close - t.open) / 60)} دقیقه</td></tr>`);
-  $('trades').innerHTML = tr.length ? `<table><tr><th>بسته شد</th><th>بازار</th><th>دلیل</th><th>ورود</th><th>خروج</th><th>٪</th><th>تومان</th><th>مدت</th></tr>${tr.join('')}</table>` : '<div class="empty">هنوز معامله‌ای بسته نشده.</div>';
+function drawTables(d) {
+  const P = Object.entries(d.markets).filter(([, m]) => m.position);
+  $('posn').textContent = P.length ? `${P.length} باز` : '';
+  $('pos').innerHTML = P.length ? `<table><tr><th>بازار</th><th>ورود</th><th>الان</th><th>سود/زیان</th><th>حد ضرر</th><th>زمان</th></tr>${P.map(([sym, m]) => {
+    const p = m.position, bid = m.last && m.last.bid, r = bid ? (bid / p.entry - 1) * 100 : null, held = (d.now - p.opened) / 60;
+    return `<tr><td><b class="num">${sym.replace('TMN', '')}</b></td><td class="num">${fmt(p.entry)}</td><td class="num">${fmt(bid)}</td><td>${r == null ? '—' : pct(r)}</td><td class="num dn">${fmt(p.stop)}</td><td><span class="num">${fmt(held)}</span> از <span class="num">${fmt(d.params.max_hold / 60)}</span> دقیقه</td></tr>`; }).join('')}</table>`
+    : empty('target', 'پوزیشن بازی نیست. ربات منتظر افت ۰٫۸٪ زیر قیمت جهانی با تأیید داور است.');
+  const O = Object.entries(d.markets).filter(([, m]) => m.order);
+  $('ordn').textContent = O.length ? `${O.length} سفارش` : '';
+  $('ords').innerHTML = O.length ? `<table><tr><th>بازار</th><th>نوع</th><th>قیمت</th><th>ارزش (تومان)</th><th>ask تا سفارش</th></tr>${O.map(([sym, m]) => {
+    const o = m.order, dist = m.last ? (m.last.ask / o.price - 1) * 100 : null, buy = o.side === 'BUY';
+    return `<tr><td><b class="num">${sym.replace('TMN', '')}</b></td><td><span class="pill ${buy ? 'info' : 'ok'}">${ic(buy ? 'down' : 'up')}${buy ? 'خرید' : 'فروش'} · ${REASON[o.reason] || o.reason}</span></td><td class="num">${fmt(o.price)}</td><td class="num">${fmt(o.price * o.qty)}</td><td class="num">${dist == null ? '—' : fmt(dist, 2) + '%'}</td></tr>`; }).join('')}</table>`
+    : empty('swap', 'سفارشی در انتظار نیست.');
+  const T = (d.trades || []).slice().reverse();
+  $('trn').textContent = T.length ? `${T.length} معامله` : '';
+  $('trades').innerHTML = T.length ? `<table><tr><th>ساعت</th><th>بازار</th><th>خروج</th><th>درصد</th><th>تومان</th><th>مدت</th></tr>${T.map(t =>
+    `<tr><td class="num">${hm(t.close)}</td><td><b class="num">${t.sym.replace('TMN', '')}</b></td><td>${REASON[t.reason] || t.reason}</td><td>${pct(t.pct * 100)}</td><td class="num ${t.pnl >= 0 ? 'up' : 'dn'}">${t.pnl >= 0 ? '+' : ''}${fmt(t.pnl)}</td><td><span class="num">${fmt((t.close - t.open) / 60)}</span> دقیقه</td></tr>`).join('')}</table>`
+    : empty('trend', 'هنوز معامله‌ای بسته نشده.');
 }
 
 /* ---------- AI + feed ---------- */
 function drawAI(d) {
   const l = d.ai.last;
-  if (!l) { $('ai').innerHTML = '<div class="empty">اولین رأی ۵ دقیقه بعد از شروع می‌آید.</div>'; $('ainext').textContent = ''; return; }
+  if (!l) { $('ai').innerHTML = empty('cpu', 'اولین رأی حدود ۵ دقیقه بعد از شروع می‌آید.'); $('ainext').textContent = ''; window._aiNext = 0; return; }
   const vs = Object.entries(l.verdicts || {}), ap = vs.filter(([, v]) => v.verdict === 'approve').length, n = vs.length || 1, C = 2 * Math.PI * 26;
-  $('ai').innerHTML = `<div class="donut"><svg viewBox="0 0 64 64" style="width:76px"><circle cx="32" cy="32" r="26" fill="none" stroke="var(--line)" stroke-width="8"/>
-      <circle cx="32" cy="32" r="26" fill="none" stroke="var(--pos)" stroke-width="8" stroke-dasharray="${C * ap / n} ${C}" transform="rotate(-90 32 32)"/>
-      <text x="32" y="37" text-anchor="middle" fill="var(--ink)" font-size="14" font-weight="700">${fa(ap)}/${fa(vs.length)}</text></svg>
-    <div><div>آخرین دور <span class="num">${hm(tsOf(l.ts))}</span> ${l.ok ? '' : '<span class="neg">(خطا)</span>'}</div><div class="mute" style="font-size:12px">${fa(ap)} تأیید · ${fa(vs.length - ap)} رد · کل ${fa(d.ai.rounds)} دور${d.ai.failed ? ` · ${fa(d.ai.failed)} خطا` : ''}</div></div></div>
-    <table style="margin-top:8px">${vs.map(([s, v]) => `<tr><td><b>${s.replace('TMN', '')}</b></td><td style="color:${v.verdict === 'approve' ? 'var(--pos)' : 'var(--warn)'}">${v.verdict === 'approve' ? 'تأیید' : 'رد'}</td><td class="num">${fa(v.confidence * 100)}٪</td><td style="white-space:normal;font-size:12px" class="mute">${esc(v.reason)}</td></tr>`).join('')}</table>`;
+  $('ai').innerHTML = `<div class="donut"><svg viewBox="0 0 64 64" style="width:78px;flex:none"><circle cx="32" cy="32" r="26" fill="none" stroke="var(--sunk)" stroke-width="8"/>
+      <circle cx="32" cy="32" r="26" fill="none" stroke="var(--bid)" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C * ap / n} ${C}" transform="rotate(-90 32 32)"/>
+      <text x="32" y="37" text-anchor="middle" fill="var(--fg)" font-size="14" font-family="JetBrains Mono" font-weight="600">${ap}/${vs.length}</text></svg>
+    <div><div style="font-weight:600">${ap} بازار تأیید، ${vs.length - ap} رد</div><div class="muted" style="font-size:12.5px">آخرین رأی <span class="num">${hm(tsOf(l.ts))}</span> · <span class="num">${d.ai.rounds}</span> دور تا الان${d.ai.failed ? ` · <span class="dn">${d.ai.failed} خطا</span>` : ''}</div>
+    <div class="dim" style="font-size:12px">فقط بازارهای تأییدشده سفارش خرید می‌گیرند. حد ضرر و سقف حجم بیرون از دست AI است.</div></div></div>
+    ${vs.map(([s, v]) => { const ok = v.verdict === 'approve'; return `<div class="ai-row"><b class="num">${s.replace('TMN', '')}</b><span class="verdict" style="color:${ok ? 'var(--bid)' : 'var(--warn)'}">${ic(ok ? 'check' : 'x')}<span class="num">${fmt(v.confidence * 100)}%</span></span><span class="why">${esc(v.reason)}</span></div>`; }).join('')}`;
   window._aiNext = tsOf(l.ts) + d.params.ai_every;
 }
-function feedText(f) {
-  const c = (f.market || '').replace('TMN', '');
-  if (f.decision === 'trade_closed') return `<span class="tag sell">بسته شد</span><b>${c}</b> ${REASON[f.reason] || f.reason} · ${sgn(f.pnl_pct)}`;
-  if (f.decision && f.decision.startsWith('buy')) return `<span class="tag buy">سفارش خرید</span><b>${c}</b> قیمت <span class="num">${fa(f.order && f.order.price)}</span>${f.ai ? ` · AI ${fa(f.ai.confidence * 100)}٪` : ''}`;
-  if (f.decision && f.decision.startsWith('sell')) return `<span class="tag sell">سفارش فروش</span><b>${c}</b> ${esc(f.decision.slice(5))} قیمت <span class="num">${fa(f.order && f.order.price)}</span>`;
-  if (f.decision === 'skipped') return f.why === 'AI reject' ? `<span class="tag rej">رد AI</span><b>${c}</b> <span class="mute">${esc(f.ai && f.ai.reason)}</span>` : `<span class="tag">ظرفیت پر</span><b>${c}</b> <span class="mute">هر ۳ جا پر است</span>`;
-  return `<span class="tag">${esc(f.decision)}</span>${c}`;
+function feedItem(f) {
+  const c = (f.market || '').replace('TMN', ''), o = f.order || {};
+  if (f.decision === 'trade_closed') return ['sell', 'trend', `معامله‌ی <b>${c}</b> بسته شد · ${REASON[f.reason] || f.reason} · ${pct(f.pnl_pct)}`];
+  if (f.decision && f.decision.startsWith('buy')) return ['buy', 'down', `سفارش خرید <b>${c}</b> به قیمت <span class="num">${fmt(o.price)}</span>${f.ai ? `<span class="r">${esc(f.ai.reason)}</span>` : ''}`];
+  if (f.decision && f.decision.startsWith('sell')) return ['sell', 'up', `سفارش فروش <b>${c}</b> (${REASON[f.decision.slice(6, -1)] || f.decision.slice(5)}) به قیمت <span class="num">${fmt(o.price)}</span>`];
+  if (f.decision === 'skipped') return f.why === 'AI reject' ? ['rej', 'x', `داور ورود به <b>${c}</b> را رد کرد<span class="r">${esc(f.ai && f.ai.reason)}</span>`] : ['', 'layers', `<b>${c}</b> فرصت داشت ولی هر ${data ? data.params.max_pos : 3} جا پر بود`];
+  return ['', 'info', esc(f.decision)];
 }
+const EVK = {error: ['err', 'alert', 'خطا'], halt: ['err', 'shield', 'توقف روزانه'], stale: ['rej', 'clock', 'داده‌ی کهنه'], start: ['ai', 'play', 'شروع'], adopt: ['ai', 'layers', 'پوزیشن موجود'], fees: ['ai', 'coins', 'کارمزد'], qualify: ['ai', 'target', 'فیلتر'], ai: ['err', 'cpu', 'داور']};
 function drawFeed(d) {
-  const box = $('feed'), items = (d.feed || []).map(f => ({key: f.ts + f.market + f.decision + (f.why || ''), ts: tsOf(f.ts), html: feedText(f)}))
-    .concat((d.events || []).filter(e => !['warm', 'trade', 'fill'].includes(e.kind)).map(e => ({key: 'e' + e.ts, ts: e.ts, html: `<span class="tag ${['error', 'halt', 'stale'].includes(e.kind) ? 'err' : ''}">${esc(e.kind)}</span><span class="mute">${esc(e.msg.slice(0, 180))}</span>`})))
+  const box = $('feed');
+  const items = (d.feed || []).map(f => { const [k, i, h] = feedItem(f); return {key: f.ts + f.market + f.decision + (f.why || ''), ts: tsOf(f.ts), k, i, h}; })
+    .concat((d.events || []).filter(e => EVK[e.kind]).map(e => ({key: 'e' + e.ts, ts: e.ts, k: EVK[e.kind][0], i: EVK[e.kind][1], h: `${EVK[e.kind][2]}<span class="r">${esc(e.msg.slice(0, 160))}</span>`})))
     .sort((a, b) => b.ts - a.ts).slice(0, 80);
+  const row = i => `<span class="ei ${i.k}">${ic(i.i)}</span><div class="tx">${i.h}</div><span class="t">${hm(i.ts)}</span>`;
   const fresh = items.filter(i => !seenFeed.has(i.key));
-  if (!fresh.length && box.children.length) return;
-  if (firstFeed || !box.children.length) {
-    box.innerHTML = items.map(i => `<div class="ev"><span class="t">${hm(i.ts)}</span><div>${i.html}</div></div>`).join('') || '<div class="empty">هنوز تصمیمی ثبت نشده.</div>';
-  } else {
-    for (const i of fresh.reverse()) {  // new entries slide in from above
-      const el = document.createElement('div'); el.className = 'ev pre'; el.innerHTML = `<span class="t">${hm(i.ts)}</span><div>${i.html}</div>`;
-      box.prepend(el); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('pre')));
-    }
-    while (box.children.length > 80) box.lastChild.remove();
+  if (firstFeed || !box.children.length) box.innerHTML = items.length ? items.map(i => `<div class="ev">${row(i)}</div>`).join('') : empty('list', 'هنوز اتفاقی ثبت نشده.');
+  else for (const i of fresh.reverse()) {  // new entries slide in from the top
+    const el = document.createElement('div'); el.className = 'ev pre'; el.innerHTML = row(i); box.prepend(el);
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('pre')));
   }
+  while (box.children.length > 80) box.lastChild.remove();
   items.forEach(i => seenFeed.add(i.key)); firstFeed = false;
 }
-
-/* ---------- account + info ---------- */
-function drawAccount() {
-  if (src !== 'live') { $('acct').innerHTML = '<div class="empty">حالت سایه پول واقعی ندارد؛ موجودی شبیه‌سازی ۵ میلیون تومان است. برای موجودی واقعی «واقعی» را انتخاب کن.</div>'; $('acctTs').textContent = ''; return; }
-  if (!acct) return;
-  if (acct.error) { $('acct').innerHTML = `<div class="neg">خواندن موجودی خطا داد: ${esc(acct.error)}</div>`; return; }
-  $('acctTs').textContent = 'به‌روز ' + hm(acct.ts);
-  $('acct').innerHTML = `<div style="display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px"><span style="font-size:26px;font-weight:800" class="num">${fa(acct.total_tmn)}</span><span class="mute">تومان</span>${sgn(acct.return_pct, 3)}<span class="dim">از اعتبار ۵٬۰۰۰٬۰۰۰ چالش</span></div>
-    <table><tr><th>دارایی</th><th>آزاد</th><th>قفل در سفارش</th><th>ارزش (تومان)</th></tr>${acct.assets.map(a => `<tr><td><b>${a.asset}</b></td><td class="num">${fa(a.free, a.asset === 'TMN' ? 0 : 6)}</td><td class="num">${fa(a.locked, a.asset === 'TMN' ? 0 : 6)}</td><td class="num">${fa(a.value_tmn)}</td></tr>`).join('')}</table>
-    <div class="dim" style="font-size:12px;margin-top:6px">فقط‌خواندنی از API والکس؛ کوین‌ها با آخرین bid ثبت‌شده‌ی ربات قیمت‌گذاری شده‌اند.</div>`;
-}
 function drawInfo(d) {
-  const r = ctl && ctl.running[src], s = r ? r.settings : {}, p = d.params, start = d.start || '';
-  const fees = (start.match(/fees ([\d.]+)\/([\d.]+)/) || []);
+  const r = ctl && ctl.running[src], s = r ? r.settings : {}, p = d.params, fees = ((d.start || '').match(/fees ([\d.]+)\/([\d.]+)/) || []);
+  const row = (icon, k, v) => `<dt>${ic(icon)}${k}</dt><dd>${v}</dd>`;
   $('info').innerHTML = `<dl class="kv">
-    <dt>حالت</dt><dd>${src === 'live' ? 'واقعی، حساب چالش والکس' : 'سایه (MODE=paper)'} ${r ? '<span class="chip ok">در حال اجرا</span>' : '<span class="chip">متوقف</span>'}</dd>
-    <dt>نسخه‌ی کد</dt><dd class="num">${esc(d.commit)}</dd>
-    <dt>بازارهای فعال</dt><dd>${d.coins.join('، ')}</dd><dt>فقط با کارمزد صفر</dt><dd class="mute">${d.watch.join('، ')}</dd>
-    <dt>کارمزد میکر / تیکر</dt><dd class="num">${fees[1] ? fa(fees[1] * 100, 2) + '٪ / ' + fa(fees[2] * 100, 2) + '٪' : '—'}</dd>
-    <dt>سهم هر پوزیشن × تعداد</dt><dd class="num">${fa((s.POS_FRAC || 0.2) * 100)}٪ × ${fa(s.MAX_POS || p.max_pos)}</dd>
-    <dt>آستانه‌ی ورود</dt><dd class="num">${fa((s.ENTRY_EDGE || p.entry_edge) * 100, 2)}٪ زیر قیمت پایه</dd>
-    <dt>حد ضرر / توقف روزانه</dt><dd class="num">${fa((s.STOP_LOSS || p.stop_loss) * 100, 1)}٪ / ${fa((s.DAILY_STOP || p.daily_stop) * 100, 1)}٪</dd>
-    <dt>نگه‌داری حداکثر</dt><dd>${fa(p.max_hold / 3600)} ساعت</dd>
-    <dt>داور AI</dt><dd>${s.AI === 'boxapi' ? 'Claude Haiku از BoxAPI' : 'Claude Haiku از claude CLI'} · هر ${fa(p.ai_every / 60)} دقیقه</dd>
-    <dt>توقف ورود / بستن همه</dt><dd class="num">${hm(d.end_ts - p.entry_cutoff)} / ${hm(d.end_ts - p.flatten_before)}</dd>
-    <dt>پایان چالش</dt><dd class="num">${hm(d.end_ts)}</dd></dl>
-    ${Object.keys(d.skips || {}).length ? `<div class="mute" style="font-size:12px;margin-top:8px">ورودهای انجام‌نشده: ${Object.entries(d.skips).map(([k, v]) => `${k === 'AI reject' ? 'رد AI' : 'ظرفیت پر'} ${fa(v)}`).join(' · ')}</div>` : ''}`;
+    ${row('coins', 'بازارها', `<span class="num">${d.coins.join(' · ')}</span>`)}
+    ${row('moon', 'فقط با کارمزد صفر', `<span class="num dim">${d.watch.join(' · ')}</span>`)}
+    ${row('swap', 'کارمزد میکر / تیکر', fees[1] ? `<span class="num">${fmt(fees[1] * 100, 2)}% / ${fmt(fees[2] * 100, 2)}%</span>` : '—')}
+    ${row('layers', 'اندازه‌ی هر پوزیشن', `<span class="num">${fmt((s.POS_FRAC || 0.3) * 100)}% × ${s.MAX_POS || p.max_pos}</span>`)}
+    ${row('target', 'آستانه‌ی ورود', `<span class="num">${fmt((s.ENTRY_EDGE || p.entry_edge) * 100, 2)}%</span> زیر قیمت پایه`)}
+    ${row('shield', 'حد ضرر / توقف روزانه', `<span class="num">${fmt((s.STOP_LOSS || p.stop_loss) * 100, 1)}% / ${fmt((s.DAILY_STOP || p.daily_stop) * 100, 1)}%</span>`)}
+    ${row('clock', 'نگه‌داری حداکثر', `<span class="num">${fmt(p.max_hold / 3600)}</span> ساعت`)}
+    ${row('cpu', 'داور', `Claude Haiku از ${s.AI === 'cli' ? 'claude CLI' : 'BoxAPI'} · هر <span class="num">${fmt(p.ai_every / 60)}</span> دقیقه`)}
+    ${row('flag', 'توقف ورود · بستن همه · پایان', `<span class="num">${hm(d.end_ts - p.entry_cutoff)} · ${hm(d.end_ts - p.flatten_before)} · ${hm(d.end_ts)}</span>`)}
+    ${row('git', 'نسخه‌ی کد', `<span class="num">${esc(d.commit)}</span>`)}</dl>`;
 }
 
-/* ---------- clock + heartbeat (local, every second) ---------- */
+/* ---------- clock (every second) ---------- */
 function tick() {
   if (!data) return;
-  const now = Date.now() / 1000, left = data.end_ts - now, h = Math.max(0, left);
-  $('left').textContent = [h / 3600, h % 3600 / 60, h % 60].map(x => String(Math.floor(x)).padStart(2, '0')).join(':');
-  const startTs = data.status[0] ? data.status[0].ts : now;
-  $('prog').style.transform = `scaleX(${Math.min(1, Math.max(0, (now - startTs) / Math.max(1, data.end_ts - startTs)))})`;
-  const run = ctl && ctl.running[src], age = now - (data.heartbeat || 0);
-  $('hb').className = run ? (age < 45 ? 'live' : 'stale') : '';
-  $('hbtxt').textContent = run ? (age < 45 ? 'زنده' : `بدون داده ${fa(age / 60)} دقیقه`) : 'متوقف';
-  const ph = left <= data.params.flatten_before ? ['در حال بستن همه', 'bad'] : left <= data.params.entry_cutoff ? ['ورود جدید متوقف', 'warn'] : ['باز', 'ok'];
-  $('phase').className = 'chip ' + ph[1]; $('phase').textContent = ph[0];
-  if (window._aiNext) { const s = Math.max(0, window._aiNext - now); $('ainext').textContent = run ? `دور بعد ${fa(Math.floor(s / 60))}:${String(Math.floor(s % 60)).padStart(2, '0')}` : ''; }
+  const now = Date.now() / 1000, left = Math.max(0, data.end_ts - now);
+  $('left').textContent = [left / 3600, left % 3600 / 60, left % 60].map(x => String(Math.floor(x)).padStart(2, '0')).join(':');
+  const run = ctl && ctl.running[src], age = now - (data.heartbeat || 0), st = data.status.at(-1);
+  const S = !run ? ['', 'متوقف'] : st && st.halted ? ['halt', 'متوقف با حد روزانه'] : age > 45 ? ['warn', `بدون داده ${Math.floor(age / 60)} دقیقه`] : ['ok', 'در حال اجرا'];
+  $('state').className = 'pill ' + S[0]; $('state').innerHTML = `<i></i>${S[1]}`;
+  const ph = data.end_ts - now <= data.params.flatten_before ? ['halt', 'بستن همه'] : data.end_ts - now <= data.params.entry_cutoff ? ['warn', 'ورود جدید ممنوع'] : ['ok', 'ورود مجاز'];
+  $('phase').className = 'pill ' + ph[0]; $('phase').innerHTML = `<i></i>${ph[1]}`;
+  if (window._aiNext && run) { const s = Math.max(0, window._aiNext - now); $('ainext').innerHTML = `رأی بعدی <span class="num">${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}</span>`; }
+  else $('ainext').textContent = '';
 }
 
 async function poll() {
   try {
     data = await (await fetch('/api/bot/' + src, {cache: 'no-store'})).json();
-    drawKpis(data); drawEquity(data); drawPositions(data); drawMarkets(data); drawAI(data); drawFeed(data); drawInfo(data); drawAccount(); tick();
+    drawHero(data); drawStats(data); drawTables(data); drawMarkets(data); drawAI(data); drawFeed(data); drawInfo(data); tick();
+    if (firstPaint) { firstPaint = false; reveal(); }
   } catch (e) { console.warn(e); }
 }
-async function pollAcct() { if (src !== 'live') return drawAccount(); try { acct = await (await fetch('/api/account', {cache: 'no-store'})).json(); } catch (e) { acct = {error: String(e)}; } drawAccount(); }
-placeInd(); window.addEventListener('resize', placeInd);
-pollCtl().then(poll); pollAcct();
+async function pollAcct() {
+  if (src !== 'live') return drawAccount();
+  try { acct = await (await fetch('/api/account', {cache: 'no-store'})).json(); } catch (e) { acct = {error: String(e)}; }
+  drawAccount();
+}
+placeThumb(); addEventListener('resize', placeThumb); document.fonts && document.fonts.ready.then(placeThumb);
+pollCtl().then(() => Promise.all([pollAcct(), poll()]));
 setInterval(poll, 3000); setInterval(pollCtl, 5000); setInterval(pollAcct, 15000); setInterval(tick, 1000);
 </script>
 </body>
