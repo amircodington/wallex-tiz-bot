@@ -1,4 +1,4 @@
-"""TIZ: Wallex premium mean-reversion bot with an AI judge and a hard risk gate.
+"""Signal Ops (سیگنال آپس): Wallex premium mean-reversion bot with an AI judge and a hard risk gate.
 
 Signal (rule): fair = Binance <COIN>USDT mid × Wallex USDTTMN mid (REF_SOURCE=wallex: Wallex's own <COIN>USDT mid). Each Wallex <COIN>TMN market trades at a
 slowly drifting premium to fair; we track it with an EMA (baseline). A dip of ENTRY_EDGE below baseline-fair
@@ -706,7 +706,7 @@ class Bot:
     def event(self, kind, msg):
         log.warning("[%s] %s", kind, msg)
         self.j.add("events", time.time(), kind, msg)
-        self.alert(f"TIZ {MODE} {kind}: {msg}")
+        self.alert(f"سیگنال آپس {MODE} {kind}: {msg}")
 
 
 def warm_from(m, wx, bn, usdt, frm, to):

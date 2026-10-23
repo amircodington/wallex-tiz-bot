@@ -259,6 +259,6 @@ def test_place_422_alerts_only_when_it_lasts(monkeypatch):
         go()
     assert sent == [] and m.order is None  # the usual post-cancel 422: retried quietly
     go()
-    assert len(sent) == 1 and "3 in a row" in sent[0]
+    assert len(sent) == 1 and "3 in a row" in sent[0] and sent[0].startswith("سیگنال آپس")
     go(), go()
     assert m.order and m.place_fails == 0 and len(sent) == 1
