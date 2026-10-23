@@ -208,7 +208,7 @@ uv run pytest -q              # ۱۴ تست: سود رفت‌وبرگشت، سق
 uv run python -m tiz.backtest fetch 60 TRX,BTC,BNB,ETH,XRP,DOGE,XAUT  # دانلود ۶۰ روز تاریخچه به data/
 uv run python -m tiz.backtest           # بک‌تست → results/backtest.json
 uv run python -m tiz.backtest sweep     # train/test روی آستانه و کارمزد → results/sweep.json (نام با BT_SWEEP_OUT، مدل تأخیر با BT_FRESH=0، مرز train/test با BT_SPLIT=<unix ts>، گرید با BT_FEES / BT_EDGES)
-uv run python -m tiz.dash              # داشبورد زنده‌ی بک‌تست‌ها → http://localhost:8787 (هر اجرا هر ۳۰ دقیقه‌ی شبیه‌سازی در results/live/ می‌نویسد)
+uv run python -m tiz.dash              # پنل ربات → http://localhost:8787: شروع/توقف live و سایه با تنظیمات، موجودی واقعی (فقط‌خواندنی)، پوزیشن‌ها، سفارش‌ها، رأی‌های AI، جریان تصمیم‌ها؛ بک‌تست‌ها در /backtests
 MODE=paper uv run python -m tiz.bot     # تست سایه روی بازار زنده
 MODE=live  uv run python -m tiz.bot     # معامله‌ی واقعی
 ```

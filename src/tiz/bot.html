@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TIZ کنترل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#0b0e12; --panel:#12161c; --panel2:#171c24; --line:#232a34; --ink:#e7ebf0; --mute:#8b95a3; --dim:#5b6573;
+  --acc:#43cf9c; --acc-ink:#04140d; --pos:#43cf9c; --neg:#ff6b5e; --warn:#e3b341; --info:#79a7ff;
+  --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-in-out:cubic-bezier(0.77,0,0.175,1);
+  --mono:"IBM Plex Mono",ui-monospace,monospace; color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f3f5f7; --panel:#fff; --panel2:#f7f8fa; --line:#e2e6eb; --ink:#141a21; --mute:#5f6b7a; --dim:#8a95a3;
+  --acc:#0d7856; --acc-ink:#fff; --pos:#0d7856; --neg:#c0392b; --warn:#9a6700; --info:#2f5fd0; color-scheme:light}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 Vazirmatn,Tahoma,system-ui,sans-serif}
+main{max-width:1280px;margin:0 auto;padding:16px;display:grid;gap:14px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.mute{color:var(--mute)} .dim{color:var(--dim)} .pos{color:var(--pos)} .neg{color:var(--neg)} .warn{color:var(--warn)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}
+.card>h2{margin:0 0 10px;font-size:13px;font-weight:700;color:var(--mute);display:flex;gap:8px;align-items:center;justify-content:space-between}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+
+/* top bar */
+.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+.brand i{width:12px;height:12px;border-radius:50%;background:var(--dim);position:relative}
+.brand i.live{background:var(--acc)}
+.brand i.live::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--acc);animation:ping 1.6s var(--ease-out) infinite}
+.brand i.stale{background:var(--neg)}
+@keyframes ping{from{transform:scale(1);opacity:.8}to{transform:scale(2.6);opacity:0}}
+.seg{position:relative;display:inline-flex;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:3px}
+.seg button{position:relative;z-index:1;border:0;background:none;color:var(--mute);font:inherit;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;transition:color 160ms ease}
+.seg button[aria-pressed="true"]{color:var(--ink)}
+.seg .ind{position:absolute;top:3px;bottom:3px;left:0;border-radius:7px;background:var(--line);transition:transform 220ms var(--ease-in-out),width 220ms var(--ease-in-out)}
+.clock{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700;background:var(--panel2)}
+.chip.ok{color:var(--pos);border-color:color-mix(in srgb,var(--pos) 40%,var(--line))}
+.chip.bad{color:var(--neg);border-color:color-mix(in srgb,var(--neg) 40%,var(--line))}
+.chip.warn{color:var(--warn)}
+.bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--acc);transform-origin:right center}
+
+/* control */
+.ctl{display:grid;gap:12px}
+.ctl-row{display:grid;grid-template-columns:150px 1fr auto;gap:14px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+@media (max-width:820px){.ctl-row{grid-template-columns:1fr}}
+.ctl-row h3{margin:0;font-size:15px}
+.fields{display:flex;flex-wrap:wrap;gap:10px}
+.field{display:grid;gap:2px;font-size:11px;color:var(--mute)}
+.field input,.field select{width:92px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px;font:13px var(--mono);direction:ltr}
+.field input:disabled,.field select:disabled{opacity:.6}
+.btn{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-weight:800;border-radius:10px;padding:9px 18px;cursor:pointer;transition:transform 140ms var(--ease-out),border-color 160ms ease;min-width:150px}
+.btn:active{transform:scale(0.97)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.go{background:var(--acc);color:var(--acc-ink);border-color:transparent}
+.btn.stop{color:var(--neg);border-color:color-mix(in srgb,var(--neg) 50%,var(--line))}
+.btn .fill{position:absolute;inset:0;background:color-mix(in srgb,#000 28%,transparent);clip-path:inset(0 0 0 100%);transition:clip-path 200ms var(--ease-out)}
+.btn.hold:active .fill{clip-path:inset(0 0 0 0);transition:clip-path 2s linear}
+.btn span{position:relative}
+@media (hover:hover) and (pointer:fine){.btn:not(:disabled):hover{border-color:var(--mute)}}
+.msg{font-size:12px;min-height:18px}
+
+/* kpis */
+.kpis{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:4px;transition:background-color 700ms ease}
+.kpi.flash{background:color-mix(in srgb,var(--acc) 14%,var(--panel));transition:none}
+.kpi .k{font-size:12px;color:var(--mute)} .kpi .v{font-size:22px;font-weight:700}
+.slots{display:flex;gap:6px;margin-top:4px}.slots i{flex:1;height:8px;border-radius:4px;background:var(--line)}.slots i.on{background:var(--acc)}.slots i.ord{background:var(--info)}
+
+svg{display:block;width:100%;height:auto}
+.chart{height:220px}
+
+/* markets */
+.mkts{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
+.mk{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--panel2);display:grid;gap:6px;opacity:1;transform:none;transition:opacity 300ms var(--ease-out),transform 300ms var(--ease-out),border-color 200ms ease}
+.mk.pre{opacity:0;transform:translateY(8px)}
+.mk.idle{opacity:.55}
+.mk.hold{border-color:var(--acc)} .mk.ord{border-color:color-mix(in srgb,var(--info) 60%,var(--line))}
+.mk .hd{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.mk .sym{font-weight:800}
+.mk .why{font-size:11.5px;color:var(--mute);min-height:2.6em}
+.conf{height:4px;border-radius:2px;background:var(--line);overflow:hidden}.conf i{display:block;height:100%;background:currentColor}
+.spark{height:46px}
+
+/* tables + feed */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{font-size:11.5px;color:var(--mute);font-weight:700}
+.scroll{overflow-x:auto}
+.empty{color:var(--dim);font-size:13px;padding:10px 0}
+.feed{display:grid;gap:0;max-height:430px;overflow:auto}
+.ev{display:grid;grid-template-columns:52px 1fr;gap:8px;padding:7px 2px;border-bottom:1px solid var(--line);font-size:13px;transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out)}
+.ev.pre{opacity:0;transform:translateY(-6px)}
+.ev .t{font-family:var(--mono);color:var(--dim);font-size:12px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:0 6px;border-radius:5px;background:var(--line);color:var(--mute);margin-inline-end:6px}
+.tag.buy{color:var(--info)} .tag.sell{color:var(--pos)} .tag.rej{color:var(--warn)} .tag.err{color:var(--neg)}
+dl.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0;font-size:13px} dl.kv dt{color:var(--mute)} dl.kv dd{margin:0}
+.donut{display:flex;gap:14px;align-items:center}
+footer{color:var(--dim);font-size:12px;text-align:center;padding:8px}
+a{color:var(--info)}
+
+@media (prefers-reduced-motion:reduce){
+  .brand i.live::after{animation:none}
+  .mk,.ev{transition:opacity 200ms ease}.mk.pre,.ev.pre{transform:none}
+  .seg .ind{transition:none}
+  .btn.hold:active .fill{transition:clip-path 2s linear}
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <div class="brand"><i id="hb"></i>TIZ <span class="mute" style="font-weight:500;font-size:14px">ربات معاملاتی والکس</span></div>
+    <div class="seg" id="src" role="group" aria-label="منبع داده">
+      <span class="ind"></span>
+      <button data-src="live" aria-pressed="true">واقعی (Live)</button>
+      <button data-src="shadow" aria-pressed="false">سایه (Paper)</button>
+    </div>
+    <div class="clock">
+      <span id="phase" class="chip">…</span>
+      <span>تا پایان چالش <b id="left" class="num">--:--:--</b></span>
+      <span class="mute" id="hbtxt"></span>
+    </div>
+  </header>
+  <div class="bar" aria-hidden="true"><i id="prog" style="transform:scaleX(0)"></i></div>
+
+  <section class="card">
+    <h2>کنترل ربات <span class="dim">فقط از همین لپ‌تاپ · شروع واقعی با نگه داشتن دکمه (۲ ثانیه)</span></h2>
+    <div class="ctl" id="ctl"></div>
+  </section>
+
+  <section class="kpis" id="kpis"></section>
+
+  <div class="grid g2">
+    <section class="card"><h2>منحنی سرمایه <span class="dim" id="eqnote"></span></h2><div class="chart"><svg id="eq" viewBox="0 0 600 220" preserveAspectRatio="none"></svg></div></section>
+    <section class="card"><h2>حساب والکس <span class="dim" id="acctTs"></span></h2><div id="acct" class="empty">…</div></section>
+  </div>
+
+  <div class="grid g2">
+    <section class="card"><h2>پوزیشن‌های باز</h2><div class="scroll" id="pos"></div></section>
+    <section class="card"><h2>سفارش‌های در انتظار</h2><div class="scroll" id="ords"></div></section>
+  </div>
+
+  <section class="card"><h2>بازارها <span class="dim">پریمیوم ۲ ساعت اخیر (bps) · خط‌چین: آستانه‌ی خرید</span></h2><div class="mkts" id="mkts"></div></section>
+
+  <div class="grid g3">
+    <section class="card"><h2>داور AI <span class="dim" id="ainext"></span></h2><div id="ai"></div></section>
+    <section class="card" style="grid-column:span 2;min-width:min(100%,600px)"><h2>جریان تصمیم‌ها <span class="dim">تازه‌ترین بالا</span></h2><div class="feed" id="feed"></div></section>
+  </div>
+
+  <div class="grid g2">
+    <section class="card"><h2>معاملات بسته‌شده</h2><div class="scroll" id="trades"></div></section>
+    <section class="card"><h2>تنظیمات و اطلاعات اجرا</h2><div id="info"></div></section>
+  </div>
+  <footer>داده‌ها فقط از فایل‌های خود ربات (journal، decisions، لاگ) و موجودی فقط‌خواندنی والکس · <a href="/backtests">داشبورد بک‌تست‌ها</a></footer>
+</main>
+<script>
+const TOKEN = "__TIZ_TOKEN__";
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const fa = (n, d = 0) => n == null || isNaN(n) ? '—' : Number(n).toLocaleString('fa-IR', {maximumFractionDigits: d, minimumFractionDigits: 0});
+const sgn = (n, d = 2) => `<span class="num ${n > 0 ? 'pos' : n < 0 ? 'neg' : ''}">${n > 0 ? '+' : ''}${fa(n, d)}٪</span>`;
+const hm = t => new Date(t * 1000).toLocaleTimeString('fa-IR', {timeZone: 'Asia/Tehran', hour: '2-digit', minute: '2-digit'});
+const tsOf = s => typeof s === 'number' ? s : Date.parse(s) / 1000;
+const NAMES = {TRX: 'ترون', BTC: 'بیت‌کوین', BNB: 'بایننس‌کوین', ETH: 'اتریوم', XRP: 'ریپل', DOGE: 'دوج', XAUT: 'تتر طلا', PEPE: 'پپه', PUMP: 'پامپ', SOL: 'سولانا', ARB: 'آربیتروم', S: 'سونیک'};
+const REASON = {take_profit: 'سود', stop_loss: 'حد ضرر', max_hold: 'سقف زمان', end_of_challenge: 'پایان چالش', trail: 'trail', entry: 'ورود'};
+let src = 'live', data = null, ctl = null, acct = null, seenFeed = new Set(), firstFeed = true, lastEq = {}, mkBuilt = false;
+
+/* ---------- source switch ---------- */
+function placeInd() {
+  const b = document.querySelector('#src button[aria-pressed="true"]'), seg = $('src'), ind = seg.querySelector('.ind');
+  ind.style.width = b.offsetWidth + 'px';
+  ind.style.transform = `translateX(${b.offsetLeft}px)`;
+}
+document.querySelectorAll('#src button').forEach(b => b.onclick = () => {
+  if (b.dataset.src === src) return;
+  src = b.dataset.src;
+  document.querySelectorAll('#src button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  placeInd(); seenFeed = new Set(); firstFeed = true; lastEq = {}; $('feed').innerHTML = ''; mkBuilt = false; poll();
+});
+
+/* ---------- control ---------- */
+const FIELDS = [['POS_FRAC', 'سهم هر پوزیشن', 0.3, 0.01], ['MAX_POS', 'تعداد پوزیشن', 3, 1], ['ENTRY_EDGE', 'آستانه‌ی ورود', 0.008, 0.001],
+                ['STOP_LOSS', 'حد ضرر', 0.03, 0.005], ['DAILY_STOP', 'توقف روزانه', 0.03, 0.005]];
+function ctlRow(p) {
+  const r = ctl.running[p], on = !!r, s = on ? r.settings : {};
+  const label = p === 'live' ? 'واقعی' : 'سایه';
+  const fields = FIELDS.map(([k, t, d, st]) => `<label class="field">${t}<input type="number" step="${st}" data-k="${k}" value="${s[k] ?? d}" ${on ? 'disabled' : ''}></label>`).join('') +
+    `<label class="field">داور AI<select data-k="AI" ${on ? 'disabled' : ''}><option value="boxapi" ${s.AI !== 'cli' ? 'selected' : ''}>BoxAPI · Haiku</option><option value="cli" ${s.AI === 'cli' ? 'selected' : ''}>claude CLI</option></select></label>`;
+  const btn = on ? `<button class="btn stop" data-act="stop" data-p="${p}"><span>توقف ${label}</span></button>`
+    : p === 'live' ? `<button class="btn go hold" data-act="start" data-p="live"><span class="fill"></span><span>نگه دار: شروع واقعی</span></button>`
+    : `<button class="btn" data-act="start" data-p="shadow"><span>شروع سایه</span></button>`;
+  return `<div class="ctl-row" data-row="${p}"><div><h3>${label} ${on ? '<span class="chip ok">در حال اجرا</span>' : '<span class="chip">متوقف</span>'}</h3>
+    <div class="mute" style="font-size:12px">${on ? `از ساعت <span class="num">${hm(r.started)}</span> · pid <span class="num">${r.pid}</span>` : (p === 'live' ? 'سفارش واقعی با پول حساب چالش' : 'همان کد، بدون ارسال سفارش')}</div></div>
+    <div class="fields">${fields}</div><div style="display:grid;gap:4px;justify-items:end">${btn}<div class="msg" data-msg="${p}"></div></div></div>`;
+}
+function drawCtl() {
+  if (!ctl) return;
+  const active = document.activeElement && $('ctl').contains(document.activeElement) && document.activeElement.tagName !== 'BUTTON';
+  if (active) return;  // don't wipe a field the user is typing in
+  $('ctl').innerHTML = ctlRow('live') + ctlRow('shadow');
+  $('ctl').querySelectorAll('[data-act="start"][data-p="shadow"], [data-act="stop"]').forEach(b => b.onclick = () => act(b));
+  const live = $('ctl').querySelector('[data-act="start"][data-p="live"]');
+  if (live) {  // hold-to-confirm: 2 s press, release early cancels
+    let timer;
+    const cancel = () => clearTimeout(timer);
+    live.addEventListener('pointerdown', () => { timer = setTimeout(() => act(live), 2000); });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(e => live.addEventListener(e, cancel));
+  }
+}
+async function act(b) {
+  const p = b.dataset.p, kind = b.dataset.act, row = $('ctl').querySelector(`[data-row="${p}"]`), msg = row.querySelector('.msg');
+  if (kind === 'stop' && !confirm(p === 'live' ? 'ربات واقعی متوقف شود؟ سفارش‌های باز لغو می‌شوند؛ کوین‌های خریده‌شده می‌مانند.' : 'سایه متوقف شود؟')) return;
+  const body = {};
+  row.querySelectorAll('[data-k]').forEach(i => body[i.dataset.k] = i.tagName === 'SELECT' ? i.value : Number(i.value));
+  if (p === 'live') body.confirm = 'LIVE';
+  b.disabled = true; msg.textContent = kind === 'start' ? 'در حال شروع…' : 'در حال توقف…';
+  try {
+    const r = await fetch(`/api/control/${p}/${kind}`, {method: 'POST', headers: {'Content-Type': 'application/json', 'X-TIZ-Token': TOKEN}, body: JSON.stringify(body)});
+    const j = await r.json();
+    msg.innerHTML = r.ok ? (kind === 'start' ? 'شروع شد؛ گرم شدن حدود ۴ دقیقه، ورود بعد از ۱۰ دقیقه' : `متوقف شد${j.cancelled ? ` · ${fa(j.cancelled.length)} سفارش لغو شد` : ''}${j.cancel_error ? ' · <span class="neg">لغو سفارش‌ها خطا داد</span>' : ''}`)
+      : `<span class="neg">${esc(j.error)}</span>`;
+  } catch (e) { msg.innerHTML = `<span class="neg">${esc(e)}</span>`; }
+  b.disabled = false;
+  setTimeout(pollCtl, 600);
+}
+async function pollCtl() { try { ctl = await (await fetch('/api/control', {cache: 'no-store'})).json(); drawCtl(); } catch (e) {} }
+
+/* ---------- kpis ---------- */
+function kpi(id, k, v, sub = '') { return `<div class="kpi" data-id="${id}"><span class="k">${k}</span><span class="v">${v}</span>${sub}</div>`; }
+function drawKpis(d) {
+  const st = d.status.at(-1), eq = st ? st.equity : null, trades = d.trades || [];
+  const pnl = trades.reduce((a, t) => a + t.pnl, 0), wins = trades.filter(t => t.pnl > 0).length;
+  const busy = Object.values(d.markets || {}).filter(m => m.position).length, ords = Object.values(d.markets || {}).filter(m => m.order && m.order.side === 'BUY').length;
+  const dd = st ? st.dd : 0, maxpos = d.params.max_pos;
+  const vals = {eq: fa(eq), ret: st ? sgn(st.ret) : '—', pnl: `<span class="num ${pnl >= 0 ? 'pos' : 'neg'}">${pnl >= 0 ? '+' : ''}${fa(pnl)}</span>`,
+                dd: `<span class="num ${dd >= 2 ? 'neg' : ''}">${fa(dd, 2)}٪</span>`, tr: `${fa(trades.length)} <span class="mute" style="font-size:14px">(${fa(wins)} برد)</span>`,
+                ai: `${fa(d.ai.rounds)} <span class="mute" style="font-size:14px">دور · ${fa(d.ai.reject_pct, 0)}٪ رد</span>`};
+  const slots = `<div class="slots">${Array.from({length: maxpos}, (_, i) => `<i class="${i < busy ? 'on' : i < busy + ords ? 'ord' : ''}"></i>`).join('')}</div>`;
+  $('kpis').innerHTML = kpi('eq', 'ارزش حساب (تومان)', vals.eq) + kpi('ret', 'بازده از ۵ میلیون', vals.ret) + kpi('pnl', 'سود و زیان محقق (تومان)', vals.pnl) +
+    kpi('dd', `بیشترین افت · توقف روزانه ${fa(d.params.daily_stop * 100)}٪`, vals.dd) + kpi('tr', 'معامله', vals.tr) +
+    kpi('sl', 'ظرفیت', `${fa(busy)} پوزیشن · ${fa(ords)} سفارش`, slots) + kpi('ai', 'داور AI', vals.ai);
+  for (const [id, v] of Object.entries(vals)) {  // flash a tile only when its value changed (state indication, not decoration)
+    if (lastEq[id] !== undefined && lastEq[id] !== v) { const el = $('kpis').querySelector(`[data-id="${id}"]`); el.classList.add('flash'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('flash'))); }
+    lastEq[id] = v;
+  }
+}
+
+/* ---------- charts ---------- */
+function drawEquity(d) {
+  const pts = d.status.map(s => [s.ts, s.equity]), svg = $('eq');
+  $('eqnote').textContent = pts.length ? `${fa(pts.length)} نقطه · هر ۵ دقیقه` : '';
+  if (pts.length < 2) { svg.innerHTML = `<text x="300" y="115" text-anchor="middle" fill="var(--dim)" font-size="13">بعد از ۱۰ دقیقه اجرا منحنی پیدا می‌شود</text>`; return; }
+  const W = 600, H = 220, P = 14, xs = pts.map(p => p[0]), ys = pts.map(p => p[1]).concat([5e6]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), lo = Math.min(...ys), hi = Math.max(...ys), pad = Math.max((hi - lo) * 0.15, 5000);
+  const X = t => W - P - (t - x0) / Math.max(1, x1 - x0) * (W - 2 * P), Y = v => H - P - (v - lo + pad) / (hi - lo + 2 * pad) * (H - 2 * P);
+  const line = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join('');
+  svg.innerHTML = `<defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--acc)" stop-opacity=".28"/><stop offset="1" stop-color="var(--acc)" stop-opacity="0"/></linearGradient></defs>
+    <line x1="0" x2="${W}" y1="${Y(5e6)}" y2="${Y(5e6)}" stroke="var(--dim)" stroke-dasharray="4 5" vector-effect="non-scaling-stroke"/>
+    <text x="${P}" y="${Y(5e6) - 5}" fill="var(--dim)" font-size="11">۵ میلیون</text>
+    <path d="${line}L${X(x1)},${H}L${X(x0)},${H}Z" fill="url(#ga)"/>
+    <path d="${line}" fill="none" stroke="var(--acc)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+    <text x="${W - P}" y="${H - 2}" fill="var(--dim)" font-size="11" text-anchor="start">${hm(x0)}</text><text x="${P}" y="${H - 2}" fill="var(--dim)" font-size="11">${hm(x1)}</text>`;
+}
+function spark(m, edge) {
+  const s = m.series; if (s.length < 3) return `<svg class="spark" viewBox="0 0 200 46"><text x="100" y="27" text-anchor="middle" fill="var(--dim)" font-size="11">داده‌ای نیست</text></svg>`;
+  const t0 = s[0][0], t1 = s.at(-1)[0], vals = s.flatMap(p => [p[1], p[2], p[2] - edge]);
+  const lo = Math.min(...vals) - 3, hi = Math.max(...vals) + 3, X = t => 200 - (t - t0) / Math.max(1, t1 - t0) * 200, Y = v => 44 - (v - lo) / (hi - lo) * 42;
+  const pl = k => s.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[k]).toFixed(1)}`).join('');
+  const th = s.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[2] - edge).toFixed(1)}`).join('');
+  return `<svg class="spark" viewBox="0 0 200 46" preserveAspectRatio="none"><path d="${th}" fill="none" stroke="var(--info)" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" opacity=".7"/>
+    <path d="${pl(2)}" fill="none" stroke="var(--dim)" vector-effect="non-scaling-stroke"/><path d="${pl(1)}" fill="none" stroke="var(--acc)" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>`;
+}
+function drawMarkets(d) {
+  const v = (d.ai.last || {}).verdicts || {}, edge = d.params.entry_edge * 1e4;
+  const html = Object.entries(d.markets).map(([sym, m], i) => {
+    const c = sym.replace('TMN', ''), a = v[sym], ok = a && a.verdict === 'approve';
+    const cls = ['mk', m.active ? '' : 'idle', m.position ? 'hold' : m.order ? 'ord' : '', mkBuilt ? '' : 'pre'].join(' ');
+    const state = m.position ? `<span class="chip ok">پوزیشن باز</span>` : m.order ? `<span class="chip" style="color:var(--info)">سفارش ${m.order.side === 'BUY' ? 'خرید' : 'فروش'}</span>` : m.active ? '' : `<span class="chip">فقط با کارمزد صفر</span>`;
+    const prem = m.last ? `پریمیوم <span class="num">${fa(m.last.prem, 1)}</span> · پایه <span class="num">${fa(m.last.base, 1)}</span>` : '';
+    return `<div class="${cls}" style="transition-delay:${mkBuilt ? 0 : i * 40}ms"><div class="hd"><span><span class="sym">${c}</span> <span class="mute" style="font-size:12px">${NAMES[c] || ''}</span></span>${state}</div>
+      ${spark(m, edge)}<div class="mute" style="font-size:12px">${prem}</div>
+      ${a ? `<div style="color:${ok ? 'var(--pos)' : 'var(--warn)'};font-size:12px;font-weight:700">${ok ? 'AI تأیید' : 'AI رد'} · اطمینان <span class="num">${fa(a.confidence * 100)}٪</span></div><div class="conf" style="color:${ok ? 'var(--pos)' : 'var(--warn)'}"><i style="width:${a.confidence * 100}%"></i></div><div class="why">${esc(a.reason)}</div>` : '<div class="why">هنوز رأیی نیست</div>'}</div>`;
+  }).join('');
+  $('mkts').innerHTML = html;
+  if (!mkBuilt) { mkBuilt = true; requestAnimationFrame(() => requestAnimationFrame(() => $('mkts').querySelectorAll('.mk.pre').forEach(e => e.classList.remove('pre')))); }
+}
+
+/* ---------- positions, orders, trades ---------- */
+function drawPositions(d) {
+  const rows = Object.entries(d.markets).filter(([, m]) => m.position).map(([sym, m]) => {
+    const p = m.position, bid = m.last ? m.last.bid : null, pct = bid ? (bid / p.entry - 1) * 100 : null, held = (d.now - p.opened) / 60, left = d.params.max_hold / 60 - held;
+    return `<tr><td><b>${sym.replace('TMN', '')}</b></td><td class="num">${fa(p.qty, 6)}</td><td class="num">${fa(p.entry)}</td><td class="num">${fa(bid)}</td><td>${pct == null ? '—' : sgn(pct)}</td><td class="num">${fa(p.stop)}</td><td>${fa(held)} دقیقه <span class="dim">(${fa(Math.max(0, left))} مانده)</span></td></tr>`;
+  });
+  $('pos').innerHTML = rows.length ? `<table><tr><th>بازار</th><th>مقدار</th><th>قیمت ورود</th><th>bid الان</th><th>سود/زیان</th><th>حد ضرر</th><th>زمان نگه‌داری</th></tr>${rows.join('')}</table>` : '<div class="empty">پوزیشن بازی نیست. ربات منتظر یک افت ۰.۸٪ زیر قیمت جهانی با تأیید AI است.</div>';
+  const os = Object.entries(d.markets).filter(([, m]) => m.order).map(([sym, m]) => {
+    const o = m.order, dist = m.last ? (m.last.ask / o.price - 1) * 100 : null;
+    return `<tr><td><b>${sym.replace('TMN', '')}</b></td><td><span class="tag ${o.side === 'BUY' ? 'buy' : 'sell'}">${o.side === 'BUY' ? 'خرید' : 'فروش'}</span>${REASON[o.reason] || o.reason}</td><td class="num">${fa(o.price)}</td><td class="num">${fa(o.price * o.qty)}</td><td class="num">${dist == null ? '—' : fa(dist, 2) + '٪'}</td></tr>`;
+  });
+  $('ords').innerHTML = os.length ? `<table><tr><th>بازار</th><th>نوع</th><th>قیمت</th><th>ارزش (تومان)</th><th>فاصله‌ی ask تا سفارش</th></tr>${os.join('')}</table>` : '<div class="empty">سفارشی در انتظار نیست.</div>';
+  const tr = (d.trades || []).slice().reverse().map(t => `<tr><td>${hm(t.close)}</td><td><b>${t.sym.replace('TMN', '')}</b></td><td>${REASON[t.reason] || t.reason}</td><td class="num">${fa(t.entry)}</td><td class="num">${fa(t.exit)}</td><td>${sgn(t.pct * 100)}</td><td class="num ${t.pnl >= 0 ? 'pos' : 'neg'}">${fa(t.pnl)}</td><td>${fa((t.close - t.open) / 60)} دقیقه</td></tr>`);
+  $('trades').innerHTML = tr.length ? `<table><tr><th>بسته شد</th><th>بازار</th><th>دلیل</th><th>ورود</th><th>خروج</th><th>٪</th><th>تومان</th><th>مدت</th></tr>${tr.join('')}</table>` : '<div class="empty">هنوز معامله‌ای بسته نشده.</div>';
+}
+
+/* ---------- AI + feed ---------- */
+function drawAI(d) {
+  const l = d.ai.last;
+  if (!l) { $('ai').innerHTML = '<div class="empty">اولین رأی ۵ دقیقه بعد از شروع می‌آید.</div>'; $('ainext').textContent = ''; return; }
+  const vs = Object.entries(l.verdicts || {}), ap = vs.filter(([, v]) => v.verdict === 'approve').length, n = vs.length || 1, C = 2 * Math.PI * 26;
+  $('ai').innerHTML = `<div class="donut"><svg viewBox="0 0 64 64" style="width:76px"><circle cx="32" cy="32" r="26" fill="none" stroke="var(--line)" stroke-width="8"/>
+      <circle cx="32" cy="32" r="26" fill="none" stroke="var(--pos)" stroke-width="8" stroke-dasharray="${C * ap / n} ${C}" transform="rotate(-90 32 32)"/>
+      <text x="32" y="37" text-anchor="middle" fill="var(--ink)" font-size="14" font-weight="700">${fa(ap)}/${fa(vs.length)}</text></svg>
+    <div><div>آخرین دور <span class="num">${hm(tsOf(l.ts))}</span> ${l.ok ? '' : '<span class="neg">(خطا)</span>'}</div><div class="mute" style="font-size:12px">${fa(ap)} تأیید · ${fa(vs.length - ap)} رد · کل ${fa(d.ai.rounds)} دور${d.ai.failed ? ` · ${fa(d.ai.failed)} خطا` : ''}</div></div></div>
+    <table style="margin-top:8px">${vs.map(([s, v]) => `<tr><td><b>${s.replace('TMN', '')}</b></td><td style="color:${v.verdict === 'approve' ? 'var(--pos)' : 'var(--warn)'}">${v.verdict === 'approve' ? 'تأیید' : 'رد'}</td><td class="num">${fa(v.confidence * 100)}٪</td><td style="white-space:normal;font-size:12px" class="mute">${esc(v.reason)}</td></tr>`).join('')}</table>`;
+  window._aiNext = tsOf(l.ts) + d.params.ai_every;
+}
+function feedText(f) {
+  const c = (f.market || '').replace('TMN', '');
+  if (f.decision === 'trade_closed') return `<span class="tag sell">بسته شد</span><b>${c}</b> ${REASON[f.reason] || f.reason} · ${sgn(f.pnl_pct)}`;
+  if (f.decision && f.decision.startsWith('buy')) return `<span class="tag buy">سفارش خرید</span><b>${c}</b> قیمت <span class="num">${fa(f.order && f.order.price)}</span>${f.ai ? ` · AI ${fa(f.ai.confidence * 100)}٪` : ''}`;
+  if (f.decision && f.decision.startsWith('sell')) return `<span class="tag sell">سفارش فروش</span><b>${c}</b> ${esc(f.decision.slice(5))} قیمت <span class="num">${fa(f.order && f.order.price)}</span>`;
+  if (f.decision === 'skipped') return f.why === 'AI reject' ? `<span class="tag rej">رد AI</span><b>${c}</b> <span class="mute">${esc(f.ai && f.ai.reason)}</span>` : `<span class="tag">ظرفیت پر</span><b>${c}</b> <span class="mute">هر ۳ جا پر است</span>`;
+  return `<span class="tag">${esc(f.decision)}</span>${c}`;
+}
+function drawFeed(d) {
+  const box = $('feed'), items = (d.feed || []).map(f => ({key: f.ts + f.market + f.decision + (f.why || ''), ts: tsOf(f.ts), html: feedText(f)}))
+    .concat((d.events || []).filter(e => !['warm', 'trade', 'fill'].includes(e.kind)).map(e => ({key: 'e' + e.ts, ts: e.ts, html: `<span class="tag ${['error', 'halt', 'stale'].includes(e.kind) ? 'err' : ''}">${esc(e.kind)}</span><span class="mute">${esc(e.msg.slice(0, 180))}</span>`})))
+    .sort((a, b) => b.ts - a.ts).slice(0, 80);
+  const fresh = items.filter(i => !seenFeed.has(i.key));
+  if (!fresh.length && box.children.length) return;
+  if (firstFeed || !box.children.length) {
+    box.innerHTML = items.map(i => `<div class="ev"><span class="t">${hm(i.ts)}</span><div>${i.html}</div></div>`).join('') || '<div class="empty">هنوز تصمیمی ثبت نشده.</div>';
+  } else {
+    for (const i of fresh.reverse()) {  // new entries slide in from above
+      const el = document.createElement('div'); el.className = 'ev pre'; el.innerHTML = `<span class="t">${hm(i.ts)}</span><div>${i.html}</div>`;
+      box.prepend(el); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('pre')));
+    }
+    while (box.children.length > 80) box.lastChild.remove();
+  }
+  items.forEach(i => seenFeed.add(i.key)); firstFeed = false;
+}
+
+/* ---------- account + info ---------- */
+function drawAccount() {
+  if (src !== 'live') { $('acct').innerHTML = '<div class="empty">حالت سایه پول واقعی ندارد؛ موجودی شبیه‌سازی ۵ میلیون تومان است. برای موجودی واقعی «واقعی» را انتخاب کن.</div>'; $('acctTs').textContent = ''; return; }
+  if (!acct) return;
+  if (acct.error) { $('acct').innerHTML = `<div class="neg">خواندن موجودی خطا داد: ${esc(acct.error)}</div>`; return; }
+  $('acctTs').textContent = 'به‌روز ' + hm(acct.ts);
+  $('acct').innerHTML = `<div style="display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px"><span style="font-size:26px;font-weight:800" class="num">${fa(acct.total_tmn)}</span><span class="mute">تومان</span>${sgn(acct.return_pct, 3)}<span class="dim">از اعتبار ۵٬۰۰۰٬۰۰۰ چالش</span></div>
+    <table><tr><th>دارایی</th><th>آزاد</th><th>قفل در سفارش</th><th>ارزش (تومان)</th></tr>${acct.assets.map(a => `<tr><td><b>${a.asset}</b></td><td class="num">${fa(a.free, a.asset === 'TMN' ? 0 : 6)}</td><td class="num">${fa(a.locked, a.asset === 'TMN' ? 0 : 6)}</td><td class="num">${fa(a.value_tmn)}</td></tr>`).join('')}</table>
+    <div class="dim" style="font-size:12px;margin-top:6px">فقط‌خواندنی از API والکس؛ کوین‌ها با آخرین bid ثبت‌شده‌ی ربات قیمت‌گذاری شده‌اند.</div>`;
+}
+function drawInfo(d) {
+  const r = ctl && ctl.running[src], s = r ? r.settings : {}, p = d.params, start = d.start || '';
+  const fees = (start.match(/fees ([\d.]+)\/([\d.]+)/) || []);
+  $('info').innerHTML = `<dl class="kv">
+    <dt>حالت</dt><dd>${src === 'live' ? 'واقعی، حساب چالش والکس' : 'سایه (MODE=paper)'} ${r ? '<span class="chip ok">در حال اجرا</span>' : '<span class="chip">متوقف</span>'}</dd>
+    <dt>نسخه‌ی کد</dt><dd class="num">${esc(d.commit)}</dd>
+    <dt>بازارهای فعال</dt><dd>${d.coins.join('، ')}</dd><dt>فقط با کارمزد صفر</dt><dd class="mute">${d.watch.join('، ')}</dd>
+    <dt>کارمزد میکر / تیکر</dt><dd class="num">${fees[1] ? fa(fees[1] * 100, 2) + '٪ / ' + fa(fees[2] * 100, 2) + '٪' : '—'}</dd>
+    <dt>سهم هر پوزیشن × تعداد</dt><dd class="num">${fa((s.POS_FRAC || 0.2) * 100)}٪ × ${fa(s.MAX_POS || p.max_pos)}</dd>
+    <dt>آستانه‌ی ورود</dt><dd class="num">${fa((s.ENTRY_EDGE || p.entry_edge) * 100, 2)}٪ زیر قیمت پایه</dd>
+    <dt>حد ضرر / توقف روزانه</dt><dd class="num">${fa((s.STOP_LOSS || p.stop_loss) * 100, 1)}٪ / ${fa((s.DAILY_STOP || p.daily_stop) * 100, 1)}٪</dd>
+    <dt>نگه‌داری حداکثر</dt><dd>${fa(p.max_hold / 3600)} ساعت</dd>
+    <dt>داور AI</dt><dd>${s.AI === 'boxapi' ? 'Claude Haiku از BoxAPI' : 'Claude Haiku از claude CLI'} · هر ${fa(p.ai_every / 60)} دقیقه</dd>
+    <dt>توقف ورود / بستن همه</dt><dd class="num">${hm(d.end_ts - p.entry_cutoff)} / ${hm(d.end_ts - p.flatten_before)}</dd>
+    <dt>پایان چالش</dt><dd class="num">${hm(d.end_ts)}</dd></dl>
+    ${Object.keys(d.skips || {}).length ? `<div class="mute" style="font-size:12px;margin-top:8px">ورودهای انجام‌نشده: ${Object.entries(d.skips).map(([k, v]) => `${k === 'AI reject' ? 'رد AI' : 'ظرفیت پر'} ${fa(v)}`).join(' · ')}</div>` : ''}`;
+}
+
+/* ---------- clock + heartbeat (local, every second) ---------- */
+function tick() {
+  if (!data) return;
+  const now = Date.now() / 1000, left = data.end_ts - now, h = Math.max(0, left);
+  $('left').textContent = [h / 3600, h % 3600 / 60, h % 60].map(x => String(Math.floor(x)).padStart(2, '0')).join(':');
+  const startTs = data.status[0] ? data.status[0].ts : now;
+  $('prog').style.transform = `scaleX(${Math.min(1, Math.max(0, (now - startTs) / Math.max(1, data.end_ts - startTs)))})`;
+  const run = ctl && ctl.running[src], age = now - (data.heartbeat || 0);
+  $('hb').className = run ? (age < 45 ? 'live' : 'stale') : '';
+  $('hbtxt').textContent = run ? (age < 45 ? 'زنده' : `بدون داده ${fa(age / 60)} دقیقه`) : 'متوقف';
+  const ph = left <= data.params.flatten_before ? ['در حال بستن همه', 'bad'] : left <= data.params.entry_cutoff ? ['ورود جدید متوقف', 'warn'] : ['باز', 'ok'];
+  $('phase').className = 'chip ' + ph[1]; $('phase').textContent = ph[0];
+  if (window._aiNext) { const s = Math.max(0, window._aiNext - now); $('ainext').textContent = run ? `دور بعد ${fa(Math.floor(s / 60))}:${String(Math.floor(s % 60)).padStart(2, '0')}` : ''; }
+}
+
+async function poll() {
+  try {
+    data = await (await fetch('/api/bot/' + src, {cache: 'no-store'})).json();
+    drawKpis(data); drawEquity(data); drawPositions(data); drawMarkets(data); drawAI(data); drawFeed(data); drawInfo(data); drawAccount(); tick();
+  } catch (e) { console.warn(e); }
+}
+async function pollAcct() { if (src !== 'live') return drawAccount(); try { acct = await (await fetch('/api/account', {cache: 'no-store'})).json(); } catch (e) { acct = {error: String(e)}; } drawAccount(); }
+placeInd(); window.addEventListener('resize', placeInd);
+pollCtl().then(poll); pollAcct();
+setInterval(poll, 3000); setInterval(pollCtl, 5000); setInterval(pollAcct, 15000); setInterval(tick, 1000);
+</script>
+</body>
+</html>
