@@ -1,6 +1,6 @@
 """TIZ: Wallex premium mean-reversion bot with an AI judge and a hard risk gate.
 
-Signal (rule): fair = Binance <COIN>USDT mid × Wallex USDTTMN mid. Each Wallex <COIN>TMN market trades at a
+Signal (rule): fair = Binance <COIN>USDT mid × Wallex USDTTMN mid (REF_SOURCE=wallex: Wallex's own <COIN>USDT mid). Each Wallex <COIN>TMN market trades at a
 slowly drifting premium to fair; we track it with an EMA (baseline). A dip of ENTRY_EDGE below baseline-fair
 is a liquidity gap that historically closes within the hour, so we rest a limit buy there and sell back at
 baseline-fair (never below breakeven + fees + MIN_PROFIT).
@@ -90,6 +90,7 @@ END_TS = datetime.fromisoformat(env("END_TS", "2026-10-23T23:50:00+03:30")).time
 ENTRY_CUTOFF = env("ENTRY_CUTOFF", 3 * 3600.0)
 FLATTEN_BEFORE = env("FLATTEN_BEFORE", 3600.0)
 AI_EVERY = env("AI_EVERY", 300.0)
+REF_SOURCE = env("REF_SOURCE", "auto")  # auto | binance | wallex: <COIN>USDT reference; auto = binance unless it refuses us (451 on Iran IPs)
 AI_CMD = env("AI_CMD", "claude -p --model haiku")  # any CLI that reads a prompt on stdin and prints JSON
 AI_MAX_AGE = env("AI_MAX_AGE", 900.0)  # older verdicts count as reject
 MIN_NOTIONAL = 50_000  # TMN, /v1/markets
@@ -224,11 +225,11 @@ class Journal:
 class Judge:
     PROMPT = """You are the risk-aware trade judge of an automated spot bot on the Iranian exchange Wallex.
 Strategy: in each approved market the bot keeps a resting limit BUY {edge_bps:.0f} bps below "baseline fair"
-(Binance USDT price × Wallex USDT/TMN, adjusted by the market's own 30-min average premium). It only fills if a
+(global <COIN>USDT price × Wallex USDT/TMN, adjusted by the market's own 30-min average premium). It only fills if a
 seller on Wallex suddenly dumps price that far below the global price; it then sells when the premium returns to
 baseline (max hold {hold_h:.0f}h, stop loss {stop_bps:.0f} bps). A dip does NOT need to exist now: you decide whether the
 market is in a state where such a sudden dip is likely a temporary liquidity gap that reverts (good), or a real
-move that keeps going (bad: Binance trending hard, Wallex premium drifting steadily in one direction, recent
+move that keeps going (bad: the global USDT price trending hard, Wallex premium drifting steadily in one direction, recent
 losses in that market). The baseline level itself (positive or negative) is irrelevant because the bot
 already prices relative to it; what matters is whether the premium is stable around it. Fees are {fee_bps:.0f} bps per side. All context numbers are in basis points
 (1 bp = 0.01%). For scale: premium noise of 5-20 bps and spreads of 3-40 bps are normal on Wallex; a 2h
@@ -677,8 +678,8 @@ class Bot:
                 premium_3d_sd_bps=round(statistics.pstdev(x[1] for x in h) * bp, 1),
                 qualified=m.qual, qualifier=m.qual_why,
                 premium_range_min_max_bps=[round(min(x[1] for x in h[-120:]) * bp, 1), round(max(x[1] for x in h[-120:]) * bp, 1)],
-                binance_change_last_60m_bps=round((h[-1][2] / h[max(0, len(h) - 60)][2] - 1) * bp, 1),
-                binance_1m_return_sd_bps=round(statistics.pstdev(rets) * bp, 1) if len(rets) > 1 else 0,
+                ref_change_last_60m_bps=round((h[-1][2] / h[max(0, len(h) - 60)][2] - 1) * bp, 1),
+                ref_1m_return_sd_bps=round(statistics.pstdev(rets) * bp, 1) if len(rets) > 1 else 0,
                 wallex_spread_bps=round(h[-1][3] * bp, 1),
                 recent_trade_pnls_bps=[round(x * 100, 1) for x in m.pnls], holding=bool(m.pos_qty))
         return ctx
@@ -715,15 +716,18 @@ def warm_from(m, wx, bn, usdt, frm, to):
         m.hist.append((float(t), prem, b, 0.0, m.base, c[3]))
 
 
-def warm_history(bot, days=QUAL_DAYS):
-    """Fill each market's minute history, baseline and daily volume from Wallex UDF + Binance klines, so the
+def warm_history(bot, days=QUAL_DAYS, ref="binance"):
+    """Fill each market's minute history, baseline and daily volume from Wallex UDF + the reference (Binance klines or
+    Wallex <COIN>USDT candles), so the
     qualifier and the AI context work from the first minute instead of after QUAL_MIN_HOURS."""
     from tiz import backtest as T  # lazy: backtest imports this module
     now = int(time.time()) // 60 * 60
     frm = now - int(days * 86400)
     usdt = {t: v[3] for t, v in T.fetch_wallex("USDTTMN", frm, now).items()}
     for m in bot.m.values():
-        warm_from(m, T.fetch_wallex(m.sym, frm, now), T.fetch_binance(m.base_asset + "USDT", frm, now), usdt, frm, now)
+        sym = m.base_asset + "USDT"
+        bn = T.fetch_binance(sym, frm, now) if ref == "binance" else {t: v[3] for t, v in T.fetch_wallex(sym, frm, now).items()}
+        warm_from(m, T.fetch_wallex(m.sym, frm, now), bn, usdt, frm, now)
         bot.event("warm", f"{m.sym}: {len(m.hist) / 60:.0f}h of history, {m.vol_day / 1e9:.1f}B TMN/day")
 
 
@@ -732,6 +736,17 @@ def iso(ts):
 
 
 # ---------------------------------------------------------------- live wiring
+def ref_source():
+    """REF_SOURCE, with auto resolved by one Binance kline request: (source, why)."""
+    if REF_SOURCE != "auto":
+        return REF_SOURCE, "REF_SOURCE"
+    try:
+        r = httpx.get("https://data-api.binance.vision/api/v3/klines", params=dict(symbol="BTCUSDT", interval="1m", limit=1), timeout=15)
+        return ("binance", "ok") if r.status_code == 200 else ("wallex", f"binance {r.status_code}")
+    except httpx.HTTPError as e:
+        return "wallex", f"binance {type(e).__name__}"
+
+
 async def binance_feed(coins, on_ref):
     streams = "/".join(f"{c.lower()}usdt@bookTicker" for c in coins)
     url = f"wss://data-stream.binance.vision/stream?streams={streams}"  # api.binance.com is geo-blocked from Iran
@@ -781,25 +796,39 @@ async def main():
     else:
         broker = Paper(PAPER_TMN)
     bot = Bot(broker, Journal(), markets, Judge(enabled=env("AI_JUDGE", "1") != "0"), telegram(rest.http))  # AI_JUDGE=0: rules only
+    ref, why = ref_source()
+    log.warning("reference source: %s (%s)", ref, why)
+    refb = {c + "USDT": {"bid": (0.0, 0.0), "ask": (0.0, 0.0)} for c in COINS + ZERO_FEE_COINS} if ref == "wallex" else {}
+
+    def on_wallex(sym, side, levels):  # TMN books to the bot; with ref wallex, <COIN>USDT books become the reference
+        if sym not in refb:
+            return bot.on_depth(sym, side, levels)
+        if levels:
+            refb[sym][side] = (levels[0][0], time.time())
+        b, a = refb[sym]["bid"], refb[sym]["ask"]
+        if 0 < b[0] < a[0]:  # empty or crossed book: no ref update, the STALE rule pauses the market
+            bot.on_ref(sym[:-4], (b[0] + a[0]) / 2, min(b[1], a[1]))
+
     try:
-        warm_history(bot)
+        warm_history(bot, ref=ref)
     except Exception as e:  # the qualifier then waits QUAL_MIN_HOURS for live history
         bot.event("error", f"history warm-up failed: {e!r}")
     bot.event("start", f"{MODE} {syms} fees {FEE_MAKER}/{FEE_TAKER} edge {ENTRY_EDGE} pos {POS_FRAC}×{MAX_POS} "
-                       f"end {iso(END_TS)}")
-    asyncio.create_task(stream_depth(syms + ["USDTTMN"], bot.on_depth))
-    asyncio.create_task(binance_feed(COINS + ZERO_FEE_COINS, bot.on_ref))
+                       f"end {iso(END_TS)} ref {ref}")
+    asyncio.create_task(stream_depth(syms + ["USDTTMN"] + list(refb), on_wallex))
+    if ref == "binance":
+        asyncio.create_task(binance_feed(COINS + ZERO_FEE_COINS, bot.on_ref))
     last_status = next_ai = 0.0
     while True:
         await asyncio.sleep(1)
         now = time.time()
         try:
-            for s in syms + ["USDTTMN"]:  # socket pushes only on change, no snapshot: top up quiet books via REST
-                book = bot.usdt if s == "USDTTMN" else bot.m[s].book
+            for s in syms + ["USDTTMN"] + list(refb):  # socket pushes only on change, no snapshot: top up quiet books via REST
+                book = bot.usdt if s == "USDTTMN" else refb.get(s) or bot.m[s].book
                 if now - min(book["bid"][1], book["ask"][1]) > 10:
                     d = await rest.depth(s)
-                    bot.on_depth(s, "bid", [(float(x["price"]), 0) for x in d["bid"]])
-                    bot.on_depth(s, "ask", [(float(x["price"]), 0) for x in d["ask"]])
+                    on_wallex(s, "bid", [(float(x["price"]), 0) for x in d["bid"]])
+                    on_wallex(s, "ask", [(float(x["price"]), 0) for x in d["ask"]])
             await bot.tick(now)
             if not bot.judge.busy and now >= next_ai and now - bot.t0 >= WARMUP / 2:
                 next_ai = now + 60  # retry in 60 s if this round fails; success pushes it to AI_EVERY

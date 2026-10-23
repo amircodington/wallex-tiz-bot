@@ -603,7 +603,12 @@ const FIELDS = [['POS_FRAC', 'سهم هر پوزیشن', 0.3, 0.01, 'pie', 'چه
 const pending = {live: {}, shadow: {}};  // settings picked in the dialog or by the assistant, sent on the next start
 try { Object.assign(pending, JSON.parse(localStorage.getItem('pending') || '{}')); } catch (e) {}
 const keepPending = () => { try { localStorage.setItem('pending', JSON.stringify(pending)); } catch (e) {} };
-const AIN = {boxapi: 'BoxAPI', cli: 'CLI', off: 'خاموش'};  // settings picked in the dialog, sent on the next start
+const AIN = {boxapi: 'BoxAPI', cli: 'CLI', off: 'خاموش'};
+const REFN = {binance: 'بایننس', wallex: 'والکس USDT'};
+const refChip = p => {  // which <COIN>USDT price the running bot uses as fair (from its [start] line)
+  const r = p === src && data && ((data.start || '').match(/ ref (\w+)/) || [])[1];
+  return r ? ` <span class="pill ${r === 'wallex' ? 'warn' : 'info'}" style="padding:2px 10px;font-size:13px">${ic('globe')}مرجع قیمت: ${REFN[r] || esc(r)}</span>` : '';
+};  // settings picked in the dialog, sent on the next start
 const chip = (icon, k, v) => `<button class="kv-chip" data-set>${ic(icon)}${k}<b>${v}</b></button>`;
 function setOf(p) {
   const r = ctl && ctl.running[p], s = r ? r.settings : pending[p];
@@ -619,7 +624,7 @@ function runCard(p) {
     : `<button class="btn primary" data-act="start" data-p="shadow">${ic('play')}<span>شروع سایه</span></button>`;
   return `<div class="run ${on ? 'on' : ''}" data-row="${p}">
     <div class="run-h"><h3><span class="ic">${ic(live ? 'coins' : 'moon')}</span>${title} ${on ? '<span class="pill ok"><i></i>در حال اجرا</span>' : '<span class="pill"><i></i>متوقف</span>'}</h3></div>
-    <div class="run-h"><span class="meta">${on ? `${ic('clock')} از ساعت <span class="num">${hm(r.started)}</span> · کد <span class="num">${esc(data ? data.commit : '')}</span>` : (live ? 'با پول واقعی حساب چالش معامله می‌کند' : 'همان کد، بدون ارسال سفارش')}</span><span class="msg" data-msg="${p}"></span></div>
+    <div class="run-h"><span class="meta">${on ? `${ic('clock')} از ساعت <span class="num">${hm(r.started)}</span> · کد <span class="num">${esc(data ? data.commit : '')}</span>${refChip(p)}` : (live ? 'با پول واقعی حساب چالش معامله می‌کند' : 'همان کد، بدون ارسال سفارش')}</span><span class="msg" data-msg="${p}"></span></div>
     <div class="chips">${chips}</div>
     <div class="btns">${btn}<button class="btn ghost" data-set>${ic('gear')}<span>تنظیمات</span></button></div></div>`;
 }
@@ -693,7 +698,7 @@ async function drawTicker(d) {
     return `<div class="tk" data-s="${sym}" data-v="${mid}" style="--c:${COLOR[c] || '#8B5CF6'};--n:${j}">
       <div class="tk-h">${av(c)}<div class="coin"><div><b>${c}</b><small>${NAMES[c] || ''}</small></div></div><span class="chg ${cls}">${ic(ch >= 0 ? 'up' : 'down')}${fmt(Math.abs(ch), 2)}%</span></div>
       <div class="p num ${fl}">${price(mid)}</div>
-      <div class="sub">${ic('globe')} ${prem == null ? '' : `نسبت به بایننس <span class="num">${prem > 0 ? '+' : ''}${fmt(prem, 2)}%</span>`}</div>${line}</div>`;
+      <div class="sub">${ic('globe')} ${prem == null ? '' : `نسبت به مرجع <span class="num">${prem > 0 ? '+' : ''}${fmt(prem, 2)}%</span>`}</div>${line}</div>`;
   }).join('');
   requestAnimationFrame(() => requestAnimationFrame(() => $('ticker').querySelectorAll('.p.f-up, .p.f-dn').forEach(e => e.classList.remove('f-up', 'f-dn'))));
 }
